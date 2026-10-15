@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class XII Birthday Tracker | ২০২৩-২৪</title>
+  <meta name="description" content="প্রতিদিন Class XII ছাত্র-ছাত্রীদের জন্মদিন দেখুন" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f0f12;
+      --card: #1a1a22;
+      --card-hover: #22222c;
+      --accent: #f5c542;
+      --accent-soft: rgba(245, 197, 66, 0.15);
+      --text: #f0f0f5;
+      --muted: #9a9aab;
+      --success: #4ade80;
+      --border: #2a2a35;
+      --pink: #f472b6;
+      --blue: #60a5fa;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Hind Siliguri', 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 0.35rem;
+    }
+
+    .date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title .emoji {
+      font-size: 1.3rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.35rem;
+      margin-bottom: 1rem;
+      transition: background 0.2s;
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+    }
+
+    .birthday-card {
+      border-left: 4px solid var(--accent);
+      background: linear-gradient(135deg, rgba(245, 197, 66, 0.08), transparent);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--muted);
+    }
+
+    .empty-state .big {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .student-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.2rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-girl {
+      background: rgba(244, 114, 182, 0.2);
+      color: var(--pink);
+    }
+
+    .badge-boy {
+      background: rgba(96, 165, 250, 0.2);
+      color: var(--blue);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+      background: var(--card);
+      padding: 0.35rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .tab {
+      flex: 1;
+      padding: 0.6rem 0.75rem;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab.active {
+      background: var(--accent);
+      color: #0f0f12;
+      font-weight: 600;
+    }
+
+    .tab:hover:not(.active) {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .panel {
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    .upcoming-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .upcoming-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .upcoming-item .left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .upcoming-item .name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .upcoming-item .info {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .upcoming-item .days {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .count-pill {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.4rem; }
+      .student-name { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎂 Class XII Birthday Tracker</h1>
+      <p>২০২৩-২৪ সেশন · সেকশন A, B, C</p>
+      <div class="date-badge" id="todayDate">—</div>
+    </header>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="today">আজকের জন্মদিন</button>
+      <button class="tab" data-tab="upcoming">আগামী ৭ দিন</button>
+      <button class="tab" data-tab="all">সব তালিকা</button>
+    </div>
+
+    <!-- Today Panel -->
+    <div class="panel active" id="panel-today">
+      <div class="section-title">
+        <span class="emoji">🎉</span>
+        <span>আজ কার জন্মদিন</span>
+        <span class="count-pill" id="todayCount">0</span>
+      </div>
+      <div id="todayList"></div>
+    </div>
+
+    <!-- Upcoming Panel -->
+    <div class="panel" id="panel-upcoming">
+      <div class="section-title">
+        <span class="emoji">📅</span>
+        <span>পরবর্তী ৭ দিনের জন্মদিন</span>
+      </div>
+      <div class="upcoming-list" id="upcomingList"></div>
+    </div>
+
+    <!-- All Panel -->
+    <div class="panel" id="panel-all">
+      <div class="section-title">
+        <span class="emoji">📋</span>
+        <span>মাস অনুসারে সব জন্মদিন</span>
+      </div>
+      <div id="allList"></div>
+    </div>
+
+    <footer>
+      <p>ডেটা: Class XII ২০২৩-২৪ ট্যাব লিস্ট</p>
+      <p style="margin-top: 0.35rem;">প্রতিদিন পেজটি রিফ্রেশ করলে আজকের জন্মদিন দেখাবে</p>
+    </footer>
+  </div>
+
+  <script>
+    // Tabs
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    const monthNamesBn = [
+      '', 'জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন',
+      'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'
+    ];
+
+    const dayNamesBn = [
+      'রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'
+    ];
+
+    function formatDateBn(d) {
+      return `${d.getDate()} ${monthNamesBn[d.getMonth() + 1]} ${d.getFullYear()}, ${dayNamesBn[d.getDay()]}`;
+    }
+
+    function daysUntil(month, day, fromDate) {
+      const year = fromDate.getFullYear();
+      let next = new Date(year, month - 1, day);
+      if (next < fromDate) {
+        next = new Date(year + 1, month - 1, day);
+      }
+      const diff = Math.ceil((next - fromDate) / (1000 * 60 * 60 * 24));
+      return diff;
+    }
+
+    async function loadData() {
+      const res = await fetch('students.json');
+      const students = await res.json();
+
+      const now = new Date();
+      // Use local date
+      const todayMonth = now.getMonth() + 1;
+      const todayDay = now.getDate();
+
+      document.getElementById('todayDate').textContent = formatDateBn(now);
+
+      // Today's birthdays
+      const todayBdays = students.filter(s => s.month === todayMonth && s.day === todayDay);
+      document.getElementById('todayCount').textContent = todayBdays.length;
+
+      const todayList = document.getElementById('todayList');
+      if (todayBdays.length === 0) {
+        todayList.innerHTML = `
+          <div class="card empty-state">
+            <div class="big">🎈</div>
+            <p>আজ কারো জন্মদিন নেই</p>
+            <p style="font-size:0.85rem;margin-top:0.4rem;">আগামী ৭ দিনের ট্যাব দেখুন</p>
+          </div>`;
+      } else {
+        todayList.innerHTML = todayBdays.map(s => `
+          <div class="card birthday-card">
+            <div class="student-name">${s.name}</div>
+            <div class="meta">
+              <span>📚 সেকশন ${s.section} · রোল ${s.roll}</span>
+              <span class="badge ${s.gender === 'GIRLS' ? 'badge-girl' : 'badge-boy'}">
+                ${s.gender === 'GIRLS' ? 'মেয়ে' : 'ছেলে'}
+              </span>
+              <span>🎂 ${s.dob}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Upcoming 7 days
+      const upcoming = [];
+      for (let i = 1; i <= 7; i++) {
+        const d = new Date(now);
+        d.setDate(d.getDate() + i);
+        const m = d.getMonth() + 1;
+        const day = d.getDate();
+        const matches = students.filter(s => s.month === m && s.day === day);
+        matches.forEach(s => {
+          upcoming.push({
+            ...s,
+            daysLeft: i,
+            dateStr: `${day} ${monthNamesBn[m]}`
+          });
+        });
+      }
+
+      const upcomingList = document.getElementById('upcomingList');
+      if (upcoming.length === 0) {
+        upcomingList.innerHTML = `<div class="card empty-state"><p>পরবর্তী ৭ দিনে কোনো জন্মদিন নেই</p></div>`;
+      } else {
+        upcomingList.innerHTML = upcoming.map(s => `
+          <div class="upcoming-item">
+            <div class="left">
+              <span class="name">${s.name}</span>
+              <span class="info">সেকশন ${s.section} · রোল ${s.roll} · ${s.dateStr}</span>
+            </div>
+            <span class="days">${s.daysLeft === 1 ? 'কাল' : s.daysLeft + ' দিন পর'}</span>
+          </div>
+        `).join('');
+      }
+
+      // All by month
+      const byMonth = {};
+      students.forEach(s => {
+        if (!byMonth[s.month]) byMonth[s.month] = [];
+        byMonth[s.month].push(s);
+      });
+
+      const allList = document.getElementById('allList');
+      let html = '';
+      for (let m = 1; m <= 12; m++) {
+        const list = (byMonth[m] || []).sort((a, b) => a.day - b.day);
+        if (list.length === 0) continue;
+        html += `<div style="margin-bottom:1.5rem;">
+          <h3 style="color:var(--accent);font-size:1rem;margin-bottom:0.6rem;">${monthNamesBn[m]} (${list.length})</h3>
+          <div style="display:flex;flex-direction:column;gap:0.4rem;">
+            ${list.map(s => `
+              <div class="upcoming-item" style="padding:0.6rem 0.9rem;">
+                <div class="left">
+                  <span class="name" style="font-size:0.9rem;">${s.name}</span>
+                  <span class="info">${s.day} ${monthNamesBn[m]} · সেকশন ${s.section}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+      }
+      allList.innerHTML = html;
+    }
+
+    loadData().catch(err => {
+      document.getElementById('todayList').innerHTML = `
+        <div class="card empty-state">
+          <p>ডেটা লোড করা যায়নি</p>
+          <p style="font-size:0.85rem;margin-top:0.4rem;">${err.message}</p>
+        </div>`;
+    });
+  </script>
+</body>
+</html>
