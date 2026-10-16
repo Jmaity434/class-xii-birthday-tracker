@@ -1,234 +1,101 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎂 Class XII Birthday Special | ২০২৩-২৪</title>
-  <meta name="description" content="প্রতিদিন Class XII ছাত্র-ছাত্রীদের জন্মদিন দেখুন ও নোটিফিকেশন পান" />
-  <meta name="theme-color" content="#ff6b9d" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg1: #1a0a14; --bg2: #2d1230; --card: rgba(255,255,255,0.07);
-      --accent: #ff6b9d; --accent2: #ffc857; --accent3: #a78bfa;
-      --text: #fff5f8; --muted: #d4a5b8; --success: #4ade80;
-      --border: rgba(255,107,157,0.25); --glow: 0 0 30px rgba(255,107,157,0.35);
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Hind Siliguri', system-ui, sans-serif;
-      background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 45%, #1a1030 100%);
-      color: var(--text); min-height: 100vh; line-height: 1.5; overflow-x: hidden;
-    }
-    .balloon { position: fixed; font-size: 1.8rem; opacity: 0.18; pointer-events: none; z-index: 0; animation: float 8s ease-in-out infinite; }
-    .balloon:nth-child(1) { top: 8%; left: 5%; }
-    .balloon:nth-child(2) { top: 15%; right: 8%; animation-delay: 1.5s; font-size: 2.2rem; }
-    .balloon:nth-child(3) { bottom: 20%; left: 10%; animation-delay: 3s; }
-    .balloon:nth-child(4) { bottom: 12%; right: 6%; animation-delay: 2s; font-size: 1.5rem; }
-    .balloon:nth-child(5) { top: 45%; left: 3%; animation-delay: 4s; }
-    @keyframes float { 0%,100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-18px) rotate(5deg); } }
-    .container { max-width: 740px; margin: 0 auto; padding: 1.25rem 1rem 3.5rem; position: relative; z-index: 1; }
-    header { text-align: center; padding: 1.75rem 0 1.25rem; margin-bottom: 1.25rem; }
-    header .cake { font-size: 2.8rem; margin-bottom: 0.3rem; filter: drop-shadow(0 4px 12px rgba(255,107,157,0.5)); }
-    header h1 {
-      font-family: 'Fredoka', 'Hind Siliguri', sans-serif; font-size: 1.85rem; font-weight: 700;
-      background: linear-gradient(90deg, #ff6b9d, #ffc857, #a78bfa);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    header p { color: var(--muted); font-size: 0.95rem; margin-top: 0.25rem; }
-    .date-badge {
-      display: inline-flex; align-items: center; gap: 0.45rem;
-      background: linear-gradient(135deg, rgba(255,107,157,0.25), rgba(255,200,87,0.15));
-      color: #ffc857; padding: 0.45rem 1.15rem; border-radius: 999px; font-weight: 600; font-size: 0.95rem;
-      margin-top: 0.9rem; border: 1px solid rgba(255,200,87,0.35); box-shadow: var(--glow);
-    }
-    .notif-banner {
-      background: linear-gradient(135deg, rgba(255,107,157,0.18), rgba(167,139,250,0.12));
-      border: 1px solid var(--border); border-radius: 16px; padding: 1rem 1.15rem; margin-bottom: 1.25rem;
-      display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; justify-content: space-between;
-    }
-    .notif-banner.hidden { display: none; }
-    .notif-banner .text { flex: 1; min-width: 180px; }
-    .notif-banner .text strong { color: var(--accent2); }
-    .notif-banner .text p { font-size: 0.85rem; color: var(--muted); margin-top: 0.15rem; }
-    .notif-btns { display: flex; gap: 0.5rem; }
-    .btn { font-family: inherit; font-size: 0.88rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: 10px; border: none; cursor: pointer; }
-    .btn:active { transform: scale(0.96); }
-    .btn-allow { background: linear-gradient(135deg, #ff6b9d, #ff8fb3); color: #1a0a14; box-shadow: 0 4px 14px rgba(255,107,157,0.4); }
-    .btn-deny { background: rgba(255,255,255,0.08); color: var(--muted); border: 1px solid rgba(255,255,255,0.12); }
-    .notif-status { font-size: 0.8rem; color: var(--success); display: none; align-items: center; gap: 0.35rem; margin-bottom: 1rem; }
-    .notif-status.show { display: flex; }
-    .section-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.45rem; }
-    .section-title .emoji { font-size: 1.25rem; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.15rem 1.25rem; margin-bottom: 0.85rem; backdrop-filter: blur(8px); }
-    .card:hover { border-color: rgba(255,107,157,0.45); }
-    .birthday-card { border-left: 4px solid var(--accent); background: linear-gradient(135deg, rgba(255,107,157,0.15), rgba(255,200,87,0.06)); box-shadow: var(--glow); }
-    .empty-state { text-align: center; padding: 2.2rem 1rem; color: var(--muted); }
-    .empty-state .big { font-size: 2.4rem; margin-bottom: 0.6rem; }
-    .student-name { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.3rem; }
-    .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; font-size: 0.85rem; color: var(--muted); }
-    .badge { display: inline-block; padding: 0.12rem 0.5rem; border-radius: 6px; font-size: 0.72rem; font-weight: 600; }
-    .badge-girl { background: rgba(255,107,157,0.25); color: #ffb3c9; }
-    .badge-boy { background: rgba(96,165,250,0.22); color: #93c5fd; }
-    .tabs { display: flex; gap: 0.4rem; margin-bottom: 1.15rem; background: rgba(0,0,0,0.25); padding: 0.35rem; border-radius: 14px; border: 1px solid var(--border); overflow-x: auto; }
-    .tab { flex: 1; min-width: max-content; padding: 0.55rem 0.7rem; border: none; background: transparent; color: var(--muted); font-family: inherit; font-size: 0.82rem; font-weight: 500; border-radius: 10px; cursor: pointer; white-space: nowrap; }
-    .tab.active { background: linear-gradient(135deg, #ff6b9d, #ff8fb3); color: #1a0a14; font-weight: 600; box-shadow: 0 3px 12px rgba(255,107,157,0.35); }
-    .tab:hover:not(.active) { color: var(--text); background: rgba(255,255,255,0.06); }
-    .panel { display: none; } .panel.active { display: block; }
-    .upcoming-list, .past-list { display: flex; flex-direction: column; gap: 0.55rem; }
-    .upcoming-item { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 12px; gap: 0.75rem; }
-    .upcoming-item .left { display: flex; flex-direction: column; gap: 0.12rem; min-width: 0; }
-    .upcoming-item .name { font-weight: 600; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .upcoming-item .info { font-size: 0.78rem; color: var(--muted); }
-    .upcoming-item .days { font-weight: 600; font-size: 0.82rem; color: var(--accent2); white-space: nowrap; flex-shrink: 0; }
-    .upcoming-item.past .days { color: var(--accent3); }
-    .count-pill { background: rgba(255,107,157,0.2); color: var(--accent); padding: 0.12rem 0.5rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
-    footer { text-align: center; margin-top: 2.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; }
-    @media (max-width: 480px) { header h1 { font-size: 1.45rem; } .tab { font-size: 0.78rem; } }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Happy Birthday! | Class XII</title>
+<meta name="theme-color" content="#2a2730"/>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#2a2730;--gold:#e8b84a;--gold2:#f5d78e;--orange:#f0a05a;--purple:#9b6bb8;--text:#f5f0e8;--muted:#b8a99a;--card:rgba(255,255,255,.06);--border:rgba(232,184,74,.25)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hind Siliguri',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5}
+.hero{position:relative;min-height:280px;background:linear-gradient(135deg,#2a2730,#1e1c24 50%,#322a3a);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:2rem 1rem}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 40%,rgba(155,107,184,.3),transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(232,184,74,.15),transparent 40%)}
+.hero-content{position:relative;z-index:2;text-align:center}
+.hero-content .label{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.hero-content h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.2rem,8vw,3.4rem);font-weight:700;font-style:italic;color:var(--gold);text-shadow:0 2px 20px rgba(232,184,74,.35);line-height:1.15;margin-bottom:.35rem}
+.hero-content .sub{color:var(--muted);font-size:.95rem;margin-bottom:.8rem}
+.date-badge{display:inline-flex;padding:.4rem 1.1rem;border-radius:999px;background:rgba(232,184,74,.12);border:1px solid rgba(232,184,74,.35);color:var(--gold2);font-weight:600;font-size:.9rem}
+.container{max-width:700px;margin:0 auto;padding:1.25rem 1rem 3rem}
+.notif-banner{background:rgba(232,184,74,.08);border:1px solid var(--border);border-radius:16px;padding:1rem 1.15rem;margin-bottom:1.1rem;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;justify-content:space-between}
+.notif-banner.hidden{display:none}
+.notif-banner strong{color:var(--gold)}
+.notif-banner p{font-size:.85rem;color:var(--muted);margin-top:.1rem}
+.notif-btns{display:flex;gap:.5rem}
+.btn{font-family:inherit;font-size:.88rem;font-weight:600;padding:.5rem 1.15rem;border-radius:999px;border:none;cursor:pointer}
+.btn-allow{background:linear-gradient(135deg,var(--gold),var(--orange));color:#1e1c24}
+.btn-deny{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,.15)}
+.notif-status{font-size:.8rem;color:#6bcb77;display:none;margin-bottom:.75rem}
+.notif-status.show{display:block}
+.tabs{display:flex;gap:.35rem;margin-bottom:1.1rem;background:rgba(0,0,0,.25);padding:.3rem;border-radius:14px;border:1px solid var(--border);overflow-x:auto}
+.tab{flex:1;min-width:max-content;padding:.55rem .65rem;border:none;background:transparent;color:var(--muted);font-family:inherit;font-size:.8rem;font-weight:500;border-radius:10px;cursor:pointer;white-space:nowrap}
+.tab.active{background:linear-gradient(135deg,var(--gold),var(--orange));color:#1e1c24;font-weight:600}
+.panel{display:none}.panel.active{display:block}
+.section-title{font-size:1.05rem;font-weight:600;margin-bottom:.85rem;display:flex;align-items:center;gap:.4rem;color:var(--gold2)}
+.count-pill{background:rgba(232,184,74,.2);color:var(--gold);padding:.1rem .5rem;border-radius:999px;font-size:.75rem;font-weight:600}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.1rem 1.2rem;margin-bottom:.75rem;cursor:pointer;transition:.2s}
+.card:hover{border-color:rgba(232,184,74,.5);transform:translateY(-2px)}
+.birthday-card{border-left:4px solid var(--gold);background:linear-gradient(135deg,rgba(232,184,74,.12),rgba(155,107,184,.06))}
+.tap-hint{font-size:.75rem;color:var(--gold);margin-top:.4rem;opacity:.85}
+.empty-state{text-align:center;padding:2rem 1rem;color:var(--muted)}
+.student-name{font-size:1.15rem;font-weight:600;margin-bottom:.25rem;color:#fff}
+.meta{display:flex;flex-wrap:wrap;gap:.45rem .9rem;font-size:.85rem;color:var(--muted)}
+.badge{display:inline-block;padding:.1rem .45rem;border-radius:6px;font-size:.7rem;font-weight:600}
+.badge-girl{background:rgba(240,160,90,.25);color:#f5c4a0}
+.badge-boy{background:rgba(155,107,184,.25);color:#c9a8e0}
+.list-item{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:.5rem;cursor:pointer;gap:.6rem}
+.list-item:hover{border-color:rgba(232,184,74,.45);transform:translateX(3px)}
+.list-item .left{display:flex;flex-direction:column;gap:.1rem;min-width:0}
+.list-item .name{font-weight:600;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-item .info{font-size:.76rem;color:var(--muted)}
+.list-item .days{font-weight:600;font-size:.8rem;color:var(--gold);white-space:nowrap;flex-shrink:0}
+.list-item.past .days{color:var(--purple)}
+footer{text-align:center;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--border);color:var(--muted);font-size:.8rem}
+.modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(15,12,18,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:1.25rem;opacity:0;visibility:hidden;transition:.25s}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal{background:linear-gradient(165deg,#322a3a,#1e1c24);border:1px solid rgba(232,184,74,.4);border-radius:24px;padding:1.85rem 1.5rem 1.5rem;max-width:360px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.5);transform:scale(.88) translateY(16px);transition:transform .3s cubic-bezier(.34,1.56,.64,1);position:relative}
+.modal-overlay.open .modal{transform:scale(1) translateY(0)}
+.modal .cake-big{font-size:3.2rem;margin-bottom:.35rem}
+.modal .wish-title{font-family:'Playfair Display',Georgia,serif;font-size:1.2rem;font-style:italic;color:var(--gold);margin-bottom:.3rem}
+.modal .wish-name{font-size:1.45rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+.modal .wish-msg{font-size:.95rem;color:var(--muted);line-height:1.55;margin-bottom:1rem}
+.modal .wish-meta{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:1.2rem}
+.modal .btn-close{background:linear-gradient(135deg,var(--gold),var(--orange));color:#1e1c24;font-weight:600;font-size:.95rem;padding:.65rem 1.75rem;border-radius:999px;border:none;cursor:pointer;font-family:inherit}
+</style>
 </head>
 <body>
-  <div class="balloon" aria-hidden="true">🎈</div>
-  <div class="balloon" aria-hidden="true">🎉</div>
-  <div class="balloon" aria-hidden="true">🎂</div>
-  <div class="balloon" aria-hidden="true">✨</div>
-  <div class="balloon" aria-hidden="true">🎁</div>
-  <div class="container">
-    <header>
-      <div class="cake">🎂</div>
-      <h1>Birthday Special</h1>
-      <p>Class XII · ২০২৩-২৪ · সেকশন A, B, C</p>
-      <div class="date-badge" id="todayDate">—</div>
-    </header>
-    <div class="notif-banner" id="notifBanner">
-      <div class="text">
-        <strong>🔔 জন্মদিন নোটিফিকেশন</strong>
-        <p>Allow করলে প্রতিদিন আজকের জন্মদিনের নোটিফিকেশন পাবেন</p>
-      </div>
-      <div class="notif-btns">
-        <button class="btn btn-allow" id="btnAllow">Allow</button>
-        <button class="btn btn-deny" id="btnDeny">Deny</button>
-      </div>
-    </div>
-    <div class="notif-status" id="notifStatus">✅ নোটিফিকেশন চালু আছে</div>
-    <div class="tabs">
-      <button class="tab active" data-tab="today">🎉 আজকের</button>
-      <button class="tab" data-tab="upcoming">📅 আগামী ৩০</button>
-      <button class="tab" data-tab="past">⏪ গত ৯০</button>
-      <button class="tab" data-tab="all">📋 সব</button>
-    </div>
-    <div class="panel active" id="panel-today">
-      <div class="section-title"><span class="emoji">🎉</span><span>আজ কার জন্মদিন</span><span class="count-pill" id="todayCount">0</span></div>
-      <div id="todayList"></div>
-    </div>
-    <div class="panel" id="panel-upcoming">
-      <div class="section-title"><span class="emoji">📅</span><span>আগামী ৩০ দিনের জন্মদিন</span><span class="count-pill" id="upcomingCount">0</span></div>
-      <div class="upcoming-list" id="upcomingList"></div>
-    </div>
-    <div class="panel" id="panel-past">
-      <div class="section-title"><span class="emoji">⏪</span><span>গত ৯০ দিনে যাদের জন্মদিন হয়েছে</span><span class="count-pill" id="pastCount">0</span></div>
-      <div class="past-list" id="pastList"></div>
-    </div>
-    <div class="panel" id="panel-all">
-      <div class="section-title"><span class="emoji">📋</span><span>মাস অনুসারে সব জন্মদিন</span></div>
-      <div id="allList"></div>
-    </div>
-    <footer>
-      <p>🎂 Birthday Special · Class XII ২০২৩-২৪</p>
-      <p style="margin-top:0.3rem;">Allow করলে নোটিফিকেশন পাবেন · প্রতিদিন পেজ খুললে আজকের জন্মদিন দেখাবে</p>
-    </footer>
-  </div>
-  <script>
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-      });
-    });
-    const monthNamesBn = ['','জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
-    const dayNamesBn = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
-    function formatDateBn(d){ return d.getDate()+' '+monthNamesBn[d.getMonth()+1]+' '+d.getFullYear()+', '+dayNamesBn[d.getDay()]; }
-
-    const notifBanner = document.getElementById('notifBanner');
-    const notifStatus = document.getElementById('notifStatus');
-    let STUDENTS = [];
-
-    function updateNotifUI(){
-      if(!('Notification' in window)){ notifBanner.classList.add('hidden'); return; }
-      if(Notification.permission==='granted'){ notifBanner.classList.add('hidden'); notifStatus.classList.add('show'); }
-      else if(Notification.permission==='denied'){ notifBanner.classList.add('hidden'); }
-      else { notifBanner.classList.remove('hidden'); notifStatus.classList.remove('show'); }
-    }
-    document.getElementById('btnAllow').addEventListener('click', async ()=>{
-      if(!('Notification' in window)){ alert('এই ব্রাউজারে নোটিফিকেশন সাপোর্ট করে না'); return; }
-      const perm = await Notification.requestPermission();
-      updateNotifUI();
-      if(perm==='granted') sendTodayNotification();
-    });
-    document.getElementById('btnDeny').addEventListener('click', ()=>{
-      notifBanner.classList.add('hidden');
-      try{ localStorage.setItem('notif_denied','1'); }catch(e){}
-    });
-    function sendTodayNotification(){
-      if(Notification.permission!=='granted') return;
-      const now = new Date();
-      const todayBdays = STUDENTS.filter(s => s.month===(now.getMonth()+1) && s.day===now.getDate());
-      let title, body;
-      if(todayBdays.length===0){ title='🎂 আজ কারো জন্মদিন নেই'; body='আগামী দিনগুলোতে কেউ থাকলে জানাবো!'; }
-      else if(todayBdays.length===1){ const s=todayBdays[0]; title='🎉 আজ '+s.name+'-এর জন্মদিন!'; body='সেকশন '+s.section+' · রোল '+s.roll+' · শুভ জন্মদিন! 🎂'; }
-      else { title='🎉 আজ '+todayBdays.length+' জনের জন্মদিন!'; body=todayBdays.map(s=>s.name).join(', ')+' · শুভ জন্মদিন! 🎂'; }
-      try{ new Notification(title,{ body, icon:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🎂</text></svg>', tag:'birthday-today' }); }catch(e){}
-    }
-    function maybeNotifyOnLoad(){
-      if(Notification.permission!=='granted') return;
-      const key='notif_sent_'+new Date().toISOString().slice(0,10);
-      try{ if(localStorage.getItem(key)) return; localStorage.setItem(key,'1'); setTimeout(sendTodayNotification,1200); }catch(e){}
-    }
-    function render(){
-      const now=new Date(), todayMonth=now.getMonth()+1, todayDay=now.getDate();
-      document.getElementById('todayDate').textContent=formatDateBn(now);
-      const todayBdays=STUDENTS.filter(s=>s.month===todayMonth&&s.day===todayDay);
-      document.getElementById('todayCount').textContent=todayBdays.length;
-      const todayList=document.getElementById('todayList');
-      if(!todayBdays.length) todayList.innerHTML='<div class="card empty-state"><div class="big">🎈</div><p>আজ কারো জন্মদিন নেই</p><p style="font-size:0.85rem;margin-top:0.35rem;">আগামী ৩০ দিনের ট্যাব দেখুন</p></div>';
-      else todayList.innerHTML=todayBdays.map(s=>'<div class="card birthday-card"><div class="student-name">'+s.name+'</div><div class="meta"><span>📚 সেকশন '+s.section+' · রোল '+s.roll+'</span><span class="badge '+(s.gender==='GIRLS'?'badge-girl':'badge-boy')+'">'+(s.gender==='GIRLS'?'মেয়ে':'ছেলে')+'</span><span>🎂 '+s.dob+'</span></div></div>').join('');
-
-      const upcoming=[];
-      for(let i=1;i<=30;i++){ const d=new Date(now); d.setDate(d.getDate()+i); const m=d.getMonth()+1, day=d.getDate();
-        STUDENTS.filter(s=>s.month===m&&s.day===day).forEach(s=>upcoming.push(Object.assign({},s,{daysLeft:i,dateStr:day+' '+monthNamesBn[m]}))); }
-      document.getElementById('upcomingCount').textContent=upcoming.length;
-      const upcomingList=document.getElementById('upcomingList');
-      if(!upcoming.length) upcomingList.innerHTML='<div class="card empty-state"><p>পরবর্তী ৩০ দিনে কোনো জন্মদিন নেই</p></div>';
-      else upcomingList.innerHTML=upcoming.map(s=>'<div class="upcoming-item"><div class="left"><span class="name">'+s.name+'</span><span class="info">সেকশন '+s.section+' · রোল '+s.roll+' · '+s.dateStr+'</span></div><span class="days">'+(s.daysLeft===1?'কাল':s.daysLeft+' দিন পর')+'</span></div>').join('');
-
-      const past=[];
-      for(let i=1;i<=90;i++){ const d=new Date(now); d.setDate(d.getDate()-i); const m=d.getMonth()+1, day=d.getDate();
-        STUDENTS.filter(s=>s.month===m&&s.day===day).forEach(s=>past.push(Object.assign({},s,{daysAgo:i,dateStr:day+' '+monthNamesBn[m]}))); }
-      past.sort((a,b)=>a.daysAgo-b.daysAgo);
-      document.getElementById('pastCount').textContent=past.length;
-      const pastList=document.getElementById('pastList');
-      if(!past.length) pastList.innerHTML='<div class="card empty-state"><p>গত ৯০ দিনে কোনো জন্মদিন নেই</p></div>';
-      else pastList.innerHTML=past.map(s=>'<div class="upcoming-item past"><div class="left"><span class="name">'+s.name+'</span><span class="info">সেকশন '+s.section+' · রোল '+s.roll+' · '+s.dateStr+'</span></div><span class="days">'+(s.daysAgo===1?'গতকাল':s.daysAgo+' দিন আগে')+'</span></div>').join('');
-
-      const byMonth={}; STUDENTS.forEach(s=>{ if(!byMonth[s.month]) byMonth[s.month]=[]; byMonth[s.month].push(s); });
-      let html='';
-      for(let m=1;m<=12;m++){ const list=(byMonth[m]||[]).sort((a,b)=>a.day-b.day); if(!list.length) continue;
-        html+='<div style="margin-bottom:1.4rem;"><h3 style="color:var(--accent2);font-size:0.95rem;margin-bottom:0.55rem;">'+monthNamesBn[m]+' ('+list.length+')</h3><div style="display:flex;flex-direction:column;gap:0.4rem;">';
-        html+=list.map(s=>'<div class="upcoming-item" style="padding:0.55rem 0.85rem;"><div class="left"><span class="name" style="font-size:0.9rem;">'+s.name+'</span><span class="info">'+s.day+' '+monthNamesBn[m]+' · সেকশন '+s.section+'</span></div></div>').join('');
-        html+='</div></div>'; }
-      document.getElementById('allList').innerHTML=html;
-    }
-
-    updateNotifUI();
-    fetch('students.json').then(r=>r.json()).then(data=>{
-      STUDENTS=data; render(); maybeNotifyOnLoad();
-    }).catch(err=>{
-      document.getElementById('todayList').innerHTML='<div class="card empty-state"><div class="big">⚠️</div><p>ডেটা লোড হয়নি</p><p style="font-size:0.85rem">'+err.message+'</p></div>';
-    });
-  </script>
+<section class="hero"><div class="hero-content"><div class="label">Class XII · ২০২৩-২৪</div><h1>Happy Birthday!</h1><p class="sub">সেকশন A, B, C · জন্মদিনের শুভেচ্ছা</p><div class="date-badge" id="todayDate">—</div></div></section>
+<div class="container">
+<div class="notif-banner" id="notifBanner"><div><strong>🔔 জন্মদিন নোটিফিকেশন</strong><p>Allow করলে আজকের জন্মদিনের অ্যালার্ট পাবেন</p></div><div class="notif-btns"><button class="btn btn-allow" id="btnAllow">Allow</button><button class="btn btn-deny" id="btnDeny">Deny</button></div></div>
+<div class="notif-status" id="notifStatus">✅ নোটিফিকেশন চালু</div>
+<div class="tabs"><button class="tab active" data-tab="today">🎉 আজকের</button><button class="tab" data-tab="upcoming">📅 আগামী ৩০</button><button class="tab" data-tab="past">⏪ গত ৯০</button><button class="tab" data-tab="all">📋 সব</button></div>
+<div class="panel active" id="panel-today"><div class="section-title"><span>🎉</span><span>আজ কার জন্মদিন</span><span class="count-pill" id="todayCount">0</span></div><div id="todayList"></div></div>
+<div class="panel" id="panel-upcoming"><div class="section-title"><span>📅</span><span>আগামী ৩০ দিন</span><span class="count-pill" id="upcomingCount">0</span></div><div id="upcomingList"></div></div>
+<div class="panel" id="panel-past"><div class="section-title"><span>⏪</span><span>গত ৯০ দিন</span><span class="count-pill" id="pastCount">0</span></div><div id="pastList"></div></div>
+<div class="panel" id="panel-all"><div class="section-title"><span>📋</span><span>মাস অনুসারে সব</span></div><div id="allList"></div></div>
+<footer><p>Happy Birthday · Class XII ২০২৩-২৪</p><p style="margin-top:.3rem">নামে ট্যাপ করলে শুভেচ্ছা দেখাবে</p></footer>
+</div>
+<div class="modal-overlay" id="wishModal"><div class="modal"><div class="cake-big">🎂</div><div class="wish-title">শুভ জন্মদিন!</div><div class="wish-name" id="wishName">—</div><div class="wish-msg" id="wishMsg"></div><div class="wish-meta" id="wishMeta"></div><button class="btn-close" id="btnCloseWish">ধন্যবাদ 💛</button></div></div>
+<script>
+const monthNamesBn=['','জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+const dayNamesBn=['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
+function formatDateBn(d){return d.getDate()+' '+monthNamesBn[d.getMonth()+1]+' '+d.getFullYear()+', '+dayNamesBn[d.getDay()]}
+let STUDENTS=[];
+document.querySelectorAll('.tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));tab.classList.add('active');document.getElementById('panel-'+tab.dataset.tab).classList.add('active')})});
+const wishModal=document.getElementById('wishModal');
+const wishMessages=['আপনার জীবন সুখ, সাফল্য ও হাসি-আনন্দে ভরে উঠুক। অনেক অনেক শুভকামনা! 🎉','জন্মদিনের এই বিশেষ দিনে আপনার জন্য রইল অসীম শুভকামনা। সব স্বপ্ন পূরণ হোক! ✨','শুভ জন্মদিন! নতুন বছর আপনার জন্য নিয়ে আসুক অফুরন্ত আনন্দ ও সাফল্য। 🎂','আজকের দিনটা আপনার জন্য বিশেষ। হাসতে থাকুন, স্বপ্ন দেখতে থাকুন! 🎈','জন্মদিনের শুভেচ্ছা! আপনার পথ চলা হোক আলোর মতো উজ্জ্বল। 💛'];
+function openWish(s){document.getElementById('wishName').textContent=s.name;document.getElementById('wishMsg').textContent=wishMessages[Math.floor(Math.random()*wishMessages.length)];document.getElementById('wishMeta').textContent='সেকশন '+s.section+' · রোল '+s.roll+(s.dob?' · '+s.dob:'');wishModal.classList.add('open')}
+document.getElementById('btnCloseWish').addEventListener('click',()=>wishModal.classList.remove('open'));
+wishModal.addEventListener('click',e=>{if(e.target===wishModal)wishModal.classList.remove('open')});
+const notifBanner=document.getElementById('notifBanner'),notifStatus=document.getElementById('notifStatus');
+function updateNotifUI(){if(!('Notification' in window)){notifBanner.classList.add('hidden');return}if(Notification.permission==='granted'){notifBanner.classList.add('hidden');notifStatus.classList.add('show')}else if(Notification.permission==='denied'){notifBanner.classList.add('hidden')}else{notifBanner.classList.remove('hidden');notifStatus.classList.remove('show')}}
+document.getElementById('btnAllow').addEventListener('click',async()=>{if(!('Notification' in window)){alert('এই ব্রাউজারে নোটিফিকেশন সাপোর্ট করে না');return}const perm=await Notification.requestPermission();updateNotifUI();if(perm==='granted')sendTodayNotification()});
+document.getElementById('btnDeny').addEventListener('click',()=>{notifBanner.classList.add('hidden');try{localStorage.setItem('notif_denied','1')}catch(e){}});
+function sendTodayNotification(){if(Notification.permission!=='granted')return;const now=new Date();const t=STUDENTS.filter(s=>s.month===(now.getMonth()+1)&&s.day===now.getDate());let title,body;if(!t.length){title='🎂 আজ কারো জন্মদিন নেই';body='আগামী দিনগুলোতে কেউ থাকলে জানাবো!'}else if(t.length===1){title='🎉 আজ '+t[0].name+'-এর জন্মদিন!';body='সেকশন '+t[0].section+' · রোল '+t[0].roll+' · শুভ জন্মদিন!'}else{title='🎉 আজ '+t.length+' জনের জন্মদিন!';body=t.map(s=>s.name).join(', ')+' · শুভ জন্মদিন!'}try{new Notification(title,{body,tag:'birthday-today'})}catch(e){}}
+function maybeNotifyOnLoad(){if(Notification.permission!=='granted')return;const key='notif_sent_'+new Date().toISOString().slice(0,10);try{if(localStorage.getItem(key))return;localStorage.setItem(key,'1');setTimeout(sendTodayNotification,1200)}catch(e){}}
+function render(){const now=new Date(),tm=now.getMonth()+1,td=now.getDate();document.getElementById('todayDate').textContent=formatDateBn(now);const today=STUDENTS.filter(s=>s.month===tm&&s.day===td);document.getElementById('todayCount').textContent=today.length;const tl=document.getElementById('todayList');if(!today.length){tl.innerHTML='<div class="card empty-state" style="cursor:default"><div style="font-size:2.4rem;margin-bottom:.5rem">🎈</div><p>আজ কারো জন্মদিন নেই</p></div>'}else{tl.innerHTML=today.map((s,i)=>'<div class="card birthday-card" data-i="'+i+'"><div class="student-name">'+s.name+'</div><div class="meta"><span>📚 সেকশন '+s.section+' · রোল '+s.roll+'</span><span class="badge '+(s.gender==='GIRLS'?'badge-girl':'badge-boy')+'">'+(s.gender==='GIRLS'?'মেয়ে':'ছেলে')+'</span><span>🎂 '+s.dob+'</span></div><div class="tap-hint">👆 ট্যাপ করুন শুভেচ্ছা দেখতে</div></div>').join('');tl.querySelectorAll('.birthday-card').forEach((el,i)=>el.addEventListener('click',()=>openWish(today[i])))}const up=[];for(let i=1;i<=30;i++){const d=new Date(now);d.setDate(d.getDate()+i);const m=d.getMonth()+1,day=d.getDate();STUDENTS.filter(s=>s.month===m&&s.day===day).forEach(s=>up.push(Object.assign({},s,{daysLeft:i,dateStr:day+' '+monthNamesBn[m]})))}document.getElementById('upcomingCount').textContent=up.length;const ul=document.getElementById('upcomingList');if(!up.length)ul.innerHTML='<div class="card empty-state" style="cursor:default"><p>পরবর্তী ৩০ দিনে কোনো জন্মদিন নেই</p></div>';else{ul.innerHTML=up.map((s,i)=>'<div class="list-item" data-i="'+i+'"><div class="left"><span class="name">'+s.name+'</span><span class="info">সেকশন '+s.section+' · রোল '+s.roll+' · '+s.dateStr+'</span></div><span class="days">'+(s.daysLeft===1?'কাল':s.daysLeft+' দিন পর')+'</span></div>').join('');ul.querySelectorAll('.list-item').forEach((el,i)=>el.addEventListener('click',()=>openWish(up[i])))}const past=[];for(let i=1;i<=90;i++){const d=new Date(now);d.setDate(d.getDate()-i);const m=d.getMonth()+1,day=d.getDate();STUDENTS.filter(s=>s.month===m&&s.day===day).forEach(s=>past.push(Object.assign({},s,{daysAgo:i,dateStr:day+' '+monthNamesBn[m]})))}past.sort((a,b)=>a.daysAgo-b.daysAgo);document.getElementById('pastCount').textContent=past.length;const pl=document.getElementById('pastList');if(!past.length)pl.innerHTML='<div class="card empty-state" style="cursor:default"><p>গত ৯০ দিনে কোনো জন্মদিন নেই</p></div>';else{pl.innerHTML=past.map((s,i)=>'<div class="list-item past" data-i="'+i+'"><div class="left"><span class="name">'+s.name+'</span><span class="info">সেকশন '+s.section+' · রোল '+s.roll+' · '+s.dateStr+'</span></div><span class="days">'+(s.daysAgo===1?'গতকাল':s.daysAgo+' দিন আগে')+'</span></div>').join('');pl.querySelectorAll('.list-item').forEach((el,i)=>el.addEventListener('click',()=>openWish(past[i])))}const byMonth={};STUDENTS.forEach(s=>{if(!byMonth[s.month])byMonth[s.month]=[];byMonth[s.month].push(s)});let html='';for(let m=1;m<=12;m++){const list=(byMonth[m]||[]).sort((a,b)=>a.day-b.day);if(!list.length)continue;html+='<div style="margin-bottom:1.3rem"><h3 style="color:var(--gold);font-size:.95rem;margin-bottom:.5rem">'+monthNamesBn[m]+' ('+list.length+')</h3>';list.forEach((s,i)=>{html+='<div class="list-item all-item" data-m="'+m+'" data-i="'+i+'" style="padding:.55rem .85rem;margin-bottom:.4rem"><div class="left"><span class="name" style="font-size:.9rem">'+s.name+'</span><span class="info">'+s.day+' '+monthNamesBn[m]+' · সেকশন '+s.section+'</span></div></div>'});html+='</div>'}document.getElementById('allList').innerHTML=html;document.querySelectorAll('.all-item').forEach(el=>{const m=+el.dataset.m,i=+el.dataset.i;const list=(byMonth[m]||[]).sort((a,b)=>a.day-b.day);el.addEventListener('click',()=>openWish(list[i]))})}
+updateNotifUI();
+</script>
 </body>
 </html>
