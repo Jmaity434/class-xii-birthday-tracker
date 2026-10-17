@@ -2,180 +2,2216 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Happy Birthday! | Class XII</title>
-<meta name="theme-color" content="#2a2730"/>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>🎉 শুভ জন্মদিন! | Class XII Birthday Tracker 🎂</title>
+<meta name="theme-color" content="#1a0b2e"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+
 <style>
-:root{--bg:#2a2730;--gold:#e8b84a;--gold2:#f5d78e;--orange:#f0a05a;--purple:#9b6bb8;--text:#f5f0e8;--muted:#b8a99a;--card:rgba(255,255,255,.06);--border:rgba(232,184,74,.25)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Hind Siliguri',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5}
-.hero{position:relative;min-height:280px;background:linear-gradient(135deg,#2a2730,#1e1c24 50%,#322a3a);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:2rem 1rem}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 40%,rgba(155,107,184,.3),transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(232,184,74,.15),transparent 40%)}
-.hero-content{position:relative;z-index:2;text-align:center}
-.hero-content .label{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
-.hero-content h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.2rem,8vw,3.4rem);font-weight:700;font-style:italic;color:var(--gold);text-shadow:0 2px 20px rgba(232,184,74,.35);line-height:1.15;margin-bottom:.35rem}
-.hero-content .sub{color:var(--muted);font-size:.95rem;margin-bottom:.8rem}
-.date-badge{display:inline-flex;padding:.4rem 1.1rem;border-radius:999px;background:rgba(232,184,74,.12);border:1px solid rgba(232,184,74,.35);color:var(--gold2);font-weight:600;font-size:.9rem}
-.container{max-width:700px;margin:0 auto;padding:1.25rem 1rem 3rem}
-.notif-banner{background:rgba(232,184,74,.08);border:1px solid var(--border);border-radius:16px;padding:1rem 1.15rem;margin-bottom:1.1rem;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;justify-content:space-between}
-.notif-banner.hidden{display:none}
-.notif-banner strong{color:var(--gold)}
-.notif-banner p{font-size:.85rem;color:var(--muted);margin-top:.1rem}
-.notif-btns{display:flex;gap:.5rem}
-.btn{font-family:inherit;font-size:.88rem;font-weight:600;padding:.5rem 1.15rem;border-radius:999px;border:none;cursor:pointer}
-.btn-allow{background:linear-gradient(135deg,var(--gold),var(--orange));color:#1e1c24}
-.btn-deny{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,.15)}
-.notif-status{font-size:.8rem;color:#6bcb77;display:none;margin-bottom:.75rem}
-.notif-status.show{display:block}
-.tabs{display:flex;gap:.35rem;margin-bottom:1.1rem;background:rgba(0,0,0,.25);padding:.3rem;border-radius:14px;border:1px solid var(--border);overflow-x:auto}
-.tab{flex:1;min-width:max-content;padding:.55rem .65rem;border:none;background:transparent;color:var(--muted);font-family:inherit;font-size:.8rem;font-weight:500;border-radius:10px;cursor:pointer;white-space:nowrap}
-.tab.active{background:linear-gradient(135deg,var(--gold),var(--orange));color:#1e1c24;font-weight:600}
-.panel{display:none}.panel.active{display:block}
-.section-title{font-size:1.05rem;font-weight:600;margin-bottom:.85rem;display:flex;align-items:center;gap:.4rem;color:var(--gold2)}
-.count-pill{background:rgba(232,184,74,.2);color:var(--gold);padding:.1rem .5rem;border-radius:999px;font-size:.75rem;font-weight:600}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.1rem 1.2rem;margin-bottom:.75rem;cursor:pointer;transition:.2s}
-.card:hover{border-color:rgba(232,184,74,.5);transform:translateY(-2px)}
-.birthday-card{border-left:4px solid var(--gold);background:linear-gradient(135deg,rgba(232,184,74,.12),rgba(155,107,184,.06))}
-.tap-hint{font-size:.75rem;color:var(--gold);margin-top:.4rem;opacity:.85}
-.empty-state{text-align:center;padding:2rem 1rem;color:var(--muted)}
-.student-name{font-size:1.15rem;font-weight:600;margin-bottom:.25rem;color:#fff}
-.meta{display:flex;flex-wrap:wrap;gap:.45rem .9rem;font-size:.85rem;color:var(--muted)}
-.badge{display:inline-block;padding:.1rem .45rem;border-radius:6px;font-size:.7rem;font-weight:600}
-.badge-girl{background:rgba(240,160,90,.25);color:#f5c4a0}
-.badge-boy{background:rgba(155,107,184,.25);color:#c9a8e0}
-.list-item{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:.5rem;cursor:pointer;gap:.6rem}
-.list-item:hover{border-color:rgba(232,184,74,.45);transform:translateX(3px)}
-.list-item .left{display:flex;flex-direction:column;gap:.1rem;min-width:0}
-.list-item .name{font-weight:600;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.list-item .info{font-size:.76rem;color:var(--muted)}
-.list-item .days{font-weight:600;font-size:.8rem;color:var(--gold);white-space:nowrap;flex-shrink:0}
-.list-item.past .days{color:var(--purple)}
-footer{text-align:center;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--border);color:var(--muted);font-size:.8rem}
-.modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(15,12,18,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:1.25rem;opacity:0;visibility:hidden;transition:.25s}
-.modal-overlay.open{opacity:1;visibility:visible}
-.modal{background:linear-gradient(165deg,#322a3a,#1e1c24);border:1px solid rgba(232,184,74,.4);border-radius:24px;padding:1.85rem 1.5rem 1.5rem;max-width:360px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.5);transform:scale(.88) translateY(16px);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
-.modal-overlay.open .modal{transform:scale(1) translateY(0)}
-.modal .cake-big{font-size:3.2rem;margin-bottom:.35rem}
-.modal .wish-title{font-family:'Playfair Display',Georgia,serif;font-size:1.2rem;font-style:italic;color:var(--gold);margin-bottom:.3rem}
-.modal .wish-name{font-size:1.45rem;font-weight:700;color:#fff;margin-bottom:.5rem}
-.modal .wish-msg{font-size:.95rem;color:var(--muted);line-height:1.55;margin-bottom:1rem}
-.modal .wish-meta{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:1.2rem}
-.modal .btn-close{background:linear-gradient(135deg,var(--gold),var(--orange));color:#1e1c24;font-weight:600;font-size:.95rem;padding:.65rem 1.75rem;border-radius:999px;border:none;cursor:pointer;font-family:inherit}
-
-/* ===== Hanging Balloons ===== */
-.balloons{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
-.balloon{position:absolute;top:-20px;border-radius:50% 50% 50% 50% / 40% 40% 60% 60%;
-  animation:sway 4s ease-in-out infinite;opacity:.92}
-.balloon::before{content:'';position:absolute;bottom:-18px;left:50%;width:2px;height:40px;
-  background:linear-gradient(#ccc,transparent);transform:translateX(-50%)}
-.balloon::after{content:'';position:absolute;bottom:-6px;left:50%;width:8px;height:6px;
-  background:inherit;border-radius:50%;transform:translateX(-50%);opacity:.7}
-.b1{width:42px;height:52px;left:4%;background:linear-gradient(135deg,#ff6b9d,#e84a7a);animation-duration:3.8s;animation-delay:0s}
-.b2{width:28px;height:34px;left:12%;background:linear-gradient(135deg,#f5d78e,#e8b84a);animation-duration:4.5s;animation-delay:.4s}
-.b3{width:36px;height:44px;left:22%;background:linear-gradient(135deg,#9b6bb8,#7a4d9e);animation-duration:3.6s;animation-delay:.8s}
-.b4{width:48px;height:58px;left:35%;background:linear-gradient(135deg,#5ec4e8,#3aa0c8);animation-duration:5s;animation-delay:.2s}
-.b5{width:30px;height:36px;left:48%;background:linear-gradient(135deg,#ff9f5a,#f0a05a);animation-duration:4.2s;animation-delay:1s}
-.b6{width:40px;height:50px;left:58%;background:linear-gradient(135deg,#ff6b9d,#c94a7a);animation-duration:3.9s;animation-delay:.6s}
-.b7{width:26px;height:32px;left:70%;background:linear-gradient(135deg,#f5d78e,#d4a83a);animation-duration:4.8s;animation-delay:1.2s}
-.b8{width:44px;height:54px;left:80%;background:linear-gradient(135deg,#9b6bb8,#6b4a98);animation-duration:4.1s;animation-delay:.3s}
-.b9{width:32px;height:40px;left:90%;background:linear-gradient(135deg,#5ec4e8,#2a8ab0);animation-duration:3.7s;animation-delay:.9s}
-.b10{width:22px;height:28px;left:28%;background:linear-gradient(135deg,#ff9f5a,#e07030);animation-duration:5.2s;animation-delay:1.5s}
-.b11{width:38px;height:46px;left:65%;background:linear-gradient(135deg,#e8b84a,#c99a2a);animation-duration:4.3s;animation-delay:.7s}
-.b12{width:24px;height:30px;left:75%;background:linear-gradient(135deg,#ff6b9d,#d44a70);animation-duration:3.5s;animation-delay:1.1s}
-@keyframes sway{
-  0%,100%{transform:translateY(0) rotate(-4deg)}
-  50%{transform:translateY(12px) rotate(5deg)}
+:root {
+  --bg-gradient: radial-gradient(circle at 50% 10%, #2e1065 0%, #17092c 45%, #0b0416 100%);
+  --gold: #ffca28;
+  --gold-glow: #ffd54f;
+  --neon-pink: #ff2a85;
+  --neon-cyan: #00e5ff;
+  --neon-green: #00f090;
+  --neon-purple: #b366ff;
+  --coral: #ff5757;
+  --card-bg: rgba(255, 255, 255, 0.07);
+  --card-border: rgba(255, 215, 0, 0.22);
+  --card-hover-border: rgba(255, 215, 0, 0.6);
+  --text-main: #ffffff;
+  --text-sub: #d8cce8;
+  --text-muted: #a69bb6;
 }
 
-/* ===== Fairy / String Lights ===== */
-.lights{position:absolute;top:0;left:0;right:0;height:70px;pointer-events:none;z-index:1}
-.light{position:absolute;width:6px;height:6px;border-radius:50%;
-  box-shadow:0 0 6px 2px currentColor;animation:blink 1.6s ease-in-out infinite}
-.light.l1{left:5%;top:18px;color:#ff6b9d;animation-delay:0s}
-.light.l2{left:12%;top:28px;color:#f5d78e;animation-delay:.2s}
-.light.l3{left:19%;top:14px;color:#9b6bb8;animation-delay:.4s}
-.light.l4{left:27%;top:32px;color:#5ec4e8;animation-delay:.1s}
-.light.l5{left:35%;top:16px;color:#ff9f5a;animation-delay:.6s}
-.light.l6{left:43%;top:26px;color:#e8b84a;animation-delay:.3s}
-.light.l7{left:51%;top:12px;color:#ff6b9d;animation-delay:.8s}
-.light.l8{left:59%;top:30px;color:#9b6bb8;animation-delay:.15s}
-.light.l9{left:67%;top:18px;color:#5ec4e8;animation-delay:.5s}
-.light.l10{left:75%;top:24px;color:#f5d78e;animation-delay:.7s}
-.light.l11{left:83%;top:14px;color:#ff9f5a;animation-delay:.25s}
-.light.l12{left:91%;top:28px;color:#e8b84a;animation-delay:.9s}
-.light.l13{left:8%;top:40px;color:#9b6bb8;animation-delay:1.1s}
-.light.l14{left:23%;top:42px;color:#ff6b9d;animation-delay:.35s}
-.light.l15{left:40%;top:38px;color:#5ec4e8;animation-delay:.55s}
-.light.l16{left:56%;top:44px;color:#f5d78e;animation-delay:.75s}
-.light.l17{left:72%;top:40px;color:#ff9f5a;animation-delay:.45s}
-.light.l18{left:88%;top:36px;color:#e8b84a;animation-delay:.95s}
-@keyframes blink{
-  0%,100%{opacity:.25;transform:scale(.7)}
-  40%{opacity:1;transform:scale(1.15)}
-  60%{opacity:.85;transform:scale(1)}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Extra festive polish */
-.hero{min-height:320px}
-.hero-content h1{text-shadow:0 0 30px rgba(232,184,74,.45),0 2px 20px rgba(232,184,74,.35)}
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;
-  background:linear-gradient(transparent,var(--bg));z-index:1;pointer-events:none}
+body {
+  font-family: 'Hind Siliguri', 'Outfit', system-ui, sans-serif;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+}
 
+/* ===== CELEBRATORY FAIRY LIGHTS & BUNTING ===== */
+.party-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  pointer-events: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Festoon Bunting Flags */
+.bunting-wire {
+  position: absolute;
+  top: 0;
+  left: -2%;
+  right: -2%;
+  height: 45px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.flag {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 26px solid #ff2a85;
+  transform-origin: top center;
+  animation: flagWave 3.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+}
+.flag:nth-child(2n) { border-top-color: #ffca28; animation-delay: 0.3s; }
+.flag:nth-child(3n) { border-top-color: #00e5ff; animation-delay: 0.6s; }
+.flag:nth-child(4n) { border-top-color: #00f090; animation-delay: 0.9s; }
+.flag:nth-child(5n) { border-top-color: #b366ff; animation-delay: 1.2s; }
+.flag:nth-child(6n) { border-top-color: #ff7043; animation-delay: 0.4s; }
+
+@keyframes flagWave {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+
+/* Multi-colored Glowing Fairy String Lights */
+.fairy-string {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.fairy-light {
+  width: 14px;
+  height: 20px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  position: relative;
+  animation: lightPulse 1.4s ease-in-out infinite alternate;
+}
+.fairy-light::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 5px;
+  background: #333;
+  border-radius: 2px;
+}
+.fairy-light.c-pink   { background: #ff2a85; box-shadow: 0 0 14px 4px #ff2a85; animation-delay: 0.1s; }
+.fairy-light.c-gold   { background: #ffca28; box-shadow: 0 0 16px 5px #ffca28; animation-delay: 0.3s; }
+.fairy-light.c-cyan   { background: #00e5ff; box-shadow: 0 0 14px 4px #00e5ff; animation-delay: 0.5s; }
+.fairy-light.c-green  { background: #00f090; box-shadow: 0 0 14px 4px #00f090; animation-delay: 0.7s; }
+.fairy-light.c-purple { background: #b366ff; box-shadow: 0 0 14px 4px #b366ff; animation-delay: 0.2s; }
+.fairy-light.c-orange { background: #ff7043; box-shadow: 0 0 14px 4px #ff7043; animation-delay: 0.6s; }
+
+@keyframes lightPulse {
+  0% { opacity: 0.4; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1.15); filter: brightness(1.3); }
+}
+
+/* Secondary lower string of twinkle stars */
+.fairy-string-sub {
+  position: absolute;
+  top: 68px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.twinkle-star {
+  font-size: 13px;
+  color: var(--gold-glow);
+  animation: starTwinkle 2s infinite ease-in-out;
+  text-shadow: 0 0 8px rgba(255, 202, 40, 0.8);
+}
+.twinkle-star:nth-child(2n) { animation-delay: 0.7s; color: #ff2a85; text-shadow: 0 0 8px #ff2a85; }
+.twinkle-star:nth-child(3n) { animation-delay: 1.3s; color: #00e5ff; text-shadow: 0 0 8px #00e5ff; }
+
+@keyframes starTwinkle {
+  0%, 100% { transform: scale(0.6) rotate(0deg); opacity: 0.3; }
+  50% { transform: scale(1.3) rotate(30deg); opacity: 1; }
+}
+
+/* ===== FLOATING BACKGROUND BALLOONS ===== */
+.bg-balloons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.bg-balloon {
+  position: absolute;
+  bottom: -150px;
+  border-radius: 50% 50% 50% 50% / 42% 42% 58% 58%;
+  opacity: 0.55;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+  animation: driftUp linear infinite;
+}
+.bg-balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1.5px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.45);
+}
+.bg-balloon::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 6px;
+  background: inherit;
+  border-radius: 4px;
+}
+.bg-b1 { width: 50px; height: 64px; left: 6%; background: radial-gradient(circle at 35% 30%, #ff6097, #d81b60); animation-duration: 22s; animation-delay: 0s; }
+.bg-b2 { width: 40px; height: 50px; left: 18%; background: radial-gradient(circle at 35% 30%, #ffd54f, #ff8f00); animation-duration: 26s; animation-delay: 4s; }
+.bg-b3 { width: 55px; height: 70px; left: 32%; background: radial-gradient(circle at 35% 30%, #4dd0e1, #00838f); animation-duration: 20s; animation-delay: 8s; }
+.bg-b4 { width: 44px; height: 56px; left: 52%; background: radial-gradient(circle at 35% 30%, #ba68c8, #6a1b9a); animation-duration: 24s; animation-delay: 2s; }
+.bg-b5 { width: 58px; height: 72px; left: 74%; background: radial-gradient(circle at 35% 30%, #81c784, #2e7d32); animation-duration: 21s; animation-delay: 6s; }
+.bg-b6 { width: 48px; height: 60px; left: 88%; background: radial-gradient(circle at 35% 30%, #ff8a65, #d84315); animation-duration: 25s; animation-delay: 11s; }
+
+@keyframes driftUp {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); }
+  50% { transform: translateY(-60vh) translateX(25px) rotate(8deg); }
+  100% { transform: translateY(-130vh) translateX(-20px) rotate(-8deg); }
+}
+
+/* ===== HERO HEADER ===== */
+.hero {
+  position: relative;
+  z-index: 5;
+  padding: 85px 1rem 30px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  color: var(--gold-glow);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.hero-pill .pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00f090;
+  box-shadow: 0 0 10px #00f090;
+  animation: pulseDot 1.2s infinite alternate;
+}
+@keyframes pulseDot {
+  from { opacity: 0.5; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+
+.hero h1 {
+  font-family: 'Outfit', 'Hind Siliguri', sans-serif;
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #ffffff 0%, #ffea79 35%, #ff9a3c 70%, #ff4081 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 20px rgba(255, 120, 60, 0.4));
+  letter-spacing: -0.02em;
+}
+
+.hero-sub {
+  color: var(--text-sub);
+  font-size: 1.05rem;
+  max-width: 520px;
+  margin: 0 auto 16px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.music-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff2a85, #8a2be2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(255, 42, 133, 0.4);
+}
+.music-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(255, 42, 133, 0.6);
+}
+.music-btn.playing {
+  background: linear-gradient(135deg, #00c853, #00b0ff);
+  box-shadow: 0 4px 15px rgba(0, 200, 83, 0.5);
+}
+
+.github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+.github-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: var(--gold);
+  color: var(--gold-glow);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 15px rgba(255, 202, 40, 0.25);
+}
+
+/* Next Birthday Live Countdown Bar */
+.countdown-strip {
+  max-width: 680px;
+  margin: 18px auto 0;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, rgba(255, 42, 133, 0.15), rgba(255, 202, 40, 0.12));
+  border: 1px solid rgba(255, 202, 40, 0.35);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 0.92rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  animation: subtleGlow 3s infinite alternate;
+}
+@keyframes subtleGlow {
+  from { border-color: rgba(255, 202, 40, 0.3); }
+  to { border-color: rgba(255, 42, 133, 0.6); }
+}
+
+.countdown-strip strong {
+  color: var(--gold-glow);
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1rem 5rem;
+  position: relative;
+  z-index: 5;
+}
+
+/* Notification Prompt Banner */
+.notif-banner {
+  background: linear-gradient(135deg, rgba(255, 202, 40, 0.15), rgba(179, 102, 255, 0.15));
+  border: 1px solid rgba(255, 202, 40, 0.4);
+  border-radius: 18px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+.notif-banner.hidden { display: none; }
+.notif-banner strong { color: var(--gold-glow); font-size: 1rem; }
+.notif-banner p { font-size: 0.86rem; color: var(--text-sub); margin-top: 2px; }
+
+.btn {
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 7px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-allow {
+  background: linear-gradient(135deg, #ffca28, #ff9100);
+  color: #1a0b2e;
+  box-shadow: 0 4px 12px rgba(255, 145, 0, 0.35);
+}
+.btn-allow:hover { transform: translateY(-2px); filter: brightness(1.1); }
+.btn-deny {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-deny:hover { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
+
+.notif-status {
+  display: none;
+  background: rgba(0, 240, 144, 0.15);
+  border: 1px solid rgba(0, 240, 144, 0.3);
+  color: #00f090;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.notif-status.show { display: block; }
+
+/* Search & Filter Bar */
+.search-filter-box {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  padding: 10px 14px 10px 42px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.search-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(255, 202, 40, 0.25);
+}
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.section-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.sec-chip {
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-sub);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.sec-chip.active {
+  background: linear-gradient(135deg, #ff2a85, #b366ff);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 2px 10px rgba(255, 42, 133, 0.4);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 6px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-x: auto;
+}
+.tab {
+  flex: 1;
+  min-width: max-content;
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  color: var(--text-sub);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.tab:hover {
+  color: #fff;
+}
+.tab.active {
+  background: linear-gradient(135deg, #ffca28, #ff8f00);
+  color: #160728;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(255, 143, 0, 0.4);
+}
+
+.panel { display: none; }
+.panel.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold-glow);
+}
+.count-pill {
+  background: linear-gradient(135deg, #ff2a85, #8a2be2);
+  color: #fff;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+/* Birthday Cards (Today) */
+.birthday-card-hero {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 42, 133, 0.18), rgba(255, 202, 40, 0.15) 60%, rgba(179, 102, 255, 0.18));
+  border: 2px solid rgba(255, 202, 40, 0.5);
+  border-radius: 24px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(255, 42, 133, 0.2);
+}
+.birthday-card-hero::before {
+  content: '🎂';
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 3.5rem;
+  opacity: 0.18;
+  pointer-events: none;
+  transform: rotate(15deg);
+}
+.birthday-card-hero:hover {
+  transform: translateY(-5px) scale(1.015);
+  border-color: var(--gold);
+  box-shadow: 0 15px 40px rgba(255, 202, 40, 0.35);
+}
+
+.ribbon-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #ff2a85, #ff7043);
+  color: #fff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(255, 42, 133, 0.4);
+}
+
+.student-name-big {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--text-sub);
+}
+.badge-gender-girl {
+  background: rgba(255, 42, 133, 0.25);
+  color: #ff85be;
+  border-color: rgba(255, 42, 133, 0.4);
+}
+.badge-gender-boy {
+  background: rgba(0, 229, 255, 0.2);
+  color: #80f2ff;
+  border-color: rgba(0, 229, 255, 0.35);
+}
+
+.tap-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold-glow);
+}
+.tap-callout .shine-arrow {
+  animation: bounceRight 1s infinite alternate;
+}
+@keyframes bounceRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(6px); }
+}
+
+/* List Items (Upcoming, Past, All) */
+.list-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  backdrop-filter: blur(8px);
+  gap: 12px;
+}
+.list-card:hover {
+  border-color: var(--gold);
+  transform: translateX(4px) translateY(-2px);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.list-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.avatar-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(255, 42, 133, 0.3), rgba(255, 202, 40, 0.3));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.list-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.list-name {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list-subtext {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.list-right-badge {
+  font-weight: 700;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(255, 202, 40, 0.15);
+  color: var(--gold-glow);
+  border: 1px solid rgba(255, 202, 40, 0.3);
+  flex-shrink: 0;
+}
+.list-card.past .list-right-badge {
+  background: rgba(179, 102, 255, 0.15);
+  color: #d1a8ff;
+  border-color: rgba(179, 102, 255, 0.3);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  background: var(--card-bg);
+  border: 1px dashed var(--card-border);
+  border-radius: 20px;
+}
+.empty-state .empty-icon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+  animation: floatEmoji 2.5s ease-in-out infinite alternate;
+}
+@keyframes floatEmoji {
+  from { transform: translateY(0); }
+  to { transform: translateY(-8px); }
+}
+
+/* Month group wrapper for 'All' tab */
+.month-group {
+  margin-bottom: 22px;
+}
+.month-header {
+  color: var(--gold-glow);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 4px;
+}
+
+/* ===== BURSTING FLYING BALLOONS ON CLICK ===== */
+#balloonFlightOverlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.flying-balloon {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  animation: balloonFlyUp 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.45));
+}
+.flying-balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.6);
+}
+.flying-balloon::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 6px;
+  background: inherit;
+  border-radius: 4px;
+}
+
+@keyframes balloonFlyUp {
+  0% {
+    transform: translateY(110vh) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  80% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(-130vh) scale(1.15) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+/* ===== CELEBRATORY CAKE & WISH MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(10, 4, 20, 0.85);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: linear-gradient(165deg, #2b124c 0%, #17092c 60%, #10051f 100%);
+  border: 2px solid rgba(255, 202, 40, 0.5);
+  border-radius: 32px;
+  padding: 2.2rem 1.8rem 1.8rem;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 42, 133, 0.3);
+  transform: scale(0.7) translateY(40px);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+.modal-overlay.open .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Floating Cake Animation */
+.cake-float-wrapper {
+  margin: 0 auto 12px;
+  position: relative;
+  width: 160px;
+  height: 155px;
+  animation: cakeBob 3s ease-in-out infinite alternate;
+}
+@keyframes cakeBob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+/* Realistic Multi-Tier SVG Cake with Lit Candle */
+.cake-svg-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Candle Flame & Smoke */
+.candle-flame {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 24px;
+  background: radial-gradient(ellipse at bottom, #fff7a0 0%, #ff9800 60%, #e65100 100%);
+  border-radius: 50% 50% 35% 35% / 80% 80% 20% 20%;
+  box-shadow: 0 0 20px 6px #ffb300, 0 0 35px 12px #ff6f00;
+  animation: flameFlicker 0.15s infinite alternate;
+  transform-origin: bottom center;
+  transition: all 0.4s ease-out;
+  z-index: 10;
+  cursor: pointer;
+}
+
+@keyframes flameFlicker {
+  0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+  100% { transform: translateX(-50%) scale(1.12) rotate(3deg); }
+}
+
+/* When candle blows out after 2 seconds */
+.candle-flame.extinguished {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.1);
+  box-shadow: none;
+}
+
+/* Smoke puff after blow out */
+.smoke-puff {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(220, 220, 230, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 12;
+}
+.smoke-puff.puff-active {
+  animation: riseSmoke 1.6s ease-out forwards;
+}
+
+@keyframes riseSmoke {
+  0% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(0.8) translateY(0);
+    filter: blur(1px);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateX(-40%) scale(2.8) translateY(-30px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-60%) scale(4.5) translateY(-65px);
+    filter: blur(8px);
+  }
+}
+
+.candle-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+.candle-status-pill.lit {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffd54f;
+  border: 1px solid rgba(255, 193, 7, 0.4);
+}
+.candle-status-pill.blown {
+  background: rgba(0, 240, 144, 0.2);
+  color: #00f090;
+  border: 1px solid rgba(0, 240, 144, 0.4);
+}
+
+.wish-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold-glow);
+  margin-bottom: 4px;
+}
+.wish-name {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 14px rgba(255, 42, 133, 0.5);
+}
+.wish-msg {
+  font-size: 0.98rem;
+  color: var(--text-sub);
+  line-height: 1.6;
+  margin-bottom: 14px;
+  padding: 0 4px;
+}
+
+.wish-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  text-align: left;
+  font-size: 0.84rem;
+}
+.detail-item strong {
+  color: var(--gold);
+  display: block;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+.detail-item span {
+  color: #fff;
+  font-weight: 600;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-relight {
+  flex: 1;
+  background: linear-gradient(135deg, #ff9100, #ff3d00);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 61, 0, 0.35);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn-relight:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+.btn-confetti {
+  flex: 1;
+  background: linear-gradient(135deg, #b366ff, #ff2a85);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 42, 133, 0.35);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn-confetti:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  transition: all 0.2s;
+}
+.btn-whatsapp:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+.btn-close-modal {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-sub);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-close-modal:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+
+/* Canvas for Confetti Rain */
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+footer .heart {
+  color: #ff2a85;
+  display: inline-block;
+  animation: heartBeat 1.2s infinite;
+}
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2.2rem; }
+  .modal-content { padding: 1.8rem 1.2rem 1.4rem; }
+  .wish-name { font-size: 1.35rem; }
+  .wish-details-grid { grid-template-columns: 1fr; gap: 6px; }
+  .tabs { gap: 4px; padding: 4px; }
+  .tab { font-size: 0.82rem; padding: 8px 10px; }
+}
 </style>
+
+<!-- External Data Scripts -->
 <script src="s0.js"></script>
 <script src="s1.js"></script>
 <script src="s2.js"></script>
 <script src="s3.js"></script>
 </head>
 <body>
-<section class="hero">
-<div class="lights">
-<span class="light l1"></span><span class="light l2"></span><span class="light l3"></span>
-<span class="light l4"></span><span class="light l5"></span><span class="light l6"></span>
-<span class="light l7"></span><span class="light l8"></span><span class="light l9"></span>
-<span class="light l10"></span><span class="light l11"></span><span class="light l12"></span>
-<span class="light l13"></span><span class="light l14"></span><span class="light l15"></span>
-<span class="light l16"></span><span class="light l17"></span><span class="light l18"></span>
+
+<!-- CELEBRATORY DECORATIONS: BUNTING & FAIRY LIGHTS -->
+<div class="party-decorations">
+  <div class="bunting-wire">
+    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+  </div>
+
+  <div class="fairy-string">
+    <div class="fairy-light c-pink"></div>
+    <div class="fairy-light c-gold"></div>
+    <div class="fairy-light c-cyan"></div>
+    <div class="fairy-light c-green"></div>
+    <div class="fairy-light c-purple"></div>
+    <div class="fairy-light c-orange"></div>
+    <div class="fairy-light c-pink"></div>
+    <div class="fairy-light c-gold"></div>
+    <div class="fairy-light c-cyan"></div>
+    <div class="fairy-light c-green"></div>
+    <div class="fairy-light c-purple"></div>
+    <div class="fairy-light c-orange"></div>
+    <div class="fairy-light c-pink"></div>
+    <div class="fairy-light c-gold"></div>
+    <div class="fairy-light c-cyan"></div>
+  </div>
+
+  <div class="fairy-string-sub">
+    <span class="twinkle-star">✨</span>
+    <span class="twinkle-star">⭐</span>
+    <span class="twinkle-star">✨</span>
+    <span class="twinkle-star">🌟</span>
+    <span class="twinkle-star">✨</span>
+    <span class="twinkle-star">⭐</span>
+    <span class="twinkle-star">✨</span>
+    <span class="twinkle-star">🌟</span>
+  </div>
 </div>
-<div class="balloons">
-<div class="balloon b1"></div><div class="balloon b2"></div><div class="balloon b3"></div>
-<div class="balloon b4"></div><div class="balloon b5"></div><div class="balloon b6"></div>
-<div class="balloon b7"></div><div class="balloon b8"></div><div class="balloon b9"></div>
-<div class="balloon b10"></div><div class="balloon b11"></div><div class="balloon b12"></div>
+
+<!-- BACKGROUND DRIFTING BALLOONS -->
+<div class="bg-balloons">
+  <div class="bg-balloon bg-b1"></div>
+  <div class="bg-balloon bg-b2"></div>
+  <div class="bg-balloon bg-b3"></div>
+  <div class="bg-balloon bg-b4"></div>
+  <div class="bg-balloon bg-b5"></div>
+  <div class="bg-balloon bg-b6"></div>
 </div>
-<div class="hero-content"><div class="label">Class XII · ২০২৩-২৪</div><h1>Happy Birthday!</h1><p class="sub">সেকশন A, B, C · জন্মদিনের শুভেচ্ছা</p><div class="date-badge" id="todayDate">—</div></div></section>
-<div class="container">
-<div class="notif-banner" id="notifBanner"><div><strong>🔔 জন্মদিন নোটিফিকেশন</strong><p>Allow করলে আজকের জন্মদিনের অ্যালার্ট পাবেন</p></div><div class="notif-btns"><button class="btn btn-allow" id="btnAllow">Allow</button><button class="btn btn-deny" id="btnDeny">Deny</button></div></div>
-<div class="notif-status" id="notifStatus">✅ নোটিফিকেশন চালু</div>
-<div class="tabs"><button class="tab active" data-tab="today">🎉 আজকের</button><button class="tab" data-tab="upcoming">📅 আগামী ৩০</button><button class="tab" data-tab="past">⏪ গত ৯০</button><button class="tab" data-tab="all">📋 সব</button></div>
-<div class="panel active" id="panel-today"><div class="section-title"><span>🎉</span><span>আজ কার জন্মদিন</span><span class="count-pill" id="todayCount">0</span></div><div id="todayList"></div></div>
-<div class="panel" id="panel-upcoming"><div class="section-title"><span>📅</span><span>আগামী ৩০ দিন</span><span class="count-pill" id="upcomingCount">0</span></div><div id="upcomingList"></div></div>
-<div class="panel" id="panel-past"><div class="section-title"><span>⏪</span><span>গত ৯০ দিন</span><span class="count-pill" id="pastCount">0</span></div><div id="pastList"></div></div>
-<div class="panel" id="panel-all"><div class="section-title"><span>📋</span><span>মাস অনুসারে সব</span></div><div id="allList"></div></div>
-<footer><p>Happy Birthday · Class XII ২০২৩-২৪</p><p style="margin-top:.3rem">নামে ট্যাপ করলে শুভেচ্ছা দেখাবে</p></footer>
+
+<!-- HERO HEADER -->
+<header class="hero">
+  <div class="hero-pill">
+    <span class="pulse-dot"></span>
+    <span>CLASS XII · শিক্ষাবর্ষ ২০২৩-২৪</span>
+  </div>
+
+  <h1>🎉 শুভ জন্মদিন! 🎂</h1>
+  <p class="hero-sub">সেকশন A, B, C · বন্ধুদের জন্মদিন ট্র্যাকার ও উৎসবের শুভেচ্ছা</p>
+
+  <div class="hero-actions">
+    <div class="date-pill" id="todayDatePill">📅 লোড হচ্ছে...</div>
+    <button class="music-btn" id="btnToggleMusic" title="জন্মদিনের গান বাজান বা বন্ধ করুন">
+      <span id="musicIcon">🎵</span>
+      <span id="musicText">বার্থডে মিউজিক</span>
+    </button>
+    <a href="https://github.com/Jmaity434/class-xii-birthday-tracker" target="_blank" rel="noopener noreferrer" class="github-btn" title="GitHub Repository">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      <span>GitHub</span>
+    </a>
+  </div>
+
+  <!-- LIVE COUNTDOWN TO NEXT BIRTHDAY -->
+  <div class="countdown-strip" id="nextBirthdayStrip">
+    <span>⏳ পরবর্তী জন্মদিন গণনা হচ্ছে...</span>
+  </div>
+</header>
+
+<!-- MAIN CONTAINER -->
+<main class="container">
+
+  <!-- BROWSER NOTIFICATION PROMPT -->
+  <div class="notif-banner" id="notifBanner">
+    <div>
+      <strong>🔔 জন্মদিন অ্যালার্ট চালু করুন</strong>
+      <p>প্রতিদিন সকালে বন্ধুদের জন্মদিনের স্বয়ংক্রিয় নোটিফিকেশন পান</p>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button class="btn btn-allow" id="btnAllow">Allow</button>
+      <button class="btn btn-deny" id="btnDeny">পরে</button>
+    </div>
+  </div>
+  <div class="notif-status" id="notifStatus">✅ জন্মদিনের অ্যালার্ট নোটিফিকেশন সক্রিয় রয়েছে</div>
+
+  <!-- SEARCH & SECTION FILTER -->
+  <div class="search-filter-box">
+    <div class="search-input-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="বন্ধুর নাম বা রোল নম্বর দিয়ে খুঁজুন..."/>
+    </div>
+    <div class="section-chips" id="sectionChips">
+      <button class="sec-chip active" data-sec="ALL">সকল সেকশন</button>
+      <button class="sec-chip" data-sec="A">সেকশন A</button>
+      <button class="sec-chip" data-sec="B">সেকশন B</button>
+      <button class="sec-chip" data-sec="C">সেকশন C</button>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="today">🎉 আজকের (<span id="tabCountToday">0</span>)</button>
+    <button class="tab" data-tab="upcoming">📅 আগামী ৩০ দিন (<span id="tabCountUpcoming">0</span>)</button>
+    <button class="tab" data-tab="past">⏪ গত ৯০ দিন (<span id="tabCountPast">0</span>)</button>
+    <button class="tab" data-tab="all">📋 সব ছাত্রছাত্রী</button>
+  </nav>
+
+  <!-- PANEL: TODAY -->
+  <section class="panel active" id="panel-today">
+    <div class="section-title">
+      <span>🎉</span>
+      <span>আজ কার জন্মদিন?</span>
+      <span class="count-pill" id="todayCountBadge">0</span>
+    </div>
+    <div id="todayList"></div>
+  </section>
+
+  <!-- PANEL: UPCOMING -->
+  <section class="panel" id="panel-upcoming">
+    <div class="section-title">
+      <span>📅</span>
+      <span>আসন্ন জন্মদিনসমূহ (আগামী ৩০ দিন)</span>
+      <span class="count-pill" id="upcomingCountBadge">0</span>
+    </div>
+    <div id="upcomingList"></div>
+  </section>
+
+  <!-- PANEL: PAST -->
+  <section class="panel" id="panel-past">
+    <div class="section-title">
+      <span>⏪</span>
+      <span>সম্প্রতি অতিবাহিত জন্মদিনসমূহ (গত ৯০ দিন)</span>
+      <span class="count-pill" id="pastCountBadge">0</span>
+    </div>
+    <div id="pastList"></div>
+  </section>
+
+  <!-- PANEL: ALL -->
+  <section class="panel" id="panel-all">
+    <div class="section-title">
+      <span>📋</span>
+      <span>মাসভিত্তিক সকল ছাত্রছাত্রী</span>
+    </div>
+    <div id="allList"></div>
+  </section>
+
+  <footer>
+    <p>Class XII Birthday Tracker · <span class="heart">❤️</span> দিয়ে তৈরি</p>
+    <p style="margin-top: 6px;">
+      <a href="https://github.com/Jmaity434/class-xii-birthday-tracker" target="_blank" rel="noopener noreferrer" style="color: var(--gold-glow); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.88rem;">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>GitHub Repository</span>
+      </a>
+    </p>
+    <p style="margin-top: 4px; color: var(--gold-glow); font-size: 0.8rem;">✨ যেকোনো নামের উপর ট্যাপ করুন বেলুন ও কেকের চমক দেখতে!</p>
+  </footer>
+</main>
+
+<!-- FLYING BALLOONS OVERLAY -->
+<div id="balloonFlightOverlay"></div>
+
+<!-- CONFETTI CANVAS -->
+<canvas id="confettiCanvas"></canvas>
+
+<!-- CELEBRATORY CAKE & CANDLE WISH MODAL -->
+<div class="modal-overlay" id="wishModal">
+  <div class="modal-content">
+
+    <!-- 3D FLOATING CAKE WITH LIT CANDLE -->
+    <div class="cake-float-wrapper">
+      <div class="candle-flame" id="cakeFlame" title="মোমবাতিতে ট্যাপ করুন নিভিয়ে দেওয়ার জন্য!"></div>
+      <div class="smoke-puff" id="smokePuff"></div>
+
+      <!-- Scalable Birthday Cake Artwork -->
+      <svg class="cake-svg-container" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Candle Stick -->
+        <rect x="75" y="26" width="10" height="30" rx="3" fill="#ffffff"/>
+        <path d="M75 32L85 36M75 42L85 46M75 50L85 54" stroke="#ff2a85" stroke-width="2"/>
+
+        <!-- Cake Plate -->
+        <ellipse cx="80" cy="130" rx="72" ry="10" fill="#ffffff" fill-opacity="0.2"/>
+        <ellipse cx="80" cy="128" rx="66" ry="7" fill="#ffd54f" fill-opacity="0.3"/>
+
+        <!-- Bottom Tier Base -->
+        <rect x="25" y="94" width="110" height="32" rx="12" fill="#5c1d85"/>
+        <ellipse cx="80" cy="94" rx="55" ry="12" fill="#ff4081"/>
+
+        <!-- Bottom Tier Frosting drips -->
+        <path d="M25 94C32 108 38 98 48 108C58 98 68 112 80 102C92 112 102 98 112 108C122 98 128 108 135 94" fill="#ffffff" fill-opacity="0.9"/>
+
+        <!-- Top Tier Base -->
+        <rect x="42" y="58" width="76" height="34" rx="10" fill="#8e24aa"/>
+        <ellipse cx="80" cy="58" rx="38" ry="10" fill="#ff80ab"/>
+
+        <!-- Top Tier Frosting drips -->
+        <path d="M42 58C48 68 54 62 62 70C70 62 78 72 86 64C94 72 102 62 110 70C114 65 116 62 118 58" fill="#ffffff" fill-opacity="0.95"/>
+
+        <!-- Sprinkles -->
+        <circle cx="55" cy="80" r="2.5" fill="#ffd54f"/>
+        <circle cx="70" cy="76" r="2.5" fill="#00e5ff"/>
+        <circle cx="88" cy="80" r="2.5" fill="#00f090"/>
+        <circle cx="102" cy="75" r="2.5" fill="#ffca28"/>
+
+        <circle cx="40" cy="116" r="3" fill="#00e5ff"/>
+        <circle cx="65" cy="118" r="3" fill="#ffd54f"/>
+        <circle cx="95" cy="116" r="3" fill="#ff4081"/>
+        <circle cx="120" cy="118" r="3" fill="#00f090"/>
+
+        <!-- Cherries / Cream dollops -->
+        <circle cx="45" cy="56" r="5" fill="#ff1744"/>
+        <circle cx="62" cy="54" r="5" fill="#ff1744"/>
+        <circle cx="98" cy="54" r="5" fill="#ff1744"/>
+        <circle cx="115" cy="56" r="5" fill="#ff1744"/>
+      </svg>
+    </div>
+
+    <!-- Dynamic Candle Status -->
+    <div id="candleStatus" class="candle-status-pill lit">
+      <span id="candleIcon">🔥</span>
+      <span id="candleText">মোমবাতি জ্বলছে... (২ সেকেন্ডে নিভে যাবে)</span>
+    </div>
+
+    <div class="wish-title">🎉 শুভ জন্মদিন! 🎂</div>
+    <div class="wish-name" id="wishName">—</div>
+    <div class="wish-msg" id="wishMsg"></div>
+
+    <!-- Student details grid -->
+    <div class="wish-details-grid">
+      <div class="detail-item">
+        <strong>শ্রেণি ও সেকশন</strong>
+        <span id="wishClassSec">Class XII · A</span>
+      </div>
+      <div class="detail-item">
+        <strong>রোল নম্বর</strong>
+        <span id="wishRoll">Roll: 01</span>
+      </div>
+      <div class="detail-item">
+        <strong>জন্মতারিখ ও রাশি</strong>
+        <span id="wishDobZodiac">—</span>
+      </div>
+      <div class="detail-item">
+        <strong>বয়স</strong>
+        <span id="wishAge">— বছর পূর্ণ</span>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <div class="btn-row">
+        <button class="btn-relight" id="btnRelight">
+          <span>🕯️</span>
+          <span>আবার জ্বালাও</span>
+        </button>
+        <button class="btn-confetti" id="btnMoreConfetti">
+          <span>🎊</span>
+          <span>কনফেটি ছড়াও</span>
+        </button>
+      </div>
+
+      <a href="#" target="_blank" class="btn-whatsapp" id="btnWhatsapp">
+        <span>📲</span>
+        <span>হোয়াটসঅ্যাপে শুভেচ্ছা পাঠান</span>
+      </a>
+
+      <button class="btn-close-modal" id="btnCloseWish">ধন্যবাদ 💛 বন্ধ করুন</button>
+    </div>
+
+  </div>
 </div>
-<div class="modal-overlay" id="wishModal"><div class="modal"><div class="cake-big">🎂</div><div class="wish-title">শুভ জন্মদিন!</div><div class="wish-name" id="wishName">—</div><div class="wish-msg" id="wishMsg"></div><div class="wish-meta" id="wishMeta"></div><button class="btn-close" id="btnCloseWish">ধন্যবাদ 💛</button></div></div>
+
 <script>
-const monthNamesBn=['','জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
-const dayNamesBn=['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
-function formatDateBn(d){return d.getDate()+' '+monthNamesBn[d.getMonth()+1]+' '+d.getFullYear()+', '+dayNamesBn[d.getDay()]}
-let STUDENTS=(window.STUDENT_DATA||[]).map(s=>({name:s.n,month:s.m,day:s.d,gender:s.g===1?'GIRLS':'BOYS',section:s.s,roll:s.r,dob:s.dob}));
-document.querySelectorAll('.tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));tab.classList.add('active');document.getElementById('panel-'+tab.dataset.tab).classList.add('active')})});
-const wishModal=document.getElementById('wishModal');
-const wishMessages=['আপনার জীবন সুখ, সাফল্য ও হাসি-আনন্দে ভরে উঠুক। অনেক অনেক শুভকামনা! 🎉','জন্মদিনের এই বিশেষ দিনে আপনার জন্য রইল অসীম শুভকামনা। সব স্বপ্ন পূরণ হোক! ✨','শুভ জন্মদিন! নতুন বছর আপনার জন্য নিয়ে আসুক অফুরন্ত আনন্দ ও সাফল্য। 🎂','আজকের দিনটা আপনার জন্য বিশেষ। হাসতে থাকুন, স্বপ্ন দেখতে থাকুন! 🎈','জন্মদিনের শুভেচ্ছা! আপনার পথ চলা হোক আলোর মতো উজ্জ্বল। 💛'];
-function openWish(s){document.getElementById('wishName').textContent=s.name;document.getElementById('wishMsg').textContent=wishMessages[Math.floor(Math.random()*wishMessages.length)];document.getElementById('wishMeta').textContent='সেকশন '+s.section+' · রোল '+s.roll+(s.dob?' · '+s.dob:'');wishModal.classList.add('open')}
-document.getElementById('btnCloseWish').addEventListener('click',()=>wishModal.classList.remove('open'));
-wishModal.addEventListener('click',e=>{if(e.target===wishModal)wishModal.classList.remove('open')});
-const notifBanner=document.getElementById('notifBanner'),notifStatus=document.getElementById('notifStatus');
-function updateNotifUI(){if(!('Notification' in window)){notifBanner.classList.add('hidden');return}if(Notification.permission==='granted'){notifBanner.classList.add('hidden');notifStatus.classList.add('show')}else if(Notification.permission==='denied'){notifBanner.classList.add('hidden')}else{notifBanner.classList.remove('hidden');notifStatus.classList.remove('show')}}
-document.getElementById('btnAllow').addEventListener('click',async()=>{if(!('Notification' in window)){alert('এই ব্রাউজারে নোটিফিকেশন সাপোর্ট করে না');return}const perm=await Notification.requestPermission();updateNotifUI();if(perm==='granted')sendTodayNotification()});
-document.getElementById('btnDeny').addEventListener('click',()=>{notifBanner.classList.add('hidden');try{localStorage.setItem('notif_denied','1')}catch(e){}});
-function sendTodayNotification(){if(Notification.permission!=='granted')return;const now=new Date();const t=STUDENTS.filter(s=>s.month===(now.getMonth()+1)&&s.day===now.getDate());let title,body;if(!t.length){title='🎂 আজ কারো জন্মদিন নেই';body='আগামী দিনগুলোতে কেউ থাকলে জানাবো!'}else if(t.length===1){title='🎉 আজ '+t[0].name+'-এর জন্মদিন!';body='সেকশন '+t[0].section+' · রোল '+t[0].roll+' · শুভ জন্মদিন!'}else{title='🎉 আজ '+t.length+' জনের জন্মদিন!';body=t.map(s=>s.name).join(', ')+' · শুভ জন্মদিন!'}try{new Notification(title,{body,tag:'birthday-today'})}catch(e){}}
-function maybeNotifyOnLoad(){if(Notification.permission!=='granted')return;const key='notif_sent_'+new Date().toISOString().slice(0,10);try{if(localStorage.getItem(key))return;localStorage.setItem(key,'1');setTimeout(sendTodayNotification,1200)}catch(e){}}
-function render(){const now=new Date(),tm=now.getMonth()+1,td=now.getDate();document.getElementById('todayDate').textContent=formatDateBn(now);const today=STUDENTS.filter(s=>s.month===tm&&s.day===td);document.getElementById('todayCount').textContent=today.length;const tl=document.getElementById('todayList');if(!today.length){tl.innerHTML='<div class="card empty-state" style="cursor:default"><div style="font-size:2.4rem;margin-bottom:.5rem">🎈</div><p>আজ কারো জন্মদিন নেই</p></div>'}else{tl.innerHTML=today.map((s,i)=>'<div class="card birthday-card" data-i="'+i+'"><div class="student-name">'+s.name+'</div><div class="meta"><span>📚 সেকশন '+s.section+' · রোল '+s.roll+'</span><span class="badge '+(s.gender==='GIRLS'?'badge-girl':'badge-boy')+'">'+(s.gender==='GIRLS'?'মেয়ে':'ছেলে')+'</span><span>🎂 '+s.dob+'</span></div><div class="tap-hint">👆 ট্যাপ করুন শুভেচ্ছা দেখতে</div></div>').join('');tl.querySelectorAll('.birthday-card').forEach((el,i)=>el.addEventListener('click',()=>openWish(today[i])))}const up=[];for(let i=1;i<=30;i++){const d=new Date(now);d.setDate(d.getDate()+i);const m=d.getMonth()+1,day=d.getDate();STUDENTS.filter(s=>s.month===m&&s.day===day).forEach(s=>up.push(Object.assign({},s,{daysLeft:i,dateStr:day+' '+monthNamesBn[m]})))}document.getElementById('upcomingCount').textContent=up.length;const ul=document.getElementById('upcomingList');if(!up.length)ul.innerHTML='<div class="card empty-state" style="cursor:default"><p>পরবর্তী ৩০ দিনে কোনো জন্মদিন নেই</p></div>';else{ul.innerHTML=up.map((s,i)=>'<div class="list-item" data-i="'+i+'"><div class="left"><span class="name">'+s.name+'</span><span class="info">সেকশন '+s.section+' · রোল '+s.roll+' · '+s.dateStr+'</span></div><span class="days">'+(s.daysLeft===1?'কাল':s.daysLeft+' দিন পর')+'</span></div>').join('');ul.querySelectorAll('.list-item').forEach((el,i)=>el.addEventListener('click',()=>openWish(up[i])))}const past=[];for(let i=1;i<=90;i++){const d=new Date(now);d.setDate(d.getDate()-i);const m=d.getMonth()+1,day=d.getDate();STUDENTS.filter(s=>s.month===m&&s.day===day).forEach(s=>past.push(Object.assign({},s,{daysAgo:i,dateStr:day+' '+monthNamesBn[m]})))}past.sort((a,b)=>a.daysAgo-b.daysAgo);document.getElementById('pastCount').textContent=past.length;const pl=document.getElementById('pastList');if(!past.length)pl.innerHTML='<div class="card empty-state" style="cursor:default"><p>গত ৯০ দিনে কোনো জন্মদিন নেই</p></div>';else{pl.innerHTML=past.map((s,i)=>'<div class="list-item past" data-i="'+i+'"><div class="left"><span class="name">'+s.name+'</span><span class="info">সেকশন '+s.section+' · রোল '+s.roll+' · '+s.dateStr+'</span></div><span class="days">'+(s.daysAgo===1?'গতকাল':s.daysAgo+' দিন আগে')+'</span></div>').join('');pl.querySelectorAll('.list-item').forEach((el,i)=>el.addEventListener('click',()=>openWish(past[i])))}const byMonth={};STUDENTS.forEach(s=>{if(!byMonth[s.month])byMonth[s.month]=[];byMonth[s.month].push(s)});let html='';for(let m=1;m<=12;m++){const list=(byMonth[m]||[]).sort((a,b)=>a.day-b.day);if(!list.length)continue;html+='<div style="margin-bottom:1.3rem"><h3 style="color:var(--gold);font-size:.95rem;margin-bottom:.5rem">'+monthNamesBn[m]+' ('+list.length+')</h3>';list.forEach((s,i)=>{html+='<div class="list-item all-item" data-m="'+m+'" data-i="'+i+'" style="padding:.55rem .85rem;margin-bottom:.4rem"><div class="left"><span class="name" style="font-size:.9rem">'+s.name+'</span><span class="info">'+s.day+' '+monthNamesBn[m]+' · সেকশন '+s.section+'</span></div></div>'});html+='</div>'}document.getElementById('allList').innerHTML=html;document.querySelectorAll('.all-item').forEach(el=>{const m=+el.dataset.m,i=+el.dataset.i;const list=(byMonth[m]||[]).sort((a,b)=>a.day-b.day);el.addEventListener('click',()=>openWish(list[i]))})}
+/* =========================================================
+   1. DATA & CONSTANTS
+   ========================================================= */
+const monthNamesBn = ['', 'জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+const dayNamesBn = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
+
+// Astrological Zodiac in Bengali
+function getBengaliZodiac(month, day) {
+  if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return '♈ মেষ (Aries)';
+  if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return '♉ বৃষ (Taurus)';
+  if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return '♊ মিথুন (Gemini)';
+  if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return '♋ কর্কট (Cancer)';
+  if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return '♌ সিংহ (Leo)';
+  if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return '♍ কন্যা (Virgo)';
+  if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return '♎ তুলা (Libra)';
+  if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return '♏ বৃশ্চিক (Scorpio)';
+  if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) return '♐ ধনু (Sagittarius)';
+  if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return '♑ মকর (Capricorn)';
+  if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return '♒ কুম্ভ (Aquarius)';
+  return '♓ মীন (Pisces)';
+}
+
+function formatDateBn(d) {
+  return d.getDate() + ' ' + monthNamesBn[d.getMonth() + 1] + ' ' + d.getFullYear() + ', ' + dayNamesBn[d.getDay()];
+}
+
+let STUDENTS = (window.STUDENT_DATA || []).map(s => ({
+  name: s.n,
+  month: s.m,
+  day: s.d,
+  gender: s.g === 1 ? 'GIRLS' : 'BOYS',
+  section: s.s || 'A',
+  roll: s.r,
+  dob: s.dob || ''
+}));
+
+const wishMessages = [
+  'আপনার জীবন সুখ, সাফল্য ও অফুরন্ত হাসি-আনন্দে ভরে উঠুক। অনেক অনেক শুভকামনা! 🎉',
+  'জন্মদিনের এই বিশেষ আনন্দময় দিনে আপনার জন্য রইল আন্তরিক শুভকামনা। সব স্বপ্ন ডানা মেলুক! ✨',
+  'শুভ জন্মদিন! জীবনের প্রতিটি পদক্ষেপে সাফল্য ও আনন্দের আলো ছড়িয়ে পড়ুক। 🎂',
+  'আজকের দিনটা আপনার জন্য অনন্য সুন্দর হোক। হাসতে থাকুন, বন্ধুদের সাথে আনন্দ উপভোগ করুন! 🎈',
+  'জন্মদিনের অফুরান প্রীতি ও শুভেচ্ছা! আপনার ভবিষ্যৎ হোক স্বর্ণালী ও উজ্জ্বল। 💛',
+  'নতুন বছর আপনার জীবনে বয়ে নিয়ে আসুক অপার শান্তি, নতুন সাফল্য আর নতুন প্রেরণা! 🌟'
+];
+
+/* =========================================================
+   2. WEB AUDIO API SYNTHESIZER (MUSIC & SOUND EFFECTS)
+   ========================================================= */
+let audioCtx = null;
+let isMusicPlaying = false;
+let musicTimeoutId = null;
+
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextClass) audioCtx = new AudioContextClass();
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+// Play sound tone
+function playTone(freq, type, duration, delay = 0, gainLevel = 0.15) {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+  setTimeout(() => {
+    try {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gain.gain.setValueAtTime(gainLevel, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    } catch (e) {}
+  }, delay);
+}
+
+// Candle Blow Puff Sound (Gentle noise puff)
+function playCandleBlowSound() {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+  try {
+    const bufferSize = ctx.sampleRate * 0.35;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.08));
+    }
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(450, ctx.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.35);
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    noise.start();
+  } catch (e) {}
+}
+
+// Celebration Chime on Candle Out
+function playCelebrationChimes() {
+  const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+  notes.forEach((freq, i) => {
+    playTone(freq, 'sine', 0.8, i * 90, 0.12);
+  });
+}
+
+// "Happy Birthday to You" Melodic Sequencer
+const birthdayNotes = [
+  { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 293.66, d: 500 }, { f: 261.63, d: 500 },
+  { f: 349.23, d: 500 }, { f: 329.63, d: 800 },
+  { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 293.66, d: 500 }, { f: 261.63, d: 500 },
+  { f: 392.00, d: 500 }, { f: 349.23, d: 800 },
+  { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 523.25, d: 500 }, { f: 440.00, d: 500 },
+  { f: 349.23, d: 500 }, { f: 329.63, d: 500 }, { f: 293.66, d: 700 },
+  { f: 466.16, d: 350 }, { f: 466.16, d: 250 }, { f: 440.00, d: 500 }, { f: 349.23, d: 500 },
+  { f: 392.00, d: 500 }, { f: 349.23, d: 900 }
+];
+
+function startBirthdayTune() {
+  if (isMusicPlaying) return;
+  isMusicPlaying = true;
+  document.getElementById('btnToggleMusic').classList.add('playing');
+  document.getElementById('musicIcon').textContent = '🔊';
+  document.getElementById('musicText').textContent = 'মিউজিক বন্ধ';
+
+  let currentStep = 0;
+  function playNextNote() {
+    if (!isMusicPlaying) return;
+    const note = birthdayNotes[currentStep];
+    playTone(note.f, 'triangle', note.d / 1000, 0, 0.16);
+    currentStep = (currentStep + 1) % birthdayNotes.length;
+    musicTimeoutId = setTimeout(playNextNote, note.d + 60);
+  }
+  playNextNote();
+}
+
+function stopBirthdayTune() {
+  isMusicPlaying = false;
+  if (musicTimeoutId) clearTimeout(musicTimeoutId);
+  document.getElementById('btnToggleMusic').classList.remove('playing');
+  document.getElementById('musicIcon').textContent = '🎵';
+  document.getElementById('musicText').textContent = 'বার্থডে মিউজিক';
+}
+
+document.getElementById('btnToggleMusic').addEventListener('click', () => {
+  getAudioContext();
+  if (isMusicPlaying) {
+    stopBirthdayTune();
+  } else {
+    startBirthdayTune();
+  }
+});
+
+/* =========================================================
+   3. HIGH PERFORMANCE CONFETTI ENGINE (CANVAS)
+   ========================================================= */
+const canvas = document.getElementById('confettiCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let confettiAnimationId = null;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function shootConfetti(count = 90) {
+  const colors = ['#ff2a85', '#ffca28', '#00e5ff', '#00f090', '#b366ff', '#ff7043', '#ffffff'];
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: canvas.width * 0.5 + (Math.random() - 0.5) * 300,
+      y: canvas.height * 0.45 + (Math.random() - 0.5) * 100,
+      vx: (Math.random() - 0.5) * 16,
+      vy: -Math.random() * 14 - 4,
+      size: Math.random() * 9 + 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 12,
+      shape: Math.random() > 0.5 ? 'rect' : 'circle',
+      opacity: 1
+    });
+  }
+  if (!confettiAnimationId) renderConfetti();
+}
+
+function renderConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach((p, idx) => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.38; // gravity
+    p.vx *= 0.99; // drag
+    p.rotation += p.rotationSpeed;
+    p.opacity -= 0.007;
+
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate((p.rotation * Math.PI) / 180);
+    ctx.globalAlpha = Math.max(0, p.opacity);
+    ctx.fillStyle = p.color;
+
+    if (p.shape === 'rect') {
+      ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+    } else {
+      ctx.beginPath();
+      ctx.arc(0, 0, p.size / 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  });
+
+  particles = particles.filter(p => p.opacity > 0 && p.y < canvas.height + 50);
+
+  if (particles.length > 0) {
+    confettiAnimationId = requestAnimationFrame(renderConfetti);
+  } else {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    confettiAnimationId = null;
+  }
+}
+
+/* =========================================================
+   4. INTERACTIVE BALLOON FLIGHT ON STUDENT CLICK
+   ========================================================= */
+const balloonOverlay = document.getElementById('balloonFlightOverlay');
+
+function triggerBalloonsFlyUp() {
+  balloonOverlay.innerHTML = '';
+  const colors = [
+    'radial-gradient(circle at 35% 30%, #ff5287, #c2185b)',
+    'radial-gradient(circle at 35% 30%, #ffd54f, #ff8f00)',
+    'radial-gradient(circle at 35% 30%, #40c4ff, #0091ea)',
+    'radial-gradient(circle at 35% 30%, #b388ff, #6200ea)',
+    'radial-gradient(circle at 35% 30%, #69f0ae, #00c853)',
+    'radial-gradient(circle at 35% 30%, #ff8a80, #d50000)'
+  ];
+
+  const balloonCount = 30;
+  for (let i = 0; i < balloonCount; i++) {
+    const b = document.createElement('div');
+    b.className = 'flying-balloon';
+    const width = Math.floor(Math.random() * 26) + 36;
+    const height = Math.floor(width * 1.25);
+    b.style.width = width + 'px';
+    b.style.height = height + 'px';
+    b.style.left = (Math.random() * 94) + '%';
+    b.style.background = colors[Math.floor(Math.random() * colors.length)];
+    b.style.animationDelay = (Math.random() * 0.45) + 's';
+    b.style.animationDuration = (Math.random() * 0.8 + 1.8) + 's';
+    balloonOverlay.appendChild(b);
+  }
+
+  // Clear overlay after animation completes
+  setTimeout(() => {
+    balloonOverlay.innerHTML = '';
+  }, 2800);
+}
+
+/* =========================================================
+   5. BIRTHDAY CAKE & CANDLE INTERACTION (2-SEC AUTO BLOW)
+   ========================================================= */
+const wishModal = document.getElementById('wishModal');
+const cakeFlame = document.getElementById('cakeFlame');
+const smokePuff = document.getElementById('smokePuff');
+const candleStatus = document.getElementById('candleStatus');
+const candleText = document.getElementById('candleText');
+const candleIcon = document.getElementById('candleIcon');
+let candleTimer = null;
+let currentActiveStudent = null;
+
+function lightCandle() {
+  cakeFlame.classList.remove('extinguished');
+  smokePuff.classList.remove('puff-active');
+  candleStatus.className = 'candle-status-pill lit';
+  candleIcon.textContent = '🔥';
+  candleText.textContent = 'মোমবাতি জ্বলছে... (২ সেকেন্ডে নিভবে)';
+}
+
+function extinguishCandle() {
+  cakeFlame.classList.add('extinguished');
+  smokePuff.classList.remove('puff-active');
+  void smokePuff.offsetWidth; // trigger reflow
+  smokePuff.classList.add('puff-active');
+
+  candleStatus.className = 'candle-status-pill blown';
+  candleIcon.textContent = '💨';
+  candleText.textContent = '✨ ফুঁ দিয়ে মোমবাতি নেভানো হলো!';
+
+  // Sound and confetti celebration
+  playCandleBlowSound();
+  playCelebrationChimes();
+  shootConfetti(120);
+}
+
+// User can tap candle directly to blow or relight
+cakeFlame.addEventListener('click', () => {
+  if (cakeFlame.classList.contains('extinguished')) {
+    lightCandle();
+  } else {
+    if (candleTimer) clearTimeout(candleTimer);
+    extinguishCandle();
+  }
+});
+
+document.getElementById('btnRelight').addEventListener('click', () => {
+  lightCandle();
+  if (candleTimer) clearTimeout(candleTimer);
+  candleTimer = setTimeout(() => {
+    extinguishCandle();
+  }, 2000);
+});
+
+document.getElementById('btnMoreConfetti').addEventListener('click', () => {
+  playCelebrationChimes();
+  shootConfetti(100);
+});
+
+/* =========================================================
+   6. OPEN CELEBRATION MODAL FOR A STUDENT
+   ========================================================= */
+function openWish(s) {
+  currentActiveStudent = s;
+  getAudioContext();
+
+  // 1. Trigger Flying Balloons up the screen
+  triggerBalloonsFlyUp();
+
+  // 2. Prepare Wish Data
+  document.getElementById('wishName').textContent = s.name;
+  const randomMsg = wishMessages[Math.floor(Math.random() * wishMessages.length)];
+  document.getElementById('wishMsg').textContent = randomMsg;
+  document.getElementById('wishClassSec').textContent = 'Class XII · সেকশন ' + s.section;
+  document.getElementById('wishRoll').textContent = 'রোল: ' + s.roll;
+
+  // DOB & Zodiac
+  const zodiac = getBengaliZodiac(s.month, s.day);
+  document.getElementById('wishDobZodiac').textContent = (s.dob ? s.dob + ' · ' : '') + zodiac;
+
+  // Age calculation
+  let ageStr = '—';
+  if (s.dob) {
+    const bDate = new Date(s.dob);
+    if (!isNaN(bDate.getTime())) {
+      const today = new Date();
+      let age = today.getFullYear() - bDate.getFullYear();
+      const mDiff = today.getMonth() - bDate.getMonth();
+      if (mDiff < 0 || (mDiff === 0 && today.getDate() < bDate.getDate())) {
+        age--;
+      }
+      ageStr = age > 0 ? age + ' বছর পূর্ণ' : '—';
+    }
+  }
+  document.getElementById('wishAge').textContent = ageStr;
+
+  // WhatsApp Share Link
+  const waMsg = encodeURIComponent(`🎉 শুভ জন্মদিন ${s.name}! 🎂\nClass XII (Section ${s.section}, Roll ${s.roll})\n${randomMsg}\nশুভকামনায়: Class XII Friends 🎈`);
+  document.getElementById('btnWhatsapp').href = `https://wa.me/?text=${waMsg}`;
+
+  // Light candle at start
+  lightCandle();
+
+  // 3. Float cake in modal
+  wishModal.classList.add('open');
+
+  // 4. Exactly 2 seconds later: extinguish candle & burst confetti!
+  if (candleTimer) clearTimeout(candleTimer);
+  candleTimer = setTimeout(() => {
+    extinguishCandle();
+  }, 2000);
+}
+
+document.getElementById('btnCloseWish').addEventListener('click', () => {
+  wishModal.classList.remove('open');
+  if (candleTimer) clearTimeout(candleTimer);
+});
+
+wishModal.addEventListener('click', (e) => {
+  if (e.target === wishModal) {
+    wishModal.classList.remove('open');
+    if (candleTimer) clearTimeout(candleTimer);
+  }
+});
+
+/* =========================================================
+   7. LIVE COUNTDOWN TO NEXT UPCOMING BIRTHDAY
+   ========================================================= */
+let nextBirthdayCountdownTimer = null;
+
+function initNextBirthdayCountdown() {
+  const now = new Date();
+  let candidate = null;
+  let minDaysDiff = 999;
+
+  for (let i = 0; i <= 365; i++) {
+    const testDate = new Date(now);
+    testDate.setDate(testDate.getDate() + i);
+    const m = testDate.getMonth() + 1;
+    const d = testDate.getDate();
+
+    const matches = STUDENTS.filter(s => s.month === m && s.day === d);
+    if (matches.length > 0) {
+      candidate = {
+        students: matches,
+        targetDate: new Date(testDate.getFullYear(), testDate.getMonth(), testDate.getDate(), 0, 0, 0),
+        isToday: i === 0,
+        daysAway: i
+      };
+      break;
+    }
+  }
+
+  const strip = document.getElementById('nextBirthdayStrip');
+  if (!candidate) {
+    strip.innerHTML = '<span>🎉 জন্মদিনের আনন্দ উদযাপন করুন!</span>';
+    return;
+  }
+
+  function updateTicker() {
+    const currentNow = new Date();
+    if (candidate.isToday) {
+      const names = candidate.students.map(s => s.name).join(', ');
+      strip.innerHTML = `<span>🎉 <strong>আজ জন্মদিন:</strong> ${names}! ট্যাপ করে শুভেচ্ছা জানান! 🎂</span>`;
+      return;
+    }
+
+    const diffMs = candidate.targetDate - currentNow;
+    if (diffMs <= 0) {
+      strip.innerHTML = `<span>🎉 আজ <strong>${candidate.students[0].name}</strong>-এর জন্মদিন! 🎂</span>`;
+      return;
+    }
+
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+    const nameStr = candidate.students.length === 1 
+      ? candidate.students[0].name 
+      : `${candidate.students[0].name} সহ ${candidate.students.length} জন`;
+
+    strip.innerHTML = `<span>⏳ পরবর্তী জন্মদিন: <strong>${nameStr}</strong> — আর মাত্র <strong>${days} দিন ${hours} ঘণ্টা ${minutes} মিনিট ${seconds} সেকেন্ড!</strong> 🎈</span>`;
+  }
+
+  updateTicker();
+  if (nextBirthdayCountdownTimer) clearInterval(nextBirthdayCountdownTimer);
+  nextBirthdayCountdownTimer = setInterval(updateTicker, 1000);
+}
+
+/* =========================================================
+   8. TABS & FILTERING STATE
+   ========================================================= */
+let currentSectionFilter = 'ALL';
+let currentSearchQuery = '';
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+document.querySelectorAll('.sec-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.sec-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    currentSectionFilter = chip.dataset.sec;
+    render();
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  currentSearchQuery = e.target.value.trim().toLowerCase();
+  render();
+});
+
+function matchesFilter(s) {
+  if (currentSectionFilter !== 'ALL' && s.section !== currentSectionFilter) {
+    return false;
+  }
+  if (!currentSearchQuery) return true;
+  const nameMatch = s.name.toLowerCase().includes(currentSearchQuery);
+  const rollMatch = s.roll && s.roll.toString().includes(currentSearchQuery);
+  return nameMatch || rollMatch;
+}
+
+/* =========================================================
+   9. RENDER LISTS (TODAY, UPCOMING, PAST, ALL)
+   ========================================================= */
+function render() {
+  const now = new Date();
+  const tm = now.getMonth() + 1;
+  const td = now.getDate();
+  document.getElementById('todayDatePill').textContent = '📅 ' + formatDateBn(now);
+
+  const filteredStudents = STUDENTS.filter(matchesFilter);
+
+  // 1. TODAY
+  const today = filteredStudents.filter(s => s.month === tm && s.day === td);
+  document.getElementById('todayCountBadge').textContent = today.length;
+  document.getElementById('tabCountToday').textContent = today.length;
+  const tl = document.getElementById('todayList');
+
+  if (!today.length) {
+    tl.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🎈</div>
+        <p style="font-size:1.05rem; font-weight:600; color:#fff;">আজ কারো জন্মদিন নেই</p>
+        <p style="margin-top:6px; font-size:0.85rem;">আসন্ন জন্মদিন দেখতে 'আগামী ৩০ দিন' ট্যাবে দেখুন ✨</p>
+      </div>`;
+  } else {
+    tl.innerHTML = today.map((s, i) => `
+      <div class="birthday-card-hero" data-idx="${i}">
+        <div class="ribbon-tag">🎉 আজকের বিশেষ দিন</div>
+        <div class="student-name-big">${s.name}</div>
+        <div class="meta-tags">
+          <span class="meta-chip">📚 সেকশন ${s.section} · রোল ${s.roll}</span>
+          <span class="meta-chip ${s.gender === 'GIRLS' ? 'badge-gender-girl' : 'badge-gender-boy'}">
+            ${s.gender === 'GIRLS' ? '👧 ছাত্রী' : '👦 ছাত্র'}
+          </span>
+          <span class="meta-chip">🎂 ${s.dob || (s.day + ' ' + monthNamesBn[s.month])}</span>
+          <span class="meta-chip">🌟 ${getBengaliZodiac(s.month, s.day)}</span>
+        </div>
+        <div class="tap-callout">
+          <span>👆 ট্যাপ করুন বেলুন উড়বে ও কেক ভেসে আসবে!</span>
+          <span class="shine-arrow">➔</span>
+        </div>
+      </div>
+    `).join('');
+
+    tl.querySelectorAll('.birthday-card-hero').forEach((el, i) => {
+      el.addEventListener('click', () => openWish(today[i]));
+    });
+  }
+
+  // 2. UPCOMING (Next 30 days)
+  const up = [];
+  for (let i = 1; i <= 30; i++) {
+    const d = new Date(now);
+    d.setDate(d.getDate() + i);
+    const m = d.getMonth() + 1;
+    const day = d.getDate();
+    filteredStudents.filter(s => s.month === m && s.day === day).forEach(s => {
+      up.push(Object.assign({}, s, {
+        daysLeft: i,
+        dateStr: day + ' ' + monthNamesBn[m]
+      }));
+    });
+  }
+  document.getElementById('upcomingCountBadge').textContent = up.length;
+  document.getElementById('tabCountUpcoming').textContent = up.length;
+  const ul = document.getElementById('upcomingList');
+
+  if (!up.length) {
+    ul.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">📅</div>
+        <p style="font-size:1.02rem; font-weight:600; color:#fff;">পরবর্তী ৩০ দিনে কোনো জন্মদিন নেই</p>
+      </div>`;
+  } else {
+    ul.innerHTML = up.map((s, i) => `
+      <div class="list-card" data-idx="${i}">
+        <div class="list-left">
+          <div class="avatar-circle">🎁</div>
+          <div class="list-details">
+            <span class="list-name">${s.name}</span>
+            <span class="list-subtext">
+              <span>সেকশন ${s.section}</span> · 
+              <span>রোল ${s.roll}</span> · 
+              <span>${s.dateStr}</span>
+            </span>
+          </div>
+        </div>
+        <span class="list-right-badge">${s.daysLeft === 1 ? 'কাল 🎉' : s.daysLeft + ' দিন পর'}</span>
+      </div>
+    `).join('');
+
+    ul.querySelectorAll('.list-card').forEach((el, i) => {
+      el.addEventListener('click', () => openWish(up[i]));
+    });
+  }
+
+  // 3. PAST (Last 90 days)
+  const past = [];
+  for (let i = 1; i <= 90; i++) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - i);
+    const m = d.getMonth() + 1;
+    const day = d.getDate();
+    filteredStudents.filter(s => s.month === m && s.day === day).forEach(s => {
+      past.push(Object.assign({}, s, {
+        daysAgo: i,
+        dateStr: day + ' ' + monthNamesBn[m]
+      }));
+    });
+  }
+  past.sort((a, b) => a.daysAgo - b.daysAgo);
+  document.getElementById('pastCountBadge').textContent = past.length;
+  document.getElementById('tabCountPast').textContent = past.length;
+  const pl = document.getElementById('pastList');
+
+  if (!past.length) {
+    pl.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">⏪</div>
+        <p style="font-size:1.02rem; font-weight:600; color:#fff;">গত ৯০ দিনে কোনো জন্মদিন রেকর্ড নেই</p>
+      </div>`;
+  } else {
+    pl.innerHTML = past.map((s, i) => `
+      <div class="list-card past" data-idx="${i}">
+        <div class="list-left">
+          <div class="avatar-circle" style="background: rgba(179,102,255,0.25);">✨</div>
+          <div class="list-details">
+            <span class="list-name">${s.name}</span>
+            <span class="list-subtext">
+              <span>সেকশন ${s.section}</span> · 
+              <span>রোল ${s.roll}</span> · 
+              <span>${s.dateStr}</span>
+            </span>
+          </div>
+        </div>
+        <span class="list-right-badge">${s.daysAgo === 1 ? 'গতকাল' : s.daysAgo + ' দিন আগে'}</span>
+      </div>
+    `).join('');
+
+    pl.querySelectorAll('.list-card').forEach((el, i) => {
+      el.addEventListener('click', () => openWish(past[i]));
+    });
+  }
+
+  // 4. ALL STUDENTS (Grouped by Month)
+  const byMonth = {};
+  filteredStudents.forEach(s => {
+    if (!byMonth[s.month]) byMonth[s.month] = [];
+    byMonth[s.month].push(s);
+  });
+
+  let allHtml = '';
+  let foundAny = false;
+  for (let m = 1; m <= 12; m++) {
+    const list = (byMonth[m] || []).sort((a, b) => a.day - b.day);
+    if (!list.length) continue;
+    foundAny = true;
+    allHtml += `
+      <div class="month-group">
+        <div class="month-header">
+          <span>📅</span>
+          <span>${monthNamesBn[m]} (${list.length} জন)</span>
+        </div>
+    `;
+    list.forEach((s) => {
+      allHtml += `
+        <div class="list-card all-item" data-sec="${s.section}" data-roll="${s.roll}">
+          <div class="list-left">
+            <div class="avatar-circle" style="width:38px;height:38px;font-size:1.05rem;">🎈</div>
+            <div class="list-details">
+              <span class="list-name" style="font-size:0.94rem;">${s.name}</span>
+              <span class="list-subtext">${s.day} ${monthNamesBn[m]} · সেকশন ${s.section} · রোল ${s.roll}</span>
+            </div>
+          </div>
+          <span class="list-right-badge" style="font-size:0.78rem;">${s.day} তারিখ</span>
+        </div>
+      `;
+    });
+    allHtml += '</div>';
+  }
+
+  const allContainer = document.getElementById('allList');
+  if (!foundAny) {
+    allContainer.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <p style="font-size:1.02rem; font-weight:600; color:#fff;">কোনো ছাত্রছাত্রী খুঁজে পাওয়া যায়নি</p>
+      </div>`;
+  } else {
+    allContainer.innerHTML = allHtml;
+    allContainer.querySelectorAll('.all-item').forEach(el => {
+      const sec = el.dataset.sec;
+      const roll = +el.dataset.roll;
+      const found = STUDENTS.find(s => s.section === sec && s.roll === roll);
+      if (found) {
+        el.addEventListener('click', () => openWish(found));
+      }
+    });
+  }
+}
+
+/* =========================================================
+   10. BROWSER NOTIFICATIONS
+   ========================================================= */
+const notifBanner = document.getElementById('notifBanner');
+const notifStatus = document.getElementById('notifStatus');
+
+function updateNotifUI() {
+  if (!('Notification' in window)) {
+    notifBanner.classList.add('hidden');
+    return;
+  }
+  if (Notification.permission === 'granted') {
+    notifBanner.classList.add('hidden');
+    notifStatus.classList.add('show');
+  } else if (Notification.permission === 'denied') {
+    notifBanner.classList.add('hidden');
+  } else {
+    notifBanner.classList.remove('hidden');
+    notifStatus.classList.remove('show');
+  }
+}
+
+document.getElementById('btnAllow').addEventListener('click', async () => {
+  if (!('Notification' in window)) {
+    alert('এই ব্রাউজারে নোটিফিকেশন সাপোর্ট করে না');
+    return;
+  }
+  const perm = await Notification.requestPermission();
+  updateNotifUI();
+  if (perm === 'granted') sendTodayNotification();
+});
+
+document.getElementById('btnDeny').addEventListener('click', () => {
+  notifBanner.classList.add('hidden');
+  try { localStorage.setItem('notif_denied', '1'); } catch (e) {}
+});
+
+function sendTodayNotification() {
+  if (Notification.permission !== 'granted') return;
+  const now = new Date();
+  const t = STUDENTS.filter(s => s.month === (now.getMonth() + 1) && s.day === now.getDate());
+  let title, body;
+  if (!t.length) {
+    title = '🎂 আজ কারো জন্মদিন নেই';
+    body = 'আগামী দিনগুলোতে কেউ থাকলে জানিয়ে দেওয়া হবে!';
+  } else if (t.length === 1) {
+    title = '🎉 আজ ' + t[0].name + '-এর জন্মদিন!';
+    body = 'সেকশন ' + t[0].section + ' · রোল ' + t[0].roll + ' · শুভ জন্মদিন! 🎂';
+  } else {
+    title = '🎉 আজ ' + t.length + ' জনের জন্মদিন!';
+    body = t.map(s => s.name).join(', ') + ' · সবাইকে জন্মদিনের অনেক শুভেচ্ছা! 🎂';
+  }
+  try {
+    new Notification(title, { body, tag: 'birthday-today', icon: '🎂' });
+  } catch (e) {}
+}
+
+function maybeNotifyOnLoad() {
+  if (Notification.permission !== 'granted') return;
+  const key = 'notif_sent_' + new Date().toISOString().slice(0, 10);
+  try {
+    if (localStorage.getItem(key)) return;
+    localStorage.setItem(key, '1');
+    setTimeout(sendTodayNotification, 1200);
+  } catch (e) {}
+}
+
+/* =========================================================
+   11. INITIALIZATION
+   ========================================================= */
 updateNotifUI();
-if(STUDENTS.length){render();maybeNotifyOnLoad()}else{document.getElementById('todayList').innerHTML='<div class="card empty-state" style="cursor:default"><p>ডেটা লোড হয়নি</p></div>'}
+if (STUDENTS.length > 0) {
+  render();
+  initNextBirthdayCountdown();
+  maybeNotifyOnLoad();
+} else {
+  document.getElementById('todayList').innerHTML = '<div class="card empty-state"><p>কোনো ডেটা লোড হয়নি</p></div>';
+}
 </script>
 </body>
 </html>
