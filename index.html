@@ -11,10 +11,10 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="alternate icon" href="favicon.svg"/>
 
-  <!-- Google Fonts: Bengali (Anek Bangla, Hind Siliguri, Galada) & English (Outfit, Playfair Display) -->
+  <!-- Google Fonts: Bengali (Anek Bangla, Hind Siliguri, Galada) & English (Fredoka, Outfit) -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&family=Galada&family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Galada&family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -24,35 +24,34 @@
       theme: {
         extend: {
           colors: {
-            midnight: '#090514',
-            surface: {
-              DEFAULT: '#120b24',
-              card: 'rgba(255, 255, 255, 0.04)',
-              cardHover: 'rgba(255, 255, 255, 0.08)',
-              glass: 'rgba(18, 11, 36, 0.85)'
+            wine: {
+              950: '#1d0213',
+              900: '#2a041c',
+              800: '#3a0727',
+              700: '#4e0a35',
             },
-            festive: {
-              gold: '#fbbf24',
-              goldLight: '#fde68a',
-              rose: '#f43f5e',
-              roseLight: '#fda4af',
-              purple: '#a855f7',
-              cyan: '#06b6d4',
-              green: '#10b981'
+            candy: {
+              pink: '#ff2a7a',
+              pinkDeep: '#e6005c',
+              pinkLight: '#ff5c99',
+              peach: '#fda4af',
+              blush: '#fff1f5',
+              lilac: '#c084fc',
+              lilacLight: '#e9d5ff',
+              gold: '#fbbf24'
             }
           },
           fontFamily: {
             bengali: ['"Hind Siliguri"', 'sans-serif'],
             bengaliFancy: ['"Anek Bangla"', '"Hind Siliguri"', 'sans-serif'],
             cursiveBn: ['"Galada"', 'cursive'],
-            display: ['"Outfit"', 'sans-serif'],
-            fancy: ['"Playfair Display"', 'serif']
+            display: ['"Fredoka"', '"Outfit"', 'sans-serif'],
+            fancy: ['"Fredoka"', '"Outfit"', 'sans-serif']
           },
           boxShadow: {
-            'glow-gold': '0 0 35px -5px rgba(251, 191, 36, 0.35)',
-            'glow-rose': '0 0 35px -5px rgba(244, 63, 94, 0.35)',
-            'glow-purple': '0 0 35px -5px rgba(168, 85, 247, 0.35)',
-            'card-glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+            'glow-pink': '0 0 40px -5px rgba(255, 42, 122, 0.45)',
+            'glow-lilac': '0 0 35px -5px rgba(192, 132, 252, 0.4)',
+            'card-festive': '0 16px 45px -10px rgba(255, 42, 122, 0.25)'
           }
         }
       }
@@ -60,57 +59,67 @@
   </script>
 
   <style>
-    /* Custom Styling & Celebratory Keyframes */
+    /* Celebratory Birthday Theme Inspired by Landing Page Template */
     :root {
       color-scheme: dark;
     }
     body {
-      background-color: #090514;
+      background-color: #240316;
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.18) 0%, transparent 55%),
-        radial-gradient(circle at 10% 40%, rgba(244, 63, 94, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 90% 70%, rgba(251, 191, 36, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.1) 0%, transparent 60%);
+        radial-gradient(circle at 50% -10%, #ff2a7a 0%, #6e0a44 42%, #240316 100%),
+        radial-gradient(circle at 10% 30%, rgba(255, 42, 122, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 90% 60%, rgba(192, 132, 252, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(255, 42, 122, 0.15) 0%, transparent 50%);
       background-attachment: fixed;
       font-family: 'Hind Siliguri', 'Outfit', sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Ambient Floating Glowing Orbs */
-    .ambient-orb {
-      position: fixed;
+    /* Glossy 3D Confetti Pearls / Spheres (like in reference image) */
+    .glossy-sphere {
+      position: absolute;
       border-radius: 50%;
-      filter: blur(80px);
       pointer-events: none;
-      z-index: 0;
-      opacity: 0.6;
+      z-index: 1;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35));
+    }
+    .sphere-pink {
+      background: radial-gradient(circle at 35% 30%, #ff80ab 0%, #ff2a7a 60%, #99003d 100%);
+    }
+    .sphere-lilac {
+      background: radial-gradient(circle at 35% 30%, #f3e8ff 0%, #c084fc 60%, #6b21a8 100%);
     }
 
-    /* Glassmorphic border glow */
-    .glass-panel {
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+    /* Soft Festive Glass Panels */
+    .glass-panel,
+    .festive-panel {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 182, 218, 0.22);
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.35);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .glass-panel:hover {
-      border-color: rgba(251, 191, 36, 0.45);
-      background: rgba(255, 255, 255, 0.07);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.5), 0 0 20px 0 rgba(251, 191, 36, 0.15);
+    .glass-panel:hover,
+    .festive-panel:hover {
+      border-color: rgba(255, 42, 122, 0.6);
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px -10px rgba(255, 42, 122, 0.28);
     }
 
+    /* Hero Birthday Cards */
     .hero-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 42, 122, 0.12) 100%);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1.5px solid rgba(251, 191, 36, 0.4);
-      box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.7), 0 0 30px 0 rgba(251, 191, 36, 0.2);
+      border: 2px solid rgba(255, 182, 218, 0.45);
+      box-shadow: 0 16px 45px -10px rgba(255, 42, 122, 0.35);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .hero-card:hover {
-      border-color: rgba(251, 191, 36, 0.8);
-      box-shadow: 0 16px 50px -10px rgba(0, 0, 0, 0.8), 0 0 40px 2px rgba(251, 191, 36, 0.35);
+      border-color: #ff2a7a;
+      box-shadow: 0 20px 55px -10px rgba(255, 42, 122, 0.5);
       transform: translateY(-4px) scale(1.008);
     }
 
@@ -134,21 +143,23 @@
     }
     .flying-balloon {
       position: absolute;
-      bottom: -180px;
+      bottom: -240px;
       pointer-events: none;
-      animation: balloonFloatUp 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.5));
+      animation-name: balloonFloatUp;
+      animation-timing-function: cubic-bezier(0.2, 0.6, 0.3, 1);
+      animation-fill-mode: forwards;
+      filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.45));
+      will-change: transform;
     }
     @keyframes balloonFloatUp {
       0% {
-        transform: translateY(0) rotate(-6deg) scale(0.7);
-        opacity: 0;
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.85);
+        opacity: 0.95;
       }
-      10% { opacity: 1; }
-      85% { opacity: 1; }
       100% {
-        transform: translateY(calc(-100vh - 280px)) rotate(14deg) scale(1.08);
-        opacity: 0;
+        /* Floats COMPLETELY out of the screen, way past the top boundary (500px above the top edge) */
+        transform: translateY(calc(-100vh - 500px)) translateX(var(--sway, 25px)) rotate(var(--rot, 10deg)) scale(1.05);
+        opacity: 1;
       }
     }
 
@@ -229,10 +240,11 @@
 
 <body class="text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-black relative">
 
-  <!-- Ambient background glow elements -->
-  <div class="ambient-orb w-96 h-96 -top-20 -left-20 bg-purple-600/20"></div>
-  <div class="ambient-orb w-96 h-96 top-1/3 -right-20 bg-amber-500/15"></div>
-  <div class="ambient-orb w-80 h-80 bottom-20 left-1/4 bg-rose-600/15"></div>
+  <!-- Ambient Glossy 3D Spheres & Pearls (Inspired by Reference Landing Page) -->
+  <div class="glossy-sphere sphere-pink w-16 h-16 top-12 left-6 opacity-75 hidden sm:block"></div>
+  <div class="glossy-sphere sphere-lilac w-20 h-20 top-28 right-8 opacity-70 hidden sm:block"></div>
+  <div class="glossy-sphere sphere-pink w-10 h-10 top-72 left-16 opacity-60"></div>
+  <div class="glossy-sphere sphere-lilac w-12 h-12 top-96 right-20 opacity-60"></div>
 
   <!-- Dual Cannon Confetti Canvas -->
   <canvas id="confettiCanvas"></canvas>
@@ -243,59 +255,112 @@
   <!-- Flying Character Balloons Overlay -->
   <div id="balloonOverlay"></div>
 
-  <!-- TOP HEADER / HERO -->
-  <header class="relative z-10 pt-8 pb-6 px-4 max-w-5xl mx-auto w-full text-center">
-    <!-- Top badge -->
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-md text-amber-300 text-xs md:text-sm font-semibold tracking-wide shadow-sm">
-      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-glow"></span>
-      <span class="font-display">CLASS XII</span>
-      <span class="text-white/40">·</span>
-      <span class="font-bengali">শিক্ষাবর্ষ ২০২৩–২৪</span>
-    </div>
+  <!-- TOP HERO BANNER (LANDING PAGE STYLE) -->
+  <header class="relative z-10 pt-6 pb-6 px-4 max-w-5xl mx-auto w-full">
+    <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-r from-[#ff2a7a] via-[#ff3b8d] to-[#ff2a7a] p-6 sm:p-10 shadow-[0_20px_50px_rgba(255,42,122,0.38)] border border-pink-300/40 text-center">
+      
+      <!-- Decorative Organic Pink Glow Shape -->
+      <div class="absolute -right-10 -bottom-10 w-72 h-72 rounded-full bg-pink-400/30 blur-2xl pointer-events-none"></div>
+      <div class="absolute -left-10 -top-10 w-72 h-72 rounded-full bg-purple-500/25 blur-2xl pointer-events-none"></div>
 
-    <!-- Main Title with Fancy Fonts -->
-    <h1 class="mt-4 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-bengaliFancy">
-      <span class="bg-gradient-to-r from-amber-200 via-amber-400 to-rose-400 bg-clip-text text-transparent">
-        🎉 শুভ জন্মদিন! 🎂
-      </span>
-    </h1>
-
-    <p class="mt-2.5 text-base sm:text-lg text-slate-300 font-bengali max-w-2xl mx-auto leading-relaxed">
-      সেকশন <span class="text-amber-300 font-semibold font-display">A, B, C</span> এর বন্ধুদের জন্মদিন ট্র্যাকার ও প্রাণবন্ত শুভেচ্ছা প্ল্যাটফর্ম
-    </p>
-
-    <!-- Header Quick Actions Strip -->
-    <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-      <!-- Today's Date Pill -->
-      <div id="todayDateBadge" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.05] border border-white/10 text-xs sm:text-sm font-medium text-amber-200 backdrop-blur-md">
-        <span>📅</span>
-        <span id="todayDateText">তারিখ লোড হচ্ছে...</span>
+      <!-- Left Decorative Gift Box Motif (From Reference Image) -->
+      <div class="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 items-center pointer-events-none">
+        <svg class="w-28 h-28 drop-shadow-2xl -rotate-12 hover:rotate-0 transition-transform" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- White Gift Box Body -->
+          <rect x="20" y="35" width="80" height="70" rx="8" fill="#ffffff" filter="drop-shadow(0 10px 15px rgba(0,0,0,0.25))"/>
+          <rect x="16" y="28" width="88" height="18" rx="4" fill="#ffffff"/>
+          <!-- Magenta Silk Cross Ribbons -->
+          <rect x="53" y="35" width="14" height="70" fill="#ff1493"/>
+          <rect x="20" y="62" width="80" height="14" fill="#ff1493"/>
+          <rect x="53" y="28" width="14" height="18" fill="#e60073"/>
+          <!-- Big Glossy Silk Bow -->
+          <path d="M60 28 C45 6 30 18 45 28 C52 32 58 30 60 28 Z" fill="#ff1493"/>
+          <path d="M60 28 C75 6 90 18 75 28 C68 32 62 30 60 28 Z" fill="#ff1493"/>
+          <circle cx="60" cy="28" r="6" fill="#c2005d"/>
+        </svg>
       </div>
 
-      <!-- Music Toggle Button -->
-      <button id="btnToggleMusic" class="group flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-900/60 to-pink-900/60 border border-purple-500/30 hover:border-amber-400/60 text-xs sm:text-sm font-semibold text-purple-200 hover:text-amber-200 backdrop-blur-md transition-all shadow-md active:scale-95" title="জন্মদিনের গান শুনুন বা বন্ধ করুন">
-        <span id="musicIcon" class="text-base group-hover:scale-110 transition-transform">🎵</span>
-        <span id="musicLabel" class="font-bengali">বার্থডে মিউজিক</span>
-      </button>
+      <!-- Right Celebratory Photo Frame Motif (Directly from Reference Image) -->
+      <div class="hidden lg:flex absolute right-8 top-1/2 -translate-y-1/2 items-center pointer-events-none">
+        <div class="relative w-36 h-44 rounded-2xl bg-[#ffd1dc] p-2.5 shadow-2xl rotate-6 border-4 border-pink-200/90 transform hover:rotate-0 transition-transform">
+          <!-- Inner Photo with Happy Friends & Balloons -->
+          <div class="w-full h-full rounded-xl bg-gradient-to-br from-[#4a0d33] via-[#701048] to-[#991b5b] p-2 flex flex-col items-center justify-center text-center overflow-hidden relative shadow-inner">
+            <span class="text-3xl animate-bounce">🎈🥳</span>
+            <span class="font-bengali text-[11px] font-bold text-white mt-1 drop-shadow">Class XII</span>
+            <span class="font-bengali text-[9px] text-pink-200">Friends Party</span>
+            <!-- Sparkling stars inside photo -->
+            <span class="absolute top-1 left-1 text-xs">✨</span>
+            <span class="absolute bottom-1 right-1 text-xs">💖</span>
+          </div>
+          <!-- Little Glossy Sphere over Frame (as in Reference) -->
+          <div class="absolute -bottom-2 -left-2 w-7 h-7 rounded-full bg-gradient-to-tr from-purple-500 to-pink-200 shadow-md"></div>
+        </div>
+      </div>
 
-      <!-- Clear Settled Confetti Button (Shown when shredded paper accumulates) -->
-      <button id="btnClearConfetti" class="hidden flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/[0.05] border border-white/10 hover:border-rose-400/50 text-xs font-medium text-slate-300 hover:text-rose-300 backdrop-blur-md transition-all" title="নিচের জমানো কনফেটি পরিষ্কার করুন">
-        <span>🧹</span>
-        <span class="font-bengali">কনফেটি সাফ করুন</span>
-      </button>
+      <!-- Top Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md text-white text-xs sm:text-sm font-semibold tracking-wide shadow-sm">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-300 animate-pulse"></span>
+        <span class="font-display">CLASS XII</span>
+        <span class="text-white/60">·</span>
+        <span class="font-bengali">শিক্ষাবর্ষ ২০২৩–২৪</span>
+      </div>
 
-      <!-- GitHub Repository Link -->
-      <a href="https://github.com/Jmaity434/class-xii-birthday-tracker" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.05] border border-white/10 hover:border-amber-400/50 text-xs sm:text-sm font-medium text-slate-300 hover:text-white backdrop-blur-md transition-all" title="GitHub Repository">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <span class="font-display">GitHub</span>
-      </a>
-    </div>
+      <!-- Headline Inspired Directly by Reference Image -->
+      <div class="mt-4">
+        <span class="block text-xs sm:text-sm font-display uppercase tracking-widest text-pink-100 font-semibold mb-1">
+          CELEBRATE YOUR BIRTHDAY
+        </span>
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-bengaliFancy text-white drop-shadow-md">
+          🎉 শুভ জন্মদিন! 🎂
+        </h1>
+      </div>
 
-    <!-- Live Next Birthday Countdown Banner -->
-    <div id="nextBirthdayCountdown" class="mt-4 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-purple-500/10 to-pink-500/10 border border-amber-400/20 text-xs sm:text-sm font-bengali text-amber-200/90 backdrop-blur-md inline-block max-w-full">
-      <span>⏳ পরবর্তী জন্মদিন গণনা হচ্ছে...</span>
+      <p class="mt-2.5 text-sm sm:text-base text-pink-100 font-bengali max-w-xl mx-auto leading-relaxed">
+        সেকশন <span class="text-amber-200 font-bold font-display">A, B, C</span> এর বন্ধুদের জন্মদিন ট্র্যাকার ও উৎসবের মিষ্টি শুভেচ্ছা
+      </p>
+
+      <!-- Quick Actions Strip -->
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-2.5">
+        <!-- Today's Date Pill -->
+        <div id="todayDateBadge" class="flex items-center gap-2 px-4 py-2 rounded-full bg-[#2a041c]/80 border border-pink-300/30 text-xs sm:text-sm font-medium text-pink-100 backdrop-blur-md shadow-md">
+          <span>📅</span>
+          <span id="todayDateText">তারিখ লোড হচ্ছে...</span>
+        </div>
+
+        <!-- Music Toggle Button (Velvety Wine/Plum button like 'Order now!') -->
+        <button id="btnToggleMusic" class="group flex items-center gap-2 px-5 py-2 rounded-full bg-[#2a041c] hover:bg-[#3d0727] text-xs sm:text-sm font-semibold text-white border border-pink-400/40 hover:border-pink-300 shadow-lg hover:shadow-pink-500/30 transition-all active:scale-95" title="জন্মদিনের গান শুনুন বা বন্ধ করুন">
+          <span id="musicIcon" class="text-base group-hover:scale-110 transition-transform">🎵</span>
+          <span id="musicLabel" class="font-bengali">বার্থডে মিউজিক</span>
+        </button>
+
+        <!-- Clear Settled Confetti Button -->
+        <button id="btnClearConfetti" class="hidden flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#2a041c]/80 border border-pink-300/30 text-xs font-medium text-pink-200 hover:text-white backdrop-blur-md transition-all shadow-md" title="নিচের জমানো কনফেটি পরিষ্কার করুন">
+          <span>🧹</span>
+          <span class="font-bengali">কনফেটি সাফ করুন</span>
+        </button>
+
+        <!-- GitHub Repository Link -->
+        <a href="https://github.com/Jmaity434/class-xii-birthday-tracker" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-full bg-[#2a041c]/80 border border-pink-300/30 text-xs sm:text-sm font-medium text-pink-100 hover:text-white backdrop-blur-md transition-all shadow-md" title="GitHub Repository">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="font-display">GitHub</span>
+        </a>
+      </div>
+
+      <!-- Live Next Birthday Countdown Banner -->
+      <div id="nextBirthdayCountdown" class="mt-4 px-4 py-2 rounded-full bg-[#2a041c]/90 border border-pink-300/30 text-xs sm:text-sm font-bengali text-pink-100 backdrop-blur-md inline-block max-w-full shadow-md">
+        <span>⏳ পরবর্তী জন্মদিন গণনা হচ্ছে...</span>
+      </div>
+
+      <!-- Carousel Dots (Directly from Reference Image) -->
+      <div class="mt-4 flex items-center justify-center gap-1.5 pointer-events-none">
+        <span class="w-2 h-2 rounded-full bg-white/40"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[#2a041c] ring-2 ring-pink-300"></span>
+        <span class="w-2 h-2 rounded-full bg-white/40"></span>
+        <span class="w-2 h-2 rounded-full bg-white/40"></span>
+      </div>
+
     </div>
   </header>
 
@@ -303,33 +368,33 @@
   <main class="relative z-10 flex-grow max-w-5xl mx-auto w-full px-4 sm:px-6">
 
     <!-- Search & Section Filter Box -->
-    <div class="glass-panel rounded-2xl p-4 sm:p-5 mb-8 shadow-xl">
+    <div class="festive-panel rounded-[2rem] p-4 sm:p-5 mb-8 shadow-card-festive">
       <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
         
         <!-- Search Input with icon -->
         <div class="relative w-full md:w-80">
-          <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-base">🔍</span>
+          <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-pink-300 text-base">🔍</span>
           <input 
             type="text" 
             id="searchInput" 
             placeholder="বন্ধুর নাম বা রোল নম্বর খুঁজুন..." 
-            class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 text-sm font-bengali transition-colors"
+            class="w-full pl-10 pr-4 py-2.5 rounded-full bg-[#1d0213]/80 border border-pink-400/30 text-white placeholder-pink-200/50 focus:outline-none focus:border-candy-pink focus:ring-2 focus:ring-candy-pink/30 text-sm font-bengali transition-colors"
           />
         </div>
 
         <!-- Section Chips Filter -->
         <div class="flex items-center gap-1.5 sm:gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
-          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline">সেকশন:</span>
-          <button data-sec="ALL" class="sec-chip active px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-amber-400 text-black shadow-glow-gold">
+          <span class="text-xs font-semibold text-pink-200 uppercase tracking-wider mr-1 hidden sm:inline">সেকশন:</span>
+          <button data-sec="ALL" class="sec-chip active px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-candy-pink text-white shadow-glow-pink">
             সকল
           </button>
-          <button data-sec="A" class="sec-chip px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-white/[0.06] text-slate-300 hover:text-white hover:bg-white/[0.12] border border-white/10">
+          <button data-sec="A" class="sec-chip px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white/[0.08] text-pink-100 hover:text-white hover:bg-white/[0.16] border border-pink-300/20">
             সেকশন A
           </button>
-          <button data-sec="B" class="sec-chip px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-white/[0.06] text-slate-300 hover:text-white hover:bg-white/[0.12] border border-white/10">
+          <button data-sec="B" class="sec-chip px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white/[0.08] text-pink-100 hover:text-white hover:bg-white/[0.16] border border-pink-300/20">
             সেকশন B
           </button>
-          <button data-sec="C" class="sec-chip px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-white/[0.06] text-slate-300 hover:text-white hover:bg-white/[0.12] border border-white/10">
+          <button data-sec="C" class="sec-chip px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white/[0.08] text-pink-100 hover:text-white hover:bg-white/[0.16] border border-pink-300/20">
             সেকশন C
           </button>
         </div>
@@ -339,25 +404,25 @@
 
     <!-- Navigation Tabs -->
     <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 mb-6 scrollbar-none">
-      <button data-tab="today" class="tab-btn active group flex items-center gap-2 px-5 py-2.5 rounded-2xl font-bengali text-sm sm:text-base font-semibold transition-all bg-gradient-to-r from-amber-500 to-rose-500 text-black shadow-lg shadow-rose-500/20 whitespace-nowrap">
+      <button data-tab="today" class="tab-btn active group flex items-center gap-2 px-5 py-2.5 rounded-full font-bengali text-sm sm:text-base font-semibold transition-all bg-gradient-to-r from-candy-pink to-candy-pinkDeep text-white shadow-glow-pink whitespace-nowrap">
         <span>🎂</span>
         <span>আজকের জন্মদিন</span>
-        <span id="tabCountToday" class="px-2 py-0.5 rounded-full text-xs font-display font-bold bg-black/30 text-amber-100">0</span>
+        <span id="tabCountToday" class="px-2 py-0.5 rounded-full text-xs font-display font-bold bg-[#2a041c] text-pink-100">0</span>
       </button>
 
-      <button data-tab="upcoming" class="tab-btn group flex items-center gap-2 px-5 py-2.5 rounded-2xl font-bengali text-sm sm:text-base font-semibold transition-all bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white border border-white/10 whitespace-nowrap">
+      <button data-tab="upcoming" class="tab-btn group flex items-center gap-2 px-5 py-2.5 rounded-full font-bengali text-sm sm:text-base font-semibold transition-all bg-white/[0.08] hover:bg-white/[0.15] text-pink-100 hover:text-white border border-pink-300/20 whitespace-nowrap">
         <span>📅</span>
         <span>আসন্ন ৩০ দিন</span>
-        <span id="tabCountUpcoming" class="px-2 py-0.5 rounded-full text-xs font-display font-bold bg-white/10 text-slate-300">0</span>
+        <span id="tabCountUpcoming" class="px-2 py-0.5 rounded-full text-xs font-display font-bold bg-white/20 text-pink-100">0</span>
       </button>
 
-      <button data-tab="past" class="tab-btn group flex items-center gap-2 px-5 py-2.5 rounded-2xl font-bengali text-sm sm:text-base font-semibold transition-all bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white border border-white/10 whitespace-nowrap">
+      <button data-tab="past" class="tab-btn group flex items-center gap-2 px-5 py-2.5 rounded-full font-bengali text-sm sm:text-base font-semibold transition-all bg-white/[0.08] hover:bg-white/[0.15] text-pink-100 hover:text-white border border-pink-300/20 whitespace-nowrap">
         <span>⏪</span>
         <span>অতিবাহিত (৯০ দিন)</span>
-        <span id="tabCountPast" class="px-2 py-0.5 rounded-full text-xs font-display font-bold bg-white/10 text-slate-300">0</span>
+        <span id="tabCountPast" class="px-2 py-0.5 rounded-full text-xs font-display font-bold bg-white/20 text-pink-100">0</span>
       </button>
 
-      <button data-tab="all" class="tab-btn group flex items-center gap-2 px-5 py-2.5 rounded-2xl font-bengali text-sm sm:text-base font-semibold transition-all bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white border border-white/10 whitespace-nowrap">
+      <button data-tab="all" class="tab-btn group flex items-center gap-2 px-5 py-2.5 rounded-full font-bengali text-sm sm:text-base font-semibold transition-all bg-white/[0.08] hover:bg-white/[0.15] text-pink-100 hover:text-white border border-pink-300/20 whitespace-nowrap">
         <span>📋</span>
         <span>সকল ছাত্রছাত্রী</span>
       </button>
@@ -432,43 +497,43 @@
   <div class="fixed bottom-6 right-6 z-50">
     <button 
       id="btnFloatingBell" 
-      class="relative group w-14 h-14 rounded-full bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 p-[2px] shadow-2xl hover:scale-105 active:scale-95 transition-all focus:outline-none"
+      class="relative group w-14 h-14 rounded-full bg-gradient-to-r from-candy-pink via-[#ff3b8d] to-purple-600 p-[2px] shadow-2xl hover:scale-105 active:scale-95 transition-all focus:outline-none"
       title="জন্মদিন পুশ নোটিফিকেশন সেটিংস"
       aria-label="Notification Settings"
     >
-      <div class="w-full h-full rounded-full bg-midnight/90 backdrop-blur-md flex items-center justify-center text-2xl group-hover:bg-midnight/70 transition-colors">
+      <div class="w-full h-full rounded-full bg-[#2a041c]/95 backdrop-blur-md flex items-center justify-center text-2xl group-hover:bg-[#2a041c]/80 transition-colors">
         <span class="group-hover:rotate-12 transition-transform">🔔</span>
       </div>
       <!-- Status indicator dot -->
-      <span id="bellStatusDot" class="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-amber-400 ring-2 ring-midnight pulse-glow"></span>
+      <span id="bellStatusDot" class="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-candy-pink ring-2 ring-[#2a041c] pulse-glow"></span>
     </button>
 
     <!-- Notification Preference Popover Card -->
     <div 
       id="notifPopover" 
-      class="hidden absolute bottom-16 right-0 w-80 sm:w-96 p-5 rounded-2xl glass-panel shadow-2xl border border-amber-400/30 backdrop-blur-2xl z-50 text-left transition-all"
+      class="hidden absolute bottom-16 right-0 w-80 sm:w-96 p-5 rounded-3xl glass-panel shadow-2xl border border-pink-400/30 backdrop-blur-2xl z-50 text-left transition-all bg-[#2a041c]/95"
     >
       <div class="flex items-start justify-between gap-3 mb-3">
         <div class="flex items-center gap-2.5">
           <span class="text-2xl">🔔</span>
           <div>
-            <h3 class="font-bengaliFancy font-bold text-base text-amber-300">জন্মদিন নোটিফিকেশন অ্যালার্ট</h3>
-            <span id="notifStatusBadge" class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 mt-0.5">
+            <h3 class="font-bengaliFancy font-bold text-base text-pink-200">জন্মদিন নোটিফিকেশন অ্যালার্ট</h3>
+            <span id="notifStatusBadge" class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-200 mt-0.5 border border-pink-400/30">
               অনুমতি যাচাই করা হচ্ছে...
             </span>
           </div>
         </div>
-        <button id="btnClosePopover" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors">✕</button>
+        <button id="btnClosePopover" class="text-pink-300 hover:text-white p-1 rounded-full hover:bg-white/10 transition-colors">✕</button>
       </div>
 
-      <p class="text-xs text-slate-300 font-bengali leading-relaxed mb-4">
+      <p class="text-xs text-pink-100 font-bengali leading-relaxed mb-4">
         অনুমতি দিলে যেদিন যাদের জন্মদিন, সেদিন <strong class="text-amber-300">রাত ১২:০০ AM (১২টা)</strong>-এ স্বয়ংক্রিয়ভাবে আপনার ডিভাইসে নোটিফিকেশন চলে যাবে যে আজ কতজনের জন্মদিন! 🎂
       </p>
 
       <div class="flex flex-col gap-2">
         <button 
           id="btnAllowNotif" 
-          class="w-full py-2.5 px-4 rounded-xl font-bengali text-sm font-semibold bg-gradient-to-r from-amber-400 to-rose-500 text-black hover:opacity-95 shadow-md hover:shadow-glow-gold active:scale-98 transition-all flex items-center justify-center gap-2"
+          class="w-full py-2.5 px-4 rounded-full font-bengali text-sm font-semibold bg-gradient-to-r from-candy-pink to-candy-pinkDeep text-white hover:opacity-95 shadow-glow-pink active:scale-98 transition-all flex items-center justify-center gap-2"
         >
           <span>🔔</span>
           <span>অনুমতি দিন (Allow Notification)</span>
@@ -477,14 +542,14 @@
         <div class="flex gap-2">
           <button 
             id="btnTestNotif" 
-            class="flex-1 py-2 px-3 rounded-xl font-bengali text-xs font-medium bg-white/[0.08] hover:bg-white/[0.15] text-slate-200 border border-white/10 transition-colors flex items-center justify-center gap-1.5"
+            class="flex-1 py-2 px-3 rounded-full font-bengali text-xs font-medium bg-white/[0.08] hover:bg-white/[0.15] text-pink-100 border border-pink-300/30 transition-colors flex items-center justify-center gap-1.5"
           >
             <span>🚀</span>
             <span>টেস্ট নোটিফিকেশন</span>
           </button>
           <button 
             id="btnDenyNotif" 
-            class="py-2 px-4 rounded-xl font-bengali text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] text-slate-400 hover:text-white transition-colors"
+            class="py-2 px-4 rounded-full font-bengali text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] text-pink-300 hover:text-white transition-colors"
           >
             পরে
           </button>
@@ -497,10 +562,10 @@
        SPECIFIC PERSON BIRTHDAY CELEBRATION MODAL
        ========================================================= -->
   <div id="wishModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
-    <div class="relative w-full max-w-lg rounded-3xl glass-panel p-6 sm:p-8 border border-amber-400/30 text-center shadow-glow-gold transform scale-95 transition-all duration-300">
+    <div class="relative w-full max-w-lg rounded-[2.5rem] glass-panel p-6 sm:p-8 border border-pink-400/40 text-center shadow-glow-pink transform scale-95 transition-all duration-300 bg-[#250319]/95 backdrop-blur-2xl">
       
       <!-- Close Button top right -->
-      <button id="btnCloseModalX" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.18] text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+      <button id="btnCloseModalX" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.18] text-pink-200 hover:text-white flex items-center justify-center transition-colors">
         ✕
       </button>
 
@@ -549,61 +614,61 @@
       </div>
 
       <!-- Candle Blowing Status Badge -->
-      <div id="candleStatusBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-semibold my-2">
+      <div id="candleStatusBadge" class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-pink-500/20 text-pink-200 border border-pink-400/30 text-xs font-semibold my-2">
         <span id="candleStatusIcon">🔥</span>
         <span id="candleStatusText" class="font-bengali">মোমবাতি জ্বলছে... (২ সেকেন্ডে ফুঁ দেওয়া হবে)</span>
       </div>
 
       <!-- Celebratory Heading -->
-      <div class="text-xs uppercase tracking-widest text-amber-400 font-semibold mt-1">🎉 HAPPY BIRTHDAY 🎂</div>
-      <h2 id="modalStudentName" class="text-2xl sm:text-3xl font-extrabold font-bengaliFancy mt-1 bg-gradient-to-r from-white via-amber-200 to-rose-300 bg-clip-text text-transparent">
+      <div class="text-xs uppercase tracking-widest text-pink-300 font-semibold mt-1">🎉 HAPPY BIRTHDAY 🎂</div>
+      <h2 id="modalStudentName" class="text-2xl sm:text-3xl font-extrabold font-bengaliFancy mt-1 bg-gradient-to-r from-white via-pink-100 to-pink-200 bg-clip-text text-transparent">
         —
       </h2>
 
       <!-- Randomized Heartfelt Wish Message -->
-      <p id="modalWishMessage" class="mt-2 text-sm text-slate-200 font-bengali leading-relaxed px-2">
+      <p id="modalWishMessage" class="mt-2 text-sm text-pink-100 font-bengali leading-relaxed px-2">
         —
       </p>
 
       <!-- Student Detailed Information Grid -->
       <div class="grid grid-cols-2 gap-2.5 my-5 text-left font-bengali">
-        <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07]">
-          <span class="text-[11px] text-slate-400 block font-medium">শ্রেণি ও সেকশন</span>
+        <div class="p-2.5 rounded-2xl bg-white/[0.05] border border-pink-300/20">
+          <span class="text-[11px] text-pink-200/80 block font-medium">শ্রেণি ও সেকশন</span>
           <span id="modalStudentClassSec" class="text-sm font-semibold text-white">Class XII · A</span>
         </div>
-        <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07]">
-          <span class="text-[11px] text-slate-400 block font-medium">রোল নম্বর</span>
+        <div class="p-2.5 rounded-2xl bg-white/[0.05] border border-pink-300/20">
+          <span class="text-[11px] text-pink-200/80 block font-medium">রোল নম্বর</span>
           <span id="modalStudentRoll" class="text-sm font-semibold text-white">Roll: 01</span>
         </div>
-        <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07]">
-          <span class="text-[11px] text-slate-400 block font-medium">জন্মতারিখ ও রাশি</span>
-          <span id="modalStudentDobZodiac" class="text-xs sm:text-sm font-semibold text-amber-300 truncate block">—</span>
+        <div class="p-2.5 rounded-2xl bg-white/[0.05] border border-pink-300/20">
+          <span class="text-[11px] text-pink-200/80 block font-medium">জন্মতারিখ ও রাশি</span>
+          <span id="modalStudentDobZodiac" class="text-xs sm:text-sm font-semibold text-amber-200 truncate block">—</span>
         </div>
-        <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07]">
-          <span class="text-[11px] text-slate-400 block font-medium">বয়স</span>
-          <span id="modalStudentAge" class="text-sm font-semibold text-emerald-300">— বছর পূর্ণ</span>
+        <div class="p-2.5 rounded-2xl bg-white/[0.05] border border-pink-300/20">
+          <span class="text-[11px] text-pink-200/80 block font-medium">বয়স</span>
+          <span id="modalStudentAge" class="text-sm font-semibold text-pink-200">— বছর পূর্ণ</span>
         </div>
       </div>
 
       <!-- Action Buttons -->
       <div class="space-y-2.5">
         <div class="flex gap-2">
-          <button id="btnRelightCandle" class="flex-1 py-2.5 px-3 rounded-xl font-bengali text-xs sm:text-sm font-semibold bg-white/[0.07] hover:bg-white/[0.14] text-amber-200 border border-amber-400/30 transition-all flex items-center justify-center gap-1.5">
+          <button id="btnRelightCandle" class="flex-1 py-2.5 px-3 rounded-full font-bengali text-xs sm:text-sm font-semibold bg-white/[0.08] hover:bg-white/[0.15] text-pink-100 border border-pink-300/30 transition-all flex items-center justify-center gap-1.5">
             <span>🕯️</span>
             <span>আবার জ্বালাও</span>
           </button>
-          <button id="btnShootMoreConfetti" class="flex-1 py-2.5 px-3 rounded-xl font-bengali text-xs sm:text-sm font-semibold bg-gradient-to-r from-pink-500/20 to-purple-500/20 hover:from-pink-500/30 hover:to-purple-500/30 text-rose-200 border border-rose-400/30 transition-all flex items-center justify-center gap-1.5">
+          <button id="btnShootMoreConfetti" class="flex-1 py-2.5 px-3 rounded-full font-bengali text-xs sm:text-sm font-semibold bg-gradient-to-r from-pink-500/25 to-purple-500/25 hover:from-pink-500/35 hover:to-purple-500/35 text-pink-100 border border-pink-400/30 transition-all flex items-center justify-center gap-1.5">
             <span>🎊</span>
             <span>ক্যানন ব্লাস্টার ফাটাও</span>
           </button>
         </div>
 
-        <a id="btnModalWhatsapp" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl font-bengali text-sm font-semibold bg-[#25D366] text-white hover:bg-[#20ba5a] shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 transition-all active:scale-98">
+        <a id="btnModalWhatsapp" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-full font-bengali text-sm font-semibold bg-[#25D366] text-white hover:bg-[#20ba5a] shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 transition-all active:scale-98">
           <span>📲</span>
           <span>হোয়াটসঅ্যাপে জন্মদিনের শুভেচ্ছা পাঠান</span>
         </a>
 
-        <button id="btnModalClose" class="w-full py-2 px-4 rounded-xl font-bengali text-xs font-semibold text-slate-400 hover:text-white transition-colors">
+        <button id="btnModalClose" class="w-full py-2 px-4 rounded-full font-bengali text-xs font-semibold text-pink-300/80 hover:text-white transition-colors">
           ধন্যবাদ 💛 বন্ধ করুন
         </button>
       </div>
@@ -1187,20 +1252,27 @@
       for (let i = 0; i < balloonCount; i++) {
         const b = document.createElement('div');
         b.className = 'flying-balloon';
-        const width = Math.floor(Math.random() * 26) + 74;
+        const width = Math.floor(Math.random() * 26) + 76;
         const height = Math.floor(width * 1.55);
         b.style.width = width + 'px';
         b.style.height = height + 'px';
         b.style.left = (Math.random() * 88 + 6) + '%';
-        b.style.animationDelay = (Math.random() * 0.45) + 's';
-        b.style.animationDuration = (Math.random() * 0.9 + 2.5) + 's';
+        b.style.animationDelay = (Math.random() * 0.8).toFixed(2) + 's';
+        
+        // Slow, gentle, realistic float (8.5s to 12s)
+        const durationSec = (Math.random() * 3.5 + 8.5).toFixed(2);
+        b.style.animationDuration = durationSec + 's';
+        b.style.setProperty('--sway', (Math.random() * 50 - 25) + 'px');
+        b.style.setProperty('--rot', (Math.random() * 20 - 10) + 'deg');
         b.innerHTML = getCharacterBalloonSVG(gender, i % 3);
+
+        // Remove ONLY when this balloon has completely floated out past the top boundary!
+        b.addEventListener('animationend', () => {
+          b.remove();
+        });
+
         balloonOverlay.appendChild(b);
       }
-
-      setTimeout(() => {
-        balloonOverlay.innerHTML = '';
-      }, 3500);
     }
 
     /* =========================================================
@@ -1552,13 +1624,13 @@
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => {
-          b.classList.remove('active', 'bg-gradient-to-r', 'from-amber-500', 'to-rose-500', 'text-black', 'shadow-lg');
-          b.classList.add('bg-white/[0.05]', 'text-slate-300', 'border', 'border-white/10');
+          b.classList.remove('active', 'bg-gradient-to-r', 'from-candy-pink', 'to-candy-pinkDeep', 'text-white', 'shadow-glow-pink');
+          b.classList.add('bg-white/[0.08]', 'text-pink-100', 'border', 'border-pink-300/20');
         });
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
 
-        btn.classList.add('active', 'bg-gradient-to-r', 'from-amber-500', 'to-rose-500', 'text-black', 'shadow-lg');
-        btn.classList.remove('bg-white/[0.05]', 'text-slate-300', 'border', 'border-white/10');
+        btn.classList.add('active', 'bg-gradient-to-r', 'from-candy-pink', 'to-candy-pinkDeep', 'text-white', 'shadow-glow-pink');
+        btn.classList.remove('bg-white/[0.08]', 'text-pink-100', 'border', 'border-pink-300/20');
 
         const targetPanel = document.getElementById('panel-' + btn.dataset.tab);
         if (targetPanel) targetPanel.classList.remove('hidden');
@@ -1569,11 +1641,11 @@
     document.querySelectorAll('.sec-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         document.querySelectorAll('.sec-chip').forEach(c => {
-          c.classList.remove('active', 'bg-amber-400', 'text-black', 'shadow-glow-gold');
-          c.classList.add('bg-white/[0.06]', 'text-slate-300', 'border', 'border-white/10');
+          c.classList.remove('active', 'bg-candy-pink', 'text-white', 'shadow-glow-pink');
+          c.classList.add('bg-white/[0.08]', 'text-pink-100', 'border', 'border-pink-300/20');
         });
-        chip.classList.add('active', 'bg-amber-400', 'text-black', 'shadow-glow-gold');
-        chip.classList.remove('bg-white/[0.06]', 'text-slate-300', 'border', 'border-white/10');
+        chip.classList.add('active', 'bg-candy-pink', 'text-white', 'shadow-glow-pink');
+        chip.classList.remove('bg-white/[0.08]', 'text-pink-100', 'border', 'border-pink-300/20');
         currentSection = chip.dataset.sec;
         render();
       });
@@ -1611,10 +1683,10 @@
       if (!today.length) {
         todayContainer.className = 'w-full';
         todayContainer.innerHTML = `
-          <div class="glass-panel rounded-3xl p-8 sm:p-12 text-center text-slate-400">
+          <div class="glass-panel rounded-3xl p-8 sm:p-12 text-center text-pink-200/70 border border-pink-300/20">
             <span class="text-5xl sm:text-6xl block mb-3 animate-bounce">🎈</span>
             <h3 class="text-lg sm:text-xl font-bold font-bengali text-white">আজ কারো জন্মদিন নেই</h3>
-            <p class="text-xs sm:text-sm mt-1.5 font-bengali text-slate-400">
+            <p class="text-xs sm:text-sm mt-1.5 font-bengali text-pink-200/80">
               আসন্ন জন্মদিন দেখতে <strong>'আসন্ন ৩০ দিন'</strong> ট্যাবে দেখুন অথবা অন্য বন্ধুদের উইশ করতে তালিকা ঘুরে দেখুন! ✨
             </p>
           </div>
@@ -1626,31 +1698,31 @@
             <div class="absolute -right-6 -bottom-6 text-7xl opacity-15 pointer-events-none group-hover:scale-125 transition-transform duration-500">🎂</div>
             
             <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-400/20 text-amber-300 border border-amber-400/40">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-candy-pink/20 text-pink-100 border border-candy-pink/40 shadow-sm">
                 <span class="pulse-glow">✨</span> আজকের বিশেষ তারকা
               </span>
-              <span class="text-xs font-display font-semibold px-2.5 py-1 rounded-full bg-white/[0.08] text-slate-300">
+              <span class="text-xs font-display font-semibold px-3 py-1 rounded-full bg-white/[0.08] text-pink-100 border border-pink-300/20">
                 সেকশন ${s.section} · রোল ${s.roll}
               </span>
             </div>
 
-            <h3 class="text-2xl sm:text-3xl font-extrabold font-bengaliFancy text-white group-hover:text-amber-200 transition-colors">
+            <h3 class="text-2xl sm:text-3xl font-extrabold font-bengaliFancy text-white group-hover:text-pink-200 transition-colors">
               ${s.name}
             </h3>
 
             <div class="flex flex-wrap gap-2 mt-3 text-xs font-bengali">
-              <span class="px-2.5 py-1 rounded-xl bg-white/[0.06] text-slate-300 border border-white/10">
+              <span class="px-2.5 py-1 rounded-full bg-white/[0.08] text-pink-100 border border-pink-300/20">
                 ${s.gender === 'GIRLS' ? '👧 ছাত্রী' : '👦 ছাত্র'}
               </span>
-              <span class="px-2.5 py-1 rounded-xl bg-white/[0.06] text-amber-300 border border-white/10">
+              <span class="px-2.5 py-1 rounded-full bg-white/[0.08] text-amber-200 border border-pink-300/20">
                 🌟 ${getBengaliZodiac(s.month, s.day)}
               </span>
-              <span class="px-2.5 py-1 rounded-xl bg-white/[0.06] text-rose-300 border border-white/10">
+              <span class="px-2.5 py-1 rounded-full bg-white/[0.08] text-pink-200 border border-pink-300/20">
                 🎂 ${s.dob || (s.day + ' ' + monthNamesBn[s.month])}
               </span>
             </div>
 
-            <div class="mt-5 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-amber-300/90 font-bengali">
+            <div class="mt-5 pt-3 border-t border-pink-300/20 flex items-center justify-between text-xs text-pink-200/90 font-bengali">
               <span class="flex items-center gap-1.5 font-semibold">
                 <span>👆 ট্যাপ করুন গান, মোমবাতি ও ক্যানন ব্লাস্টার দেখতে</span>
               </span>
@@ -1686,7 +1758,7 @@
       if (!upcoming.length) {
         upcomingContainer.className = 'w-full';
         upcomingContainer.innerHTML = `
-          <div class="glass-panel rounded-3xl p-8 text-center text-slate-400">
+          <div class="glass-panel rounded-3xl p-8 text-center text-pink-200/70 border border-pink-300/20">
             <span class="text-4xl block mb-2">📅</span>
             <p class="font-bengali text-sm">পরবর্তী ৩০ দিনে কোনো জন্মদিন পাওয়া যায়নি</p>
           </div>
@@ -1694,21 +1766,21 @@
       } else {
         upcomingContainer.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5';
         upcomingContainer.innerHTML = upcoming.map((s, idx) => `
-          <div class="glass-panel rounded-2xl p-4 cursor-pointer flex items-center justify-between gap-3 group" data-upcoming-idx="${idx}">
+          <div class="glass-panel rounded-2xl p-4 cursor-pointer flex items-center justify-between gap-3 group border border-pink-300/20 hover:border-pink-400/50" data-upcoming-idx="${idx}">
             <div class="flex items-center gap-3 min-w-0">
-              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500/20 to-rose-500/20 border border-white/10 flex items-center justify-center text-lg flex-shrink-0 group-hover:scale-110 transition-transform">
+              <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-pink-500/20 to-purple-500/20 border border-pink-300/30 flex items-center justify-center text-lg flex-shrink-0 group-hover:scale-110 transition-transform">
                 🎁
               </div>
               <div class="min-w-0">
-                <h4 class="font-bengali font-bold text-sm sm:text-base text-white group-hover:text-amber-300 transition-colors truncate">
+                <h4 class="font-bengali font-bold text-sm sm:text-base text-white group-hover:text-pink-200 transition-colors truncate">
                   ${s.name}
                 </h4>
-                <p class="text-xs text-slate-400 font-bengali truncate">
-                  সেকশন ${s.section} · রোল ${s.roll} · <span class="text-amber-200">${s.dateStr}</span>
+                <p class="text-xs text-pink-200/70 font-bengali truncate">
+                  সেকশন ${s.section} · রোল ${s.roll} · <span class="text-pink-200 font-medium">${s.dateStr}</span>
                 </p>
               </div>
             </div>
-            <span class="px-2.5 py-1 rounded-xl text-xs font-bengali font-semibold bg-rose-500/20 text-rose-300 flex-shrink-0 border border-rose-500/30">
+            <span class="px-3 py-1 rounded-full text-xs font-bengali font-semibold bg-candy-pink/20 text-pink-100 flex-shrink-0 border border-candy-pink/35 shadow-sm">
               ${s.daysLeft === 1 ? 'কাল 🎉' : s.daysLeft + ' দিন বাকি'}
             </span>
           </div>
@@ -1742,7 +1814,7 @@
       if (!past.length) {
         pastContainer.className = 'w-full';
         pastContainer.innerHTML = `
-          <div class="glass-panel rounded-3xl p-8 text-center text-slate-400">
+          <div class="glass-panel rounded-3xl p-8 text-center text-purple-200/70 border border-purple-300/20">
             <span class="text-4xl block mb-2">⏪</span>
             <p class="font-bengali text-sm">গত ৯০ দিনে কোনো জন্মদিন রেকর্ড নেই</p>
           </div>
@@ -1750,21 +1822,21 @@
       } else {
         pastContainer.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5';
         pastContainer.innerHTML = past.map((s, idx) => `
-          <div class="glass-panel rounded-2xl p-4 cursor-pointer flex items-center justify-between gap-3 group" data-past-idx="${idx}">
+          <div class="glass-panel rounded-2xl p-4 cursor-pointer flex items-center justify-between gap-3 group border border-purple-300/20 hover:border-purple-400/50" data-past-idx="${idx}">
             <div class="flex items-center gap-3 min-w-0">
-              <div class="w-10 h-10 rounded-xl bg-purple-500/15 border border-white/10 flex items-center justify-center text-lg flex-shrink-0 group-hover:scale-110 transition-transform">
+              <div class="w-10 h-10 rounded-2xl bg-purple-500/20 border border-purple-300/30 flex items-center justify-center text-lg flex-shrink-0 group-hover:scale-110 transition-transform">
                 🎈
               </div>
               <div class="min-w-0">
-                <h4 class="font-bengali font-bold text-sm sm:text-base text-white group-hover:text-purple-300 transition-colors truncate">
+                <h4 class="font-bengali font-bold text-sm sm:text-base text-white group-hover:text-purple-200 transition-colors truncate">
                   ${s.name}
                 </h4>
-                <p class="text-xs text-slate-400 font-bengali truncate">
-                  সেকশন ${s.section} · রোল ${s.roll} · <span class="text-purple-200">${s.dateStr}</span>
+                <p class="text-xs text-purple-200/70 font-bengali truncate">
+                  সেকশন ${s.section} · রোল ${s.roll} · <span class="text-purple-200 font-medium">${s.dateStr}</span>
                 </p>
               </div>
             </div>
-            <span class="px-2.5 py-1 rounded-xl text-xs font-bengali font-semibold bg-white/[0.06] text-slate-400 flex-shrink-0 border border-white/10">
+            <span class="px-3 py-1 rounded-full text-xs font-bengali font-semibold bg-white/[0.08] text-purple-200 flex-shrink-0 border border-purple-300/30">
               ${s.daysAgo === 1 ? 'গতকাল' : s.daysAgo + ' দিন আগে'}
             </span>
           </div>
@@ -1787,13 +1859,13 @@
         totalFound += list.length;
 
         allHtml += `
-          <div class="glass-panel rounded-3xl p-5 sm:p-6">
-            <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
-              <h3 class="text-lg font-bengaliFancy font-bold text-amber-300 flex items-center gap-2">
+          <div class="glass-panel rounded-3xl p-5 sm:p-6 border border-pink-300/20 shadow-sm">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-pink-300/20">
+              <h3 class="text-lg font-bengaliFancy font-bold text-pink-200 flex items-center gap-2">
                 <span>🗓️</span>
                 <span>${monthNamesBn[m]}</span>
               </h3>
-              <span class="text-xs font-display px-2.5 py-0.5 rounded-full bg-white/[0.08] text-slate-300 font-semibold">
+              <span class="text-xs font-display px-3 py-0.5 rounded-full bg-white/[0.08] text-pink-100 font-semibold border border-pink-300/20">
                 ${list.length} জন
               </span>
             </div>
@@ -1802,12 +1874,12 @@
 
         list.forEach(s => {
           allHtml += `
-            <div class="p-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] hover:border-amber-400/40 cursor-pointer flex items-center justify-between gap-2 group transition-all all-student-item" data-sec="${s.section}" data-roll="${s.roll}">
+            <div class="p-3 rounded-2xl bg-white/[0.04] hover:bg-white/[0.1] border border-pink-300/15 hover:border-pink-400/40 cursor-pointer flex items-center justify-between gap-2 group transition-all all-student-item" data-sec="${s.section}" data-roll="${s.roll}">
               <div class="min-w-0">
-                <h4 class="font-bengali font-semibold text-sm text-white group-hover:text-amber-200 truncate">${s.name}</h4>
-                <p class="text-xs text-slate-400 font-bengali truncate">সেকশন ${s.section} · রোল ${s.roll}</p>
+                <h4 class="font-bengali font-semibold text-sm text-white group-hover:text-pink-200 truncate">${s.name}</h4>
+                <p class="text-xs text-pink-200/70 font-bengali truncate">সেকশন ${s.section} · রোল ${s.roll}</p>
               </div>
-              <span class="text-xs font-bengali font-bold px-2 py-0.5 rounded-lg bg-amber-400/15 text-amber-300 flex-shrink-0">
+              <span class="text-xs font-bengali font-bold px-2.5 py-0.5 rounded-full bg-candy-pink/20 text-pink-200 border border-pink-400/30 flex-shrink-0">
                 ${s.day} তারিখ
               </span>
             </div>
@@ -1820,7 +1892,7 @@
       const allContainer = document.getElementById('allList');
       if (totalFound === 0) {
         allContainer.innerHTML = `
-          <div class="glass-panel rounded-3xl p-8 text-center text-slate-400">
+          <div class="glass-panel rounded-3xl p-8 text-center text-pink-200/70 border border-pink-300/20">
             <span class="text-4xl block mb-2">🔍</span>
             <p class="font-bengali text-sm">কোনো ছাত্রছাত্রী খুঁজে পাওয়া যায়নি</p>
           </div>
