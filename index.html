@@ -1,2217 +1,1664 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="bn" class="dark">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>🎉 শুভ জন্মদিন! | Class XII Birthday Tracker 🎂</title>
-<meta name="theme-color" content="#1a0b2e"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
-
-<style>
-:root {
-  --bg-gradient: radial-gradient(circle at 50% 10%, #2e1065 0%, #17092c 45%, #0b0416 100%);
-  --gold: #ffca28;
-  --gold-glow: #ffd54f;
-  --neon-pink: #ff2a85;
-  --neon-cyan: #00e5ff;
-  --neon-green: #00f090;
-  --neon-purple: #b366ff;
-  --coral: #ff5757;
-  --card-bg: rgba(255, 255, 255, 0.07);
-  --card-border: rgba(255, 215, 0, 0.22);
-  --card-hover-border: rgba(255, 215, 0, 0.6);
-  --text-main: #ffffff;
-  --text-sub: #d8cce8;
-  --text-muted: #a69bb6;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  font-family: 'Hind Siliguri', 'Outfit', system-ui, sans-serif;
-  background: var(--bg-gradient);
-  background-attachment: fixed;
-  color: var(--text-main);
-  min-height: 100vh;
-  line-height: 1.5;
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* ===== CELEBRATORY FAIRY LIGHTS & BUNTING ===== */
-.party-decorations {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 140px;
-  pointer-events: none;
-  z-index: 10;
-  overflow: hidden;
-}
-
-/* Festoon Bunting Flags */
-.bunting-wire {
-  position: absolute;
-  top: 0;
-  left: -2%;
-  right: -2%;
-  height: 45px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.flag {
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-top: 26px solid #ff2a85;
-  transform-origin: top center;
-  animation: flagWave 3.5s ease-in-out infinite alternate;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
-}
-.flag:nth-child(2n) { border-top-color: #ffca28; animation-delay: 0.3s; }
-.flag:nth-child(3n) { border-top-color: #00e5ff; animation-delay: 0.6s; }
-.flag:nth-child(4n) { border-top-color: #00f090; animation-delay: 0.9s; }
-.flag:nth-child(5n) { border-top-color: #b366ff; animation-delay: 1.2s; }
-.flag:nth-child(6n) { border-top-color: #ff7043; animation-delay: 0.4s; }
-
-@keyframes flagWave {
-  0% { transform: rotate(-8deg); }
-  100% { transform: rotate(8deg); }
-}
-
-/* Multi-colored Glowing Fairy String Lights */
-.fairy-string {
-  position: absolute;
-  top: 36px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
-}
-
-.fairy-light {
-  width: 14px;
-  height: 20px;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  position: relative;
-  animation: lightPulse 1.4s ease-in-out infinite alternate;
-}
-.fairy-light::before {
-  content: '';
-  position: absolute;
-  top: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 5px;
-  background: #333;
-  border-radius: 2px;
-}
-.fairy-light.c-pink   { background: #ff2a85; box-shadow: 0 0 14px 4px #ff2a85; animation-delay: 0.1s; }
-.fairy-light.c-gold   { background: #ffca28; box-shadow: 0 0 16px 5px #ffca28; animation-delay: 0.3s; }
-.fairy-light.c-cyan   { background: #00e5ff; box-shadow: 0 0 14px 4px #00e5ff; animation-delay: 0.5s; }
-.fairy-light.c-green  { background: #00f090; box-shadow: 0 0 14px 4px #00f090; animation-delay: 0.7s; }
-.fairy-light.c-purple { background: #b366ff; box-shadow: 0 0 14px 4px #b366ff; animation-delay: 0.2s; }
-.fairy-light.c-orange { background: #ff7043; box-shadow: 0 0 14px 4px #ff7043; animation-delay: 0.6s; }
-
-@keyframes lightPulse {
-  0% { opacity: 0.4; transform: scale(0.85); }
-  100% { opacity: 1; transform: scale(1.15); filter: brightness(1.3); }
-}
-
-/* Secondary lower string of twinkle stars */
-.fairy-string-sub {
-  position: absolute;
-  top: 68px;
-  left: 20px;
-  right: 20px;
-  display: flex;
-  justify-content: space-around;
-}
-.twinkle-star {
-  font-size: 13px;
-  color: var(--gold-glow);
-  animation: starTwinkle 2s infinite ease-in-out;
-  text-shadow: 0 0 8px rgba(255, 202, 40, 0.8);
-}
-.twinkle-star:nth-child(2n) { animation-delay: 0.7s; color: #ff2a85; text-shadow: 0 0 8px #ff2a85; }
-.twinkle-star:nth-child(3n) { animation-delay: 1.3s; color: #00e5ff; text-shadow: 0 0 8px #00e5ff; }
-
-@keyframes starTwinkle {
-  0%, 100% { transform: scale(0.6) rotate(0deg); opacity: 0.3; }
-  50% { transform: scale(1.3) rotate(30deg); opacity: 1; }
-}
-
-/* ===== FLOATING BACKGROUND BALLOONS ===== */
-.bg-balloons {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.bg-balloon {
-  position: absolute;
-  bottom: -150px;
-  border-radius: 50% 50% 50% 50% / 42% 42% 58% 58%;
-  opacity: 0.55;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
-  animation: driftUp linear infinite;
-}
-.bg-balloon::after {
-  content: '';
-  position: absolute;
-  bottom: -28px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1.5px;
-  height: 35px;
-  background: rgba(255, 255, 255, 0.45);
-}
-.bg-balloon::before {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 9px;
-  height: 6px;
-  background: inherit;
-  border-radius: 4px;
-}
-.bg-b1 { width: 50px; height: 64px; left: 6%; background: radial-gradient(circle at 35% 30%, #ff6097, #d81b60); animation-duration: 22s; animation-delay: 0s; }
-.bg-b2 { width: 40px; height: 50px; left: 18%; background: radial-gradient(circle at 35% 30%, #ffd54f, #ff8f00); animation-duration: 26s; animation-delay: 4s; }
-.bg-b3 { width: 55px; height: 70px; left: 32%; background: radial-gradient(circle at 35% 30%, #4dd0e1, #00838f); animation-duration: 20s; animation-delay: 8s; }
-.bg-b4 { width: 44px; height: 56px; left: 52%; background: radial-gradient(circle at 35% 30%, #ba68c8, #6a1b9a); animation-duration: 24s; animation-delay: 2s; }
-.bg-b5 { width: 58px; height: 72px; left: 74%; background: radial-gradient(circle at 35% 30%, #81c784, #2e7d32); animation-duration: 21s; animation-delay: 6s; }
-.bg-b6 { width: 48px; height: 60px; left: 88%; background: radial-gradient(circle at 35% 30%, #ff8a65, #d84315); animation-duration: 25s; animation-delay: 11s; }
-
-@keyframes driftUp {
-  0% { transform: translateY(0) translateX(0) rotate(0deg); }
-  50% { transform: translateY(-60vh) translateX(25px) rotate(8deg); }
-  100% { transform: translateY(-130vh) translateX(-20px) rotate(-8deg); }
-}
-
-/* ===== HERO HEADER ===== */
-.hero {
-  position: relative;
-  z-index: 5;
-  padding: 85px 1rem 30px;
-  text-align: center;
-  overflow: hidden;
-}
-
-.hero-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 18px;
-  border-radius: 999px;
-  background: rgba(255, 215, 0, 0.12);
-  border: 1px solid rgba(255, 215, 0, 0.35);
-  color: var(--gold-glow);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  margin-bottom: 14px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
-}
-
-.hero-pill .pulse-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #00f090;
-  box-shadow: 0 0 10px #00f090;
-  animation: pulseDot 1.2s infinite alternate;
-}
-@keyframes pulseDot {
-  from { opacity: 0.5; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1.2); }
-}
-
-.hero h1 {
-  font-family: 'Outfit', 'Hind Siliguri', sans-serif;
-  font-size: clamp(2.4rem, 8vw, 4rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 10px;
-  background: linear-gradient(135deg, #ffffff 0%, #ffea79 35%, #ff9a3c 70%, #ff4081 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 6px 20px rgba(255, 120, 60, 0.4));
-  letter-spacing: -0.02em;
-}
-
-.hero-sub {
-  color: var(--text-sub);
-  font-size: 1.05rem;
-  max-width: 520px;
-  margin: 0 auto 16px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-}
-
-.hero-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-
-.date-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #fff;
-  font-size: 0.92rem;
-  font-weight: 600;
-  backdrop-filter: blur(10px);
-}
-
-.music-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #ff2a85, #8a2be2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 15px rgba(255, 42, 133, 0.4);
-}
-.music-btn:hover {
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 6px 20px rgba(255, 42, 133, 0.6);
-}
-.music-btn.playing {
-  background: linear-gradient(135deg, #00c853, #00b0ff);
-  box-shadow: 0 4px 15px rgba(0, 200, 83, 0.5);
-}
-
-.github-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 700;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(10px);
-}
-.github-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: var(--gold);
-  color: var(--gold-glow);
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 4px 15px rgba(255, 202, 40, 0.25);
-}
-
-/* Next Birthday Live Countdown Bar */
-.countdown-strip {
-  max-width: 680px;
-  margin: 18px auto 0;
-  padding: 10px 18px;
-  background: linear-gradient(135deg, rgba(255, 42, 133, 0.15), rgba(255, 202, 40, 0.12));
-  border: 1px solid rgba(255, 202, 40, 0.35);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  font-size: 0.92rem;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  animation: subtleGlow 3s infinite alternate;
-}
-@keyframes subtleGlow {
-  from { border-color: rgba(255, 202, 40, 0.3); }
-  to { border-color: rgba(255, 42, 133, 0.6); }
-}
-
-.countdown-strip strong {
-  color: var(--gold-glow);
-}
-
-/* ===== MAIN CONTAINER ===== */
-.container {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 1rem 5rem;
-  position: relative;
-  z-index: 5;
-}
-
-/* Notification Prompt Banner */
-.notif-banner {
-  background: linear-gradient(135deg, rgba(255, 202, 40, 0.15), rgba(179, 102, 255, 0.15));
-  border: 1px solid rgba(255, 202, 40, 0.4);
-  border-radius: 18px;
-  padding: 14px 18px;
-  margin-bottom: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-  justify-content: space-between;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-}
-.notif-banner.hidden { display: none; }
-.notif-banner strong { color: var(--gold-glow); font-size: 1rem; }
-.notif-banner p { font-size: 0.86rem; color: var(--text-sub); margin-top: 2px; }
-
-.btn {
-  font-family: inherit;
-  font-size: 0.88rem;
-  font-weight: 700;
-  padding: 7px 18px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.btn-allow {
-  background: linear-gradient(135deg, #ffca28, #ff9100);
-  color: #1a0b2e;
-  box-shadow: 0 4px 12px rgba(255, 145, 0, 0.35);
-}
-.btn-allow:hover { transform: translateY(-2px); filter: brightness(1.1); }
-.btn-deny {
-  background: transparent;
-  color: var(--text-muted);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-.btn-deny:hover { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
-
-.notif-status {
-  display: none;
-  background: rgba(0, 240, 144, 0.15);
-  border: 1px solid rgba(0, 240, 144, 0.3);
-  color: #00f090;
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-  text-align: center;
-}
-.notif-status.show { display: block; }
-
-/* Search & Filter Bar */
-.search-filter-box {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  padding: 12px 16px;
-  margin-bottom: 20px;
-  backdrop-filter: blur(14px);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.search-input-wrap {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-.search-icon {
-  position: absolute;
-  left: 14px;
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  pointer-events: none;
-}
-.search-input {
-  width: 100%;
-  padding: 10px 14px 10px 42px;
-  border-radius: 14px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #fff;
-  font-family: inherit;
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.2s ease;
-}
-.search-input:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 12px rgba(255, 202, 40, 0.25);
-}
-.search-input::placeholder {
-  color: var(--text-muted);
-}
-
-.section-chips {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 2px;
-}
-.sec-chip {
-  padding: 5px 14px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--text-sub);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-.sec-chip.active {
-  background: linear-gradient(135deg, #ff2a85, #b366ff);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: 0 2px 10px rgba(255, 42, 133, 0.4);
-}
-
-/* Tabs */
-.tabs {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 20px;
-  background: rgba(0, 0, 0, 0.35);
-  padding: 6px;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow-x: auto;
-}
-.tab {
-  flex: 1;
-  min-width: max-content;
-  padding: 10px 14px;
-  border: none;
-  background: transparent;
-  color: var(--text-sub);
-  font-family: inherit;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 13px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.tab:hover {
-  color: #fff;
-}
-.tab.active {
-  background: linear-gradient(135deg, #ffca28, #ff8f00);
-  color: #160728;
-  font-weight: 700;
-  box-shadow: 0 4px 15px rgba(255, 143, 0, 0.4);
-}
-
-.panel { display: none; }
-.panel.active { display: block; animation: fadeIn 0.3s ease; }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.section-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--gold-glow);
-}
-.count-pill {
-  background: linear-gradient(135deg, #ff2a85, #8a2be2);
-  color: #fff;
-  padding: 2px 9px;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 800;
-}
-
-/* Birthday Cards (Today) */
-.birthday-card-hero {
-  position: relative;
-  background: linear-gradient(135deg, rgba(255, 42, 133, 0.18), rgba(255, 202, 40, 0.15) 60%, rgba(179, 102, 255, 0.18));
-  border: 2px solid rgba(255, 202, 40, 0.5);
-  border-radius: 24px;
-  padding: 20px 22px;
-  margin-bottom: 16px;
-  cursor: pointer;
-  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(255, 42, 133, 0.2);
-}
-.birthday-card-hero::before {
-  content: '🎂';
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  font-size: 3.5rem;
-  opacity: 0.18;
-  pointer-events: none;
-  transform: rotate(15deg);
-}
-.birthday-card-hero:hover {
-  transform: translateY(-5px) scale(1.015);
-  border-color: var(--gold);
-  box-shadow: 0 15px 40px rgba(255, 202, 40, 0.35);
-}
-
-.ribbon-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: linear-gradient(135deg, #ff2a85, #ff7043);
-  color: #fff;
-  font-size: 0.76rem;
-  font-weight: 800;
-  padding: 4px 12px;
-  border-radius: 999px;
-  letter-spacing: 0.04em;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 8px rgba(255, 42, 133, 0.4);
-}
-
-.student-name-big {
-  font-size: 1.45rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 8px;
-  letter-spacing: 0.02em;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-.meta-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-.meta-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 4px 10px;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  color: var(--text-sub);
-}
-.badge-gender-girl {
-  background: rgba(255, 42, 133, 0.25);
-  color: #ff85be;
-  border-color: rgba(255, 42, 133, 0.4);
-}
-.badge-gender-boy {
-  background: rgba(0, 229, 255, 0.2);
-  color: #80f2ff;
-  border-color: rgba(0, 229, 255, 0.35);
-}
-
-.tap-callout {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 10px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.15);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--gold-glow);
-}
-.tap-callout .shine-arrow {
-  animation: bounceRight 1s infinite alternate;
-}
-@keyframes bounceRight {
-  from { transform: translateX(0); }
-  to { transform: translateX(6px); }
-}
-
-/* List Items (Upcoming, Past, All) */
-.list-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 13px 18px;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 18px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: all 0.22s ease;
-  backdrop-filter: blur(8px);
-  gap: 12px;
-}
-.list-card:hover {
-  border-color: var(--gold);
-  transform: translateX(4px) translateY(-2px);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-}
-
-.list-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-}
-.avatar-circle {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  flex-shrink: 0;
-  background: linear-gradient(135deg, rgba(255, 42, 133, 0.3), rgba(255, 202, 40, 0.3));
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-.list-details {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.list-name {
-  font-weight: 700;
-  font-size: 0.98rem;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.list-subtext {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-top: 2px;
-}
-
-.list-right-badge {
-  font-weight: 700;
-  font-size: 0.85rem;
-  white-space: nowrap;
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: rgba(255, 202, 40, 0.15);
-  color: var(--gold-glow);
-  border: 1px solid rgba(255, 202, 40, 0.3);
-  flex-shrink: 0;
-}
-.list-card.past .list-right-badge {
-  background: rgba(179, 102, 255, 0.15);
-  color: #d1a8ff;
-  border-color: rgba(179, 102, 255, 0.3);
-}
-
-.empty-state {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: var(--text-muted);
-  background: var(--card-bg);
-  border: 1px dashed var(--card-border);
-  border-radius: 20px;
-}
-.empty-state .empty-icon {
-  font-size: 3rem;
-  margin-bottom: 8px;
-  animation: floatEmoji 2.5s ease-in-out infinite alternate;
-}
-@keyframes floatEmoji {
-  from { transform: translateY(0); }
-  to { transform: translateY(-8px); }
-}
-
-/* Month group wrapper for 'All' tab */
-.month-group {
-  margin-bottom: 22px;
-}
-.month-header {
-  color: var(--gold-glow);
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-left: 4px;
-}
-
-/* ===== BURSTING FLYING BALLOONS ON CLICK ===== */
-#balloonFlightOverlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1000;
-  overflow: hidden;
-}
-
-.flying-balloon {
-  position: absolute;
-  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-  animation: balloonFlyUp 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.45));
-}
-.flying-balloon::after {
-  content: '';
-  position: absolute;
-  bottom: -32px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 38px;
-  background: rgba(255, 255, 255, 0.6);
-}
-.flying-balloon::before {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 6px;
-  background: inherit;
-  border-radius: 4px;
-}
-
-@keyframes balloonFlyUp {
-  0% {
-    transform: translateY(110vh) scale(0.6) rotate(0deg);
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.95;
-  }
-  80% {
-    opacity: 0.95;
-  }
-  100% {
-    transform: translateY(-130vh) scale(1.15) rotate(20deg);
-    opacity: 0;
-  }
-}
-
-/* ===== CELEBRATORY CAKE & WISH MODAL ===== */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  background: rgba(10, 4, 20, 0.85);
-  backdrop-filter: blur(14px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.25rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
-}
-.modal-overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-content {
-  background: linear-gradient(165deg, #2b124c 0%, #17092c 60%, #10051f 100%);
-  border: 2px solid rgba(255, 202, 40, 0.5);
-  border-radius: 32px;
-  padding: 2.2rem 1.8rem 1.8rem;
-  max-width: 440px;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 42, 133, 0.3);
-  transform: scale(0.7) translateY(40px);
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-  overflow: hidden;
-}
-.modal-overlay.open .modal-content {
-  transform: scale(1) translateY(0);
-}
-
-/* Floating Cake Animation */
-.cake-float-wrapper {
-  margin: 0 auto 12px;
-  position: relative;
-  width: 160px;
-  height: 155px;
-  animation: cakeBob 3s ease-in-out infinite alternate;
-}
-@keyframes cakeBob {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-8px); }
-}
-
-/* Realistic Multi-Tier SVG Cake with Lit Candle */
-.cake-svg-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-/* Candle Flame & Smoke */
-.candle-flame {
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 16px;
-  height: 24px;
-  background: radial-gradient(ellipse at bottom, #fff7a0 0%, #ff9800 60%, #e65100 100%);
-  border-radius: 50% 50% 35% 35% / 80% 80% 20% 20%;
-  box-shadow: 0 0 20px 6px #ffb300, 0 0 35px 12px #ff6f00;
-  animation: flameFlicker 0.15s infinite alternate;
-  transform-origin: bottom center;
-  transition: all 0.4s ease-out;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@keyframes flameFlicker {
-  0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
-  100% { transform: translateX(-50%) scale(1.12) rotate(3deg); }
-}
-
-/* When candle blows out after 2 seconds */
-.candle-flame.extinguished {
-  opacity: 0;
-  transform: translateX(-50%) scale(0.1);
-  box-shadow: none;
-}
-
-/* Smoke puff after blow out */
-.smoke-puff {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(220, 220, 230, 0.7);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 12;
-}
-.smoke-puff.puff-active {
-  animation: riseSmoke 1.6s ease-out forwards;
-}
-
-@keyframes riseSmoke {
-  0% {
-    opacity: 0.8;
-    transform: translateX(-50%) scale(0.8) translateY(0);
-    filter: blur(1px);
-  }
-  50% {
-    opacity: 0.6;
-    transform: translateX(-40%) scale(2.8) translateY(-30px);
-    filter: blur(4px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-60%) scale(4.5) translateY(-65px);
-    filter: blur(8px);
-  }
-}
-
-.candle-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  transition: all 0.3s ease;
-}
-.candle-status-pill.lit {
-  background: rgba(255, 193, 7, 0.2);
-  color: #ffd54f;
-  border: 1px solid rgba(255, 193, 7, 0.4);
-}
-.candle-status-pill.blown {
-  background: rgba(0, 240, 144, 0.2);
-  color: #00f090;
-  border: 1px solid rgba(0, 240, 144, 0.4);
-}
-
-.wish-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--gold-glow);
-  margin-bottom: 4px;
-}
-.wish-name {
-  font-size: 1.65rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 8px;
-  letter-spacing: 0.02em;
-  text-shadow: 0 2px 14px rgba(255, 42, 133, 0.5);
-}
-.wish-msg {
-  font-size: 0.98rem;
-  color: var(--text-sub);
-  line-height: 1.6;
-  margin-bottom: 14px;
-  padding: 0 4px;
-}
-
-.wish-details-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
-  padding: 10px 14px;
-  margin-bottom: 18px;
-  text-align: left;
-  font-size: 0.84rem;
-}
-.detail-item strong {
-  color: var(--gold);
-  display: block;
-  font-size: 0.74rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 2px;
-}
-.detail-item span {
-  color: #fff;
-  font-weight: 600;
-}
-
-.modal-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.btn-row {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-}
-
-.btn-relight {
-  flex: 1;
-  background: linear-gradient(135deg, #ff9100, #ff3d00);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.85rem;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(255, 61, 0, 0.35);
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.btn-relight:hover { transform: translateY(-2px); filter: brightness(1.1); }
-
-.btn-confetti {
-  flex: 1;
-  background: linear-gradient(135deg, #b366ff, #ff2a85);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.85rem;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(255, 42, 133, 0.35);
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.btn-confetti:hover { transform: translateY(-2px); filter: brightness(1.1); }
-
-.btn-whatsapp {
-  background: #25D366;
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.9rem;
-  padding: 10px 18px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-  transition: all 0.2s;
-}
-.btn-whatsapp:hover { transform: translateY(-2px); filter: brightness(1.1); }
-
-.btn-close-modal {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-sub);
-  font-weight: 600;
-  font-size: 0.88rem;
-  padding: 8px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-close-modal:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
-
-/* Canvas for Confetti Rain */
-#confettiCanvas {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1001;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-footer .heart {
-  color: #ff2a85;
-  display: inline-block;
-  animation: heartBeat 1.2s infinite;
-}
-@keyframes heartBeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.25); }
-}
-
-@media (max-width: 480px) {
-  .hero h1 { font-size: 2.2rem; }
-  .modal-content { padding: 1.8rem 1.2rem 1.4rem; }
-  .wish-name { font-size: 1.35rem; }
-  .wish-details-grid { grid-template-columns: 1fr; gap: 6px; }
-  .tabs { gap: 4px; padding: 4px; }
-  .tab { font-size: 0.82rem; padding: 8px 10px; }
-}
-</style>
-
-<!-- External Data Scripts -->
-<script src="s0.js"></script>
-<script src="s1.js"></script>
-<script src="s2.js"></script>
-<script src="s3.js"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎉 শুভ জন্মদিন! | Class XII Birthday Tracker 🎂</title>
+  <meta name="theme-color" content="#0d0722"/>
+  <meta name="description" content="Class XII ছাত্রছাত্রীদের জন্মদিন ট্র্যাকার ও উৎসবের শুভেচ্ছা প্ল্যাটফর্ম"/>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="alternate icon" href="favicon.svg"/>
+
+  <!-- Google Fonts: Bengali (Anek Bangla, Hind Siliguri, Galada) & English (Outfit, Playfair Display) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&family=Galada&family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#090514',
+            surface: {
+              DEFAULT: '#120b24',
+              card: 'rgba(255, 255, 255, 0.04)',
+              cardHover: 'rgba(255, 255, 255, 0.08)',
+              glass: 'rgba(18, 11, 36, 0.85)'
+            },
+            festive: {
+              gold: '#fbbf24',
+              goldLight: '#fde68a',
+              rose: '#f43f5e',
+              roseLight: '#fda4af',
+              purple: '#a855f7',
+              cyan: '#06b6d4',
+              green: '#10b981'
+            }
+          },
+          fontFamily: {
+            bengali: ['"Hind Siliguri"', 'sans-serif'],
+            bengaliFancy: ['"Anek Bangla"', '"Hind Siliguri"', 'sans-serif'],
+            cursiveBn: ['"Galada"', 'cursive'],
+            display: ['"Outfit"', 'sans-serif'],
+            fancy: ['"Playfair Display"', 'serif']
+          },
+          boxShadow: {
+            'glow-gold': '0 0 35px -5px rgba(251, 191, 36, 0.35)',
+            'glow-rose': '0 0 35px -5px rgba(244, 63, 94, 0.35)',
+            'glow-purple': '0 0 35px -5px rgba(168, 85, 247, 0.35)',
+            'card-glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Styling & Celebratory Keyframes */
+    :root {
+      color-scheme: dark;
+    }
+    body {
+      background-color: #090514;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.18) 0%, transparent 55%),
+        radial-gradient(circle at 10% 40%, rgba(244, 63, 94, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 90% 70%, rgba(251, 191, 36, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.1) 0%, transparent 60%);
+      background-attachment: fixed;
+      font-family: 'Hind Siliguri', 'Outfit', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Floating Glowing Orbs */
+    .ambient-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Glassmorphic border glow */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-panel:hover {
+      border-color: rgba(251, 191, 36, 0.45);
+      background: rgba(255, 255, 255, 0.07);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.5), 0 0 20px 0 rgba(251, 191, 36, 0.15);
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(251, 191, 36, 0.4);
+      box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.7), 0 0 30px 0 rgba(251, 191, 36, 0.2);
+    }
+    .hero-card:hover {
+      border-color: rgba(251, 191, 36, 0.8);
+      box-shadow: 0 16px 50px -10px rgba(0, 0, 0, 0.8), 0 0 40px 2px rgba(251, 191, 36, 0.35);
+      transform: translateY(-4px) scale(1.008);
+    }
+
+    /* Confetti Canvas */
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 60;
+    }
+
+    /* Flying Balloons Overlay */
+    #balloonOverlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 55;
+      overflow: hidden;
+    }
+    .flying-balloon {
+      position: absolute;
+      bottom: -100px;
+      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+      box-shadow: inset -6px -6px 12px rgba(0, 0, 0, 0.35), 0 8px 20px rgba(0, 0, 0, 0.4);
+      animation: balloonFloatUp 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    .flying-balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 16px;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    @keyframes balloonFloatUp {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(0.7);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% {
+        transform: translateY(calc(-100vh - 180px)) rotate(18deg) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    /* 3D Candle flame animation */
+    .candle-flame {
+      width: 16px;
+      height: 28px;
+      background: radial-gradient(ellipse at bottom, #fff 0%, #ffeb3b 35%, #ff5722 85%, transparent 100%);
+      border-radius: 50% 50% 20% 20%;
+      filter: drop-shadow(0 0 14px #ff9800);
+      animation: flameFlicker 0.12s infinite alternate ease-in-out;
+      transform-origin: bottom center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    @keyframes flameFlicker {
+      0% { transform: scale(1) rotate(-2deg); }
+      100% { transform: scale(1.08, 0.95) rotate(3deg); }
+    }
+    .candle-flame.extinguished {
+      opacity: 0;
+      transform: scale(0.2);
+      pointer-events: none;
+    }
+    .smoke-puff {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(200, 200, 200, 0.6);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .smoke-puff.puff-active {
+      animation: smokeRise 1.4s ease-out forwards;
+    }
+    @keyframes smokeRise {
+      0% { opacity: 0.9; transform: translateX(-50%) scale(1); filter: blur(1px); }
+      50% { opacity: 0.5; transform: translate(calc(-50% + 14px), -30px) scale(3.5); filter: blur(3px); }
+      100% { opacity: 0; transform: translate(calc(-50% - 18px), -65px) scale(6); filter: blur(6px); }
+    }
+
+    /* Pulse dot */
+    .pulse-glow {
+      animation: pulseAnimation 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+    @keyframes pulseAnimation {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.15); }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090514;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(251, 191, 36, 0.4);
+    }
+  </style>
+
+  <!-- External Student Data Scripts -->
+  <script src="s0.js"></script>
+  <script src="s1.js"></script>
+  <script src="s2.js"></script>
+  <script src="s3.js"></script>
 </head>
-<body>
 
-<!-- CELEBRATORY DECORATIONS: BUNTING & FAIRY LIGHTS -->
-<div class="party-decorations">
-  <div class="bunting-wire">
-    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
-    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
-    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
-    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
-    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
-    <div class="flag"></div><div class="flag"></div><div class="flag"></div>
-  </div>
+<body class="text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-black relative">
 
-  <div class="fairy-string">
-    <div class="fairy-light c-pink"></div>
-    <div class="fairy-light c-gold"></div>
-    <div class="fairy-light c-cyan"></div>
-    <div class="fairy-light c-green"></div>
-    <div class="fairy-light c-purple"></div>
-    <div class="fairy-light c-orange"></div>
-    <div class="fairy-light c-pink"></div>
-    <div class="fairy-light c-gold"></div>
-    <div class="fairy-light c-cyan"></div>
-    <div class="fairy-light c-green"></div>
-    <div class="fairy-light c-purple"></div>
-    <div class="fairy-light c-orange"></div>
-    <div class="fairy-light c-pink"></div>
-    <div class="fairy-light c-gold"></div>
-    <div class="fairy-light c-cyan"></div>
-  </div>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-orb w-96 h-96 -top-20 -left-20 bg-purple-600/20"></div>
+  <div class="ambient-orb w-96 h-96 top-1/3 -right-20 bg-amber-500/15"></div>
+  <div class="ambient-orb w-80 h-80 bottom-20 left-1/4 bg-rose-600/15"></div>
 
-  <div class="fairy-string-sub">
-    <span class="twinkle-star">✨</span>
-    <span class="twinkle-star">⭐</span>
-    <span class="twinkle-star">✨</span>
-    <span class="twinkle-star">🌟</span>
-    <span class="twinkle-star">✨</span>
-    <span class="twinkle-star">⭐</span>
-    <span class="twinkle-star">✨</span>
-    <span class="twinkle-star">🌟</span>
-  </div>
-</div>
+  <!-- Dual Cannon Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
 
-<!-- BACKGROUND DRIFTING BALLOONS -->
-<div class="bg-balloons">
-  <div class="bg-balloon bg-b1"></div>
-  <div class="bg-balloon bg-b2"></div>
-  <div class="bg-balloon bg-b3"></div>
-  <div class="bg-balloon bg-b4"></div>
-  <div class="bg-balloon bg-b5"></div>
-  <div class="bg-balloon bg-b6"></div>
-</div>
+  <!-- Flying Balloons Overlay -->
+  <div id="balloonOverlay"></div>
 
-<!-- HERO HEADER -->
-<header class="hero">
-  <div class="hero-pill">
-    <span class="pulse-dot"></span>
-    <span>CLASS XII · শিক্ষাবর্ষ ২০২৩-২৪</span>
-  </div>
-
-  <h1>🎉 শুভ জন্মদিন! 🎂</h1>
-  <p class="hero-sub">সেকশন A, B, C · বন্ধুদের জন্মদিন ট্র্যাকার ও উৎসবের শুভেচ্ছা</p>
-
-  <div class="hero-actions">
-    <div class="date-pill" id="todayDatePill">📅 লোড হচ্ছে...</div>
-    <button class="music-btn" id="btnToggleMusic" title="জন্মদিনের গান বাজান বা বন্ধ করুন">
-      <span id="musicIcon">🎵</span>
-      <span id="musicText">বার্থডে মিউজিক</span>
-    </button>
-    <a href="https://github.com/Jmaity434/class-xii-birthday-tracker" target="_blank" rel="noopener noreferrer" class="github-btn" title="GitHub Repository">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-      </svg>
-      <span>GitHub</span>
-    </a>
-  </div>
-
-  <!-- LIVE COUNTDOWN TO NEXT BIRTHDAY -->
-  <div class="countdown-strip" id="nextBirthdayStrip">
-    <span>⏳ পরবর্তী জন্মদিন গণনা হচ্ছে...</span>
-  </div>
-</header>
-
-<!-- MAIN CONTAINER -->
-<main class="container">
-
-  <!-- BROWSER NOTIFICATION PROMPT -->
-  <div class="notif-banner" id="notifBanner">
-    <div>
-      <strong>🔔 জন্মদিন অ্যালার্ট চালু করুন</strong>
-      <p>প্রতিদিন সকালে বন্ধুদের জন্মদিনের স্বয়ংক্রিয় নোটিফিকেশন পান</p>
+  <!-- TOP HEADER / HERO -->
+  <header class="relative z-10 pt-8 pb-6 px-4 max-w-5xl mx-auto w-full text-center">
+    <!-- Top badge -->
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-md text-amber-300 text-xs md:text-sm font-semibold tracking-wide shadow-sm">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-glow"></span>
+      <span class="font-display">CLASS XII</span>
+      <span class="text-white/40">·</span>
+      <span class="font-bengali">শিক্ষাবর্ষ ২০২৩–২৪</span>
     </div>
-    <div style="display: flex; gap: 8px;">
-      <button class="btn btn-allow" id="btnAllow">Allow</button>
-      <button class="btn btn-deny" id="btnDeny">পরে</button>
-    </div>
-  </div>
-  <div class="notif-status" id="notifStatus">✅ জন্মদিনের অ্যালার্ট নোটিফিকেশন সক্রিয় রয়েছে</div>
 
-  <!-- SEARCH & SECTION FILTER -->
-  <div class="search-filter-box">
-    <div class="search-input-wrap">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" class="search-input" placeholder="বন্ধুর নাম বা রোল নম্বর দিয়ে খুঁজুন..."/>
-    </div>
-    <div class="section-chips" id="sectionChips">
-      <button class="sec-chip active" data-sec="ALL">সকল সেকশন</button>
-      <button class="sec-chip" data-sec="A">সেকশন A</button>
-      <button class="sec-chip" data-sec="B">সেকশন B</button>
-      <button class="sec-chip" data-sec="C">সেকশন C</button>
-    </div>
-  </div>
+    <!-- Main Title with Fancy Fonts -->
+    <h1 class="mt-4 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-bengaliFancy">
+      <span class="bg-gradient-to-r from-amber-200 via-amber-400 to-rose-400 bg-clip-text text-transparent">
+        🎉 শুভ জন্মদিন! 🎂
+      </span>
+    </h1>
 
-  <!-- TABS -->
-  <nav class="tabs">
-    <button class="tab active" data-tab="today">🎉 আজকের (<span id="tabCountToday">0</span>)</button>
-    <button class="tab" data-tab="upcoming">📅 আগামী ৩০ দিন (<span id="tabCountUpcoming">0</span>)</button>
-    <button class="tab" data-tab="past">⏪ গত ৯০ দিন (<span id="tabCountPast">0</span>)</button>
-    <button class="tab" data-tab="all">📋 সব ছাত্রছাত্রী</button>
-  </nav>
+    <p class="mt-2.5 text-base sm:text-lg text-slate-300 font-bengali max-w-2xl mx-auto leading-relaxed">
+      সেকশন <span class="text-amber-300 font-semibold font-display">A, B, C</span> এর বন্ধুদের জন্মদিন ট্র্যাকার ও প্রাণবন্ত শুভেচ্ছা প্ল্যাটফর্ম
+    </p>
 
-  <!-- PANEL: TODAY -->
-  <section class="panel active" id="panel-today">
-    <div class="section-title">
-      <span>🎉</span>
-      <span>আজ কার জন্মদিন?</span>
-      <span class="count-pill" id="todayCountBadge">0</span>
-    </div>
-    <div id="todayList"></div>
-  </section>
+    <!-- Header Quick Actions Strip -->
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+      <!-- Today's Date Pill -->
+      <div id="todayDateBadge" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.05] border border-white/10 text-xs sm:text-sm font-medium text-amber-200 backdrop-blur-md">
+        <span>📅</span>
+        <span id="todayDateText">তারিখ লোড হচ্ছে...</span>
+      </div>
 
-  <!-- PANEL: UPCOMING -->
-  <section class="panel" id="panel-upcoming">
-    <div class="section-title">
-      <span>📅</span>
-      <span>আসন্ন জন্মদিনসমূহ (আগামী ৩০ দিন)</span>
-      <span class="count-pill" id="upcomingCountBadge">0</span>
-    </div>
-    <div id="upcomingList"></div>
-  </section>
+      <!-- Music Toggle Button -->
+      <button id="btnToggleMusic" class="group flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-900/60 to-pink-900/60 border border-purple-500/30 hover:border-amber-400/60 text-xs sm:text-sm font-semibold text-purple-200 hover:text-amber-200 backdrop-blur-md transition-all shadow-md active:scale-95" title="জন্মদিনের গান শুনুন বা বন্ধ করুন">
+        <span id="musicIcon" class="text-base group-hover:scale-110 transition-transform">🎵</span>
+        <span id="musicLabel" class="font-bengali">বার্থডে মিউজিক</span>
+      </button>
 
-  <!-- PANEL: PAST -->
-  <section class="panel" id="panel-past">
-    <div class="section-title">
-      <span>⏪</span>
-      <span>সম্প্রতি অতিবাহিত জন্মদিনসমূহ (গত ৯০ দিন)</span>
-      <span class="count-pill" id="pastCountBadge">0</span>
-    </div>
-    <div id="pastList"></div>
-  </section>
+      <!-- Clear Settled Confetti Button (Shown when shredded paper accumulates) -->
+      <button id="btnClearConfetti" class="hidden flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/[0.05] border border-white/10 hover:border-rose-400/50 text-xs font-medium text-slate-300 hover:text-rose-300 backdrop-blur-md transition-all" title="নিচের জমানো কনফেটি পরিষ্কার করুন">
+        <span>🧹</span>
+        <span class="font-bengali">কনফেটি সাফ করুন</span>
+      </button>
 
-  <!-- PANEL: ALL -->
-  <section class="panel" id="panel-all">
-    <div class="section-title">
-      <span>📋</span>
-      <span>মাসভিত্তিক সকল ছাত্রছাত্রী</span>
-    </div>
-    <div id="allList"></div>
-  </section>
-
-  <footer>
-    <p>Class XII Birthday Tracker · <span class="heart">❤️</span> দিয়ে তৈরি</p>
-    <p style="margin-top: 6px;">
-      <a href="https://github.com/Jmaity434/class-xii-birthday-tracker" target="_blank" rel="noopener noreferrer" style="color: var(--gold-glow); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.88rem;">
+      <!-- GitHub Repository Link -->
+      <a href="https://github.com/Jmaity434/class-xii-birthday-tracker" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.05] border border-white/10 hover:border-amber-400/50 text-xs sm:text-sm font-medium text-slate-300 hover:text-white backdrop-blur-md transition-all" title="GitHub Repository">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
           <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
         </svg>
-        <span>GitHub Repository</span>
+        <span class="font-display">GitHub</span>
       </a>
-    </p>
-    <p style="margin-top: 4px; color: var(--gold-glow); font-size: 0.8rem;">✨ যেকোনো নামের উপর ট্যাপ করুন বেলুন ও কেকের চমক দেখতে!</p>
-  </footer>
-</main>
-
-<!-- FLYING BALLOONS OVERLAY -->
-<div id="balloonFlightOverlay"></div>
-
-<!-- CONFETTI CANVAS -->
-<canvas id="confettiCanvas"></canvas>
-
-<!-- CELEBRATORY CAKE & CANDLE WISH MODAL -->
-<div class="modal-overlay" id="wishModal">
-  <div class="modal-content">
-
-    <!-- 3D FLOATING CAKE WITH LIT CANDLE -->
-    <div class="cake-float-wrapper">
-      <div class="candle-flame" id="cakeFlame" title="মোমবাতিতে ট্যাপ করুন নিভিয়ে দেওয়ার জন্য!"></div>
-      <div class="smoke-puff" id="smokePuff"></div>
-
-      <!-- Scalable Birthday Cake Artwork -->
-      <svg class="cake-svg-container" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Candle Stick -->
-        <rect x="75" y="26" width="10" height="30" rx="3" fill="#ffffff"/>
-        <path d="M75 32L85 36M75 42L85 46M75 50L85 54" stroke="#ff2a85" stroke-width="2"/>
-
-        <!-- Cake Plate -->
-        <ellipse cx="80" cy="130" rx="72" ry="10" fill="#ffffff" fill-opacity="0.2"/>
-        <ellipse cx="80" cy="128" rx="66" ry="7" fill="#ffd54f" fill-opacity="0.3"/>
-
-        <!-- Bottom Tier Base -->
-        <rect x="25" y="94" width="110" height="32" rx="12" fill="#5c1d85"/>
-        <ellipse cx="80" cy="94" rx="55" ry="12" fill="#ff4081"/>
-
-        <!-- Bottom Tier Frosting drips -->
-        <path d="M25 94C32 108 38 98 48 108C58 98 68 112 80 102C92 112 102 98 112 108C122 98 128 108 135 94" fill="#ffffff" fill-opacity="0.9"/>
-
-        <!-- Top Tier Base -->
-        <rect x="42" y="58" width="76" height="34" rx="10" fill="#8e24aa"/>
-        <ellipse cx="80" cy="58" rx="38" ry="10" fill="#ff80ab"/>
-
-        <!-- Top Tier Frosting drips -->
-        <path d="M42 58C48 68 54 62 62 70C70 62 78 72 86 64C94 72 102 62 110 70C114 65 116 62 118 58" fill="#ffffff" fill-opacity="0.95"/>
-
-        <!-- Sprinkles -->
-        <circle cx="55" cy="80" r="2.5" fill="#ffd54f"/>
-        <circle cx="70" cy="76" r="2.5" fill="#00e5ff"/>
-        <circle cx="88" cy="80" r="2.5" fill="#00f090"/>
-        <circle cx="102" cy="75" r="2.5" fill="#ffca28"/>
-
-        <circle cx="40" cy="116" r="3" fill="#00e5ff"/>
-        <circle cx="65" cy="118" r="3" fill="#ffd54f"/>
-        <circle cx="95" cy="116" r="3" fill="#ff4081"/>
-        <circle cx="120" cy="118" r="3" fill="#00f090"/>
-
-        <!-- Cherries / Cream dollops -->
-        <circle cx="45" cy="56" r="5" fill="#ff1744"/>
-        <circle cx="62" cy="54" r="5" fill="#ff1744"/>
-        <circle cx="98" cy="54" r="5" fill="#ff1744"/>
-        <circle cx="115" cy="56" r="5" fill="#ff1744"/>
-      </svg>
     </div>
 
-    <!-- Dynamic Candle Status -->
-    <div id="candleStatus" class="candle-status-pill lit">
-      <span id="candleIcon">🔥</span>
-      <span id="candleText">মোমবাতি জ্বলছে... (২ সেকেন্ডে নিভে যাবে)</span>
+    <!-- Live Next Birthday Countdown Banner -->
+    <div id="nextBirthdayCountdown" class="mt-4 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-purple-500/10 to-pink-500/10 border border-amber-400/20 text-xs sm:text-sm font-bengali text-amber-200/90 backdrop-blur-md inline-block max-w-full">
+      <span>⏳ পরবর্তী জন্মদিন গণনা হচ্ছে...</span>
     </div>
+  </header>
 
-    <div class="wish-title">🎉 শুভ জন্মদিন! 🎂</div>
-    <div class="wish-name" id="wishName">—</div>
-    <div class="wish-msg" id="wishMsg"></div>
+  <!-- MAIN CONTENT AREA -->
+  <main class="relative z-10 flex-grow max-w-5xl mx-auto w-full px-4 sm:px-6">
 
-    <!-- Student details grid -->
-    <div class="wish-details-grid">
-      <div class="detail-item">
-        <strong>শ্রেণি ও সেকশন</strong>
-        <span id="wishClassSec">Class XII · A</span>
-      </div>
-      <div class="detail-item">
-        <strong>রোল নম্বর</strong>
-        <span id="wishRoll">Roll: 01</span>
-      </div>
-      <div class="detail-item">
-        <strong>জন্মতারিখ ও রাশি</strong>
-        <span id="wishDobZodiac">—</span>
-      </div>
-      <div class="detail-item">
-        <strong>বয়স</strong>
-        <span id="wishAge">— বছর পূর্ণ</span>
+    <!-- Search & Section Filter Box -->
+    <div class="glass-panel rounded-2xl p-4 sm:p-5 mb-8 shadow-xl">
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        
+        <!-- Search Input with icon -->
+        <div class="relative w-full md:w-80">
+          <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-base">🔍</span>
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="বন্ধুর নাম বা রোল নম্বর খুঁজুন..." 
+            class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 text-sm font-bengali transition-colors"
+          />
+        </div>
+
+        <!-- Section Chips Filter -->
+        <div class="flex items-center gap-1.5 sm:gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline">সেকশন:</span>
+          <button data-sec="ALL" class="sec-chip active px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-amber-400 text-black shadow-glow-gold">
+            সকল
+          </button>
+          <button data-sec="A" class="sec-chip px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-white/[0.06] text-slate-300 hover:text-white hover:bg-white/[0.12] border border-white/10">
+            সেকশন A
+          </button>
+          <button data-sec="B" class="sec-chip px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-white/[0.06] text-slate-300 hover:text-white hover:bg-white/[0.12] border border-white/10">
+            সেকশন B
+          </button>
+          <button data-sec="C" class="sec-chip px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-white/[0.06] text-slate-300 hover:text-white hover:bg-white/[0.12] border border-white/10">
+            সেকশন C
+          </button>
+        </div>
+
       </div>
     </div>
 
-    <div class="modal-actions">
-      <div class="btn-row">
-        <button class="btn-relight" id="btnRelight">
-          <span>🕯️</span>
-          <span>আবার জ্বালাও</span>
-        </button>
-        <button class="btn-confetti" id="btnMoreConfetti">
-          <span>🎊</span>
-          <span>কনফেটি ছড়াও</span>
-        </button>
-      </div>
+    <!-- Navigation Tabs -->
+    <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 mb-6 scrollbar-none">
+      <button data-tab="today" class="tab-btn active group flex items-center gap-2 px-5 py-2.5 rounded-2xl font-bengali text-sm sm:text-base font-semibold transition-all bg-gradient-to-r from-amber-500 to-rose-500 text-black shadow-lg shadow-rose-500/20 whitespace-nowrap">
+        <span>🎂</span>
+        <span>আজকের জন্মদিন</span>
+        <span id="tabCountToday" class="px-2 py-0.5 rounded-full text-xs font-display font-bold bg-black/30 text-amber-100">0</span>
+      </button>
 
-      <a href="#" target="_blank" class="btn-whatsapp" id="btnWhatsapp">
-        <span>📲</span>
-        <span>হোয়াটসঅ্যাপে শুভেচ্ছা পাঠান</span>
-      </a>
+      <button data-tab="upcoming" class="tab-btn group flex items-center gap-2 px-5 py-2.5 rounded-2xl font-bengali text-sm sm:text-base font-semibold transition-all bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white border border-white/10 whitespace-nowrap">
+        <span>📅</span>
+        <span>আসন্ন ৩০ দিন</span>
+        <span id="tabCountUpcoming" class="px-2 py-0.5 rounded-full text-xs font-display font-bold bg-white/10 text-slate-300">0</span>
+      </button>
 
-      <button class="btn-close-modal" id="btnCloseWish">ধন্যবাদ 💛 বন্ধ করুন</button>
+      <button data-tab="past" class="tab-btn group flex items-center gap-2 px-5 py-2.5 rounded-2xl font-bengali text-sm sm:text-base font-semibold transition-all bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white border border-white/10 whitespace-nowrap">
+        <span>⏪</span>
+        <span>অতিবাহিত (৯০ দিন)</span>
+        <span id="tabCountPast" class="px-2 py-0.5 rounded-full text-xs font-display font-bold bg-white/10 text-slate-300">0</span>
+      </button>
+
+      <button data-tab="all" class="tab-btn group flex items-center gap-2 px-5 py-2.5 rounded-2xl font-bengali text-sm sm:text-base font-semibold transition-all bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white border border-white/10 whitespace-nowrap">
+        <span>📋</span>
+        <span>সকল ছাত্রছাত্রী</span>
+      </button>
     </div>
 
-  </div>
-</div>
-
-<script>
-/* =========================================================
-   1. DATA & CONSTANTS
-   ========================================================= */
-const monthNamesBn = ['', 'জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
-const dayNamesBn = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
-
-// Astrological Zodiac in Bengali
-function getBengaliZodiac(month, day) {
-  if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return '♈ মেষ (Aries)';
-  if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return '♉ বৃষ (Taurus)';
-  if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return '♊ মিথুন (Gemini)';
-  if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return '♋ কর্কট (Cancer)';
-  if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return '♌ সিংহ (Leo)';
-  if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return '♍ কন্যা (Virgo)';
-  if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return '♎ তুলা (Libra)';
-  if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return '♏ বৃশ্চিক (Scorpio)';
-  if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) return '♐ ধনু (Sagittarius)';
-  if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return '♑ মকর (Capricorn)';
-  if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return '♒ কুম্ভ (Aquarius)';
-  return '♓ মীন (Pisces)';
-}
-
-function formatDateBn(d) {
-  return d.getDate() + ' ' + monthNamesBn[d.getMonth() + 1] + ' ' + d.getFullYear() + ', ' + dayNamesBn[d.getDay()];
-}
-
-let STUDENTS = (window.STUDENT_DATA || []).map(s => ({
-  name: s.n,
-  month: s.m,
-  day: s.d,
-  gender: s.g === 1 ? 'GIRLS' : 'BOYS',
-  section: s.s || 'A',
-  roll: s.r,
-  dob: s.dob || ''
-}));
-
-const wishMessages = [
-  'আপনার জীবন সুখ, সাফল্য ও অফুরন্ত হাসি-আনন্দে ভরে উঠুক। অনেক অনেক শুভকামনা! 🎉',
-  'জন্মদিনের এই বিশেষ আনন্দময় দিনে আপনার জন্য রইল আন্তরিক শুভকামনা। সব স্বপ্ন ডানা মেলুক! ✨',
-  'শুভ জন্মদিন! জীবনের প্রতিটি পদক্ষেপে সাফল্য ও আনন্দের আলো ছড়িয়ে পড়ুক। 🎂',
-  'আজকের দিনটা আপনার জন্য অনন্য সুন্দর হোক। হাসতে থাকুন, বন্ধুদের সাথে আনন্দ উপভোগ করুন! 🎈',
-  'জন্মদিনের অফুরান প্রীতি ও শুভেচ্ছা! আপনার ভবিষ্যৎ হোক স্বর্ণালী ও উজ্জ্বল। 💛',
-  'নতুন বছর আপনার জীবনে বয়ে নিয়ে আসুক অপার শান্তি, নতুন সাফল্য আর নতুন প্রেরণা! 🌟'
-];
-
-/* =========================================================
-   2. WEB AUDIO API SYNTHESIZER (MUSIC & SOUND EFFECTS)
-   ========================================================= */
-let audioCtx = null;
-let isMusicPlaying = false;
-let musicTimeoutId = null;
-
-function getAudioContext() {
-  if (!audioCtx) {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (AudioContextClass) audioCtx = new AudioContextClass();
-  }
-  if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
-  return audioCtx;
-}
-
-// Play sound tone
-function playTone(freq, type, duration, delay = 0, gainLevel = 0.15) {
-  const ctx = getAudioContext();
-  if (!ctx) return;
-  setTimeout(() => {
-    try {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
-      gain.gain.setValueAtTime(gainLevel, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + duration);
-    } catch (e) {}
-  }, delay);
-}
-
-// Candle Blow Puff Sound (Gentle noise puff)
-function playCandleBlowSound() {
-  const ctx = getAudioContext();
-  if (!ctx) return;
-  try {
-    const bufferSize = ctx.sampleRate * 0.35;
-    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {
-      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.08));
-    }
-    const noise = ctx.createBufferSource();
-    noise.buffer = buffer;
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(450, ctx.currentTime);
-    filter.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.35);
-
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.2, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
-
-    noise.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
-    noise.start();
-  } catch (e) {}
-}
-
-// Celebration Chime on Candle Out
-function playCelebrationChimes() {
-  const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
-  notes.forEach((freq, i) => {
-    playTone(freq, 'sine', 0.8, i * 90, 0.12);
-  });
-}
-
-// "Happy Birthday to You" Melodic Sequencer
-const birthdayNotes = [
-  { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 293.66, d: 500 }, { f: 261.63, d: 500 },
-  { f: 349.23, d: 500 }, { f: 329.63, d: 800 },
-  { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 293.66, d: 500 }, { f: 261.63, d: 500 },
-  { f: 392.00, d: 500 }, { f: 349.23, d: 800 },
-  { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 523.25, d: 500 }, { f: 440.00, d: 500 },
-  { f: 349.23, d: 500 }, { f: 329.63, d: 500 }, { f: 293.66, d: 700 },
-  { f: 466.16, d: 350 }, { f: 466.16, d: 250 }, { f: 440.00, d: 500 }, { f: 349.23, d: 500 },
-  { f: 392.00, d: 500 }, { f: 349.23, d: 900 }
-];
-
-function startBirthdayTune() {
-  if (isMusicPlaying) return;
-  isMusicPlaying = true;
-  document.getElementById('btnToggleMusic').classList.add('playing');
-  document.getElementById('musicIcon').textContent = '🔊';
-  document.getElementById('musicText').textContent = 'মিউজিক বন্ধ';
-
-  let currentStep = 0;
-  function playNextNote() {
-    if (!isMusicPlaying) return;
-    const note = birthdayNotes[currentStep];
-    playTone(note.f, 'triangle', note.d / 1000, 0, 0.16);
-    currentStep = (currentStep + 1) % birthdayNotes.length;
-    musicTimeoutId = setTimeout(playNextNote, note.d + 60);
-  }
-  playNextNote();
-}
-
-function stopBirthdayTune() {
-  isMusicPlaying = false;
-  if (musicTimeoutId) clearTimeout(musicTimeoutId);
-  document.getElementById('btnToggleMusic').classList.remove('playing');
-  document.getElementById('musicIcon').textContent = '🎵';
-  document.getElementById('musicText').textContent = 'বার্থডে মিউজিক';
-}
-
-document.getElementById('btnToggleMusic').addEventListener('click', () => {
-  getAudioContext();
-  if (isMusicPlaying) {
-    stopBirthdayTune();
-  } else {
-    startBirthdayTune();
-  }
-});
-
-/* =========================================================
-   3. HIGH PERFORMANCE CONFETTI ENGINE (CANVAS)
-   ========================================================= */
-const canvas = document.getElementById('confettiCanvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-let confettiAnimationId = null;
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-function shootConfetti(count = 90) {
-  const colors = ['#ff2a85', '#ffca28', '#00e5ff', '#00f090', '#b366ff', '#ff7043', '#ffffff'];
-  for (let i = 0; i < count; i++) {
-    particles.push({
-      x: canvas.width * 0.5 + (Math.random() - 0.5) * 300,
-      y: canvas.height * 0.45 + (Math.random() - 0.5) * 100,
-      vx: (Math.random() - 0.5) * 16,
-      vy: -Math.random() * 14 - 4,
-      size: Math.random() * 9 + 5,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      rotation: Math.random() * 360,
-      rotationSpeed: (Math.random() - 0.5) * 12,
-      shape: Math.random() > 0.5 ? 'rect' : 'circle',
-      opacity: 1
-    });
-  }
-  if (!confettiAnimationId) renderConfetti();
-}
-
-function renderConfetti() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach((p, idx) => {
-    p.x += p.vx;
-    p.y += p.vy;
-    p.vy += 0.38; // gravity
-    p.vx *= 0.99; // drag
-    p.rotation += p.rotationSpeed;
-    p.opacity -= 0.007;
-
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate((p.rotation * Math.PI) / 180);
-    ctx.globalAlpha = Math.max(0, p.opacity);
-    ctx.fillStyle = p.color;
-
-    if (p.shape === 'rect') {
-      ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
-    } else {
-      ctx.beginPath();
-      ctx.arc(0, 0, p.size / 3, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    ctx.restore();
-  });
-
-  particles = particles.filter(p => p.opacity > 0 && p.y < canvas.height + 50);
-
-  if (particles.length > 0) {
-    confettiAnimationId = requestAnimationFrame(renderConfetti);
-  } else {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    confettiAnimationId = null;
-  }
-}
-
-/* =========================================================
-   4. INTERACTIVE BALLOON FLIGHT ON STUDENT CLICK
-   ========================================================= */
-const balloonOverlay = document.getElementById('balloonFlightOverlay');
-
-function triggerBalloonsFlyUp() {
-  balloonOverlay.innerHTML = '';
-  const colors = [
-    'radial-gradient(circle at 35% 30%, #ff5287, #c2185b)',
-    'radial-gradient(circle at 35% 30%, #ffd54f, #ff8f00)',
-    'radial-gradient(circle at 35% 30%, #40c4ff, #0091ea)',
-    'radial-gradient(circle at 35% 30%, #b388ff, #6200ea)',
-    'radial-gradient(circle at 35% 30%, #69f0ae, #00c853)',
-    'radial-gradient(circle at 35% 30%, #ff8a80, #d50000)'
-  ];
-
-  const balloonCount = 30;
-  for (let i = 0; i < balloonCount; i++) {
-    const b = document.createElement('div');
-    b.className = 'flying-balloon';
-    const width = Math.floor(Math.random() * 26) + 36;
-    const height = Math.floor(width * 1.25);
-    b.style.width = width + 'px';
-    b.style.height = height + 'px';
-    b.style.left = (Math.random() * 94) + '%';
-    b.style.background = colors[Math.floor(Math.random() * colors.length)];
-    b.style.animationDelay = (Math.random() * 0.45) + 's';
-    b.style.animationDuration = (Math.random() * 0.8 + 1.8) + 's';
-    balloonOverlay.appendChild(b);
-  }
-
-  // Clear overlay after animation completes
-  setTimeout(() => {
-    balloonOverlay.innerHTML = '';
-  }, 2800);
-}
-
-/* =========================================================
-   5. BIRTHDAY CAKE & CANDLE INTERACTION (2-SEC AUTO BLOW)
-   ========================================================= */
-const wishModal = document.getElementById('wishModal');
-const cakeFlame = document.getElementById('cakeFlame');
-const smokePuff = document.getElementById('smokePuff');
-const candleStatus = document.getElementById('candleStatus');
-const candleText = document.getElementById('candleText');
-const candleIcon = document.getElementById('candleIcon');
-let candleTimer = null;
-let currentActiveStudent = null;
-
-function lightCandle() {
-  cakeFlame.classList.remove('extinguished');
-  smokePuff.classList.remove('puff-active');
-  candleStatus.className = 'candle-status-pill lit';
-  candleIcon.textContent = '🔥';
-  candleText.textContent = 'মোমবাতি জ্বলছে... (২ সেকেন্ডে নিভবে)';
-}
-
-function extinguishCandle() {
-  cakeFlame.classList.add('extinguished');
-  smokePuff.classList.remove('puff-active');
-  void smokePuff.offsetWidth; // trigger reflow
-  smokePuff.classList.add('puff-active');
-
-  candleStatus.className = 'candle-status-pill blown';
-  candleIcon.textContent = '💨';
-  candleText.textContent = '✨ ফুঁ দিয়ে মোমবাতি নেভানো হলো!';
-
-  // Sound and confetti celebration
-  playCandleBlowSound();
-  playCelebrationChimes();
-  shootConfetti(120);
-}
-
-// User can tap candle directly to blow or relight
-cakeFlame.addEventListener('click', () => {
-  if (cakeFlame.classList.contains('extinguished')) {
-    lightCandle();
-  } else {
-    if (candleTimer) clearTimeout(candleTimer);
-    extinguishCandle();
-  }
-});
-
-document.getElementById('btnRelight').addEventListener('click', () => {
-  lightCandle();
-  if (candleTimer) clearTimeout(candleTimer);
-  candleTimer = setTimeout(() => {
-    extinguishCandle();
-  }, 2000);
-});
-
-document.getElementById('btnMoreConfetti').addEventListener('click', () => {
-  playCelebrationChimes();
-  shootConfetti(100);
-});
-
-/* =========================================================
-   6. OPEN CELEBRATION MODAL FOR A STUDENT
-   ========================================================= */
-function openWish(s) {
-  currentActiveStudent = s;
-  getAudioContext();
-
-  // 1. Trigger Flying Balloons up the screen
-  triggerBalloonsFlyUp();
-
-  // 2. Prepare Wish Data
-  document.getElementById('wishName').textContent = s.name;
-  const randomMsg = wishMessages[Math.floor(Math.random() * wishMessages.length)];
-  document.getElementById('wishMsg').textContent = randomMsg;
-  document.getElementById('wishClassSec').textContent = 'Class XII · সেকশন ' + s.section;
-  document.getElementById('wishRoll').textContent = 'রোল: ' + s.roll;
-
-  // DOB & Zodiac
-  const zodiac = getBengaliZodiac(s.month, s.day);
-  document.getElementById('wishDobZodiac').textContent = (s.dob ? s.dob + ' · ' : '') + zodiac;
-
-  // Age calculation
-  let ageStr = '—';
-  if (s.dob) {
-    const bDate = new Date(s.dob);
-    if (!isNaN(bDate.getTime())) {
-      const today = new Date();
-      let age = today.getFullYear() - bDate.getFullYear();
-      const mDiff = today.getMonth() - bDate.getMonth();
-      if (mDiff < 0 || (mDiff === 0 && today.getDate() < bDate.getDate())) {
-        age--;
-      }
-      ageStr = age > 0 ? age + ' বছর পূর্ণ' : '—';
-    }
-  }
-  document.getElementById('wishAge').textContent = ageStr;
-
-  // WhatsApp Share Link
-  const waMsg = encodeURIComponent(`🎉 শুভ জন্মদিন ${s.name}! 🎂\nClass XII (Section ${s.section}, Roll ${s.roll})\n${randomMsg}\nশুভকামনায়: Class XII Friends 🎈`);
-  document.getElementById('btnWhatsapp').href = `https://wa.me/?text=${waMsg}`;
-
-  // Light candle at start
-  lightCandle();
-
-  // 3. Float cake in modal
-  wishModal.classList.add('open');
-
-  // 4. Exactly 2 seconds later: extinguish candle & burst confetti!
-  if (candleTimer) clearTimeout(candleTimer);
-  candleTimer = setTimeout(() => {
-    extinguishCandle();
-  }, 2000);
-}
-
-document.getElementById('btnCloseWish').addEventListener('click', () => {
-  wishModal.classList.remove('open');
-  if (candleTimer) clearTimeout(candleTimer);
-});
-
-wishModal.addEventListener('click', (e) => {
-  if (e.target === wishModal) {
-    wishModal.classList.remove('open');
-    if (candleTimer) clearTimeout(candleTimer);
-  }
-});
-
-/* =========================================================
-   7. LIVE COUNTDOWN TO NEXT UPCOMING BIRTHDAY
-   ========================================================= */
-let nextBirthdayCountdownTimer = null;
-
-function initNextBirthdayCountdown() {
-  const now = new Date();
-  let candidate = null;
-  let minDaysDiff = 999;
-
-  for (let i = 0; i <= 365; i++) {
-    const testDate = new Date(now);
-    testDate.setDate(testDate.getDate() + i);
-    const m = testDate.getMonth() + 1;
-    const d = testDate.getDate();
-
-    const matches = STUDENTS.filter(s => s.month === m && s.day === d);
-    if (matches.length > 0) {
-      candidate = {
-        students: matches,
-        targetDate: new Date(testDate.getFullYear(), testDate.getMonth(), testDate.getDate(), 0, 0, 0),
-        isToday: i === 0,
-        daysAway: i
-      };
-      break;
-    }
-  }
-
-  const strip = document.getElementById('nextBirthdayStrip');
-  if (!candidate) {
-    strip.innerHTML = '<span>🎉 জন্মদিনের আনন্দ উদযাপন করুন!</span>';
-    return;
-  }
-
-  function updateTicker() {
-    const currentNow = new Date();
-    if (candidate.isToday) {
-      const names = candidate.students.map(s => s.name).join(', ');
-      strip.innerHTML = `<span>🎉 <strong>আজ জন্মদিন:</strong> ${names}! ট্যাপ করে শুভেচ্ছা জানান! 🎂</span>`;
-      return;
-    }
-
-    const diffMs = candidate.targetDate - currentNow;
-    if (diffMs <= 0) {
-      strip.innerHTML = `<span>🎉 আজ <strong>${candidate.students[0].name}</strong>-এর জন্মদিন! 🎂</span>`;
-      return;
-    }
-
-    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
-
-    const nameStr = candidate.students.length === 1 
-      ? candidate.students[0].name 
-      : `${candidate.students[0].name} সহ ${candidate.students.length} জন`;
-
-    strip.innerHTML = `<span>⏳ পরবর্তী জন্মদিন: <strong>${nameStr}</strong> — আর মাত্র <strong>${days} দিন ${hours} ঘণ্টা ${minutes} মিনিট ${seconds} সেকেন্ড!</strong> 🎈</span>`;
-  }
-
-  updateTicker();
-  if (nextBirthdayCountdownTimer) clearInterval(nextBirthdayCountdownTimer);
-  nextBirthdayCountdownTimer = setInterval(updateTicker, 1000);
-}
-
-/* =========================================================
-   8. TABS & FILTERING STATE
-   ========================================================= */
-let currentSectionFilter = 'ALL';
-let currentSearchQuery = '';
-
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-  });
-});
-
-document.querySelectorAll('.sec-chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('.sec-chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active');
-    currentSectionFilter = chip.dataset.sec;
-    render();
-  });
-});
-
-document.getElementById('searchInput').addEventListener('input', (e) => {
-  currentSearchQuery = e.target.value.trim().toLowerCase();
-  render();
-});
-
-function matchesFilter(s) {
-  if (currentSectionFilter !== 'ALL' && s.section !== currentSectionFilter) {
-    return false;
-  }
-  if (!currentSearchQuery) return true;
-  const nameMatch = s.name.toLowerCase().includes(currentSearchQuery);
-  const rollMatch = s.roll && s.roll.toString().includes(currentSearchQuery);
-  return nameMatch || rollMatch;
-}
-
-/* =========================================================
-   9. RENDER LISTS (TODAY, UPCOMING, PAST, ALL)
-   ========================================================= */
-function render() {
-  const now = new Date();
-  const tm = now.getMonth() + 1;
-  const td = now.getDate();
-  document.getElementById('todayDatePill').textContent = '📅 ' + formatDateBn(now);
-
-  const filteredStudents = STUDENTS.filter(matchesFilter);
-
-  // 1. TODAY
-  const today = filteredStudents.filter(s => s.month === tm && s.day === td);
-  document.getElementById('todayCountBadge').textContent = today.length;
-  document.getElementById('tabCountToday').textContent = today.length;
-  const tl = document.getElementById('todayList');
-
-  if (!today.length) {
-    tl.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">🎈</div>
-        <p style="font-size:1.05rem; font-weight:600; color:#fff;">আজ কারো জন্মদিন নেই</p>
-        <p style="margin-top:6px; font-size:0.85rem;">আসন্ন জন্মদিন দেখতে 'আগামী ৩০ দিন' ট্যাবে দেখুন ✨</p>
-      </div>`;
-  } else {
-    tl.innerHTML = today.map((s, i) => `
-      <div class="birthday-card-hero" data-idx="${i}">
-        <div class="ribbon-tag">🎉 আজকের বিশেষ দিন</div>
-        <div class="student-name-big">${s.name}</div>
-        <div class="meta-tags">
-          <span class="meta-chip">📚 সেকশন ${s.section} · রোল ${s.roll}</span>
-          <span class="meta-chip ${s.gender === 'GIRLS' ? 'badge-gender-girl' : 'badge-gender-boy'}">
-            ${s.gender === 'GIRLS' ? '👧 ছাত্রী' : '👦 ছাত্র'}
-          </span>
-          <span class="meta-chip">🎂 ${s.dob || (s.day + ' ' + monthNamesBn[s.month])}</span>
-          <span class="meta-chip">🌟 ${getBengaliZodiac(s.month, s.day)}</span>
-        </div>
-        <div class="tap-callout">
-          <span>👆 ট্যাপ করুন বেলুন উড়বে ও কেক ভেসে আসবে!</span>
-          <span class="shine-arrow">➔</span>
-        </div>
+    <!-- TAB PANELS -->
+
+    <!-- Panel 1: Today's Birthdays -->
+    <section id="panel-today" class="tab-panel space-y-4">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl sm:text-2xl font-bold font-bengaliFancy text-amber-300 flex items-center gap-2">
+          <span>🎉</span>
+          <span>আজ যাদের জন্মদিন</span>
+          <span id="todayCountBadge" class="text-sm px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-display">0</span>
+        </h2>
+        <span class="text-xs text-slate-400 font-bengali hidden sm:inline">কার্ডে ক্লিক করলেই গান ও ব্লাস্টার চালু হবে ✨</span>
       </div>
-    `).join('');
+      <div id="todayList" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"></div>
+    </section>
 
-    tl.querySelectorAll('.birthday-card-hero').forEach((el, i) => {
-      el.addEventListener('click', () => openWish(today[i]));
-    });
-  }
-
-  // 2. UPCOMING (Next 30 days)
-  const up = [];
-  for (let i = 1; i <= 30; i++) {
-    const d = new Date(now);
-    d.setDate(d.getDate() + i);
-    const m = d.getMonth() + 1;
-    const day = d.getDate();
-    filteredStudents.filter(s => s.month === m && s.day === day).forEach(s => {
-      up.push(Object.assign({}, s, {
-        daysLeft: i,
-        dateStr: day + ' ' + monthNamesBn[m]
-      }));
-    });
-  }
-  document.getElementById('upcomingCountBadge').textContent = up.length;
-  document.getElementById('tabCountUpcoming').textContent = up.length;
-  const ul = document.getElementById('upcomingList');
-
-  if (!up.length) {
-    ul.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">📅</div>
-        <p style="font-size:1.02rem; font-weight:600; color:#fff;">পরবর্তী ৩০ দিনে কোনো জন্মদিন নেই</p>
-      </div>`;
-  } else {
-    ul.innerHTML = up.map((s, i) => `
-      <div class="list-card" data-idx="${i}">
-        <div class="list-left">
-          <div class="avatar-circle">🎁</div>
-          <div class="list-details">
-            <span class="list-name">${s.name}</span>
-            <span class="list-subtext">
-              <span>সেকশন ${s.section}</span> · 
-              <span>রোল ${s.roll}</span> · 
-              <span>${s.dateStr}</span>
-            </span>
-          </div>
-        </div>
-        <span class="list-right-badge">${s.daysLeft === 1 ? 'কাল 🎉' : s.daysLeft + ' দিন পর'}</span>
-      </div>
-    `).join('');
-
-    ul.querySelectorAll('.list-card').forEach((el, i) => {
-      el.addEventListener('click', () => openWish(up[i]));
-    });
-  }
-
-  // 3. PAST (Last 90 days)
-  const past = [];
-  for (let i = 1; i <= 90; i++) {
-    const d = new Date(now);
-    d.setDate(d.getDate() - i);
-    const m = d.getMonth() + 1;
-    const day = d.getDate();
-    filteredStudents.filter(s => s.month === m && s.day === day).forEach(s => {
-      past.push(Object.assign({}, s, {
-        daysAgo: i,
-        dateStr: day + ' ' + monthNamesBn[m]
-      }));
-    });
-  }
-  past.sort((a, b) => a.daysAgo - b.daysAgo);
-  document.getElementById('pastCountBadge').textContent = past.length;
-  document.getElementById('tabCountPast').textContent = past.length;
-  const pl = document.getElementById('pastList');
-
-  if (!past.length) {
-    pl.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">⏪</div>
-        <p style="font-size:1.02rem; font-weight:600; color:#fff;">গত ৯০ দিনে কোনো জন্মদিন রেকর্ড নেই</p>
-      </div>`;
-  } else {
-    pl.innerHTML = past.map((s, i) => `
-      <div class="list-card past" data-idx="${i}">
-        <div class="list-left">
-          <div class="avatar-circle" style="background: rgba(179,102,255,0.25);">✨</div>
-          <div class="list-details">
-            <span class="list-name">${s.name}</span>
-            <span class="list-subtext">
-              <span>সেকশন ${s.section}</span> · 
-              <span>রোল ${s.roll}</span> · 
-              <span>${s.dateStr}</span>
-            </span>
-          </div>
-        </div>
-        <span class="list-right-badge">${s.daysAgo === 1 ? 'গতকাল' : s.daysAgo + ' দিন আগে'}</span>
-      </div>
-    `).join('');
-
-    pl.querySelectorAll('.list-card').forEach((el, i) => {
-      el.addEventListener('click', () => openWish(past[i]));
-    });
-  }
-
-  // 4. ALL STUDENTS (Grouped by Month)
-  const byMonth = {};
-  filteredStudents.forEach(s => {
-    if (!byMonth[s.month]) byMonth[s.month] = [];
-    byMonth[s.month].push(s);
-  });
-
-  let allHtml = '';
-  let foundAny = false;
-  for (let m = 1; m <= 12; m++) {
-    const list = (byMonth[m] || []).sort((a, b) => a.day - b.day);
-    if (!list.length) continue;
-    foundAny = true;
-    allHtml += `
-      <div class="month-group">
-        <div class="month-header">
+    <!-- Panel 2: Upcoming Birthdays -->
+    <section id="panel-upcoming" class="tab-panel hidden space-y-4">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl sm:text-2xl font-bold font-bengaliFancy text-rose-300 flex items-center gap-2">
           <span>📅</span>
-          <span>${monthNamesBn[m]} (${list.length} জন)</span>
+          <span>আসন্ন জন্মদিনসমূহ (আগামী ৩০ দিন)</span>
+          <span id="upcomingCountBadge" class="text-sm px-2.5 py-0.5 rounded-full bg-rose-400/20 text-rose-300 font-display">0</span>
+        </h2>
+      </div>
+      <div id="upcomingList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5"></div>
+    </section>
+
+    <!-- Panel 3: Past Birthdays -->
+    <section id="panel-past" class="tab-panel hidden space-y-4">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl sm:text-2xl font-bold font-bengaliFancy text-purple-300 flex items-center gap-2">
+          <span>⏪</span>
+          <span>সম্প্রতি অতিবাহিত জন্মদিনসমূহ (গত ৯০ দিন)</span>
+          <span id="pastCountBadge" class="text-sm px-2.5 py-0.5 rounded-full bg-purple-400/20 text-purple-300 font-display">0</span>
+        </h2>
+      </div>
+      <div id="pastList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5"></div>
+    </section>
+
+    <!-- Panel 4: All Students -->
+    <section id="panel-all" class="tab-panel hidden space-y-6">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl sm:text-2xl font-bold font-bengaliFancy text-cyan-300 flex items-center gap-2">
+          <span>📋</span>
+          <span>মাসভিত্তিক সকল ছাত্রছাত্রী</span>
+        </h2>
+      </div>
+      <div id="allList" class="space-y-6"></div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 text-center py-8 mt-12 border-t border-white/10 text-slate-400 text-xs sm:text-sm font-bengali">
+    <p>
+      Class XII Birthday Tracker · <span class="text-rose-500 animate-pulse">❤️</span> দিয়ে তৈরি ক্লাসের সকল বন্ধুদের জন্য
+    </p>
+    <p class="mt-2 text-xs text-amber-400/80">
+      ✨ যেকোনো নামের উপর ট্যাপ করুন গান, বেলুন ও ডুয়াল ক্যানন কনফেটি ব্লাস্টারের আনন্দ উপভোগ করতে!
+    </p>
+  </footer>
+
+  <!-- =========================================================
+       FLOATING NOTIFICATION BELL & PREFERENCE MODAL
+       ========================================================= -->
+  <!-- Floating Bell Button (Bottom Right) -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button 
+      id="btnFloatingBell" 
+      class="relative group w-14 h-14 rounded-full bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 p-[2px] shadow-2xl hover:scale-105 active:scale-95 transition-all focus:outline-none"
+      title="জন্মদিন পুশ নোটিফিকেশন সেটিংস"
+      aria-label="Notification Settings"
+    >
+      <div class="w-full h-full rounded-full bg-midnight/90 backdrop-blur-md flex items-center justify-center text-2xl group-hover:bg-midnight/70 transition-colors">
+        <span class="group-hover:rotate-12 transition-transform">🔔</span>
+      </div>
+      <!-- Status indicator dot -->
+      <span id="bellStatusDot" class="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-amber-400 ring-2 ring-midnight pulse-glow"></span>
+    </button>
+
+    <!-- Notification Preference Popover Card -->
+    <div 
+      id="notifPopover" 
+      class="hidden absolute bottom-16 right-0 w-80 sm:w-96 p-5 rounded-2xl glass-panel shadow-2xl border border-amber-400/30 backdrop-blur-2xl z-50 text-left transition-all"
+    >
+      <div class="flex items-start justify-between gap-3 mb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="text-2xl">🔔</span>
+          <div>
+            <h3 class="font-bengaliFancy font-bold text-base text-amber-300">জন্মদিন নোটিফিকেশন অ্যালার্ট</h3>
+            <span id="notifStatusBadge" class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 mt-0.5">
+              অনুমতি যাচাই করা হচ্ছে...
+            </span>
+          </div>
         </div>
-    `;
-    list.forEach((s) => {
-      allHtml += `
-        <div class="list-card all-item" data-sec="${s.section}" data-roll="${s.roll}">
-          <div class="list-left">
-            <div class="avatar-circle" style="width:38px;height:38px;font-size:1.05rem;">🎈</div>
-            <div class="list-details">
-              <span class="list-name" style="font-size:0.94rem;">${s.name}</span>
-              <span class="list-subtext">${s.day} ${monthNamesBn[m]} · সেকশন ${s.section} · রোল ${s.roll}</span>
+        <button id="btnClosePopover" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors">✕</button>
+      </div>
+
+      <p class="text-xs text-slate-300 font-bengali leading-relaxed mb-4">
+        অনুমতি দিলে যেদিন যাদের জন্মদিন, সেদিন <strong class="text-amber-300">রাত ১২:০০ AM (১২টা)</strong>-এ স্বয়ংক্রিয়ভাবে আপনার ডিভাইসে নোটিফিকেশন চলে যাবে যে আজ কতজনের জন্মদিন! 🎂
+      </p>
+
+      <div class="flex flex-col gap-2">
+        <button 
+          id="btnAllowNotif" 
+          class="w-full py-2.5 px-4 rounded-xl font-bengali text-sm font-semibold bg-gradient-to-r from-amber-400 to-rose-500 text-black hover:opacity-95 shadow-md hover:shadow-glow-gold active:scale-98 transition-all flex items-center justify-center gap-2"
+        >
+          <span>🔔</span>
+          <span>অনুমতি দিন (Allow Notification)</span>
+        </button>
+
+        <div class="flex gap-2">
+          <button 
+            id="btnTestNotif" 
+            class="flex-1 py-2 px-3 rounded-xl font-bengali text-xs font-medium bg-white/[0.08] hover:bg-white/[0.15] text-slate-200 border border-white/10 transition-colors flex items-center justify-center gap-1.5"
+          >
+            <span>🚀</span>
+            <span>টেস্ট নোটিফিকেশন</span>
+          </button>
+          <button 
+            id="btnDenyNotif" 
+            class="py-2 px-4 rounded-xl font-bengali text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] text-slate-400 hover:text-white transition-colors"
+          >
+            পরে
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       SPECIFIC PERSON BIRTHDAY CELEBRATION MODAL
+       ========================================================= -->
+  <div id="wishModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
+    <div class="relative w-full max-w-lg rounded-3xl glass-panel p-6 sm:p-8 border border-amber-400/30 text-center shadow-glow-gold transform scale-95 transition-all duration-300">
+      
+      <!-- Close Button top right -->
+      <button id="btnCloseModalX" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.18] text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+        ✕
+      </button>
+
+      <!-- 3D Celebratory Cake Artwork with Animated Flame -->
+      <div class="relative mx-auto w-36 h-32 flex flex-col items-center justify-center">
+        <!-- Interactive Candle Flame -->
+        <div class="relative z-20 flex flex-col items-center cursor-pointer" id="candleWrapper" title="ফুঁ দিতে মোমবাতিতে ট্যাপ করুন!">
+          <div class="candle-flame" id="cakeFlame"></div>
+          <div class="smoke-puff" id="smokePuff"></div>
+        </div>
+
+        <!-- Birthday Cake SVG -->
+        <svg class="w-32 h-28 -mt-2 drop-shadow-2xl" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Candle Stick -->
+          <rect x="75" y="26" width="10" height="28" rx="3" fill="#ffffff"/>
+          <path d="M75 32L85 36M75 42L85 46M75 50L85 54" stroke="#f43f5e" stroke-width="2"/>
+
+          <!-- Cake Plate -->
+          <ellipse cx="80" cy="130" rx="72" ry="10" fill="#ffffff" fill-opacity="0.15"/>
+          <ellipse cx="80" cy="128" rx="66" ry="7" fill="#fbbf24" fill-opacity="0.25"/>
+
+          <!-- Bottom Tier Base -->
+          <rect x="25" y="94" width="110" height="32" rx="10" fill="#4c1d95"/>
+          <ellipse cx="80" cy="94" rx="55" ry="12" fill="#db2777"/>
+
+          <!-- Bottom Tier Frosting drips -->
+          <path d="M25 94C32 108 38 98 48 108C58 98 68 112 80 102C92 112 102 98 112 108C122 98 128 108 135 94" fill="#ffffff" fill-opacity="0.9"/>
+
+          <!-- Top Tier Base -->
+          <rect x="42" y="58" width="76" height="34" rx="8" fill="#7c3aed"/>
+          <ellipse cx="80" cy="58" rx="38" ry="10" fill="#f43f5e"/>
+
+          <!-- Top Tier Frosting drips -->
+          <path d="M42 58C48 68 54 62 62 70C70 62 78 72 86 64C94 72 102 62 110 70C114 65 116 62 118 58" fill="#ffffff" fill-opacity="0.95"/>
+
+          <!-- Sprinkles & Cherries -->
+          <circle cx="55" cy="80" r="2.5" fill="#fde047"/>
+          <circle cx="70" cy="76" r="2.5" fill="#38bdf8"/>
+          <circle cx="88" cy="80" r="2.5" fill="#4ade80"/>
+          <circle cx="102" cy="75" r="2.5" fill="#fbbf24"/>
+          <circle cx="45" cy="56" r="4.5" fill="#ef4444"/>
+          <circle cx="62" cy="54" r="4.5" fill="#ef4444"/>
+          <circle cx="98" cy="54" r="4.5" fill="#ef4444"/>
+          <circle cx="115" cy="56" r="4.5" fill="#ef4444"/>
+        </svg>
+      </div>
+
+      <!-- Candle Blowing Status Badge -->
+      <div id="candleStatusBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-semibold my-2">
+        <span id="candleStatusIcon">🔥</span>
+        <span id="candleStatusText" class="font-bengali">মোমবাতি জ্বলছে... (২ সেকেন্ডে ফুঁ দেওয়া হবে)</span>
+      </div>
+
+      <!-- Celebratory Heading -->
+      <div class="text-xs uppercase tracking-widest text-amber-400 font-semibold mt-1">🎉 HAPPY BIRTHDAY 🎂</div>
+      <h2 id="modalStudentName" class="text-2xl sm:text-3xl font-extrabold font-bengaliFancy mt-1 bg-gradient-to-r from-white via-amber-200 to-rose-300 bg-clip-text text-transparent">
+        —
+      </h2>
+
+      <!-- Randomized Heartfelt Wish Message -->
+      <p id="modalWishMessage" class="mt-2 text-sm text-slate-200 font-bengali leading-relaxed px-2">
+        —
+      </p>
+
+      <!-- Student Detailed Information Grid -->
+      <div class="grid grid-cols-2 gap-2.5 my-5 text-left font-bengali">
+        <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07]">
+          <span class="text-[11px] text-slate-400 block font-medium">শ্রেণি ও সেকশন</span>
+          <span id="modalStudentClassSec" class="text-sm font-semibold text-white">Class XII · A</span>
+        </div>
+        <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07]">
+          <span class="text-[11px] text-slate-400 block font-medium">রোল নম্বর</span>
+          <span id="modalStudentRoll" class="text-sm font-semibold text-white">Roll: 01</span>
+        </div>
+        <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07]">
+          <span class="text-[11px] text-slate-400 block font-medium">জন্মতারিখ ও রাশি</span>
+          <span id="modalStudentDobZodiac" class="text-xs sm:text-sm font-semibold text-amber-300 truncate block">—</span>
+        </div>
+        <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07]">
+          <span class="text-[11px] text-slate-400 block font-medium">বয়স</span>
+          <span id="modalStudentAge" class="text-sm font-semibold text-emerald-300">— বছর পূর্ণ</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-2.5">
+        <div class="flex gap-2">
+          <button id="btnRelightCandle" class="flex-1 py-2.5 px-3 rounded-xl font-bengali text-xs sm:text-sm font-semibold bg-white/[0.07] hover:bg-white/[0.14] text-amber-200 border border-amber-400/30 transition-all flex items-center justify-center gap-1.5">
+            <span>🕯️</span>
+            <span>আবার জ্বালাও</span>
+          </button>
+          <button id="btnShootMoreConfetti" class="flex-1 py-2.5 px-3 rounded-xl font-bengali text-xs sm:text-sm font-semibold bg-gradient-to-r from-pink-500/20 to-purple-500/20 hover:from-pink-500/30 hover:to-purple-500/30 text-rose-200 border border-rose-400/30 transition-all flex items-center justify-center gap-1.5">
+            <span>🎊</span>
+            <span>ক্যানন ব্লাস্টার ফাটাও</span>
+          </button>
+        </div>
+
+        <a id="btnModalWhatsapp" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl font-bengali text-sm font-semibold bg-[#25D366] text-white hover:bg-[#20ba5a] shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 transition-all active:scale-98">
+          <span>📲</span>
+          <span>হোয়াটসঅ্যাপে জন্মদিনের শুভেচ্ছা পাঠান</span>
+        </a>
+
+        <button id="btnModalClose" class="w-full py-2 px-4 rounded-xl font-bengali text-xs font-semibold text-slate-400 hover:text-white transition-colors">
+          ধন্যবাদ 💛 বন্ধ করুন
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT APPLICATION LOGIC
+       ========================================================= -->
+  <script>
+    /* =========================================================
+       1. DATA & CONSTANTS
+       ========================================================= */
+    const monthNamesBn = ['', 'জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+    const dayNamesBn = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
+
+    function getBengaliZodiac(month, day) {
+      if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return '♈ মেষ (Aries)';
+      if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return '♉ বৃষ (Taurus)';
+      if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return '♊ মিথুন (Gemini)';
+      if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return '♋ কর্কট (Cancer)';
+      if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return '♌ সিংহ (Leo)';
+      if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return '♍ কন্যা (Virgo)';
+      if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return '♎ তুলা (Libra)';
+      if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return '♏ বৃশ্চিক (Scorpio)';
+      if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) return '♐ ধনু (Sagittarius)';
+      if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return '♑ মকর (Capricorn)';
+      if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return '♒ কুম্ভ (Aquarius)';
+      return '♓ মীন (Pisces)';
+    }
+
+    function formatDateBn(d) {
+      return d.getDate() + ' ' + monthNamesBn[d.getMonth() + 1] + ' ' + d.getFullYear() + ', ' + dayNamesBn[d.getDay()];
+    }
+
+    const STUDENTS = (window.STUDENT_DATA || []).map(s => ({
+      name: s.n,
+      month: s.m,
+      day: s.d,
+      gender: s.g === 1 ? 'GIRLS' : 'BOYS',
+      section: s.s || 'A',
+      roll: s.r,
+      dob: s.dob || ''
+    }));
+
+    const wishMessages = [
+      'আপনার জীবন সুখ, সাফল্য ও অফুরন্ত হাসি-আনন্দে ভরে উঠুক। অনেক অনেক শুভকামনা! 🎉',
+      'জন্মদিনের এই বিশেষ আনন্দময় দিনে আপনার জন্য রইল আন্তরিক প্রীতি ও শুভেচ্ছা। সব স্বপ্ন ডানা মেলুক! ✨',
+      'শুভ জন্মদিন! জীবনের প্রতিটি পদক্ষেপে সাফল্য ও আনন্দের আলো ছড়িয়ে পড়ুক। 🎂',
+      'আজকের দিনটা আপনার জন্য অনন্য সুন্দর ও স্মরণীয় হোক। হাসতে থাকুন, বন্ধুদের সাথে আনন্দ উপভোগ করুন! 🎈',
+      'জন্মদিনের অফুরান প্রীতি ও শুভেচ্ছা! আপনার ভবিষ্যৎ হোক স্বর্ণালী ও উজ্জ্বল। 💛',
+      'নতুন বছর আপনার জীবনে বয়ে নিয়ে আসুক অপার শান্তি, নতুন সাফল্য আর অনন্ত অনুপ্রেরণা! 🌟'
+    ];
+
+    /* =========================================================
+       2. WEB AUDIO API SYNTHESIZER: "HAPPY BIRTHDAY TO YOU" MUSIC
+       ========================================================= */
+    let audioCtx = null;
+    let isMusicPlaying = false;
+    let musicTimeoutId = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioClass) audioCtx = new AudioClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // Gentle Bell/Electric-Piano Melodic Tone Synthesis
+    function playMelodicNote(freq, duration, delay = 0) {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      setTimeout(() => {
+        try {
+          const now = ctx.currentTime;
+          // Primary chime oscillator
+          const osc1 = ctx.createOscillator();
+          // Warm harmonic overtone oscillator
+          const osc2 = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const filter = ctx.createBiquadFilter();
+
+          osc1.type = 'triangle';
+          osc1.frequency.setValueAtTime(freq, now);
+
+          osc2.type = 'sine';
+          osc2.frequency.setValueAtTime(freq * 2, now); // 1 octave overtone
+
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(1800, now);
+
+          // ADSR Envelope
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.linearRampToValueAtTime(0.18, now + 0.02); // quick attack
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+          osc1.connect(filter);
+          osc2.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+
+          osc1.start(now);
+          osc2.start(now);
+          osc1.stop(now + duration);
+          osc2.stop(now + duration);
+        } catch (e) {}
+      }, delay);
+    }
+
+    // Candle blow whoosh sound
+    function playCandleBlowPuff() {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      try {
+        const bufferSize = ctx.sampleRate * 0.35;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.07));
+        }
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(500, ctx.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.35);
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.25, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        noise.start();
+      } catch (e) {}
+    }
+
+    // Cannon explosion burst sound
+    function playCannonBlastSound() {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      try {
+        const now = ctx.currentTime;
+        // Low boom
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(150, now);
+        osc.frequency.exponentialRampToValueAtTime(35, now + 0.35);
+
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.35);
+      } catch (e) {}
+    }
+
+    // Full Classic "Happy Birthday to You" Melody Sheet
+    const happyBirthdayScore = [
+      { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 293.66, d: 550 }, { f: 261.63, d: 550 },
+      { f: 349.23, d: 550 }, { f: 329.63, d: 900 },
+      { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 293.66, d: 550 }, { f: 261.63, d: 550 },
+      { f: 392.00, d: 550 }, { f: 349.23, d: 900 },
+      { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 523.25, d: 550 }, { f: 440.00, d: 550 },
+      { f: 349.23, d: 550 }, { f: 329.63, d: 550 }, { f: 293.66, d: 800 },
+      { f: 466.16, d: 350 }, { f: 466.16, d: 250 }, { f: 440.00, d: 550 }, { f: 349.23, d: 550 },
+      { f: 392.00, d: 550 }, { f: 349.23, d: 1000 }
+    ];
+
+    function startHappyBirthdayMusic() {
+      getAudioContext();
+      if (isMusicPlaying) return;
+      isMusicPlaying = true;
+      updateMusicUI(true);
+
+      let step = 0;
+      function playStep() {
+        if (!isMusicPlaying) return;
+        const note = happyBirthdayScore[step];
+        playMelodicNote(note.f, note.d / 1000, 0);
+        step = (step + 1) % happyBirthdayScore.length;
+        musicTimeoutId = setTimeout(playStep, note.d + 50);
+      }
+      playStep();
+    }
+
+    function stopHappyBirthdayMusic() {
+      isMusicPlaying = false;
+      if (musicTimeoutId) clearTimeout(musicTimeoutId);
+      updateMusicUI(false);
+    }
+
+    function updateMusicUI(playing) {
+      const btn = document.getElementById('btnToggleMusic');
+      const icon = document.getElementById('musicIcon');
+      const label = document.getElementById('musicLabel');
+      if (playing) {
+        btn.classList.add('border-amber-400', 'text-amber-200');
+        icon.textContent = '🔊';
+        label.textContent = 'মিউজিক বন্ধ';
+      } else {
+        btn.classList.remove('border-amber-400', 'text-amber-200');
+        icon.textContent = '🎵';
+        label.textContent = 'বার্থডে মিউজিক';
+      }
+    }
+
+    document.getElementById('btnToggleMusic').addEventListener('click', () => {
+      if (isMusicPlaying) {
+        stopHappyBirthdayMusic();
+      } else {
+        startHappyBirthdayMusic();
+      }
+    });
+
+    /* =========================================================
+       3. DUAL CANNON CONFETTI BLASTER WITH BOTTOM ACCUMULATION
+       ========================================================= */
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationFrameId = null;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Fire Dual Cannons from Bottom Left and Bottom Right
+    function fireDualCannons(countPerCannon = 75) {
+      playCannonBlastSound();
+
+      const palette = [
+        '#fbbf24', '#f59e0b', // Gold
+        '#f43f5e', '#e11d48', // Rose / Pink
+        '#06b6d4', '#0284c7', // Cyan / Blue
+        '#10b981', '#059669', // Emerald
+        '#a855f7', '#7c3aed', // Purple
+        '#f97316', '#ea580c', // Orange
+        '#ffffff'             // Sparkle White
+      ];
+
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // Cannon 1: Bottom-Left (Shoots UP & to the RIGHT)
+      for (let i = 0; i < countPerCannon; i++) {
+        // Angle between ~45 deg to 75 deg
+        const angle = (Math.PI / 180) * (Math.random() * 35 + 45);
+        const speed = Math.random() * 14 + 16;
+        particles.push(createParticle(w * 0.05, h + 10, Math.cos(angle) * speed, -Math.sin(angle) * speed, palette));
+      }
+
+      // Cannon 2: Bottom-Right (Shoots UP & to the LEFT)
+      for (let i = 0; i < countPerCannon; i++) {
+        // Angle between ~105 deg to 135 deg
+        const angle = (Math.PI / 180) * (Math.random() * 35 + 100);
+        const speed = Math.random() * 14 + 16;
+        particles.push(createParticle(w * 0.95, h + 10, Math.cos(angle) * speed, -Math.sin(angle) * speed, palette));
+      }
+
+      // Show "Clear Confetti" button
+      document.getElementById('btnClearConfetti').classList.remove('hidden');
+
+      if (!animationFrameId) {
+        animateConfetti();
+      }
+    }
+
+    function createParticle(x, y, vx, vy, palette) {
+      const type = Math.random() > 0.35 ? 'ribbon' : (Math.random() > 0.5 ? 'square' : 'circle');
+      const floorOffset = Math.random() * 32 + 4; // realistic bottom accumulation pile
+      return {
+        x: x,
+        y: y,
+        vx: vx,
+        vy: vy,
+        type: type,
+        width: type === 'ribbon' ? Math.random() * 10 + 8 : Math.random() * 7 + 5,
+        height: type === 'ribbon' ? Math.random() * 5 + 4 : Math.random() * 7 + 5,
+        color: palette[Math.floor(Math.random() * palette.length)],
+        rotation: Math.random() * 360,
+        rotationSpeed: (Math.random() - 0.5) * 10,
+        wobble: Math.random() * 10,
+        wobbleSpeed: Math.random() * 0.12 + 0.05,
+        floor: canvas.height - floorOffset,
+        settled: false,
+        opacity: 1
+      };
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let hasActiveAirborne = false;
+
+      // Limit max total particles to 750 to guarantee 60 FPS performance
+      if (particles.length > 750) {
+        particles = particles.slice(particles.length - 750);
+      }
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        if (!p.settled) {
+          hasActiveAirborne = true;
+          // Apply gravity & physics
+          p.vy += 0.38; // gravity pulling down
+          p.vx *= 0.985; // air resistance
+          p.x += p.vx;
+          p.y += p.vy;
+
+          p.rotation += p.rotationSpeed;
+          p.wobble += p.wobbleSpeed;
+
+          // Check if particle reached the floor
+          if (p.y >= p.floor) {
+            p.y = p.floor;
+            p.vx = 0;
+            p.vy = 0;
+            p.settled = true; // Settle on floor! DOES NOT HIDE OR DISAPPEAR!
+          }
+        }
+
+        // Draw particle
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.globalAlpha = p.opacity;
+        ctx.fillStyle = p.color;
+
+        if (p.type === 'ribbon') {
+          // Fluttering strip of shredded paper
+          const w = p.width * Math.cos(p.wobble);
+          ctx.fillRect(-w / 2, -p.height / 2, w, p.height);
+        } else if (p.type === 'square') {
+          ctx.fillRect(-p.width / 2, -p.height / 2, p.width, p.height);
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.width / 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      // Continue loop if there are still airborne flying particles
+      if (hasActiveAirborne) {
+        animationFrameId = requestAnimationFrame(animateConfetti);
+      } else {
+        animationFrameId = null; // Canvas keeps the settled floor shreds visible!
+      }
+    }
+
+    // Clear settled confetti shreds
+    document.getElementById('btnClearConfetti').addEventListener('click', () => {
+      particles = [];
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      document.getElementById('btnClearConfetti').classList.add('hidden');
+    });
+
+    /* =========================================================
+       4. FLYING BALLOONS OVERLAY
+       ========================================================= */
+    const balloonOverlay = document.getElementById('balloonOverlay');
+
+    function triggerBalloonsFlyUp() {
+      balloonOverlay.innerHTML = '';
+      const balloonColors = [
+        'radial-gradient(circle at 35% 30%, #f43f5e, #be123c)',
+        'radial-gradient(circle at 35% 30%, #fbbf24, #d97706)',
+        'radial-gradient(circle at 35% 30%, #38bdf8, #0284c7)',
+        'radial-gradient(circle at 35% 30%, #a855f7, #6d28d9)',
+        'radial-gradient(circle at 35% 30%, #34d399, #059669)',
+        'radial-gradient(circle at 35% 30%, #fb7185, #e11d48)'
+      ];
+
+      for (let i = 0; i < 28; i++) {
+        const b = document.createElement('div');
+        b.className = 'flying-balloon';
+        const size = Math.floor(Math.random() * 26) + 38;
+        b.style.width = size + 'px';
+        b.style.height = Math.floor(size * 1.25) + 'px';
+        b.style.left = (Math.random() * 92 + 4) + '%';
+        b.style.background = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+        b.style.animationDelay = (Math.random() * 0.45) + 's';
+        b.style.animationDuration = (Math.random() * 0.8 + 2.0) + 's';
+        balloonOverlay.appendChild(b);
+      }
+
+      setTimeout(() => {
+        balloonOverlay.innerHTML = '';
+      }, 3000);
+    }
+
+    /* =========================================================
+       5. SPECIFIC PERSON BIRTHDAY CELEBRATION MODAL
+       ========================================================= */
+    const wishModal = document.getElementById('wishModal');
+    const cakeFlame = document.getElementById('cakeFlame');
+    const smokePuff = document.getElementById('smokePuff');
+    const candleStatusIcon = document.getElementById('candleStatusIcon');
+    const candleStatusText = document.getElementById('candleStatusText');
+    let candleTimer = null;
+    let currentStudent = null;
+
+    function lightCandle() {
+      cakeFlame.classList.remove('extinguished');
+      smokePuff.classList.remove('puff-active');
+      candleStatusIcon.textContent = '🔥';
+      candleStatusText.textContent = 'মোমবাতি জ্বলছে... (২ সেকেন্ডে ফুঁ দেওয়া হবে)';
+    }
+
+    function extinguishCandle() {
+      cakeFlame.classList.add('extinguished');
+      smokePuff.classList.remove('puff-active');
+      void smokePuff.offsetWidth; // trigger reflow
+      smokePuff.classList.add('puff-active');
+
+      candleStatusIcon.textContent = '💨';
+      candleStatusText.textContent = '✨ ফুঁ দিয়ে মোমবাতি নেভানো হলো!';
+
+      playCandleBlowPuff();
+      fireDualCannons(60);
+    }
+
+    // Toggle candle on user click
+    document.getElementById('candleWrapper').addEventListener('click', () => {
+      if (cakeFlame.classList.contains('extinguished')) {
+        lightCandle();
+      } else {
+        if (candleTimer) clearTimeout(candleTimer);
+        extinguishCandle();
+      }
+    });
+
+    document.getElementById('btnRelightCandle').addEventListener('click', () => {
+      lightCandle();
+      if (candleTimer) clearTimeout(candleTimer);
+      candleTimer = setTimeout(extinguishCandle, 2000);
+    });
+
+    document.getElementById('btnShootMoreConfetti').addEventListener('click', () => {
+      fireDualCannons(80);
+    });
+
+    // OPEN CELEBRATION MODAL & TRIGGER MUSIC + CONFETTI
+    function openStudentCelebration(student) {
+      currentStudent = student;
+
+      // 1. Automatic "Happy Birthday to You" Music on Card Click!
+      startHappyBirthdayMusic();
+
+      // 2. Blast Dual Bottom Cannons!
+      fireDualCannons(80);
+
+      // 3. Balloons fly up the viewport
+      triggerBalloonsFlyUp();
+
+      // 4. Fill Student Details in Modal
+      document.getElementById('modalStudentName').textContent = student.name;
+      const wishMsg = wishMessages[Math.floor(Math.random() * wishMessages.length)];
+      document.getElementById('modalWishMessage').textContent = wishMsg;
+      document.getElementById('modalStudentClassSec').textContent = `Class XII · সেকশন ${student.section}`;
+      document.getElementById('modalStudentRoll').textContent = `রোল: ${student.roll}`;
+
+      const zodiac = getBengaliZodiac(student.month, student.day);
+      const dobStr = student.dob ? `${student.dob} · ` : '';
+      document.getElementById('modalStudentDobZodiac').textContent = `${dobStr}${zodiac}`;
+
+      // Calculate Age
+      let ageText = '—';
+      if (student.dob) {
+        const bDate = new Date(student.dob);
+        if (!isNaN(bDate.getTime())) {
+          const today = new Date();
+          let age = today.getFullYear() - bDate.getFullYear();
+          const mDiff = today.getMonth() - bDate.getMonth();
+          if (mDiff < 0 || (mDiff === 0 && today.getDate() < bDate.getDate())) {
+            age--;
+          }
+          ageText = age > 0 ? `${age} বছর পূর্ণ` : '—';
+        }
+      }
+      document.getElementById('modalStudentAge').textContent = ageText;
+
+      // WhatsApp Share Link
+      const waText = encodeURIComponent(`🎉 শুভ জন্মদিন ${student.name}! 🎂\nClass XII (সেকশন ${student.section}, রোল ${student.roll})\n${wishMsg}\nশুভকামনায়: Class XII Friends 🎈`);
+      document.getElementById('btnModalWhatsapp').href = `https://wa.me/?text=${waText}`;
+
+      // Reset & Light candle
+      lightCandle();
+
+      // Show modal with animation
+      wishModal.classList.remove('opacity-0', 'pointer-events-none');
+      wishModal.querySelector('.glass-panel').classList.remove('scale-95');
+      wishModal.querySelector('.glass-panel').classList.add('scale-100');
+
+      // 2 seconds later: extinguish candle & burst more confetti
+      if (candleTimer) clearTimeout(candleTimer);
+      candleTimer = setTimeout(extinguishCandle, 2000);
+    }
+
+    function closeModal() {
+      wishModal.classList.add('opacity-0', 'pointer-events-none');
+      wishModal.querySelector('.glass-panel').classList.add('scale-95');
+      wishModal.querySelector('.glass-panel').classList.remove('scale-100');
+      if (candleTimer) clearTimeout(candleTimer);
+    }
+
+    document.getElementById('btnCloseModalX').addEventListener('click', closeModal);
+    document.getElementById('btnModalClose').addEventListener('click', closeModal);
+    wishModal.addEventListener('click', (e) => {
+      if (e.target === wishModal) closeModal();
+    });
+
+    /* =========================================================
+       6. FLOATING NOTIFICATION BELL & MIDNIGHT 12:00 AM SCHEDULER
+       ========================================================= */
+    const notifPopover = document.getElementById('notifPopover');
+    const bellStatusDot = document.getElementById('bellStatusDot');
+    const notifStatusBadge = document.getElementById('notifStatusBadge');
+
+    function updateNotifUI() {
+      if (!('Notification' in window)) {
+        notifStatusBadge.textContent = '❌ ব্রাউজারে নোটিফিকেশন সাপোর্ট নেই';
+        notifStatusBadge.className = 'inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 mt-0.5';
+        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-slate-500 ring-2 ring-midnight';
+        return;
+      }
+
+      if (Notification.permission === 'granted') {
+        notifStatusBadge.textContent = '✅ নোটিফিকেশন সক্রিয় রয়েছে';
+        notifStatusBadge.className = 'inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 mt-0.5';
+        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-midnight pulse-glow';
+      } else if (Notification.permission === 'denied') {
+        notifStatusBadge.textContent = '🚫 অনুমতি বাতিল (Blocked)';
+        notifStatusBadge.className = 'inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 mt-0.5';
+        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-rose-500 ring-2 ring-midnight';
+      } else {
+        notifStatusBadge.textContent = '⚠️ অনুমতি দেওয়া হয়নি (Click Allow)';
+        notifStatusBadge.className = 'inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 mt-0.5';
+        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-amber-400 ring-2 ring-midnight pulse-glow';
+      }
+    }
+
+    // Toggle popover
+    document.getElementById('btnFloatingBell').addEventListener('click', (e) => {
+      e.stopPropagation();
+      notifPopover.classList.toggle('hidden');
+    });
+
+    document.getElementById('btnClosePopover').addEventListener('click', () => {
+      notifPopover.classList.add('hidden');
+    });
+
+    document.getElementById('btnDenyNotif').addEventListener('click', () => {
+      notifPopover.classList.add('hidden');
+    });
+
+    // Close popover when clicked outside
+    document.addEventListener('click', (e) => {
+      if (!notifPopover.contains(e.target) && e.target !== document.getElementById('btnFloatingBell')) {
+        notifPopover.classList.add('hidden');
+      }
+    });
+
+    // Allow Notifications
+    document.getElementById('btnAllowNotif').addEventListener('click', async () => {
+      if (!('Notification' in window)) {
+        alert('আপনার ব্রাউজারে নোটিফিকেশন সাপোর্ট করে না');
+        return;
+      }
+      try {
+        const perm = await Notification.requestPermission();
+        updateNotifUI();
+        if (perm === 'granted') {
+          sendTodayBirthdayNotification();
+          scheduleMidnightNotification();
+        }
+      } catch (err) {
+        console.error('Notification permission error:', err);
+      }
+    });
+
+    // Send Test Notification
+    document.getElementById('btnTestNotif').addEventListener('click', async () => {
+      if (!('Notification' in window)) {
+        alert('আপনার ব্রাউজারে নোটিফিকেশন সাপোর্ট করে না');
+        return;
+      }
+      if (Notification.permission !== 'granted') {
+        const perm = await Notification.requestPermission();
+        updateNotifUI();
+        if (perm !== 'granted') return;
+      }
+      sendTodayBirthdayNotification();
+    });
+
+    // Send Notification for Today
+    function sendTodayBirthdayNotification() {
+      if (Notification.permission !== 'granted') return;
+      const now = new Date();
+      const tm = now.getMonth() + 1;
+      const td = now.getDate();
+      const bdays = STUDENTS.filter(s => s.month === tm && s.day === td);
+
+      let title, body;
+      if (!bdays.length) {
+        title = '🎂 আজ কারো জন্মদিন নেই';
+        body = 'পরবর্তী দিনগুলোতে বন্ধুদের জন্মদিন দেখতে ট্র্যাকার খুলুন! ✨';
+      } else if (bdays.length === 1) {
+        title = `🎉 আজ ${bdays[0].name}-এর জন্মদিন!`;
+        body = `সেকশন ${bdays[0].section} · রোল ${bdays[0].roll} · শুভ জন্মদিন! 🎂`;
+      } else {
+        title = `🎉 আজ ${bdays.length} জনের জন্মদিন!`;
+        body = bdays.map(s => s.name).join(', ') + ' · সবাইকে জন্মদিনের অনেক অনেক শুভেচ্ছা! 🎂';
+      }
+
+      try {
+        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+          navigator.serviceWorker.ready.then(reg => {
+            reg.showNotification(title, {
+              body: body,
+              icon: 'favicon.svg',
+              badge: 'favicon.svg',
+              vibrate: [200, 100, 200]
+            });
+          });
+        } else {
+          new Notification(title, { body: body, icon: 'favicon.svg' });
+        }
+      } catch (e) {
+        console.warn('Could not fire notification:', e);
+      }
+    }
+
+    // Midnight 12:00 AM (00:00) Notification Scheduler
+    function scheduleMidnightNotification() {
+      if (Notification.permission !== 'granted') return;
+      const now = new Date();
+      // Target midnight 12:00:00 AM of next day
+      const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 2);
+      const msUntilMidnight = midnight.getTime() - now.getTime();
+
+      setTimeout(() => {
+        // Fire midnight notification
+        sendTodayBirthdayNotification();
+        // Update page UI automatically
+        render();
+        initNextBirthdayCountdown();
+        // Repeat every 24 hours at midnight
+        setInterval(() => {
+          sendTodayBirthdayNotification();
+          render();
+          initNextBirthdayCountdown();
+        }, 24 * 60 * 60 * 1000);
+      }, msUntilMidnight);
+    }
+
+    // Check once per day on page load
+    function checkDailyNotificationOnLoad() {
+      if (Notification.permission !== 'granted') return;
+      const todayKey = 'bday_notif_' + new Date().toISOString().slice(0, 10);
+      try {
+        if (!localStorage.getItem(todayKey)) {
+          localStorage.setItem(todayKey, '1');
+          setTimeout(sendTodayBirthdayNotification, 1500);
+        }
+      } catch (e) {}
+    }
+
+    /* =========================================================
+       7. LIVE COUNTDOWN TO NEXT BIRTHDAY
+       ========================================================= */
+    let countdownInterval = null;
+
+    function initNextBirthdayCountdown() {
+      if (countdownInterval) clearInterval(countdownInterval);
+      const strip = document.getElementById('nextBirthdayCountdown');
+      const now = new Date();
+
+      // Find earliest upcoming birthday
+      let candidate = null;
+      let minDiffMs = Infinity;
+
+      STUDENTS.forEach(s => {
+        let bYear = now.getFullYear();
+        let target = new Date(bYear, s.month - 1, s.day, 0, 0, 0);
+        if (target.getTime() < now.getTime()) {
+          target = new Date(bYear + 1, s.month - 1, s.day, 0, 0, 0);
+        }
+        const diff = target.getTime() - now.getTime();
+        if (diff > 0 && diff < minDiffMs) {
+          minDiffMs = diff;
+          candidate = { student: s, target: target };
+        }
+      });
+
+      if (!candidate) {
+        strip.innerHTML = '<span>🎉 ক্লাসের সকল বন্ধুদের জন্মদিন শুভ হোক! 🎂</span>';
+        return;
+      }
+
+      function updateCountdown() {
+        const curr = new Date();
+        const diff = candidate.target.getTime() - curr.getTime();
+        if (diff <= 0) {
+          strip.innerHTML = `<span class="text-amber-300 font-bold">🎉 আজ ${candidate.student.name}-এর জন্মদিন! 🎂</span>`;
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        strip.innerHTML = `
+          <span>⏳ পরবর্তী জন্মদিন: <strong class="text-white">${candidate.student.name}</strong> (${candidate.student.day} ${monthNamesBn[candidate.student.month]}) — </span>
+          <span class="font-display font-bold text-amber-300">${days}d ${hours}h ${mins}m ${secs}s বাকি</span>
+        `;
+      }
+
+      updateCountdown();
+      countdownInterval = setInterval(updateCountdown, 1000);
+    }
+
+    /* =========================================================
+       8. FILTERING & RENDERING ENGINE
+       ========================================================= */
+    let currentSection = 'ALL';
+    let searchQuery = '';
+
+    // Tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('active', 'bg-gradient-to-r', 'from-amber-500', 'to-rose-500', 'text-black', 'shadow-lg');
+          b.classList.add('bg-white/[0.05]', 'text-slate-300', 'border', 'border-white/10');
+        });
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+
+        btn.classList.add('active', 'bg-gradient-to-r', 'from-amber-500', 'to-rose-500', 'text-black', 'shadow-lg');
+        btn.classList.remove('bg-white/[0.05]', 'text-slate-300', 'border', 'border-white/10');
+
+        const targetPanel = document.getElementById('panel-' + btn.dataset.tab);
+        if (targetPanel) targetPanel.classList.remove('hidden');
+      });
+    });
+
+    // Section chips
+    document.querySelectorAll('.sec-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.sec-chip').forEach(c => {
+          c.classList.remove('active', 'bg-amber-400', 'text-black', 'shadow-glow-gold');
+          c.classList.add('bg-white/[0.06]', 'text-slate-300', 'border', 'border-white/10');
+        });
+        chip.classList.add('active', 'bg-amber-400', 'text-black', 'shadow-glow-gold');
+        chip.classList.remove('bg-white/[0.06]', 'text-slate-300', 'border', 'border-white/10');
+        currentSection = chip.dataset.sec;
+        render();
+      });
+    });
+
+    // Search input
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      render();
+    });
+
+    function matchesFilter(s) {
+      if (currentSection !== 'ALL' && s.section !== currentSection) return false;
+      if (!searchQuery) return true;
+      const nameMatch = s.name.toLowerCase().includes(searchQuery);
+      const rollMatch = s.roll && s.roll.toString().includes(searchQuery);
+      return nameMatch || rollMatch;
+    }
+
+    function render() {
+      const now = new Date();
+      const tm = now.getMonth() + 1;
+      const td = now.getDate();
+
+      document.getElementById('todayDateText').textContent = formatDateBn(now);
+
+      const filtered = STUDENTS.filter(matchesFilter);
+
+      // 1. TODAY'S BIRTHDAYS (HERO CARDS)
+      const today = filtered.filter(s => s.month === tm && s.day === td);
+      document.getElementById('todayCountBadge').textContent = today.length;
+      document.getElementById('tabCountToday').textContent = today.length;
+
+      const todayContainer = document.getElementById('todayList');
+      if (!today.length) {
+        todayContainer.className = 'w-full';
+        todayContainer.innerHTML = `
+          <div class="glass-panel rounded-3xl p-8 sm:p-12 text-center text-slate-400">
+            <span class="text-5xl sm:text-6xl block mb-3 animate-bounce">🎈</span>
+            <h3 class="text-lg sm:text-xl font-bold font-bengali text-white">আজ কারো জন্মদিন নেই</h3>
+            <p class="text-xs sm:text-sm mt-1.5 font-bengali text-slate-400">
+              আসন্ন জন্মদিন দেখতে <strong>'আসন্ন ৩০ দিন'</strong> ট্যাবে দেখুন অথবা অন্য বন্ধুদের উইশ করতে তালিকা ঘুরে দেখুন! ✨
+            </p>
+          </div>
+        `;
+      } else {
+        todayContainer.className = 'grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6';
+        todayContainer.innerHTML = today.map((s, idx) => `
+          <div class="hero-card rounded-3xl p-6 cursor-pointer relative overflow-hidden group transition-all" data-today-idx="${idx}">
+            <div class="absolute -right-6 -bottom-6 text-7xl opacity-15 pointer-events-none group-hover:scale-125 transition-transform duration-500">🎂</div>
+            
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-400/20 text-amber-300 border border-amber-400/40">
+                <span class="pulse-glow">✨</span> আজকের বিশেষ তারকা
+              </span>
+              <span class="text-xs font-display font-semibold px-2.5 py-1 rounded-full bg-white/[0.08] text-slate-300">
+                সেকশন ${s.section} · রোল ${s.roll}
+              </span>
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl font-extrabold font-bengaliFancy text-white group-hover:text-amber-200 transition-colors">
+              ${s.name}
+            </h3>
+
+            <div class="flex flex-wrap gap-2 mt-3 text-xs font-bengali">
+              <span class="px-2.5 py-1 rounded-xl bg-white/[0.06] text-slate-300 border border-white/10">
+                ${s.gender === 'GIRLS' ? '👧 ছাত্রী' : '👦 ছাত্র'}
+              </span>
+              <span class="px-2.5 py-1 rounded-xl bg-white/[0.06] text-amber-300 border border-white/10">
+                🌟 ${getBengaliZodiac(s.month, s.day)}
+              </span>
+              <span class="px-2.5 py-1 rounded-xl bg-white/[0.06] text-rose-300 border border-white/10">
+                🎂 ${s.dob || (s.day + ' ' + monthNamesBn[s.month])}
+              </span>
+            </div>
+
+            <div class="mt-5 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-amber-300/90 font-bengali">
+              <span class="flex items-center gap-1.5 font-semibold">
+                <span>👆 ট্যাপ করুন গান, মোমবাতি ও ক্যানন ব্লাস্টার দেখতে</span>
+              </span>
+              <span class="text-base group-hover:translate-x-1 transition-transform">➔</span>
             </div>
           </div>
-          <span class="list-right-badge" style="font-size:0.78rem;">${s.day} তারিখ</span>
-        </div>
-      `;
-    });
-    allHtml += '</div>';
-  }
+        `).join('');
 
-  const allContainer = document.getElementById('allList');
-  if (!foundAny) {
-    allContainer.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">🔍</div>
-        <p style="font-size:1.02rem; font-weight:600; color:#fff;">কোনো ছাত্রছাত্রী খুঁজে পাওয়া যায়নি</p>
-      </div>`;
-  } else {
-    allContainer.innerHTML = allHtml;
-    allContainer.querySelectorAll('.all-item').forEach(el => {
-      const sec = el.dataset.sec;
-      const roll = +el.dataset.roll;
-      const found = STUDENTS.find(s => s.section === sec && s.roll === roll);
-      if (found) {
-        el.addEventListener('click', () => openWish(found));
+        todayContainer.querySelectorAll('[data-today-idx]').forEach(el => {
+          const idx = +el.dataset.todayIdx;
+          el.addEventListener('click', () => openStudentCelebration(today[idx]));
+        });
       }
-    });
-  }
-}
 
-/* =========================================================
-   10. BROWSER NOTIFICATIONS
-   ========================================================= */
-const notifBanner = document.getElementById('notifBanner');
-const notifStatus = document.getElementById('notifStatus');
+      // 2. UPCOMING BIRTHDAYS (Next 30 Days)
+      const upcoming = [];
+      for (let i = 1; i <= 30; i++) {
+        const d = new Date(now);
+        d.setDate(d.getDate() + i);
+        const m = d.getMonth() + 1;
+        const day = d.getDate();
+        filtered.filter(s => s.month === m && s.day === day).forEach(s => {
+          upcoming.push(Object.assign({}, s, {
+            daysLeft: i,
+            dateStr: `${day} ${monthNamesBn[m]}`
+          }));
+        });
+      }
+      document.getElementById('upcomingCountBadge').textContent = upcoming.length;
+      document.getElementById('tabCountUpcoming').textContent = upcoming.length;
 
-function updateNotifUI() {
-  if (!('Notification' in window)) {
-    notifBanner.classList.add('hidden');
-    return;
-  }
-  if (Notification.permission === 'granted') {
-    notifBanner.classList.add('hidden');
-    notifStatus.classList.add('show');
-  } else if (Notification.permission === 'denied') {
-    notifBanner.classList.add('hidden');
-  } else {
-    notifBanner.classList.remove('hidden');
-    notifStatus.classList.remove('show');
-  }
-}
+      const upcomingContainer = document.getElementById('upcomingList');
+      if (!upcoming.length) {
+        upcomingContainer.className = 'w-full';
+        upcomingContainer.innerHTML = `
+          <div class="glass-panel rounded-3xl p-8 text-center text-slate-400">
+            <span class="text-4xl block mb-2">📅</span>
+            <p class="font-bengali text-sm">পরবর্তী ৩০ দিনে কোনো জন্মদিন পাওয়া যায়নি</p>
+          </div>
+        `;
+      } else {
+        upcomingContainer.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5';
+        upcomingContainer.innerHTML = upcoming.map((s, idx) => `
+          <div class="glass-panel rounded-2xl p-4 cursor-pointer flex items-center justify-between gap-3 group" data-upcoming-idx="${idx}">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500/20 to-rose-500/20 border border-white/10 flex items-center justify-center text-lg flex-shrink-0 group-hover:scale-110 transition-transform">
+                🎁
+              </div>
+              <div class="min-w-0">
+                <h4 class="font-bengali font-bold text-sm sm:text-base text-white group-hover:text-amber-300 transition-colors truncate">
+                  ${s.name}
+                </h4>
+                <p class="text-xs text-slate-400 font-bengali truncate">
+                  সেকশন ${s.section} · রোল ${s.roll} · <span class="text-amber-200">${s.dateStr}</span>
+                </p>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded-xl text-xs font-bengali font-semibold bg-rose-500/20 text-rose-300 flex-shrink-0 border border-rose-500/30">
+              ${s.daysLeft === 1 ? 'কাল 🎉' : s.daysLeft + ' দিন বাকি'}
+            </span>
+          </div>
+        `).join('');
 
-document.getElementById('btnAllow').addEventListener('click', async () => {
-  if (!('Notification' in window)) {
-    alert('এই ব্রাউজারে নোটিফিকেশন সাপোর্ট করে না');
-    return;
-  }
-  const perm = await Notification.requestPermission();
-  updateNotifUI();
-  if (perm === 'granted') sendTodayNotification();
-});
+        upcomingContainer.querySelectorAll('[data-upcoming-idx]').forEach(el => {
+          const idx = +el.dataset.upcomingIdx;
+          el.addEventListener('click', () => openStudentCelebration(upcoming[idx]));
+        });
+      }
 
-document.getElementById('btnDeny').addEventListener('click', () => {
-  notifBanner.classList.add('hidden');
-  try { localStorage.setItem('notif_denied', '1'); } catch (e) {}
-});
+      // 3. PAST BIRTHDAYS (Last 90 Days)
+      const past = [];
+      for (let i = 1; i <= 90; i++) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        const m = d.getMonth() + 1;
+        const day = d.getDate();
+        filtered.filter(s => s.month === m && s.day === day).forEach(s => {
+          past.push(Object.assign({}, s, {
+            daysAgo: i,
+            dateStr: `${day} ${monthNamesBn[m]}`
+          }));
+        });
+      }
+      past.sort((a, b) => a.daysAgo - b.daysAgo);
+      document.getElementById('pastCountBadge').textContent = past.length;
+      document.getElementById('tabCountPast').textContent = past.length;
 
-function sendTodayNotification() {
-  if (Notification.permission !== 'granted') return;
-  const now = new Date();
-  const t = STUDENTS.filter(s => s.month === (now.getMonth() + 1) && s.day === now.getDate());
-  let title, body;
-  if (!t.length) {
-    title = '🎂 আজ কারো জন্মদিন নেই';
-    body = 'আগামী দিনগুলোতে কেউ থাকলে জানিয়ে দেওয়া হবে!';
-  } else if (t.length === 1) {
-    title = '🎉 আজ ' + t[0].name + '-এর জন্মদিন!';
-    body = 'সেকশন ' + t[0].section + ' · রোল ' + t[0].roll + ' · শুভ জন্মদিন! 🎂';
-  } else {
-    title = '🎉 আজ ' + t.length + ' জনের জন্মদিন!';
-    body = t.map(s => s.name).join(', ') + ' · সবাইকে জন্মদিনের অনেক শুভেচ্ছা! 🎂';
-  }
-  try {
-    new Notification(title, { body, tag: 'birthday-today', icon: '🎂' });
-  } catch (e) {}
-}
+      const pastContainer = document.getElementById('pastList');
+      if (!past.length) {
+        pastContainer.className = 'w-full';
+        pastContainer.innerHTML = `
+          <div class="glass-panel rounded-3xl p-8 text-center text-slate-400">
+            <span class="text-4xl block mb-2">⏪</span>
+            <p class="font-bengali text-sm">গত ৯০ দিনে কোনো জন্মদিন রেকর্ড নেই</p>
+          </div>
+        `;
+      } else {
+        pastContainer.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5';
+        pastContainer.innerHTML = past.map((s, idx) => `
+          <div class="glass-panel rounded-2xl p-4 cursor-pointer flex items-center justify-between gap-3 group" data-past-idx="${idx}">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/15 border border-white/10 flex items-center justify-center text-lg flex-shrink-0 group-hover:scale-110 transition-transform">
+                🎈
+              </div>
+              <div class="min-w-0">
+                <h4 class="font-bengali font-bold text-sm sm:text-base text-white group-hover:text-purple-300 transition-colors truncate">
+                  ${s.name}
+                </h4>
+                <p class="text-xs text-slate-400 font-bengali truncate">
+                  সেকশন ${s.section} · রোল ${s.roll} · <span class="text-purple-200">${s.dateStr}</span>
+                </p>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded-xl text-xs font-bengali font-semibold bg-white/[0.06] text-slate-400 flex-shrink-0 border border-white/10">
+              ${s.daysAgo === 1 ? 'গতকাল' : s.daysAgo + ' দিন আগে'}
+            </span>
+          </div>
+        `).join('');
 
-function maybeNotifyOnLoad() {
-  if (Notification.permission !== 'granted') return;
-  const key = 'notif_sent_' + new Date().toISOString().slice(0, 10);
-  try {
-    if (localStorage.getItem(key)) return;
-    localStorage.setItem(key, '1');
-    setTimeout(sendTodayNotification, 1200);
-  } catch (e) {}
-}
+        pastContainer.querySelectorAll('[data-past-idx]').forEach(el => {
+          const idx = +el.dataset.pastIdx;
+          el.addEventListener('click', () => openStudentCelebration(past[idx]));
+        });
+      }
 
-/* =========================================================
-   11. INITIALIZATION
-   ========================================================= */
-updateNotifUI();
-if (STUDENTS.length > 0) {
-  render();
-  initNextBirthdayCountdown();
-  maybeNotifyOnLoad();
-} else {
-  document.getElementById('todayList').innerHTML = '<div class="card empty-state"><p>কোনো ডেটা লোড হয়নি</p></div>';
-}
-</script>
+      // 4. ALL STUDENTS (Month-by-month categorized)
+      let allHtml = '';
+      let totalFound = 0;
+
+      for (let m = 1; m <= 12; m++) {
+        const list = filtered.filter(s => s.month === m);
+        if (!list.length) continue;
+        list.sort((a, b) => a.day - b.day);
+        totalFound += list.length;
+
+        allHtml += `
+          <div class="glass-panel rounded-3xl p-5 sm:p-6">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+              <h3 class="text-lg font-bengaliFancy font-bold text-amber-300 flex items-center gap-2">
+                <span>🗓️</span>
+                <span>${monthNamesBn[m]}</span>
+              </h3>
+              <span class="text-xs font-display px-2.5 py-0.5 rounded-full bg-white/[0.08] text-slate-300 font-semibold">
+                ${list.length} জন
+              </span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        `;
+
+        list.forEach(s => {
+          allHtml += `
+            <div class="p-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] hover:border-amber-400/40 cursor-pointer flex items-center justify-between gap-2 group transition-all all-student-item" data-sec="${s.section}" data-roll="${s.roll}">
+              <div class="min-w-0">
+                <h4 class="font-bengali font-semibold text-sm text-white group-hover:text-amber-200 truncate">${s.name}</h4>
+                <p class="text-xs text-slate-400 font-bengali truncate">সেকশন ${s.section} · রোল ${s.roll}</p>
+              </div>
+              <span class="text-xs font-bengali font-bold px-2 py-0.5 rounded-lg bg-amber-400/15 text-amber-300 flex-shrink-0">
+                ${s.day} তারিখ
+              </span>
+            </div>
+          `;
+        });
+
+        allHtml += `</div></div>`;
+      }
+
+      const allContainer = document.getElementById('allList');
+      if (totalFound === 0) {
+        allContainer.innerHTML = `
+          <div class="glass-panel rounded-3xl p-8 text-center text-slate-400">
+            <span class="text-4xl block mb-2">🔍</span>
+            <p class="font-bengali text-sm">কোনো ছাত্রছাত্রী খুঁজে পাওয়া যায়নি</p>
+          </div>
+        `;
+      } else {
+        allContainer.innerHTML = allHtml;
+        allContainer.querySelectorAll('.all-student-item').forEach(el => {
+          const sec = el.dataset.sec;
+          const roll = +el.dataset.roll;
+          const target = STUDENTS.find(s => s.section === sec && s.roll === roll);
+          if (target) {
+            el.addEventListener('click', () => openStudentCelebration(target));
+          }
+        });
+      }
+    }
+
+    /* =========================================================
+       9. SERVICE WORKER REGISTRATION & INIT
+       ========================================================= */
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+
+    updateNotifUI();
+    if (STUDENTS.length > 0) {
+      render();
+      initNextBirthdayCountdown();
+      checkDailyNotificationOnLoad();
+      scheduleMidnightNotification();
+    } else {
+      document.getElementById('todayList').innerHTML = '<div class="glass-panel p-6 text-center text-slate-300 font-bengali">কোনো ডেটা লোড হয়নি</div>';
+    }
+  </script>
 </body>
 </html>
