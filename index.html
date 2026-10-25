@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn" class="dark">
+<html lang="bn" class="dark overflow-x-hidden w-full">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -124,10 +124,12 @@
     #confettiCanvas {
       position: fixed;
       inset: 0;
-      width: 100vw;
+      width: 100%;
+      max-width: 100vw;
       height: 100vh;
       pointer-events: none;
       z-index: 60;
+      overflow: hidden;
     }
 
     /* Flying Character Balloons Overlay */
@@ -235,7 +237,7 @@
   <script src="s3.js"></script>
 </head>
 
-<body class="text-black min-h-screen flex flex-col justify-between selection:bg-black selection:text-white relative bg-[#eef69e]">
+<body class="text-black min-h-screen flex flex-col justify-between selection:bg-black selection:text-white relative bg-[#eef69e] overflow-x-hidden w-full max-w-full">
 
   <!-- Dual Cannon Confetti Canvas -->
   <canvas id="confettiCanvas"></canvas>
@@ -250,53 +252,53 @@
   <div id="balloonOverlay"></div>
 
   <!-- TOP APPLICATION NAVBAR (MATCHING TOP PILLS IN REFERENCE IMAGE) -->
-  <header class="relative z-20 w-full px-4 sm:px-8 pt-5 pb-3 max-w-6xl mx-auto">
-    <div class="flex items-center justify-between gap-3">
+  <header class="relative z-20 w-full px-3 sm:px-8 pt-4 sm:pt-5 pb-3 max-w-6xl mx-auto">
+    <div class="flex items-center justify-between gap-2 sm:gap-3 flex-wrap sm:flex-nowrap">
       
       <!-- Left Brand Pill (like ✻ THEMEHUNK pill in image) -->
-      <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 border-black shadow-[2px_2px_0px_#000]">
-        <span class="text-base">🎂</span>
+      <div class="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white border-2 border-black shadow-[2px_2px_0px_#000] flex-shrink-0">
+        <span class="text-sm sm:text-base">🎂</span>
         <span class="font-display font-extrabold text-black text-xs sm:text-sm tracking-wider uppercase">CLASS XII</span>
-        <span class="text-black/40">·</span>
+        <span class="text-black/40 hidden xs:inline">·</span>
         <span class="font-bengali font-bold text-xs text-black hidden xs:inline">জন্মদিন ট্র্যাকার</span>
       </div>
 
       <!-- Right Action Pills (like ABOUT, CONTACT, menu in image) -->
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
         <!-- Today's Date Pill -->
-        <div id="todayDateBadge" class="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000]">
+        <div id="todayDateBadge" class="hidden lg:flex items-center gap-1.5 px-3.5 py-1.5 sm:py-2 rounded-full bg-white border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000]">
           <span>📅</span>
           <span id="todayDateText">তারিখ লোড হচ্ছে...</span>
         </div>
 
         <!-- Memories Quick Jump Pill -->
-        <a href="#memoriesSection" class="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white hover:bg-[#ffde00] border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="ক্লাসের স্মৃতির অ্যালবাম দেখুন">
-          <span>📸</span>
-          <span class="font-bengali">স্মৃতি</span>
+        <a href="#memoriesSection" class="flex items-center gap-1 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-white hover:bg-[#ffde00] border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="ক্লাসের স্মৃতির অ্যালবাম দেখুন">
+          <span class="text-xs sm:text-sm">📸</span>
+          <span class="font-bengali text-xs">স্মৃতি</span>
         </a>
 
         <!-- Birthday Music Pill -->
-        <button id="btnToggleMusic" class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-[#ffde00] border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all" title="জন্মদিনের গান শুনুন বা বন্ধ করুন">
-          <span id="musicIcon" class="text-sm">🎵</span>
+        <button id="btnToggleMusic" class="flex items-center gap-1 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white hover:bg-[#ffde00] border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all" title="জন্মদিনের গান শুনুন বা বন্ধ করুন">
+          <span id="musicIcon" class="text-xs sm:text-sm">🎵</span>
           <span id="musicLabel" class="font-bengali hidden sm:inline">বার্থডে মিউজিক</span>
         </button>
 
         <!-- Confetti Clean Button -->
-        <button id="btnClearConfetti" class="hidden flex items-center gap-1 px-3.5 py-2 rounded-full bg-white hover:bg-slate-100 border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000] transition-all" title="নিচের জমানো কনফেটি সাফ করুন">
+        <button id="btnClearConfetti" class="hidden flex items-center gap-1 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-white hover:bg-slate-100 border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000] transition-all" title="নিচের জমানো কনফেটি সাফ করুন">
           <span>🧹</span>
-          <span class="font-bengali hidden sm:inline">সাফ করুন</span>
+          <span class="font-bengali hidden sm:inline">সাফ</span>
         </button>
 
         <!-- GitHub Pill -->
-        <a href="https://github.com/Jmaity434/class-xii-birthday-tracker" target="_blank" rel="noopener noreferrer" class="hidden xs:flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-slate-100 border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000] transition-all" title="GitHub Repository">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+        <a href="https://github.com/Jmaity434/class-xii-birthday-tracker" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center gap-1.5 px-3.5 py-1.5 sm:py-2 rounded-full bg-white hover:bg-slate-100 border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000] transition-all" title="GitHub Repository">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
           </svg>
           <span class="font-display hidden sm:inline">GITHUB</span>
         </a>
 
         <!-- Notification Bell in Navbar -->
-        <button id="btnNavbarBell" onclick="document.getElementById('btnFloatingBell').click()" class="w-10 h-10 rounded-full bg-white hover:bg-[#ffde00] border-2 border-black flex items-center justify-center font-bold text-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="নোটিফিকেশন সেটিংস">
+        <button id="btnNavbarBell" onclick="document.getElementById('btnFloatingBell').click()" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white hover:bg-[#ffde00] border-2 border-black flex items-center justify-center font-bold text-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all text-xs sm:text-base" title="নোটিফিকেশন সেটিংস">
           <span>🔔</span>
         </button>
       </div>
@@ -305,31 +307,31 @@
   </header>
 
   <!-- MAIN HERO BENTO STAGE (1:1 CORRESPONDENCE TO USER IMAGE) -->
-  <section class="relative z-10 px-4 sm:px-8 py-3 max-w-6xl mx-auto w-full">
+  <section class="relative z-10 px-3 sm:px-8 py-3 max-w-6xl mx-auto w-full">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
       
       <!-- BENTO CARD 1 (LEFT, WIDE): Lilac Periwinkle #a494f6 Card (Creative. in image) -->
-      <div class="md:col-span-6 bg-[#a494f6] border-2 border-black rounded-[2.5rem] p-6 sm:p-8 flex flex-col justify-between shadow-[4px_4px_0px_#000]">
+      <div class="md:col-span-6 bg-[#a494f6] border-2 border-black rounded-3xl sm:rounded-[2.5rem] p-4 xs:p-6 sm:p-8 flex flex-col justify-between shadow-[4px_4px_0px_#000]">
         
         <div>
           <!-- Tag matching (PORTFOLIO) pill in image -->
-          <div class="inline-flex items-center px-4 py-1 rounded-full bg-white/80 border-2 border-black text-black text-xs font-black uppercase tracking-wider mb-4 shadow-[1px_1px_0px_#000]">
+          <div class="inline-flex items-center px-3 sm:px-4 py-1 rounded-full bg-white/80 border-2 border-black text-black text-[11px] sm:text-xs font-black uppercase tracking-wider mb-3 sm:mb-4 shadow-[1px_1px_0px_#000]">
             <span>🎉 CLASS XII · BATCH 2023–24</span>
           </div>
 
           <!-- Satyajit Ray Inspired Calligraphic Headline matching "Creative." in reference image -->
-          <div class="relative inline-block my-1">
-            <h1 class="ray-title text-4xl sm:text-6xl lg:text-7xl font-bold text-black drop-shadow-[2px_2px_0px_#ffde00] select-none">
+          <div class="relative inline-block my-1 max-w-full">
+            <h1 class="ray-title text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-bold text-black drop-shadow-[2px_2px_0px_#ffde00] select-none">
               শুভ জন্মদিন.
             </h1>
             <!-- Satyajit Ray signature calligraphic brush flourish underline & ornament -->
-            <div class="flex items-center gap-2 mt-2 mb-1 text-black">
-              <span class="h-[2.5px] w-12 sm:w-16 bg-black rounded-full"></span>
-              <span class="text-xs font-bold">•</span>
-              <span class="h-[2.5px] w-24 sm:w-36 bg-black rounded-full"></span>
-              <span class="text-[11px] font-serifBn font-bold tracking-wider text-black/85 hidden xs:inline">সত্যজিৎ-শৈলীর ক্যালিগ্রাফি</span>
-              <span class="text-xs font-bold">•</span>
-              <span class="h-[2.5px] w-8 bg-black rounded-full"></span>
+            <div class="flex items-center gap-1.5 xs:gap-2 mt-2 mb-1 text-black max-w-full overflow-hidden">
+              <span class="h-[2px] sm:h-[2.5px] w-8 sm:w-16 bg-black rounded-full flex-shrink-0"></span>
+              <span class="text-[10px] sm:text-xs font-bold">•</span>
+              <span class="h-[2px] sm:h-[2.5px] w-16 sm:w-36 bg-black rounded-full flex-shrink-0"></span>
+              <span class="text-[10px] sm:text-[11px] font-serifBn font-bold tracking-wider text-black/85 hidden xs:inline whitespace-nowrap">সত্যজিৎ-শৈলীর ক্যালিগ্রাফি</span>
+              <span class="text-[10px] sm:text-xs font-bold">•</span>
+              <span class="h-[2px] sm:h-[2.5px] w-6 sm:w-8 bg-black rounded-full flex-shrink-0"></span>
             </div>
           </div>
           <p class="mt-2 text-xs sm:text-sm font-bengali text-black/90 font-bold max-w-md">
@@ -355,28 +357,28 @@
       </div>
 
       <!-- BENTO CARD 2 (MIDDLE): Vertical White Pill Card with "20" / "26" in image -->
-      <div onclick="switchTab('today')" class="md:col-span-3 bg-white hover:bg-slate-50 border-2 border-black rounded-[2.5rem] p-6 flex flex-col justify-between items-center text-center shadow-[4px_4px_0px_#000] min-h-[280px] cursor-pointer transition-colors" title="আজকের জন্মদিন দেখুন">
+      <div onclick="switchTab('today')" class="md:col-span-3 bg-white hover:bg-slate-50 border-2 border-black rounded-3xl sm:rounded-[2.5rem] p-4 sm:p-6 flex flex-row md:flex-col justify-between items-center text-center shadow-[4px_4px_0px_#000] min-h-[120px] md:min-h-[280px] cursor-pointer transition-colors" title="আজকের জন্মদিন দেখুন">
         
         <!-- Top Black Circle Arrow matching image -->
-        <div class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold text-sm shadow-[1px_1px_0px_#000]">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black text-white flex items-center justify-center font-bold text-sm shadow-[1px_1px_0px_#000] order-2 md:order-1">
           ➔
         </div>
 
         <!-- Big Stacked Numbers matching 20 / 26 in image -->
-        <div class="my-auto py-2">
-          <span class="block text-6xl sm:text-7xl font-serifBn font-black text-black leading-none tracking-tighter">২০</span>
-          <span class="block text-6xl sm:text-7xl font-serifBn font-black text-black leading-none tracking-tighter">২৪</span>
+        <div class="my-auto py-1 sm:py-2 flex flex-row md:flex-col items-center gap-1.5 md:gap-0 order-1 md:order-2">
+          <span class="block text-4xl sm:text-6xl md:text-7xl font-serifBn font-black text-black leading-none tracking-tighter">২০</span>
+          <span class="block text-4xl sm:text-6xl md:text-7xl font-serifBn font-black text-black leading-none tracking-tighter">২৪</span>
         </div>
 
         <!-- Bottom Label -->
-        <span class="text-xs font-black font-display uppercase tracking-widest text-black/70">
+        <span class="text-xs font-black font-display uppercase tracking-widest text-black/70 hidden md:block order-3">
           CLASS XII
         </span>
 
       </div>
 
       <!-- BENTO CARD 3 (RIGHT): Lilac Periwinkle #a494f6 Card with Photo & Arrow matching image -->
-      <div class="md:col-span-3 bg-[#a494f6] border-2 border-black rounded-[2.5rem] p-5 sm:p-6 flex flex-col justify-between shadow-[4px_4px_0px_#000]">
+      <div class="md:col-span-3 bg-[#a494f6] border-2 border-black rounded-3xl sm:rounded-[2.5rem] p-4 sm:p-6 flex flex-col justify-between shadow-[4px_4px_0px_#000]">
         
         <!-- Image Frame matching the photo frame in image -->
         <div class="w-full bg-[#ffd0e8] border-2 border-black rounded-2xl overflow-hidden aspect-[4/3] relative flex items-center justify-center p-3 shadow-inner">
@@ -424,10 +426,10 @@
   </section>
 
   <!-- MAIN CONTENT AREA -->
-  <main class="relative z-10 flex-grow max-w-6xl mx-auto w-full px-4 sm:px-8 mt-6">
+  <main class="relative z-10 flex-grow max-w-6xl mx-auto w-full px-3 sm:px-8 mt-5 sm:mt-6">
 
     <!-- Search & Section Filter Box (Bento Styled) -->
-    <div class="bg-white border-2 border-black rounded-[2rem] p-4 sm:p-5 mb-6 shadow-[4px_4px_0px_#000]">
+    <div class="bg-white border-2 border-black rounded-2xl sm:rounded-[2rem] p-3.5 sm:p-5 mb-5 sm:mb-6 shadow-[4px_4px_0px_#000]">
       <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
         
         <!-- Search Input -->
@@ -462,7 +464,7 @@
     </div>
 
     <!-- Navigation Tabs (Bento Pill Row) -->
-    <div class="flex items-center justify-start sm:justify-center gap-2.5 overflow-x-auto pb-3 mb-6 scrollbar-none">
+    <div class="flex items-center justify-start sm:justify-center gap-2 sm:gap-2.5 overflow-x-auto pb-2.5 mb-5 sm:mb-6 scrollbar-none max-w-full">
       <button data-tab="today" class="tab-btn active group flex items-center gap-2 px-5 py-2.5 rounded-full font-bengali text-xs sm:text-sm font-extrabold transition-all bg-[#a494f6] text-black border-2 border-black shadow-[3px_3px_0px_#000] whitespace-nowrap">
         <span>🎂</span>
         <span>আজকের জন্মদিন</span>
@@ -720,7 +722,7 @@
     <!-- Notification Preference Popover Card -->
     <div 
       id="notifPopover" 
-      class="hidden absolute bottom-16 right-0 w-80 sm:w-96 p-6 rounded-3xl bg-white border-2 border-black shadow-[6px_6px_0px_#000] z-50 text-left transition-all"
+      class="hidden absolute bottom-16 right-0 w-[calc(100vw-2.5rem)] max-w-sm sm:w-96 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border-2 border-black shadow-[6px_6px_0px_#000] z-50 text-left transition-all"
     >
       <div class="flex items-start justify-between gap-3 mb-3">
         <div class="flex items-center gap-2.5">
@@ -770,8 +772,8 @@
   <!-- =========================================================
        SPECIFIC PERSON BIRTHDAY CELEBRATION MODAL (BENTO STYLE)
        ========================================================= -->
-  <div id="wishModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
-    <div class="modal-card glass-panel relative w-full max-w-lg rounded-[2.5rem] bg-[#eef69e] p-6 sm:p-8 border-4 border-black text-center shadow-[10px_10px_0px_#000] transform scale-95 transition-all duration-300">
+  <div id="wishModal" class="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="modal-card glass-panel relative w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-3xl sm:rounded-[2.5rem] bg-[#eef69e] p-4 xs:p-6 sm:p-8 border-3 sm:border-4 border-black text-center shadow-[6px_6px_0px_#000] sm:shadow-[10px_10px_0px_#000] transform scale-95 transition-all duration-300">
       
       <!-- Close Button top right -->
       <button id="btnCloseModalX" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white hover:bg-[#ffde00] border-2 border-black text-black font-black flex items-center justify-center transition-colors shadow-[2px_2px_0px_#000]">
@@ -1826,8 +1828,10 @@
         const secs = Math.floor((diff / 1000) % 60);
 
         strip.innerHTML = `
-          <span>⏳ পরবর্তী জন্মদিন: <strong class="text-white">${candidate.student.name}</strong> (${candidate.student.day} ${monthNamesBn[candidate.student.month]}) — </span>
-          <span class="font-display font-bold text-amber-300">${days}d ${hours}h ${mins}m ${secs}s বাকি</span>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2 truncate">
+            <span class="truncate">⏳ <strong class="text-black font-black">${candidate.student.name}</strong> (${candidate.student.day} ${monthNamesBn[candidate.student.month]})</span>
+            <span class="font-display font-black text-black bg-white/80 px-2 py-0.5 rounded-md border border-black/30 text-[10px] sm:text-xs inline-block w-fit mt-1 sm:mt-0">${days}d ${hours}h ${mins}m ${secs}s বাকি</span>
+          </div>
         `;
       }
 
@@ -2226,20 +2230,20 @@
   </script>
 
   <!-- Lightbox Modal for Memories Photo Full-View -->
-  <div id="lightboxModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onclick="if(event.target === this) closeLightbox()">
-    <div class="relative max-w-4xl w-full bg-white border-2 border-black rounded-[2rem] p-4 shadow-[8px_8px_0px_#000] flex flex-col items-center">
-      <div class="w-full flex items-center justify-between pb-3 border-b-2 border-black mb-3">
-        <div class="flex items-center gap-2">
-          <span class="text-xl">📸</span>
-          <span id="lightboxCaption" class="font-bengali font-bold text-black text-sm sm:text-base">স্মৃতি</span>
-          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#ffde00] border border-black text-[11px] font-bold text-black shadow-[1px_1px_0px_#000]">
+  <div id="lightboxModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-2.5 sm:p-4 bg-black/80 backdrop-blur-sm" onclick="if(event.target === this) closeLightbox()">
+    <div class="relative max-w-4xl w-full max-h-[94vh] bg-white border-2 border-black rounded-2xl sm:rounded-[2rem] p-3 sm:p-4 shadow-[6px_6px_0px_#000] sm:shadow-[8px_8px_0px_#000] flex flex-col items-center overflow-hidden">
+      <div class="w-full flex items-center justify-between pb-2.5 border-b-2 border-black mb-2.5 flex-shrink-0">
+        <div class="flex items-center gap-2 min-w-0">
+          <span class="text-lg sm:text-xl flex-shrink-0">📸</span>
+          <span id="lightboxCaption" class="font-bengali font-bold text-black text-xs sm:text-base truncate">স্মৃতি</span>
+          <span class="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-full bg-[#ffde00] border border-black text-[10px] sm:text-[11px] font-bold text-black shadow-[1px_1px_0px_#000] flex-shrink-0">
             <span>🎵</span> <span class="hidden xs:inline">Woh Din Bhi</span>
           </span>
         </div>
-        <button onclick="closeLightbox()" class="w-9 h-9 rounded-full bg-[#ffde00] hover:bg-[#ffe633] border-2 border-black text-black font-bold flex items-center justify-center shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px]">✕</button>
+        <button onclick="closeLightbox()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#ffde00] hover:bg-[#ffe633] border-2 border-black text-black font-bold flex items-center justify-center shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] flex-shrink-0">✕</button>
       </div>
-      <div class="w-full max-h-[75vh] flex items-center justify-center overflow-hidden rounded-2xl border-2 border-black bg-black">
-        <img id="lightboxImg" src="" alt="স্মৃতি পূর্ণাঙ্গ ছবি" class="max-w-full max-h-[75vh] object-contain rounded-xl" />
+      <div class="w-full max-h-[70vh] sm:max-h-[75vh] flex items-center justify-center overflow-hidden rounded-xl sm:rounded-2xl border-2 border-black bg-black">
+        <img id="lightboxImg" src="" alt="স্মৃতি পূর্ণাঙ্গ ছবি" class="max-w-full max-h-[70vh] sm:max-h-[75vh] object-contain rounded-lg" />
       </div>
     </div>
   </div>
