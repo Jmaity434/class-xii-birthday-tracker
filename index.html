@@ -738,7 +738,7 @@
       </div>
 
       <p class="text-xs text-black/80 font-bengali font-bold leading-relaxed mb-4">
-        অনুমতি দিলে যেদিন যাদের জন্মদিন, সেদিন <strong class="text-black bg-[#ffde00] px-1 rounded">রাত ১২:০০ AM (১২টা)</strong>-এ স্বয়ংক্রিয়ভাবে আপনার ডিভাইসে নোটিফিকেশন চলে যাবে যে আজ কতজনের জন্মদিন! 🎂
+        অনুমতি দিলে যেদিন যাদের জন্মদিন, সেদিন ওয়েবসাইট বন্ধ থাকলেও যেদিন যাদের জন্মদিন, সেদিন <strong class="text-black bg-[#ffde00] px-1 rounded">রাত ১২:০০ AM (১২টা)</strong>-এ সরাসরি আপনার ডিভাইসে পুশ নোটিফিকেশন পৌঁছে যাবে! 🎂
       </p>
 
       <div class="flex flex-col gap-2">
@@ -1627,32 +1627,80 @@
     });
 
     /* =========================================================
-       6. FLOATING NOTIFICATION BELL & MIDNIGHT 12:00 AM SCHEDULER
+       6. WEB PUSH NOTIFICATION & MIDNIGHT 12:00 AM SCHEDULER
        ========================================================= */
     const notifPopover = document.getElementById('notifPopover');
     const bellStatusDot = document.getElementById('bellStatusDot');
     const notifStatusBadge = document.getElementById('notifStatusBadge');
 
+    // Permanent VAPID Public Key for Class XII Birthday Tracker
+    const VAPID_PUBLIC_KEY = 'BOikmHgA-OpCLC2tdLLJvaT93m2OMtqieOeOYlbExtjPocenhXbNpanbVUpwtqr42kWKIxHwRB8gobiI8VqxtGA';
+
+    function urlBase64ToUint8Array(base64String) {
+      const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+      const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+      const rawData = window.atob(base64);
+      const outputArray = new Uint8Array(rawData.length);
+      for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+      }
+      return outputArray;
+    }
+
+    async function subscribeUserToWebPush() {
+      if (!('serviceWorker' in navigator) || !('PushManager' in window)) return null;
+      try {
+        const reg = await navigator.serviceWorker.ready;
+        let sub = await reg.pushManager.getSubscription();
+        if (!sub) {
+          const applicationServerKey = urlBase64ToUint8Array(VAPID_PUBLIC_KEY);
+          sub = await reg.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: applicationServerKey
+          });
+        }
+        if (sub) {
+          localStorage.setItem('class_xii_push_sub', JSON.stringify(sub));
+          console.log('[Web Push] Subscribed successfully:', sub.endpoint);
+        }
+
+        // Periodic Background Sync registration (for supported Android & Chrome devices)
+        if ('periodicSync' in reg) {
+          try {
+            await reg.periodicSync.register('midnight-birthday-check', {
+              minInterval: 12 * 60 * 60 * 1000 // 12 hours
+            });
+          } catch (pe) {
+            console.warn('[Periodic Sync] Note:', pe.message);
+          }
+        }
+        return sub;
+      } catch (err) {
+        console.warn('[Web Push] Subscription error:', err);
+        return null;
+      }
+    }
+
     function updateNotifUI() {
       if (!('Notification' in window)) {
         notifStatusBadge.textContent = '❌ ব্রাউজারে নোটিফিকেশন সাপোর্ট নেই';
-        notifStatusBadge.className = 'inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 mt-0.5';
-        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-slate-500 ring-2 ring-midnight';
+        notifStatusBadge.className = 'inline-block text-[11px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-500 mt-0.5';
+        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-slate-400 border border-black';
         return;
       }
 
       if (Notification.permission === 'granted') {
-        notifStatusBadge.textContent = '✅ নোটিফিকেশন সক্রিয় রয়েছে';
-        notifStatusBadge.className = 'inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 mt-0.5';
-        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-midnight pulse-glow';
+        notifStatusBadge.textContent = '✅ সক্রিয়: রাত ১২টায় অটোমেটিক নোটিফিকেশন যাবে';
+        notifStatusBadge.className = 'inline-block text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-600 mt-0.5';
+        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border border-black pulse-glow';
       } else if (Notification.permission === 'denied') {
-        notifStatusBadge.textContent = '🚫 অনুমতি বাতিল (Blocked)';
-        notifStatusBadge.className = 'inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 mt-0.5';
-        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-rose-500 ring-2 ring-midnight';
+        notifStatusBadge.textContent = '🚫 অনুমতি বাতিল (Blocked in Settings)';
+        notifStatusBadge.className = 'inline-block text-[11px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-500 mt-0.5';
+        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-rose-500 border border-black';
       } else {
         notifStatusBadge.textContent = '⚠️ অনুমতি দেওয়া হয়নি (Click Allow)';
-        notifStatusBadge.className = 'inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 mt-0.5';
-        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-amber-400 ring-2 ring-midnight pulse-glow';
+        notifStatusBadge.className = 'inline-block text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#ffde00] text-black border border-black mt-0.5';
+        bellStatusDot.className = 'absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-amber-400 border border-black pulse-glow';
       }
     }
 
@@ -1687,6 +1735,7 @@
         const perm = await Notification.requestPermission();
         updateNotifUI();
         if (perm === 'granted') {
+          await subscribeUserToWebPush();
           sendTodayBirthdayNotification();
           scheduleMidnightNotification();
         }

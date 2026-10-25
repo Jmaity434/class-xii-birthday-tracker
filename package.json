@@ -1,0 +1,24 @@
+{
+  "name": "class-xii-birthday-tracker",
+  "version": "1.0.0",
+  "description": "**লাইভ সাইট:** https://jmaity434.github.io/class-xii-birthday-tracker/",
+  "main": "s0.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jmaity434/class-xii-birthday-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Jmaity434/class-xii-birthday-tracker/issues"
+  },
+  "homepage": "https://github.com/Jmaity434/class-xii-birthday-tracker#readme",
+  "dependencies": {
+    "web-push": "^3.6.7"
+  }
+}
