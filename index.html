@@ -242,8 +242,13 @@
   <!-- Dual Cannon Confetti Canvas -->
   <canvas id="confettiCanvas"></canvas>
 
-  <!-- Local Happy Birthday MP3 Audio Player -->
+  <!-- Local Happy Birthday MP3 Audio Player (Rotational 6-Track Playlist) -->
   <audio id="birthdayAudio" src="nastelbom-happy-birthday-495860.mp3" preload="auto"></audio>
+  <audio id="audioTrack2" src="aj-mere-munne.mp3" preload="auto" class="hidden"></audio>
+  <audio id="audioTrack3" src="shuvo-jonmodin.mp3" preload="auto" class="hidden"></audio>
+  <audio id="audioTrack4" src="new-wish-nhgfbfhc.mp3" preload="auto" class="hidden"></audio>
+  <audio id="audioTrack5" src="new-wish-jdfgsdhf.mp3" preload="auto" class="hidden"></audio>
+  <audio id="audioTrack6" src="new-wish-vhkjhfv.mp3" preload="auto" class="hidden"></audio>
 
   <!-- Nostalgic Memories Audio Player ("woh-din-bhi.mp3") -->
   <audio id="memoriesAudio" src="woh-din-bhi.mp3" preload="auto"></audio>
@@ -281,12 +286,6 @@
         <button id="btnToggleMusic" class="flex items-center gap-1 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white hover:bg-[#ffde00] border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all" title="জন্মদিনের গান শুনুন বা বন্ধ করুন">
           <span id="musicIcon" class="text-xs sm:text-sm">🎵</span>
           <span id="musicLabel" class="font-bengali hidden sm:inline">বার্থডে মিউজিক</span>
-        </button>
-
-        <!-- Confetti Clean Button -->
-        <button id="btnClearConfetti" class="hidden flex items-center gap-1 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-white hover:bg-slate-100 border-2 border-black text-xs font-bold text-black shadow-[2px_2px_0px_#000] transition-all" title="নিচের জমানো কনফেটি সাফ করুন">
-          <span>🧹</span>
-          <span class="font-bengali hidden sm:inline">সাফ</span>
         </button>
 
         <!-- GitHub Pill -->
@@ -377,22 +376,37 @@
 
       </div>
 
-      <!-- BENTO CARD 3 (RIGHT): Lilac Periwinkle #a494f6 Card with Photo & Arrow matching image -->
-      <div class="md:col-span-3 bg-[#a494f6] border-2 border-black rounded-3xl sm:rounded-[2.5rem] p-4 sm:p-6 flex flex-col justify-between shadow-[4px_4px_0px_#000]">
+      <!-- BENTO CARD 3 (RIGHT): Lilac Periwinkle Card with Full-Bleed Photo Carousel & Controls -->
+      <div id="heroMemoriesCarousel" class="md:col-span-3 bg-[#a494f6] border-2 border-black rounded-3xl sm:rounded-[2.5rem] overflow-hidden relative shadow-[4px_4px_0px_#000] min-h-[280px] sm:min-h-[320px] flex flex-col justify-between cursor-pointer group select-none" title="স্মৃতি দেখতে বা বড় করে দেখতে ক্লিক করুন">
         
-        <!-- Image Frame matching the photo frame in image -->
-        <div class="w-full bg-[#ffd0e8] border-2 border-black rounded-2xl overflow-hidden aspect-[4/3] relative flex items-center justify-center p-3 shadow-inner">
-          <div class="text-center">
-            <span class="text-5xl block animate-bounce">🎈🍰</span>
-            <span class="font-bengali text-xs font-bold text-black mt-2 block">সহপাঠী বন্ধুদের পার্টি</span>
-            <span class="font-display text-[10px] font-extrabold uppercase text-pink-700">BIRTHDAY SPECIAL</span>
+        <!-- Full-Bleed Carousel Slides Container -->
+        <div id="carouselSlidesContainer" class="absolute inset-0 w-full h-full overflow-hidden z-0"></div>
+
+        <!-- Subtle Top & Bottom Gradient Overlay for contrast and readability -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/50 pointer-events-none z-[1]"></div>
+
+        <!-- Top Floating Row: Badges -->
+        <div class="relative z-10 p-3.5 sm:p-4 flex items-center justify-between w-full pointer-events-none">
+          <div class="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md text-white text-[10px] sm:text-[11px] font-bengali font-bold border border-white/20 flex items-center gap-1.5 shadow-sm">
+            <span>📸</span>
+            <span>স্মৃতি অ্যালবাম</span>
+          </div>
+          <div class="px-2.5 py-1 rounded-full bg-[#ffde00] border-2 border-black text-black text-[10px] sm:text-[11px] font-display font-black shadow-[2px_2px_0px_#000] flex items-center gap-1">
+            <span id="carouselCounter">১ / ৯</span>
           </div>
         </div>
 
-        <!-- Bottom Row: Photo Gallery Quick Link -->
-        <div class="flex items-center justify-between mt-4">
-          <span class="font-bengali text-xs font-black text-black">সকল মধুর স্মৃতি</span>
-          <button onclick="document.getElementById('memoriesSection').scrollIntoView({ behavior: 'smooth' })" class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold text-sm shadow-[1px_1px_0px_#000] hover:bg-slate-800 transition-colors" title="স্মৃতি গ্যালারিতে যান">
+        <!-- Center Hover Zoom Icon -->
+        <div class="absolute inset-0 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#ffde00] border-2 border-black flex items-center justify-center text-base sm:text-lg shadow-[3px_3px_0px_#000] transform group-hover:scale-110 transition-transform">
+            🔍
+          </div>
+        </div>
+
+        <!-- Bottom Row: Photo Gallery Quick Link & Label -->
+        <div class="relative z-10 p-3 sm:p-4 flex items-center justify-between w-full bg-black/40 backdrop-blur-sm border-t border-white/20">
+          <span class="font-bengali text-xs sm:text-sm font-black text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">সকল মধুর স্মৃতি</span>
+          <button onclick="event.stopPropagation(); document.getElementById('memoriesSection').scrollIntoView({ behavior: 'smooth' })" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ffde00] hover:bg-[#ffe633] text-black border-2 border-black flex items-center justify-center font-bold text-sm shadow-[2px_2px_0px_#000] hover:shadow-[3px_3px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="স্মৃতি গ্যালারিতে যান">
             ➔
           </button>
         </div>
@@ -704,26 +718,37 @@
   </footer>
 
   <!-- =========================================================
-       FLOATING NOTIFICATION BELL & PREFERENCE MODAL
+       FLOATING ACTION BUTTONS (BOTTOM RIGHT)
        ========================================================= -->
-  <!-- Floating Bell Button (Bottom Right) -->
-  <div class="fixed bottom-6 right-6 z-50">
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-2.5">
+    <!-- Confetti Clean Button (Appears above the bell when blaster is fired) -->
     <button 
-      id="btnFloatingBell" 
-      class="relative group w-14 h-14 rounded-full bg-[#ffde00] border-2 border-black shadow-[4px_4px_0px_#000] hover:scale-105 active:scale-95 active:shadow-none transition-all focus:outline-none flex items-center justify-center text-2xl"
-      title="জন্মদিন পুশ নোটিফিকেশন সেটিংস"
-      aria-label="Notification Settings"
+      id="btnClearConfetti" 
+      class="hidden relative group w-12 h-12 rounded-full bg-white hover:bg-[#ffde00] border-2 border-black shadow-[4px_4px_0px_#000] hover:scale-105 active:scale-95 active:shadow-none transition-all focus:outline-none flex items-center justify-center text-xl cursor-pointer" 
+      title="জমানো কনফেটি পরিষ্কার করুন"
+      aria-label="Clear Confetti"
     >
-      <span class="group-hover:rotate-12 transition-transform">🔔</span>
-      <!-- Status indicator dot -->
-      <span id="bellStatusDot" class="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-rose-500 border border-black pulse-glow"></span>
+      <span class="group-hover:rotate-12 transition-transform">🧹</span>
     </button>
 
-    <!-- Notification Preference Popover Card -->
-    <div 
-      id="notifPopover" 
-      class="hidden absolute bottom-16 right-0 w-[calc(100vw-2.5rem)] max-w-sm sm:w-96 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border-2 border-black shadow-[6px_6px_0px_#000] z-50 text-left transition-all"
-    >
+    <!-- Floating Bell Button & Popover Container -->
+    <div class="relative">
+      <button 
+        id="btnFloatingBell" 
+        class="relative group w-14 h-14 rounded-full bg-[#ffde00] border-2 border-black shadow-[4px_4px_0px_#000] hover:scale-105 active:scale-95 active:shadow-none transition-all focus:outline-none flex items-center justify-center text-2xl cursor-pointer"
+        title="জন্মদিন পুশ নোটিফিকেশন সেটিংস"
+        aria-label="Notification Settings"
+      >
+        <span class="group-hover:rotate-12 transition-transform">🔔</span>
+        <!-- Status indicator dot -->
+        <span id="bellStatusDot" class="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-rose-500 border border-black pulse-glow"></span>
+      </button>
+
+      <!-- Notification Preference Popover Card -->
+      <div 
+        id="notifPopover" 
+        class="hidden absolute bottom-16 right-0 w-[calc(100vw-2.5rem)] max-w-sm sm:w-96 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border-2 border-black shadow-[6px_6px_0px_#000] z-50 text-left transition-all"
+      >
       <div class="flex items-start justify-between gap-3 mb-3">
         <div class="flex items-center gap-2.5">
           <span class="text-2xl">🔔</span>
@@ -767,7 +792,8 @@
         </div>
       </div>
     </div>
-  </div>
+    </div> <!-- /inner bell relative container -->
+  </div> <!-- /outer fixed bottom-right container -->
 
   <!-- =========================================================
        SPECIFIC PERSON BIRTHDAY CELEBRATION MODAL (BENTO STYLE)
@@ -878,9 +904,17 @@
           </button>
         </div>
 
-        <a id="btnModalWhatsapp" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-full font-bengali text-sm font-black bg-[#25D366] text-black border-2 border-black shadow-[3px_3px_0px_#000] hover:bg-[#20ba5a] active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center gap-2 transition-all">
+        <!-- 1080p 10-Second Video Greeting Recorder Button -->
+        <button id="btnRecordBirthdayVideo" type="button" class="w-full py-3 px-4 rounded-full font-bengali text-sm sm:text-base font-black bg-[#ffde00] hover:bg-[#ffe633] text-black border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center gap-2 transition-all group" title="গান, বেলুন ও কনফেটি সহ ১০ সেকেন্ডের ১০৮০p ভিডিও রেকর্ড করুন">
+          <span class="inline-block w-3 h-3 rounded-full bg-red-600 animate-pulse group-hover:scale-125 transition-transform"></span>
+          <span>🎥 ১০ সে. ১০৮০p ভিডিও কার্ড বানান</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-black text-white font-mono font-bold ml-1">1080p</span>
+        </button>
+
+        <!-- Direct WhatsApp Text Share Link -->
+        <a id="btnModalWhatsapp" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-2 px-4 rounded-full font-bengali text-xs sm:text-sm font-bold bg-[#25D366] text-black border-2 border-black shadow-[2px_2px_0px_#000] hover:bg-[#20ba5a] active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center gap-2 transition-all">
           <span>📲</span>
-          <span>হোয়াটসঅ্যাপে শুভেচ্ছা পাঠান</span>
+          <span>হোয়াটসঅ্যাপে সরাসরি টেক্সট পাঠান</span>
         </a>
 
         <button id="btnModalClose" class="w-full py-2 px-4 rounded-full font-bengali text-xs font-bold text-black/80 hover:text-black transition-colors">
@@ -892,9 +926,872 @@
   </div>
 
   <!-- =========================================================
+       1080P BIRTHDAY VIDEO RECORDING PROGRESS MODAL
+       ========================================================= -->
+  <div id="videoRecordingModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md">
+    <div class="relative w-full max-w-sm bg-[#eef69e] border-3 sm:border-4 border-black rounded-3xl p-5 sm:p-6 shadow-[8px_8px_0px_#000] text-center flex flex-col items-center">
+      
+      <!-- Top Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500 text-white border-2 border-black font-bengali text-xs font-black shadow-[2px_2px_0px_#000]">
+        <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+        <span>১০৮০p ফুল HD রেকর্ডিং চলছে...</span>
+      </div>
+
+      <!-- Live Countdown -->
+      <div class="my-3">
+        <div id="recordingCountdownText" class="text-5xl font-black font-display text-black">
+          ১০s
+        </div>
+        <p class="text-xs font-bengali font-bold text-black/80 mt-1">
+          গান, বেলুন ও কনফেটি ব্লাস্টার ভিডিওতে ধারণ হচ্ছে
+        </p>
+      </div>
+
+      <!-- Animated Progress Bar -->
+      <div class="w-full bg-white border-2 border-black rounded-full h-4 overflow-hidden shadow-inner p-0.5 mb-3">
+        <div id="recordingProgressBar" class="h-full bg-[#ff6b6b] rounded-full transition-all duration-150 w-0"></div>
+      </div>
+
+      <!-- Live Mini Preview Canvas Container -->
+      <div class="w-40 aspect-[9/16] rounded-2xl border-2 border-black overflow-hidden bg-black shadow-[3px_3px_0px_#000] relative">
+        <canvas id="recorderPreviewCanvas" width="270" height="480" class="w-full h-full object-cover"></canvas>
+        <div class="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded-full bg-black/80 text-[8px] font-mono font-bold text-white">
+          1080 × 1920
+        </div>
+      </div>
+
+      <!-- Cancel Button -->
+      <button id="btnCancelRecording" class="mt-4 px-4 py-1.5 rounded-full bg-white hover:bg-slate-100 border-2 border-black text-xs font-bengali font-bold text-black shadow-[2px_2px_0px_#000] transition-colors">
+        ✕ বাতিল করুন
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       1080P BIRTHDAY VIDEO PREVIEW & SHARE MODAL
+       ========================================================= -->
+  <div id="videoPreviewModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
+    <div class="relative w-full max-w-sm bg-[#eef69e] border-3 sm:border-4 border-black rounded-3xl p-4 sm:p-6 shadow-[8px_8px_0px_#000] text-center flex flex-col items-center max-h-[96vh] overflow-y-auto">
+      
+      <!-- Close X Button -->
+      <button id="btnCloseVideoPreview" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white hover:bg-[#ffde00] border-2 border-black text-black font-black flex items-center justify-center transition-colors shadow-[2px_2px_0px_#000]">
+        ✕
+      </button>
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ffde00] text-black border-2 border-black text-xs font-black mb-2 shadow-[2px_2px_0px_#000]">
+        <span>🎉</span>
+        <span class="font-bengali">১০৮০p বার্থডে ভিডিও প্রস্তুত!</span>
+      </div>
+
+      <h3 id="videoPreviewStudentName" class="text-xl sm:text-2xl font-bold font-cursiveBn text-black mb-2 truncate max-w-[280px]">
+        —
+      </h3>
+
+      <!-- Video Player -->
+      <div class="w-48 sm:w-56 aspect-[9/16] rounded-2xl border-2 border-black overflow-hidden bg-black shadow-[4px_4px_0px_#000] mb-3 relative">
+        <video id="birthdayRecordedVideo" controls autoplay loop playsinline class="w-full h-full object-contain"></video>
+      </div>
+
+      <div class="text-[10px] sm:text-[11px] font-mono text-black/80 font-bold mb-3">
+        📹 1080×1920 Full HD MP4 · 10 Seconds · Audio Included 🎵
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="w-full space-y-2">
+        <button id="btnShareWhatsAppVideo" class="w-full py-2.5 px-4 rounded-full font-bengali text-sm font-black bg-[#25D366] hover:bg-[#20ba5a] text-black border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center gap-2 transition-all">
+          <span>📲</span>
+          <span>হোয়াটসঅ্যাপে ভিডিও পাঠান</span>
+        </button>
+
+        <div class="flex gap-2">
+          <button id="btnDownloadVideo" class="flex-1 py-2 px-2.5 rounded-full font-bengali text-xs font-black bg-[#ffde00] hover:bg-[#ffe633] text-black border-2 border-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all flex items-center justify-center gap-1">
+            <span>💾</span>
+            <span>MP4 ডাউনলোড (1080p)</span>
+          </button>
+          <button id="btnRerecordVideo" class="flex-1 py-2 px-2.5 rounded-full font-bengali text-xs font-black bg-white hover:bg-slate-100 text-black border-2 border-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all flex items-center justify-center gap-1">
+            <span>🔄</span>
+            <span>আবার রেকর্ড</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
        JAVASCRIPT APPLICATION LOGIC
        ========================================================= -->
   <script>
+
+    /* =========================================================
+       10. 1080P 10-SECOND BIRTHDAY VIDEO GENERATOR & RECORDER
+       ========================================================= */
+    let currentRecordedVideoBlob = null;
+    let currentRecordedVideoUrl = null;
+    let isVideoRecordingActive = false;
+    let videoRecordingAbortFlag = false;
+
+    const videoRecordingModal = document.getElementById('videoRecordingModal');
+    const videoPreviewModal = document.getElementById('videoPreviewModal');
+    const recordingCountdownText = document.getElementById('recordingCountdownText');
+    const recordingProgressBar = document.getElementById('recordingProgressBar');
+    const recorderPreviewCanvas = document.getElementById('recorderPreviewCanvas');
+    const birthdayRecordedVideo = document.getElementById('birthdayRecordedVideo');
+    const videoPreviewStudentName = document.getElementById('videoPreviewStudentName');
+
+    async function record1080pBirthdayVideo(student) {
+      if (!student) return;
+      if (isVideoRecordingActive) return;
+
+      isVideoRecordingActive = true;
+      videoRecordingAbortFlag = false;
+
+      // Show recording progress modal
+      videoRecordingModal.classList.remove('hidden');
+      videoPreviewModal.classList.add('hidden');
+      recordingProgressBar.style.width = '0%';
+      recordingCountdownText.textContent = '১০s';
+
+      // 1. Setup 1080p Canvas (1080 x 1920 Full HD Portrait for WhatsApp Status/Mobile)
+      const recCanvas = document.createElement('canvas');
+      recCanvas.width = 1080;
+      recCanvas.height = 1920;
+      const ctx = recCanvas.getContext('2d', { alpha: false });
+
+      const prevCtx = recorderPreviewCanvas ? recorderPreviewCanvas.getContext('2d') : null;
+
+      // 2. Setup Audio Recording via Web Audio MediaStreamDestination
+      const audioCtx = getAudioContext();
+      if (audioCtx && audioCtx.state === 'suspended') {
+        try { await audioCtx.resume(); } catch (e) {}
+      }
+
+      let audioStreamTrack = null;
+      let synthOscillators = [];
+
+      if (audioCtx) {
+        try {
+          const dest = audioCtx.createMediaStreamDestination();
+          audioStreamTrack = dest.stream.getAudioTracks()[0];
+
+          // Route birthday audio element or synthesizer into audio destination
+          if (!window._bdayMediaSource && bdayAudio) {
+            try {
+              window._bdayMediaSource = audioCtx.createMediaElementSource(bdayAudio);
+              window._bdayMediaSource.connect(dest);
+              window._bdayMediaSource.connect(audioCtx.destination);
+            } catch (err) {
+              console.warn('MediaElementSource already connected or blocked:', err);
+            }
+          }
+
+          // Restart and play song
+          if (bdayAudio) {
+            bdayAudio.currentTime = 0;
+            bdayAudio.play().catch(() => {});
+          }
+
+          // Also play a cheerful melodic chord into dest as guarantee
+          const chordFreqs = [523.25, 659.25, 783.99]; // C Major
+          chordFreqs.forEach(freq => {
+            const osc = audioCtx.createOscillator();
+            const g = audioCtx.createGain();
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            g.gain.setValueAtTime(0.04, audioCtx.currentTime);
+            g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 9.5);
+            osc.connect(g);
+            g.connect(dest);
+            osc.start();
+            synthOscillators.push(osc);
+          });
+        } catch (e) {
+          console.warn('Audio track setup warning:', e);
+        }
+      }
+
+      // 3. Setup MediaStream and MediaRecorder
+      const stream = recCanvas.captureStream(30); // 30 FPS Full HD
+      if (audioStreamTrack) {
+        stream.addTrack(audioStreamTrack);
+      }
+
+      const candidateMimes = [
+        'video/mp4;codecs=avc1,mp4a.40.2',
+        'video/mp4;codecs=avc1',
+        'video/mp4',
+        'video/webm;codecs=vp9,opus',
+        'video/webm;codecs=vp8,opus',
+        'video/webm'
+      ];
+      const mimeType = candidateMimes.find(m => MediaRecorder.isTypeSupported(m)) || 'video/mp4';
+
+      const recorder = new MediaRecorder(stream, {
+        mimeType: MediaRecorder.isTypeSupported(mimeType) ? mimeType : undefined,
+        videoBitsPerSecond: 6000000 // 6 Mbps high quality 1080p
+      });
+
+      const videoChunks = [];
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) videoChunks.push(e.data);
+      };
+
+      recorder.start(250);
+
+      // 4. Initialize Festive Particle Simulation Data
+      // A) Confetti Particles
+      const confettiColors = ['#ff6b6b', '#ffde00', '#00e5ff', '#a494f6', '#55efc4', '#fd79a8', '#f39c12'];
+      const confettiParticles = [];
+
+      function spawnConfettiBurst(count, sourceX, sourceY, baseAngle, spread) {
+        for (let i = 0; i < count; i++) {
+          const angle = baseAngle + (Math.random() - 0.5) * spread;
+          const speed = 18 + Math.random() * 32;
+          confettiParticles.push({
+            x: sourceX,
+            y: sourceY,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            size: 14 + Math.random() * 16,
+            color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+            rot: Math.random() * Math.PI * 2,
+            vRot: (Math.random() - 0.5) * 0.25,
+            shape: Math.random() > 0.3 ? 'rect' : 'circle'
+          });
+        }
+      }
+
+      // Initial Burst at t=0
+      spawnConfettiBurst(60, 40, 1880, -Math.PI / 3, 0.6);
+      spawnConfettiBurst(60, 1040, 1880, -2 * Math.PI / 3, 0.6);
+
+      // B) Floating Balloons (14 colorful balloons rising throughout the 10 seconds)
+      const balloonColors = ['#ff6b6b', '#ffde00', '#00e5ff', '#a494f6', '#55efc4', '#fd79a8', '#ff9f43'];
+      const balloons = [];
+      for (let i = 0; i < 14; i++) {
+        balloons.push({
+          x: 100 + Math.random() * 880,
+          y: 1950 + i * 160 + Math.random() * 120,
+          speed: 4.5 + Math.random() * 3.5,
+          color: balloonColors[i % balloonColors.length],
+          size: 42 + Math.random() * 22,
+          swayOffset: Math.random() * 10,
+          swaySpeed: 1.8 + Math.random() * 1.5,
+          isCharacter: i === 0 || i === 7 // Character balloon with smile & hat
+        });
+      }
+
+      // 5. Pre-calculate Student Information strings
+      const zodiac = getBengaliZodiac(student.month, student.day);
+      let ageText = '—';
+      if (student.dob) {
+        const bDate = new Date(student.dob);
+        if (!isNaN(bDate.getTime())) {
+          const today = new Date();
+          let age = today.getFullYear() - bDate.getFullYear();
+          const mDiff = today.getMonth() - bDate.getMonth();
+          if (mDiff < 0 || (mDiff === 0 && today.getDate() < bDate.getDate())) age--;
+          ageText = age > 0 ? `${age} বছর পূর্ণ` : '—';
+        }
+      }
+      const wishMsg = wishMessages[Math.floor(Math.random() * wishMessages.length)] || 'শুভ জন্মদিন!';
+      const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+
+      // 6. 10-Second Render Loop (Exact 10.0 wall-clock seconds)
+      const recordingStartTime = performance.now();
+      const recordingDurationMs = 10000;
+      let hasBlownCandle = false;
+      let hasMidBurst = false;
+
+      const renderInterval = setInterval(() => {
+        const elapsed = performance.now() - recordingStartTime;
+        if (videoRecordingAbortFlag || elapsed >= recordingDurationMs) {
+          clearInterval(renderInterval);
+          finishRecording();
+          return;
+        }
+
+        const tSec = elapsed / 1000;
+
+        // Fire cannon bursts at key moments
+        if (tSec >= 2.0 && !hasBlownCandle) {
+          hasBlownCandle = true;
+          spawnConfettiBurst(90, 40, 1880, -Math.PI / 3, 0.7);
+          spawnConfettiBurst(90, 1040, 1880, -2 * Math.PI / 3, 0.7);
+        }
+        if (tSec >= 6.0 && !hasMidBurst) {
+          hasMidBurst = true;
+          spawnConfettiBurst(50, 40, 1880, -Math.PI / 3, 0.6);
+          spawnConfettiBurst(50, 1040, 1880, -2 * Math.PI / 3, 0.6);
+        }
+
+        // Draw Complete 1080x1920 Frame
+        drawCelebrationFrame(tSec);
+
+        // Copy to Mini Preview Canvas
+        if (prevCtx && recorderPreviewCanvas) {
+          prevCtx.drawImage(recCanvas, 0, 0, recorderPreviewCanvas.width, recorderPreviewCanvas.height);
+        }
+
+        const progressPercent = Math.min(100, Math.round((elapsed / recordingDurationMs) * 100));
+        recordingProgressBar.style.width = `${progressPercent}%`;
+        const remainingSec = Math.max(0, Math.ceil((recordingDurationMs - elapsed) / 1000));
+        const remainingBn = String(remainingSec).replace(/\d/g, d => bengaliDigits[d]);
+        recordingCountdownText.textContent = `${remainingBn}s`;
+      }, 33);
+
+      function drawCelebrationFrame(t) {
+        // --- A. Festive Gradient Background ---
+        const bgGrad = ctx.createLinearGradient(0, 0, 1080, 1920);
+        bgGrad.addColorStop(0, '#ffe5e5');
+        bgGrad.addColorStop(0.5, '#fff6ce');
+        bgGrad.addColorStop(1, '#e4dcfc');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // Animated subtle background polka dots & stars
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+        for (let x = 40; x < 1080; x += 80) {
+          for (let y = 40; y < 1920; y += 80) {
+            ctx.beginPath();
+            ctx.arc(x, y, 4, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        // --- B. Floating Balloons Behind & In Front of Card ---
+        balloons.forEach((b) => {
+          b.y -= b.speed;
+          if (b.y < -150) b.y = 1950 + Math.random() * 200;
+          const sway = Math.sin(t * b.swaySpeed + b.swayOffset) * 24;
+          const bx = b.x + sway;
+          const by = b.y;
+
+          // Wavy string
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(0, 0, 0, 0.4)';
+          ctx.lineWidth = 3;
+          ctx.moveTo(bx, by + b.size * 1.2);
+          ctx.quadraticCurveTo(bx + 15, by + b.size * 2, bx - 10, by + b.size * 2.8);
+          ctx.stroke();
+
+          // Balloon body
+          ctx.save();
+          ctx.translate(bx, by);
+          ctx.fillStyle = b.color;
+          ctx.strokeStyle = '#000000';
+          ctx.lineWidth = 4;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, b.size, b.size * 1.25, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+
+          // Balloon knot
+          ctx.beginPath();
+          ctx.moveTo(-6, b.size * 1.25);
+          ctx.lineTo(6, b.size * 1.25);
+          ctx.lineTo(0, b.size * 1.25 + 8);
+          ctx.closePath();
+          ctx.fillStyle = b.color;
+          ctx.fill();
+          ctx.stroke();
+
+          // Balloon 3D Highlight
+          ctx.beginPath();
+          ctx.ellipse(-b.size * 0.35, -b.size * 0.4, b.size * 0.22, b.size * 0.45, -Math.PI / 4, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
+          ctx.fill();
+
+          // Character Face if marked
+          if (b.isCharacter) {
+            ctx.fillStyle = '#000';
+            // Eyes
+            ctx.beginPath();
+            ctx.arc(-12, -5, 3.5, 0, Math.PI * 2);
+            ctx.arc(12, -5, 3.5, 0, Math.PI * 2);
+            ctx.fill();
+            // Blushing Cheeks
+            ctx.fillStyle = '#ff4757';
+            ctx.beginPath();
+            ctx.arc(-22, 6, 5, 0, Math.PI * 2);
+            ctx.arc(22, 6, 5, 0, Math.PI * 2);
+            ctx.fill();
+            // Smile
+            ctx.beginPath();
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 3;
+            ctx.arc(0, 4, 10, 0.1 * Math.PI, 0.9 * Math.PI);
+            ctx.stroke();
+          }
+
+          ctx.restore();
+        });
+
+        // --- C. Top Festive Bunting Garland ---
+        const flagsCount = 11;
+        const flagWidth = 1080 / flagsCount;
+        for (let i = 0; i < flagsCount; i++) {
+          const fx = i * flagWidth;
+          const fy = 10 + Math.sin((i / flagsCount) * Math.PI) * 45;
+          ctx.beginPath();
+          ctx.moveTo(fx, fy);
+          ctx.lineTo(fx + flagWidth, fy + Math.sin(((i + 1) / flagsCount) * Math.PI) * 45);
+          ctx.lineTo(fx + flagWidth / 2, fy + 80);
+          ctx.closePath();
+          ctx.fillStyle = confettiColors[i % confettiColors.length];
+          ctx.strokeStyle = '#000000';
+          ctx.lineWidth = 4;
+          ctx.fill();
+          ctx.stroke();
+        }
+
+        // --- D. Top Heading Badges ---
+        // Pill 1: CLASS XII • BIRTHDAY CELEBRATION
+        ctx.save();
+        ctx.fillStyle = '#ffde00';
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 5;
+        drawRoundedRect(ctx, 240, 150, 600, 64, 32);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#000000';
+        ctx.font = '900 24px Montserrat, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('CLASS XII • BIRTHDAY CELEBRATION', 540, 184);
+        ctx.restore();
+
+        // Big Festive Bengali Title: শুভ জন্মদিন
+        ctx.save();
+        ctx.font = '900 80px "Hind Siliguri", "Anek Bangla", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        // Neo-Brutalist Shadow
+        ctx.fillStyle = '#ff6b6b';
+        ctx.fillText('• শুভ জন্মদিন •', 545, 275);
+        ctx.fillStyle = '#000000';
+        ctx.fillText('• শুভ জন্মদিন •', 540, 270);
+        ctx.restore();
+
+        // --- E. Central Neo-Brutalist Birthday Card ---
+        const cardX = 90;
+        const cardY = 350;
+        const cardW = 900;
+        const cardH = 1260;
+        const cardR = 48;
+
+        // Drop shadow for card
+        ctx.save();
+        ctx.fillStyle = '#000000';
+        drawRoundedRect(ctx, cardX + 16, cardY + 16, cardW, cardH, cardR);
+        ctx.fill();
+
+        // Card Body
+        ctx.fillStyle = '#fffdf2';
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 8;
+        drawRoundedRect(ctx, cardX, cardY, cardW, cardH, cardR);
+        ctx.fill();
+        ctx.stroke();
+
+        // --- F. 3D Birthday Cake with Animated Flame & Smoke ---
+        const cakeCx = 540;
+        const cakeCy = 540;
+
+        // Cake Bottom Tier
+        ctx.fillStyle = '#a494f6';
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 5;
+        drawRoundedRect(ctx, cakeCx - 140, cakeCy + 40, 280, 80, 16);
+        ctx.fill();
+        ctx.stroke();
+
+        // Bottom tier drips
+        ctx.fillStyle = '#ffffff';
+        for (let dx = -140; dx < 140; dx += 35) {
+          ctx.beginPath();
+          ctx.arc(cakeCx + dx + 17.5, cakeCy + 40, 18, 0, Math.PI);
+          ctx.fill();
+          ctx.stroke();
+        }
+
+        // Cake Top Tier
+        ctx.fillStyle = '#ffde00';
+        drawRoundedRect(ctx, cakeCx - 95, cakeCy - 40, 190, 80, 14);
+        ctx.fill();
+        ctx.stroke();
+
+        // Top tier drips & cherries
+        ctx.fillStyle = '#ffffff';
+        for (let dx = -95; dx < 95; dx += 38) {
+          ctx.beginPath();
+          ctx.arc(cakeCx + dx + 19, cakeCy - 40, 14, 0, Math.PI);
+          ctx.fill();
+          ctx.stroke();
+
+          // Red cherry on top
+          ctx.beginPath();
+          ctx.arc(cakeCx + dx + 19, cakeCy - 45, 9, 0, Math.PI * 2);
+          ctx.fillStyle = '#ff4757';
+          ctx.fill();
+          ctx.stroke();
+          ctx.fillStyle = '#ffffff';
+        }
+
+        // Candle Stick
+        ctx.fillStyle = '#ffffff';
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 4;
+        drawRoundedRect(ctx, cakeCx - 12, cakeCy - 120, 24, 75, 6);
+        ctx.fill();
+        ctx.stroke();
+
+        // Diagonal orange stripes on candle
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(cakeCx - 10, cakeCy - 100);
+        ctx.lineTo(cakeCx + 10, cakeCy - 85);
+        ctx.moveTo(cakeCx - 10, cakeCy - 75);
+        ctx.lineTo(cakeCx + 10, cakeCy - 60);
+        ctx.stroke();
+
+        // Flame or Smoke depending on t (candle extinguished at t >= 2.0s)
+        if (t < 2.0) {
+          // Animated flickering flame
+          const flicker = Math.sin(t * 28) * 4;
+          ctx.save();
+          ctx.translate(cakeCx, cakeCy - 135);
+          // Outer flame
+          ctx.beginPath();
+          ctx.ellipse(flicker * 0.5, 0, 18 + flicker * 0.3, 32, 0, 0, Math.PI * 2);
+          ctx.fillStyle = '#ff9f43';
+          ctx.fill();
+          // Inner core flame
+          ctx.beginPath();
+          ctx.ellipse(flicker * 0.2, 5, 9, 18, 0, 0, Math.PI * 2);
+          ctx.fillStyle = '#feca57';
+          ctx.fill();
+          ctx.beginPath();
+          ctx.ellipse(0, 10, 4, 10, 0, 0, Math.PI * 2);
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+          ctx.restore();
+        } else {
+          // Smoke puff after candle is extinguished
+          const smokeAge = t - 2.0;
+          ctx.save();
+          ctx.translate(cakeCx, cakeCy - 135 - smokeAge * 25);
+          ctx.fillStyle = `rgba(120, 120, 120, ${Math.max(0, 0.7 - smokeAge * 0.08)})`;
+          for (let s = 0; s < 4; s++) {
+            const sx = Math.sin(smokeAge * 3 + s) * (18 + s * 10);
+            const sy = -s * 25;
+            const sr = 12 + s * 8 + smokeAge * 6;
+            ctx.beginPath();
+            ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
+        }
+
+        // --- G. Student Name ---
+        ctx.save();
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.font = '900 68px "Hind Siliguri", "Anek Bangla", sans-serif';
+        // Shadow
+        ctx.fillStyle = '#ffde00';
+        ctx.fillText(student.name, 544, 734);
+        ctx.fillStyle = '#000000';
+        ctx.fillText(student.name, 540, 730);
+        ctx.restore();
+
+        // --- H. Heartfelt Wish Message (Auto-wrapped) ---
+        ctx.save();
+        ctx.font = 'bold 30px "Hind Siliguri", sans-serif';
+        ctx.fillStyle = '#1e293b';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        wrapText(ctx, wishMsg, 540, 790, 780, 44);
+        ctx.restore();
+
+        // --- I. 4 Bento Student Info Boxes ---
+        const bentoY = 940;
+        const bentoW = 380;
+        const bentoH = 115;
+        const bentoGap = 40;
+
+        const bentoData = [
+          { label: 'শ্রেণি ও সেকশন', val: `Class XII · সেকশন ${student.section}`, x: 540 - bentoW - bentoGap / 2, y: bentoY },
+          { label: 'রোল নম্বর', val: `রোল নম্বর: ${student.roll}`, x: 540 + bentoGap / 2, y: bentoY },
+          { label: 'জন্মতারিখ ও রাশি', val: `${student.dob || ''} · ${zodiac}`, x: 540 - bentoW - bentoGap / 2, y: bentoY + bentoH + 20 },
+          { label: 'বয়স', val: `${ageText}`, x: 540 + bentoGap / 2, y: bentoY + bentoH + 20 }
+        ];
+
+        bentoData.forEach(b => {
+          // Shadow
+          ctx.fillStyle = '#000000';
+          drawRoundedRect(ctx, b.x + 6, b.y + 6, bentoW, bentoH, 24);
+          ctx.fill();
+
+          // Box
+          ctx.fillStyle = '#ffffff';
+          ctx.strokeStyle = '#000000';
+          ctx.lineWidth = 4;
+          drawRoundedRect(ctx, b.x, b.y, bentoW, bentoH, 24);
+          ctx.fill();
+          ctx.stroke();
+
+          // Text inside box
+          ctx.fillStyle = '#64748b';
+          ctx.font = 'bold 22px "Hind Siliguri", sans-serif';
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'top';
+          ctx.fillText(b.label, b.x + 22, b.y + 18);
+
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 28px "Hind Siliguri", sans-serif';
+          ctx.fillText(b.val, b.x + 22, b.y + 58);
+        });
+
+        // Bottom greeting inside card
+        ctx.save();
+        ctx.font = '900 24px Montserrat, sans-serif';
+        ctx.fillStyle = '#ff6b6b';
+        ctx.textAlign = 'center';
+        ctx.fillText('BEST WISHES FROM CLASS XII FRIENDS 💛', 540, 1260);
+        ctx.restore();
+        ctx.restore(); // restore card save
+
+        // --- J. Confetti Particles Physics & Drawing ---
+        confettiParticles.forEach((p, idx) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.32; // gravity
+          p.vx *= 0.985; // drag
+          p.rot += p.vRot;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.scale(Math.cos(p.rot * 1.5), 1); // 3D fluttering
+          ctx.fillStyle = p.color;
+          ctx.strokeStyle = '#000000';
+          ctx.lineWidth = 1.5;
+
+          if (p.shape === 'rect') {
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+            ctx.strokeRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+          } else {
+            ctx.beginPath();
+            ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+          }
+          ctx.restore();
+        });
+
+        // --- K. Dual Cannon Launchers in Bottom Corners ---
+        // Left Cannon
+        ctx.save();
+        ctx.translate(50, 1870);
+        ctx.rotate(-Math.PI / 4);
+        ctx.fillStyle = '#ff6b6b';
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 6;
+        drawRoundedRect(ctx, -25, -50, 50, 100, 12);
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+
+        // Right Cannon
+        ctx.save();
+        ctx.translate(1030, 1870);
+        ctx.rotate(Math.PI / 4);
+        ctx.fillStyle = '#00e5ff';
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 6;
+        drawRoundedRect(ctx, -25, -50, 50, 100, 12);
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+
+        // Bottom Stamp
+        ctx.save();
+        ctx.font = '900 18px monospace';
+        ctx.fillStyle = '#000000';
+        ctx.textAlign = 'center';
+        ctx.fillText('1080P FULL HD • CLASS-XII-BIRTHDAY-TRACKER', 540, 1895);
+        ctx.restore();
+      }
+
+      function drawRoundedRect(c, x, y, w, h, r) {
+        c.beginPath();
+        c.moveTo(x + r, y);
+        c.lineTo(x + w - r, y);
+        c.quadraticCurveTo(x + w, y, x + w, y + r);
+        c.lineTo(x + w, y + h - r);
+        c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        c.lineTo(x + r, y + h);
+        c.quadraticCurveTo(x, y + h, x, y + h - r);
+        c.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        c.closePath();
+      }
+
+      function wrapText(c, text, x, y, maxWidth, lineHeight) {
+        const words = text.split(' ');
+        let line = '';
+        let curY = y;
+        for (let n = 0; n < words.length; n++) {
+          const testLine = line + words[n] + ' ';
+          const metrics = c.measureText(testLine);
+          if (metrics.width > maxWidth && n > 0) {
+            c.fillText(line, x, curY);
+            line = words[n] + ' ';
+            curY += lineHeight;
+          } else {
+            line = testLine;
+          }
+        }
+        c.fillText(line, x, curY);
+      }
+
+      async function finishRecording() {
+        if (!isVideoRecordingActive) return;
+        isVideoRecordingActive = false;
+
+        synthOscillators.forEach(osc => {
+          try { osc.stop(); } catch (e) {}
+        });
+
+        const blobPromise = new Promise(resolve => {
+          if (recorder.state === 'inactive') {
+            resolve(new Blob(videoChunks, { type: mimeType }));
+          } else {
+            recorder.addEventListener('stop', () => {
+              resolve(new Blob(videoChunks, { type: mimeType }));
+            }, { once: true });
+            recorder.stop();
+          }
+        });
+
+        const blob = await blobPromise;
+        currentRecordedVideoBlob = blob;
+        if (currentRecordedVideoUrl) {
+          URL.revokeObjectURL(currentRecordedVideoUrl);
+        }
+        currentRecordedVideoUrl = URL.createObjectURL(blob);
+
+        // Hide recording modal and show preview modal
+        videoRecordingModal.classList.add('hidden');
+        videoPreviewModal.classList.remove('hidden');
+
+        if (videoPreviewStudentName) {
+          videoPreviewStudentName.textContent = `${student.name}-এর ১০৮০p বার্থডে ভিডিও`;
+        }
+        if (birthdayRecordedVideo) {
+          birthdayRecordedVideo.src = currentRecordedVideoUrl;
+          birthdayRecordedVideo.currentTime = 0;
+          birthdayRecordedVideo.play().catch(() => {});
+        }
+      }
+    }
+
+    // Cancel Button in recording modal
+    document.getElementById('btnCancelRecording').addEventListener('click', () => {
+      videoRecordingAbortFlag = true;
+      isVideoRecordingActive = false;
+      videoRecordingModal.classList.add('hidden');
+    });
+
+    // Close Button in preview modal
+    document.getElementById('btnCloseVideoPreview').addEventListener('click', () => {
+      videoPreviewModal.classList.add('hidden');
+      if (birthdayRecordedVideo) birthdayRecordedVideo.pause();
+    });
+
+    // Re-record Button
+    document.getElementById('btnRerecordVideo').addEventListener('click', () => {
+      if (birthdayRecordedVideo) birthdayRecordedVideo.pause();
+      videoPreviewModal.classList.add('hidden');
+      if (currentStudent) {
+        record1080pBirthdayVideo(currentStudent);
+      }
+    });
+
+    // Download Video Button (Direct MP4 download)
+    document.getElementById('btnDownloadVideo').addEventListener('click', () => {
+      if (!currentRecordedVideoUrl || !currentStudent) return;
+      const cleanName = currentStudent.name.replace(/\s+/g, '_');
+      const filename = `Birthday_${cleanName}_1080p.mp4`;
+      
+      // Ensure download is served as video/mp4
+      const mp4Blob = currentRecordedVideoBlob.type.includes('mp4')
+        ? currentRecordedVideoBlob
+        : new Blob([currentRecordedVideoBlob], { type: 'video/mp4' });
+      const mp4Url = URL.createObjectURL(mp4Blob);
+
+      const a = document.createElement('a');
+      a.href = mp4Url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(mp4Url), 10000);
+    });
+
+    // WhatsApp Send Button (Uses Web Share API for native video share, or fallback download + wa.me)
+    document.getElementById('btnShareWhatsAppVideo').addEventListener('click', async () => {
+      if (!currentRecordedVideoBlob || !currentStudent) return;
+      const cleanName = currentStudent.name.replace(/\s+/g, '_');
+      const filename = `Birthday_${cleanName}_1080p.mp4`;
+      const mp4Blob = currentRecordedVideoBlob.type.includes('mp4')
+        ? currentRecordedVideoBlob
+        : new Blob([currentRecordedVideoBlob], { type: 'video/mp4' });
+      const videoFile = new File([mp4Blob], filename, { type: 'video/mp4' });
+
+      const shareText = `🎉 শুভ জন্মদিন ${currentStudent.name}! 🎂\nClass XII (সেকশন ${currentStudent.section}, রোল ${currentStudent.roll})\n১০৮০p ফুল HD ভিডিও শুভেচ্ছা কার্ড 🎈`;
+
+      // 1. Try Native Web Share API with file support (Works on Mobile Chrome, Safari, Android, WhatsApp)
+      if (navigator.canShare && navigator.canShare({ files: [videoFile] })) {
+        try {
+          await navigator.share({
+            files: [videoFile],
+            title: `শুভ জন্মদিন ${currentStudent.name}!`,
+            text: shareText
+          });
+          return;
+        } catch (shareErr) {
+          if (shareErr.name === 'AbortError') return; // User cancelled share sheet
+          console.warn('Native file share failed, falling back:', shareErr);
+        }
+      }
+
+      // 2. Fallback for Desktop/Unshareable environments:
+      // Download the video file immediately & open WhatsApp Web
+      const a = document.createElement('a');
+      a.href = currentRecordedVideoUrl;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      alert(`ভিডিওটি (${filename}) ডাউনলোড হচ্ছে!\nহোয়াটসঅ্যাপ ওপেন হচ্ছে—ডাউনলোড হওয়া ভিডিওটি চ্যাটে সিলেক্ট করে পাঠিয়ে দিন 📲`);
+      const waUrl = `https://wa.me/?text=${encodeURIComponent(shareText + '\n(ভিডিওটি ডাউনলোড থেকে সিলেক্ট করে পাঠান)')}`;
+      window.open(waUrl, '_blank');
+    });
+
+    // Wire #btnRecordBirthdayVideo in student celebration modal
+    const btnRecordBirthdayVideo = document.getElementById('btnRecordBirthdayVideo');
+    if (btnRecordBirthdayVideo) {
+      btnRecordBirthdayVideo.addEventListener('click', () => {
+        if (currentStudent) {
+          record1080pBirthdayVideo(currentStudent);
+        }
+      });
+    }
+
     /* =========================================================
        1. DATA & CONSTANTS
        ========================================================= */
@@ -940,8 +1837,18 @@
     ];
 
     /* =========================================================
-       2. AUDIO PLAYER ("nastelbom-happy-birthday-495860.mp3")
+       2. AUDIO PLAYER (6 ROTATIONAL BIRTHDAY TRACKS)
        ========================================================= */
+    const BIRTHDAY_PLAYLIST = [
+      { id: 1, title: 'Happy Birthday Melody', file: 'nastelbom-happy-birthday-495860.mp3' },
+      { id: 2, title: 'আজ মেরে মুন্নে (Aj Mere Munne)', file: 'aj-mere-munne.mp3' },
+      { id: 3, title: 'শুভ জন্মদিন (Shuvo Jonmodin)', file: 'shuvo-jonmodin.mp3' },
+      { id: 4, title: 'বার্থডে স্পেশাল (Wish 1)', file: 'new-wish-nhgfbfhc.mp3' },
+      { id: 5, title: 'বার্থডে স্পেশাল (Wish 2)', file: 'new-wish-jdfgsdhf.mp3' },
+      { id: 6, title: 'বার্থডে স্পেশাল (Wish 3)', file: 'new-wish-vhkjhfv.mp3' }
+    ];
+
+    let currentBirthdaySongIndex = 0;
     const bdayAudio = document.getElementById('birthdayAudio');
     let audioCtx = null;
     let isMusicPlaying = false;
@@ -958,20 +1865,32 @@
       return audioCtx;
     }
 
-    // Play Birthday Song (MP3 file priority)
-    function playBirthdaySong() {
+    // Play Birthday Song (Cycles through 1 -> 2 -> 3 -> 1... for each person)
+    function playBirthdaySong(requestedSong) {
+      const song = requestedSong || BIRTHDAY_PLAYLIST[currentBirthdaySongIndex];
+      // Advance counter to next song for the next celebration
+      currentBirthdaySongIndex = (currentBirthdaySongIndex + 1) % BIRTHDAY_PLAYLIST.length;
+
       if (bdayAudio) {
-        bdayAudio.currentTime = 0;
-        const playPromise = bdayAudio.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            isMusicPlaying = true;
-            updateMusicUI(true);
-          }).catch(err => {
-            console.warn('MP3 autoplay failed or blocked, starting synthesized fallback:', err);
-            startHappyBirthdaySynth();
-          });
-          return;
+        try {
+          if (!bdayAudio.src.endsWith(song.file)) {
+            bdayAudio.src = song.file;
+            bdayAudio.load();
+          }
+          bdayAudio.currentTime = 0;
+          const playPromise = bdayAudio.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              isMusicPlaying = true;
+              updateMusicUI(true, song.title);
+            }).catch(err => {
+              console.warn('MP3 autoplay failed or blocked, starting synthesized fallback:', err);
+              startHappyBirthdaySynth();
+            });
+            return;
+          }
+        } catch (e) {
+          console.warn('Audio playback error:', e);
         }
       }
       startHappyBirthdaySynth();
@@ -1000,7 +1919,7 @@
       });
     }
 
-    function updateMusicUI(playing) {
+    function updateMusicUI(playing, songTitle) {
       const btn = document.getElementById('btnToggleMusic');
       const icon = document.getElementById('musicIcon');
       const label = document.getElementById('musicLabel');
@@ -1009,7 +1928,7 @@
           btn.classList.add('bg-[#ffde00]');
           btn.classList.remove('bg-white');
           icon.textContent = '🔊';
-          label.textContent = 'মিউজিক বন্ধ';
+          label.textContent = songTitle ? songTitle.slice(0, 15) : 'মিউজিক বন্ধ';
         } else {
           btn.classList.remove('bg-[#ffde00]');
           btn.classList.add('bg-white');
@@ -2212,6 +3131,85 @@
       navigator.serviceWorker.register('sw.js').catch(() => {});
     }
 
+
+    /* =========================================================
+       HERO BENTO CARD 3: AUTOMATIC MEMORIES PHOTO CAROUSEL
+       ========================================================= */
+    const MEMORIES_PHOTOS = [
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894401/lk96vhpueos8s9kpscfw.webp',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894400/w5l4mhagmn0nxsnzoa5t.webp',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894224/owv5u7dc5rqm25ddzpc4.jpg',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894223/jj6mhsfd7pnwatrqrtpm.jpg',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894223/vrf8chdmcpdlbskpxz10.jpg',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/guiijjobnu1ynlockmv6.jpg',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/rhi3ia8jtvqsnvg4nvny.jpg',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/pesatmrj2jmnniwxxo95.jpg',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/z7kcjyq6fxrxhxn4fohi.jpg'
+    ];
+
+    let currentCarouselIndex = 0;
+    let carouselTimer = null;
+
+    function initHeroCarousel() {
+      const container = document.getElementById('carouselSlidesContainer');
+      const box = document.getElementById('heroMemoriesCarousel');
+      if (!container || !box) return;
+
+      container.innerHTML = MEMORIES_PHOTOS.map((url, i) => `
+        <img 
+          src="${url}" 
+          alt="স্মৃতি ${i + 1}" 
+          loading="${i === 0 ? 'eager' : 'lazy'}" 
+          class="carousel-slide-img absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none transition-opacity duration-700 ease-in-out ${i === 0 ? 'opacity-100' : 'opacity-0'}" 
+          data-slide-index="${i}"
+        />
+      `).join('');
+
+      box.addEventListener('click', () => {
+        const activeUrl = MEMORIES_PHOTOS[currentCarouselIndex];
+        openLightbox(activeUrl, `স্মৃতি অ্যালবাম #${currentCarouselIndex + 1}`);
+      });
+
+      function showSlide(index) {
+        currentCarouselIndex = (index + MEMORIES_PHOTOS.length) % MEMORIES_PHOTOS.length;
+        const slides = container.querySelectorAll('.carousel-slide-img');
+        slides.forEach((s, i) => {
+          if (i === currentCarouselIndex) {
+            s.classList.remove('opacity-0');
+            s.classList.add('opacity-100');
+          } else {
+            s.classList.remove('opacity-100');
+            s.classList.add('opacity-0');
+          }
+        });
+        const counter = document.getElementById('carouselCounter');
+        if (counter) {
+          const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+          const currentBn = String(currentCarouselIndex + 1).replace(/\d/g, d => bengaliDigits[d]);
+          const totalBn = String(MEMORIES_PHOTOS.length).replace(/\d/g, d => bengaliDigits[d]);
+          counter.textContent = `${currentBn} / ${totalBn}`;
+        }
+      }
+
+      function startCarousel() {
+        if (carouselTimer) clearInterval(carouselTimer);
+        carouselTimer = setInterval(() => {
+          showSlide(currentCarouselIndex + 1);
+        }, 3000); // Smooth automatic transition every 3 seconds
+      }
+
+      startCarousel();
+
+      // Pause auto-rotation when user hovers over carousel
+      box.addEventListener('mouseenter', () => {
+        if (carouselTimer) clearInterval(carouselTimer);
+      });
+      box.addEventListener('mouseleave', () => {
+        startCarousel();
+      });
+    }
+
+    initHeroCarousel();
     updateNotifUI();
     if (STUDENTS.length > 0) {
       render();
