@@ -2674,11 +2674,11 @@
         updateNotifUI();
         if (perm !== 'granted') return;
       }
-      sendTodayBirthdayNotification();
+      sendTodayBirthdayNotification(true);
     });
 
-    // Send Notification for Today
-    function sendTodayBirthdayNotification() {
+    // Send Notification for Today (Zero server cost, 100% client-side)
+    function sendTodayBirthdayNotification(isManualTest = false) {
       if (Notification.permission !== 'granted') return;
       const now = new Date();
       const tm = now.getMonth() + 1;
@@ -2687,6 +2687,7 @@
 
       let title, body;
       if (!bdays.length) {
+        if (!isManualTest) return; // Only notify if there are actual birthdays today
         title = '🎂 আজ কারো জন্মদিন নেই';
         body = 'পরবর্তী দিনগুলোতে বন্ধুদের জন্মদিন দেখতে ট্র্যাকার খুলুন!';
       } else if (bdays.length === 1) {
