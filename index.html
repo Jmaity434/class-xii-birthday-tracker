@@ -230,11 +230,12 @@
     }
   </style>
 
-  <!-- External Student Data Scripts -->
+  <!-- External Student Data & Audio Scripts -->
   <script src="s0.js"></script>
   <script src="s1.js"></script>
   <script src="s2.js"></script>
   <script src="s3.js"></script>
+  <script src="audio-data.js"></script>
 </head>
 
 <body class="text-black min-h-screen flex flex-col justify-between selection:bg-black selection:text-white relative bg-[#eef69e] overflow-x-hidden w-full max-w-full">
@@ -242,13 +243,12 @@
   <!-- Dual Cannon Confetti Canvas -->
   <canvas id="confettiCanvas"></canvas>
 
-  <!-- Local Happy Birthday MP3 Audio Player (Rotational 6-Track Playlist) -->
-  <audio id="birthdayAudio" src="nastelbom-happy-birthday-495860.mp3" preload="auto"></audio>
-  <audio id="audioTrack2" src="aj-mere-munne.mp3" preload="auto" class="hidden"></audio>
-  <audio id="audioTrack3" src="shuvo-jonmodin.mp3" preload="auto" class="hidden"></audio>
-  <audio id="audioTrack4" src="new-wish-nhgfbfhc.mp3" preload="auto" class="hidden"></audio>
-  <audio id="audioTrack5" src="new-wish-jdfgsdhf.mp3" preload="auto" class="hidden"></audio>
-  <audio id="audioTrack6" src="new-wish-vhkjhfv.mp3" preload="auto" class="hidden"></audio>
+  <!-- Local Happy Birthday MP3 Audio Player (5 User Birthday Songs - No Instrumental Tunes) -->
+  <audio id="birthdayAudio" src="aj-mere-munne.mp3" preload="auto"></audio>
+  <audio id="audioTrack2" src="shuvo-jonmodin.mp3" preload="auto" class="hidden"></audio>
+  <audio id="audioTrack3" src="new-wish-nhgfbfhc.mp3" preload="auto" class="hidden"></audio>
+  <audio id="audioTrack4" src="new-wish-jdfgsdhf.mp3" preload="auto" class="hidden"></audio>
+  <audio id="audioTrack5" src="new-wish-vhkjhfv.mp3" preload="auto" class="hidden"></audio>
 
   <!-- Nostalgic Memories Audio Player ("woh-din-bhi.mp3") -->
   <audio id="memoriesAudio" src="woh-din-bhi.mp3" preload="auto"></audio>
@@ -296,10 +296,6 @@
           <span class="font-display hidden sm:inline">GITHUB</span>
         </a>
 
-        <!-- Notification Bell in Navbar -->
-        <button id="btnNavbarBell" onclick="document.getElementById('btnFloatingBell').click()" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white hover:bg-[#ffde00] border-2 border-black flex items-center justify-center font-bold text-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all text-xs sm:text-base" title="নোটিফিকেশন সেটিংস">
-          <span>🔔</span>
-        </button>
       </div>
 
     </div>
@@ -913,18 +909,11 @@
           </button>
         </div>
 
-        <!-- 1080p 10-Second Video Greeting Recorder Button -->
-        <button id="btnRecordBirthdayVideo" type="button" class="w-full py-3 px-4 rounded-full font-bengali text-sm sm:text-base font-black bg-[#ffde00] hover:bg-[#ffe633] text-black border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center gap-2 transition-all group" title="গান, বেলুন ও কনফেটি সহ ১০ সেকেন্ডের ১০৮০p ভিডিও রেকর্ড করুন">
-          <span class="inline-block w-3 h-3 rounded-full bg-red-600 animate-pulse group-hover:scale-125 transition-transform"></span>
-          <span>🎥 ১০ সে. ১০৮০p ভিডিও কার্ড বানান</span>
-          <span class="text-[10px] px-2 py-0.5 rounded-full bg-black text-white font-mono font-bold ml-1">1080p</span>
+        <!-- Video Download Button -->
+        <button id="btnRecordBirthdayVideo" type="button" class="w-full py-3 px-4 rounded-full font-bengali text-sm sm:text-base font-black bg-[#ffde00] hover:bg-[#ffe633] text-black border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center gap-2 transition-all group" title="বার্থডে ভিডিও তৈরি ও ডাউনলোড করুন">
+          <span>📹</span>
+          <span>ভিডিও ডাউনলোড করুন</span>
         </button>
-
-        <!-- Direct WhatsApp Text Share Link -->
-        <a id="btnModalWhatsapp" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-2 px-4 rounded-full font-bengali text-xs sm:text-sm font-bold bg-[#25D366] text-black border-2 border-black shadow-[2px_2px_0px_#000] hover:bg-[#20ba5a] active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center gap-2 transition-all">
-          <span>📲</span>
-          <span>হোয়াটসঅ্যাপে সরাসরি টেক্সট পাঠান</span>
-        </a>
 
         <button id="btnModalClose" class="w-full py-2 px-4 rounded-full font-bengali text-xs font-bold text-black/80 hover:text-black transition-colors">
           ধন্যবাদ 💛 বন্ধ করুন
@@ -949,11 +938,8 @@
       <!-- Live Countdown -->
       <div class="my-3">
         <div id="recordingCountdownText" class="text-5xl font-black font-display text-black">
-          ১০s
+          ২০s
         </div>
-        <p class="text-xs font-bengali font-bold text-black/80 mt-1">
-          গান, বেলুন ও কনফেটি ব্লাস্টার ভিডিওতে ধারণ হচ্ছে
-        </p>
       </div>
 
       <!-- Animated Progress Bar -->
@@ -1003,7 +989,7 @@
       </div>
 
       <div class="text-[10px] sm:text-[11px] font-mono text-black/80 font-bold mb-3">
-        📹 1080×1920 Full HD MP4 · 10 Seconds · Audio Included 🎵
+        📹 1080×1920 Full HD MP4 · 20 Seconds · Audio Included 🎵
       </div>
 
       <!-- Action Buttons -->
@@ -1034,12 +1020,92 @@
   <script>
 
     /* =========================================================
-       10. 1080P 10-SECOND BIRTHDAY VIDEO GENERATOR & RECORDER
+       0. GLOBAL BIRTHDAY PLAYLIST & AUDIO ENGINE
+       ========================================================= */
+    const BIRTHDAY_PLAYLIST = [
+      { id: 1, title: 'আজ মেরে মুন্নে', file: 'aj-mere-munne.mp3' },
+      { id: 2, title: 'শুভ জন্মদিন', file: 'shuvo-jonmodin.mp3' },
+      { id: 3, title: 'বার্থডে স্পেশাল ১', file: 'new-wish-nhgfbfhc.mp3' },
+      { id: 4, title: 'বার্থডে স্পেশাল ২', file: 'new-wish-jdfgsdhf.mp3' },
+      { id: 5, title: 'বার্থডে স্পেশাল ৩', file: 'new-wish-vhkjhfv.mp3' }
+    ];
+
+    let currentBirthdaySongIndex = 0;
+    let currentActiveSong = BIRTHDAY_PLAYLIST[0]; // Exact song currently selected on the card
+    const bdayAudio = document.getElementById('birthdayAudio');
+    let audioCtx = null;
+    let isMusicPlaying = false;
+    let synthTimeoutId = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioClass) audioCtx = new AudioClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function base64ToArrayBuffer(base64) {
+      const binary_string = window.atob(base64);
+      const len = binary_string.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+      }
+      return bytes.buffer;
+    }
+
+    async function getSongAudioBuffer(filename) {
+      if (!window._audioBufferCache) window._audioBufferCache = {};
+      if (window._audioBufferCache[filename]) {
+        return window._audioBufferCache[filename];
+      }
+      const actx = getAudioContext();
+      if (!actx) return null;
+
+      // 1. First priority: from embedded window.AUDIO_DATA (100% reliable on file:/// and offline)
+      if (window.AUDIO_DATA && window.AUDIO_DATA[filename]) {
+        try {
+          const ab = base64ToArrayBuffer(window.AUDIO_DATA[filename]);
+          const decoded = await actx.decodeAudioData(ab);
+          window._audioBufferCache[filename] = decoded;
+          return decoded;
+        } catch (e) {
+          console.warn('Decode embedded audio error:', e);
+        }
+      }
+
+      // 2. Second priority: fetch network request (for http / https)
+      try {
+        const resp = await fetch(filename);
+        const ab = await resp.arrayBuffer();
+        const decoded = await actx.decodeAudioData(ab);
+        window._audioBufferCache[filename] = decoded;
+        return decoded;
+      } catch (fetchErr) {
+        console.warn('Fetch audio error:', fetchErr);
+      }
+
+      return null;
+    }
+
+    function preloadSongBuffer(file) {
+      getSongAudioBuffer(file).catch(() => {});
+    }
+
+    /* =========================================================
+       10. 1080P 20-SECOND BIRTHDAY VIDEO GENERATOR & RECORDER
        ========================================================= */
     let currentRecordedVideoBlob = null;
     let currentRecordedVideoUrl = null;
     let isVideoRecordingActive = false;
     let videoRecordingAbortFlag = false;
+    let activeRecAudioSourceNode = null;
+    let activeMediaRecorder = null;
+    let activeMediaStream = null;
 
     const videoRecordingModal = document.getElementById('videoRecordingModal');
     const videoPreviewModal = document.getElementById('videoPreviewModal');
@@ -1060,7 +1126,12 @@
       videoRecordingModal.classList.remove('hidden');
       videoPreviewModal.classList.add('hidden');
       recordingProgressBar.style.width = '0%';
-      recordingCountdownText.textContent = '১০s';
+      recordingCountdownText.textContent = '২০s';
+
+      // Immediately pause background card audio so it does not conflict with Web Audio recording
+      if (bdayAudio) {
+        bdayAudio.pause();
+      }
 
       // 1. Setup 1080p Canvas (1080 x 1920 Full HD Portrait for WhatsApp Status/Mobile)
       const recCanvas = document.createElement('canvas');
@@ -1070,57 +1141,107 @@
 
       const prevCtx = recorderPreviewCanvas ? recorderPreviewCanvas.getContext('2d') : null;
 
-      // 2. Setup Audio Recording via Web Audio MediaStreamDestination
+      // 2. Pre-load exact illustrated Character Balloons matching student gender
+      const balloonGender = (student.gender === 'GIRLS') ? 'GIRLS' : 'BOYS';
+      const balloonImages = [];
+      const balloonBlobsToRevoke = [];
+
+      try {
+        await Promise.all([0, 1, 2].map(v => {
+          return new Promise(res => {
+            try {
+              const rawSvg = getCharacterBalloonSVG(balloonGender, v);
+              const fixedSvg = rawSvg
+                .replace('width="100%"', 'width="100"')
+                .replace('height="100%"', 'height="160"');
+              const blob = new Blob([fixedSvg], { type: 'image/svg+xml;charset=utf-8' });
+              const url = URL.createObjectURL(blob);
+              balloonBlobsToRevoke.push(url);
+              const img = new Image();
+              img.onload = () => {
+                balloonImages[v] = img;
+                res(true);
+              };
+              img.onerror = () => {
+                balloonImages[v] = null;
+                res(false);
+              };
+              img.src = url;
+            } catch (err) {
+              balloonImages[v] = null;
+              res(false);
+            }
+          });
+        }));
+      } catch (err) {
+        console.warn('Balloon preload warning:', err);
+      }
+
+      // 3. Setup Audio Recording using direct decoded MP3 AudioBuffer
       const audioCtx = getAudioContext();
       if (audioCtx && audioCtx.state === 'suspended') {
         try { await audioCtx.resume(); } catch (e) {}
       }
 
       let audioStreamTrack = null;
-      let synthOscillators = [];
+      let recAudioSourceNode = null;
+
+      // Determine active MP3 song file (ALWAYS strictly matches the song currently chosen on the card)
+      const songToRecord = currentActiveSong || BIRTHDAY_PLAYLIST[0];
+      const activeSongFile = songToRecord.file;
+
+      const recSongNameEl = document.getElementById('recordingSongName');
+      if (recSongNameEl) {
+        recSongNameEl.textContent = '🎵 গান: ' + songToRecord.title;
+      }
+
+      // Pause direct audio element so it doesn't double-play with Web Audio
+      if (bdayAudio) {
+        bdayAudio.pause();
+      }
+
+      // Decode and cache MP3 buffer from embedded audio-data.js (100% reliable on file:/// and offline)
+      let audioBuffer = null;
+      try {
+        audioBuffer = await getSongAudioBuffer(activeSongFile);
+      } catch (err) {
+        console.warn('Audio buffer fetch error:', err);
+      }
 
       if (audioCtx) {
         try {
           const dest = audioCtx.createMediaStreamDestination();
           audioStreamTrack = dest.stream.getAudioTracks()[0];
 
-          // Route birthday audio element or synthesizer into audio destination
-          if (!window._bdayMediaSource && bdayAudio) {
-            try {
-              window._bdayMediaSource = audioCtx.createMediaElementSource(bdayAudio);
-              window._bdayMediaSource.connect(dest);
-              window._bdayMediaSource.connect(audioCtx.destination);
-            } catch (err) {
-              console.warn('MediaElementSource already connected or blocked:', err);
-            }
-          }
-
-          // Restart and play song
-          if (bdayAudio) {
-            bdayAudio.currentTime = 0;
-            bdayAudio.play().catch(() => {});
-          }
-
-          // Also play a cheerful melodic chord into dest as guarantee
-          const chordFreqs = [523.25, 659.25, 783.99]; // C Major
-          chordFreqs.forEach(freq => {
+          if (audioBuffer) {
+            recAudioSourceNode = audioCtx.createBufferSource();
+            recAudioSourceNode.buffer = audioBuffer;
+            recAudioSourceNode.loop = true;
+            activeRecAudioSourceNode = recAudioSourceNode;
+            // Connect to video recording destination
+            recAudioSourceNode.connect(dest);
+            // Connect to user's speakers so they hear the real song while recording
+            recAudioSourceNode.connect(audioCtx.destination);
+            recAudioSourceNode.start(0);
+          } else {
+            // Harmonic fallback oscillator so MediaRecorder never stalls on any device
             const osc = audioCtx.createOscillator();
-            const g = audioCtx.createGain();
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-            g.gain.setValueAtTime(0.04, audioCtx.currentTime);
-            g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 9.5);
-            osc.connect(g);
-            g.connect(dest);
+            const gain = audioCtx.createGain();
+            osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+            osc.connect(gain);
+            gain.connect(dest);
+            gain.connect(audioCtx.destination);
             osc.start();
-            synthOscillators.push(osc);
-          });
+          }
         } catch (e) {
-          console.warn('Audio track setup warning:', e);
+          console.warn('Audio buffer recording setup warning:', e);
         }
       }
 
-      // 3. Setup MediaStream and MediaRecorder
+      // 4. Setup MediaStream and MediaRecorder
       const stream = recCanvas.captureStream(30); // 30 FPS Full HD
+      activeMediaStream = stream;
       if (audioStreamTrack) {
         stream.addTrack(audioStreamTrack);
       }
@@ -1139,6 +1260,7 @@
         mimeType: MediaRecorder.isTypeSupported(mimeType) ? mimeType : undefined,
         videoBitsPerSecond: 6000000 // 6 Mbps high quality 1080p
       });
+      activeMediaRecorder = recorder;
 
       const videoChunks = [];
       recorder.ondataavailable = (e) => {
@@ -1147,7 +1269,7 @@
 
       recorder.start(250);
 
-      // 4. Initialize Festive Particle Simulation Data
+      // 5. Initialize Festive Simulation Data
       // A) Confetti Particles
       const confettiColors = ['#ff6b6b', '#ffde00', '#00e5ff', '#a494f6', '#55efc4', '#fd79a8', '#f39c12'];
       const confettiParticles = [];
@@ -1155,7 +1277,7 @@
       function spawnConfettiBurst(count, sourceX, sourceY, baseAngle, spread) {
         for (let i = 0; i < count; i++) {
           const angle = baseAngle + (Math.random() - 0.5) * spread;
-          const speed = 18 + Math.random() * 32;
+          const speed = 18 + Math.random() * 34;
           confettiParticles.push({
             x: sourceX,
             y: sourceY,
@@ -1170,27 +1292,30 @@
         }
       }
 
-      // Initial Burst at t=0
+      // Initial dual cannon burst at t=0
       spawnConfettiBurst(60, 40, 1880, -Math.PI / 3, 0.6);
       spawnConfettiBurst(60, 1040, 1880, -2 * Math.PI / 3, 0.6);
 
-      // B) Floating Balloons (14 colorful balloons rising throughout the 10 seconds)
-      const balloonColors = ['#ff6b6b', '#ffde00', '#00e5ff', '#a494f6', '#55efc4', '#fd79a8', '#ff9f43'];
+      // B) Floating Character Balloons (Illustrated balloons floating in front of card)
       const balloons = [];
-      for (let i = 0; i < 14; i++) {
+      const balloonCount = 18;
+      for (let i = 0; i < balloonCount; i++) {
+        const w = 130 + Math.random() * 45;
+        const h = w * 1.6; // 100:160 aspect ratio matching getCharacterBalloonSVG
         balloons.push({
-          x: 100 + Math.random() * 880,
-          y: 1950 + i * 160 + Math.random() * 120,
-          speed: 4.5 + Math.random() * 3.5,
-          color: balloonColors[i % balloonColors.length],
-          size: 42 + Math.random() * 22,
+          x: 70 + Math.random() * 940,
+          y: 1950 + i * 140 + Math.random() * 100, // Staggered rising queue
+          speed: 3.5 + Math.random() * 3.2,
+          w: w,
+          h: h,
+          variant: i % 3,
           swayOffset: Math.random() * 10,
-          swaySpeed: 1.8 + Math.random() * 1.5,
-          isCharacter: i === 0 || i === 7 // Character balloon with smile & hat
+          swaySpeed: 1.5 + Math.random() * 1.2,
+          swayAmp: 18 + Math.random() * 14
         });
       }
 
-      // 5. Pre-calculate Student Information strings
+      // 6. Pre-calculate Student Information strings
       const zodiac = getBengaliZodiac(student.month, student.day);
       let ageText = '—';
       if (student.dob) {
@@ -1206,15 +1331,20 @@
       const wishMsg = wishMessages[Math.floor(Math.random() * wishMessages.length)] || 'শুভ জন্মদিন!';
       const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
 
-      // 6. 10-Second Render Loop (Exact 10.0 wall-clock seconds)
+      // 7. 20-Second Render Loop (Exact 20.0 wall-clock seconds)
       const recordingStartTime = performance.now();
-      const recordingDurationMs = 10000;
+      const recordingDurationMs = 20000;
       let hasBlownCandle = false;
-      let hasMidBurst = false;
+      let hasMidBurst1 = false;
+      let hasMidBurst2 = false;
 
       const renderInterval = setInterval(() => {
         const elapsed = performance.now() - recordingStartTime;
-        if (videoRecordingAbortFlag || elapsed >= recordingDurationMs) {
+        if (videoRecordingAbortFlag) {
+          clearInterval(renderInterval);
+          return;
+        }
+        if (elapsed >= recordingDurationMs) {
           clearInterval(renderInterval);
           finishRecording();
           return;
@@ -1222,16 +1352,21 @@
 
         const tSec = elapsed / 1000;
 
-        // Fire cannon bursts at key moments
+        // Fire cannon bursts at celebratory milestones across the 20 seconds
         if (tSec >= 2.0 && !hasBlownCandle) {
           hasBlownCandle = true;
           spawnConfettiBurst(90, 40, 1880, -Math.PI / 3, 0.7);
           spawnConfettiBurst(90, 1040, 1880, -2 * Math.PI / 3, 0.7);
         }
-        if (tSec >= 6.0 && !hasMidBurst) {
-          hasMidBurst = true;
-          spawnConfettiBurst(50, 40, 1880, -Math.PI / 3, 0.6);
-          spawnConfettiBurst(50, 1040, 1880, -2 * Math.PI / 3, 0.6);
+        if (tSec >= 7.5 && !hasMidBurst1) {
+          hasMidBurst1 = true;
+          spawnConfettiBurst(75, 40, 1880, -Math.PI / 3, 0.65);
+          spawnConfettiBurst(75, 1040, 1880, -2 * Math.PI / 3, 0.65);
+        }
+        if (tSec >= 14.5 && !hasMidBurst2) {
+          hasMidBurst2 = true;
+          spawnConfettiBurst(75, 40, 1880, -Math.PI / 3, 0.65);
+          spawnConfettiBurst(75, 1040, 1880, -2 * Math.PI / 3, 0.65);
         }
 
         // Draw Complete 1080x1920 Frame
@@ -1258,7 +1393,7 @@
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, 1080, 1920);
 
-        // Animated subtle background polka dots & stars
+        // Animated subtle background polka dots
         ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
         for (let x = 40; x < 1080; x += 80) {
           for (let y = 40; y < 1920; y += 80) {
@@ -1268,75 +1403,7 @@
           }
         }
 
-        // --- B. Floating Balloons Behind & In Front of Card ---
-        balloons.forEach((b) => {
-          b.y -= b.speed;
-          if (b.y < -150) b.y = 1950 + Math.random() * 200;
-          const sway = Math.sin(t * b.swaySpeed + b.swayOffset) * 24;
-          const bx = b.x + sway;
-          const by = b.y;
-
-          // Wavy string
-          ctx.beginPath();
-          ctx.strokeStyle = 'rgba(0, 0, 0, 0.4)';
-          ctx.lineWidth = 3;
-          ctx.moveTo(bx, by + b.size * 1.2);
-          ctx.quadraticCurveTo(bx + 15, by + b.size * 2, bx - 10, by + b.size * 2.8);
-          ctx.stroke();
-
-          // Balloon body
-          ctx.save();
-          ctx.translate(bx, by);
-          ctx.fillStyle = b.color;
-          ctx.strokeStyle = '#000000';
-          ctx.lineWidth = 4;
-          ctx.beginPath();
-          ctx.ellipse(0, 0, b.size, b.size * 1.25, 0, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.stroke();
-
-          // Balloon knot
-          ctx.beginPath();
-          ctx.moveTo(-6, b.size * 1.25);
-          ctx.lineTo(6, b.size * 1.25);
-          ctx.lineTo(0, b.size * 1.25 + 8);
-          ctx.closePath();
-          ctx.fillStyle = b.color;
-          ctx.fill();
-          ctx.stroke();
-
-          // Balloon 3D Highlight
-          ctx.beginPath();
-          ctx.ellipse(-b.size * 0.35, -b.size * 0.4, b.size * 0.22, b.size * 0.45, -Math.PI / 4, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
-          ctx.fill();
-
-          // Character Face if marked
-          if (b.isCharacter) {
-            ctx.fillStyle = '#000';
-            // Eyes
-            ctx.beginPath();
-            ctx.arc(-12, -5, 3.5, 0, Math.PI * 2);
-            ctx.arc(12, -5, 3.5, 0, Math.PI * 2);
-            ctx.fill();
-            // Blushing Cheeks
-            ctx.fillStyle = '#ff4757';
-            ctx.beginPath();
-            ctx.arc(-22, 6, 5, 0, Math.PI * 2);
-            ctx.arc(22, 6, 5, 0, Math.PI * 2);
-            ctx.fill();
-            // Smile
-            ctx.beginPath();
-            ctx.strokeStyle = '#000';
-            ctx.lineWidth = 3;
-            ctx.arc(0, 4, 10, 0.1 * Math.PI, 0.9 * Math.PI);
-            ctx.stroke();
-          }
-
-          ctx.restore();
-        });
-
-        // --- C. Top Festive Bunting Garland ---
+        // --- B. Top Festive Bunting Garland ---
         const flagsCount = 11;
         const flagWidth = 1080 / flagsCount;
         for (let i = 0; i < flagsCount; i++) {
@@ -1354,8 +1421,8 @@
           ctx.stroke();
         }
 
-        // --- D. Top Heading Badges ---
-        // Pill 1: CLASS XII • BIRTHDAY CELEBRATION
+        // --- C. Top Heading Badges ---
+        // Pill: CLASS XII • BIRTHDAY CELEBRATION
         ctx.save();
         ctx.fillStyle = '#ffde00';
         ctx.strokeStyle = '#000000';
@@ -1382,7 +1449,7 @@
         ctx.fillText('• শুভ জন্মদিন •', 540, 270);
         ctx.restore();
 
-        // --- E. Central Neo-Brutalist Birthday Card ---
+        // --- D. Central Neo-Brutalist Birthday Card ---
         const cardX = 90;
         const cardY = 350;
         const cardW = 900;
@@ -1403,7 +1470,7 @@
         ctx.fill();
         ctx.stroke();
 
-        // --- F. 3D Birthday Cake with Animated Flame & Smoke ---
+        // --- E. 3D Birthday Cake with Animated Flame & Smoke ---
         const cakeCx = 540;
         const cakeCy = 540;
 
@@ -1503,7 +1570,7 @@
           ctx.restore();
         }
 
-        // --- G. Student Name ---
+        // --- F. Student Name ---
         ctx.save();
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -1515,7 +1582,7 @@
         ctx.fillText(student.name, 540, 730);
         ctx.restore();
 
-        // --- H. Heartfelt Wish Message (Auto-wrapped) ---
+        // --- G. Heartfelt Wish Message (Auto-wrapped) ---
         ctx.save();
         ctx.font = 'bold 30px "Hind Siliguri", sans-serif';
         ctx.fillStyle = '#1e293b';
@@ -1524,7 +1591,7 @@
         wrapText(ctx, wishMsg, 540, 790, 780, 44);
         ctx.restore();
 
-        // --- I. 4 Bento Student Info Boxes ---
+        // --- H. 4 Bento Student Info Boxes ---
         const bentoY = 940;
         const bentoW = 380;
         const bentoH = 115;
@@ -1572,8 +1639,43 @@
         ctx.restore();
         ctx.restore(); // restore card save
 
-        // --- J. Confetti Particles Physics & Drawing ---
-        confettiParticles.forEach((p, idx) => {
+        // --- I. Floating Character Balloons IN FRONT OF CARD ---
+        // (Exact character SVGs from website, floating directly over the card)
+        balloons.forEach((b) => {
+          b.y -= b.speed;
+          if (b.y < -350) {
+            b.y = 1950 + Math.random() * 250;
+            b.x = 70 + Math.random() * 940;
+          }
+          const sway = Math.sin(t * b.swaySpeed + b.swayOffset) * b.swayAmp;
+          const bx = b.x + sway;
+          const by = b.y;
+
+          const img = balloonImages[b.variant];
+          if (img && img.complete && img.naturalWidth > 0) {
+            ctx.save();
+            const rot = Math.sin(t * b.swaySpeed + b.swayOffset) * 0.08;
+            ctx.translate(bx, by);
+            ctx.rotate(rot);
+            ctx.drawImage(img, -b.w / 2, -b.h / 2, b.w, b.h);
+            ctx.restore();
+          } else {
+            // Elegant fallback balloon if image is loading
+            ctx.save();
+            ctx.translate(bx, by);
+            ctx.fillStyle = confettiColors[b.variant % confettiColors.length];
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, b.w / 2.5, b.h / 2.5, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+          }
+        });
+
+        // --- J. Confetti Particles Physics & Drawing (Over Balloons & Card) ---
+        confettiParticles.forEach((p) => {
           p.x += p.vx;
           p.y += p.vy;
           p.vy += 0.32; // gravity
@@ -1625,12 +1727,12 @@
         ctx.stroke();
         ctx.restore();
 
-        // Bottom Stamp
+        // --- L. Bottom Greeting (Warm celebratory blessing instead of technical tracker text) ---
         ctx.save();
-        ctx.font = '900 18px monospace';
-        ctx.fillStyle = '#000000';
+        ctx.font = 'bold 24px "Hind Siliguri", "Anek Bangla", sans-serif';
+        ctx.fillStyle = '#475569';
         ctx.textAlign = 'center';
-        ctx.fillText('1080P FULL HD • CLASS-XII-BIRTHDAY-TRACKER', 540, 1895);
+        ctx.fillText('অনেক অনেক ভালোবাসা ও শুভকামনা', 540, 1895);
         ctx.restore();
       }
 
@@ -1644,7 +1746,7 @@
         c.lineTo(x + r, y + h);
         c.quadraticCurveTo(x, y + h, x, y + h - r);
         c.lineTo(x, y + r);
-        ctx.quadraticCurveTo(x, y, x + r, y);
+        c.quadraticCurveTo(x, y, x + r, y);
         c.closePath();
       }
 
@@ -1666,12 +1768,94 @@
         c.fillText(line, x, curY);
       }
 
+      async function fixMp4BlobDuration(blob, durationSec = 20.0) {
+        if (!blob) return blob;
+        try {
+          const arrayBuffer = await blob.arrayBuffer();
+          const view = new DataView(arrayBuffer);
+          const uint8 = new Uint8Array(arrayBuffer);
+
+          function findAtom(tag, startOffset = 0) {
+            const b0 = tag.charCodeAt(0), b1 = tag.charCodeAt(1), b2 = tag.charCodeAt(2), b3 = tag.charCodeAt(3);
+            for (let i = startOffset; i <= uint8.length - 8; i++) {
+              if (uint8[i] === b0 && uint8[i+1] === b1 && uint8[i+2] === b2 && uint8[i+3] === b3) {
+                return i;
+              }
+            }
+            return -1;
+          }
+
+          const durationMs = Math.round(durationSec * 1000);
+
+          // 1. Patch mvhd duration
+          const mvhdOffset = findAtom('mvhd');
+          if (mvhdOffset !== -1) {
+            const v = view.getUint8(mvhdOffset + 4);
+            if (v === 1) {
+              view.setBigUint64(mvhdOffset + 4 + 4 + 20, BigInt(durationMs));
+            } else {
+              view.setUint32(mvhdOffset + 4 + 4 + 16, durationMs);
+            }
+          }
+
+          // 2. Patch all tkhd durations
+          let tkhdOffset = 0;
+          while ((tkhdOffset = findAtom('tkhd', tkhdOffset)) !== -1) {
+            const v = view.getUint8(tkhdOffset + 4);
+            if (v === 1) {
+              view.setBigUint64(tkhdOffset + 4 + 4 + 24, BigInt(durationMs));
+            } else {
+              view.setUint32(tkhdOffset + 4 + 4 + 16, durationMs);
+            }
+            tkhdOffset += 4;
+          }
+
+          // 3. Patch all mdhd durations
+          let mdhdOffset = 0;
+          while ((mdhdOffset = findAtom('mdhd', mdhdOffset)) !== -1) {
+            const v = view.getUint8(mdhdOffset + 4);
+            const timescale = v === 1 
+              ? view.getUint32(mdhdOffset + 4 + 4 + 16) 
+              : view.getUint32(mdhdOffset + 4 + 4 + 12);
+            if (timescale > 0) {
+              const trackDuration = Math.round(durationSec * timescale);
+              if (v === 1) {
+                view.setBigUint64(mdhdOffset + 4 + 4 + 20, BigInt(trackDuration));
+              } else {
+                view.setUint32(mdhdOffset + 4 + 4 + 16, trackDuration);
+              }
+            }
+            mdhdOffset += 4;
+          }
+
+          return new Blob([arrayBuffer], { type: blob.type });
+        } catch (err) {
+          console.warn('fixMp4BlobDuration warning:', err);
+          return blob;
+        }
+      }
+
       async function finishRecording() {
         if (!isVideoRecordingActive) return;
         isVideoRecordingActive = false;
 
-        synthOscillators.forEach(osc => {
-          try { osc.stop(); } catch (e) {}
+        // Stop and disconnect buffer source node
+        if (activeRecAudioSourceNode) {
+          try {
+            activeRecAudioSourceNode.stop();
+            activeRecAudioSourceNode.disconnect();
+          } catch (e) {}
+          activeRecAudioSourceNode = null;
+        }
+
+        if (bdayAudio) {
+          bdayAudio.pause();
+          bdayAudio.loop = false;
+        }
+
+        // Revoke temporary balloon SVG blobs
+        balloonBlobsToRevoke.forEach(url => {
+          try { URL.revokeObjectURL(url); } catch (e) {}
         });
 
         const blobPromise = new Promise(resolve => {
@@ -1685,7 +1869,15 @@
           }
         });
 
-        const blob = await blobPromise;
+        const rawBlob = await blobPromise;
+        let blob = rawBlob;
+        if (rawBlob && rawBlob.type && rawBlob.type.includes('mp4')) {
+          try {
+            blob = await fixMp4BlobDuration(rawBlob, 20.0);
+          } catch (e) {
+            console.warn('MP4 duration patch skipped:', e);
+          }
+        }
         currentRecordedVideoBlob = blob;
         if (currentRecordedVideoUrl) {
           URL.revokeObjectURL(currentRecordedVideoUrl);
@@ -1697,10 +1889,11 @@
         videoPreviewModal.classList.remove('hidden');
 
         if (videoPreviewStudentName) {
-          videoPreviewStudentName.textContent = `${student.name}-এর ১০৮০p বার্থডে ভিডিও`;
+          videoPreviewStudentName.textContent = `${student.name}-এর ২০ সে. বার্থডে ভিডিও (${songToRecord.title})`;
         }
         if (birthdayRecordedVideo) {
           birthdayRecordedVideo.src = currentRecordedVideoUrl;
+          birthdayRecordedVideo.volume = 1.0;
           birthdayRecordedVideo.currentTime = 0;
           birthdayRecordedVideo.play().catch(() => {});
         }
@@ -1712,6 +1905,25 @@
       videoRecordingAbortFlag = true;
       isVideoRecordingActive = false;
       videoRecordingModal.classList.add('hidden');
+      if (activeRecAudioSourceNode) {
+        try {
+          activeRecAudioSourceNode.stop();
+          activeRecAudioSourceNode.disconnect();
+        } catch (e) {}
+        activeRecAudioSourceNode = null;
+      }
+      if (activeMediaRecorder && activeMediaRecorder.state !== 'inactive') {
+        try { activeMediaRecorder.stop(); } catch (e) {}
+      }
+      if (activeMediaStream) {
+        try {
+          activeMediaStream.getTracks().forEach(t => t.stop());
+        } catch (e) {}
+      }
+      if (bdayAudio) {
+        bdayAudio.loop = false;
+        bdayAudio.play().catch(() => {});
+      }
     });
 
     // Close Button in preview modal
@@ -1846,55 +2058,30 @@
     ];
 
     /* =========================================================
-       2. AUDIO PLAYER (6 ROTATIONAL BIRTHDAY TRACKS)
+       2. AUDIO PLAYER PLAYBACK HANDLERS
        ========================================================= */
-    const BIRTHDAY_PLAYLIST = [
-      { id: 1, title: 'Happy Birthday Melody', file: 'nastelbom-happy-birthday-495860.mp3' },
-      { id: 2, title: 'আজ মেরে মুন্নে (Aj Mere Munne)', file: 'aj-mere-munne.mp3' },
-      { id: 3, title: 'শুভ জন্মদিন (Shuvo Jonmodin)', file: 'shuvo-jonmodin.mp3' },
-      { id: 4, title: 'বার্থডে স্পেশাল (Wish 1)', file: 'new-wish-nhgfbfhc.mp3' },
-      { id: 5, title: 'বার্থডে স্পেশাল (Wish 2)', file: 'new-wish-jdfgsdhf.mp3' },
-      { id: 6, title: 'বার্থডে স্পেশাল (Wish 3)', file: 'new-wish-vhkjhfv.mp3' }
-    ];
-
-    let currentBirthdaySongIndex = 0;
-    const bdayAudio = document.getElementById('birthdayAudio');
-    let audioCtx = null;
-    let isMusicPlaying = false;
-    let synthTimeoutId = null;
-
-    function getAudioContext() {
-      if (!audioCtx) {
-        const AudioClass = window.AudioContext || window.webkitAudioContext;
-        if (AudioClass) audioCtx = new AudioClass();
-      }
-      if (audioCtx && audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      return audioCtx;
-    }
-
-    // Play Birthday Song (Cycles through 1 -> 2 -> 3 -> 1... for each person)
+    // Play Birthday Song (Cycles through 1 -> 2 -> 3 -> 4 -> 5 -> 1... for each person)
     function playBirthdaySong(requestedSong) {
       const song = requestedSong || BIRTHDAY_PLAYLIST[currentBirthdaySongIndex];
-      // Advance counter to next song for the next celebration
       currentBirthdaySongIndex = (currentBirthdaySongIndex + 1) % BIRTHDAY_PLAYLIST.length;
+      currentActiveSong = song;
+      updateMusicUI(true, song.title);
 
       if (bdayAudio) {
+        preloadSongBuffer(song.file);
         try {
           if (!bdayAudio.src.endsWith(song.file)) {
             bdayAudio.src = song.file;
-            bdayAudio.load();
           }
-          bdayAudio.currentTime = 0;
+          try { bdayAudio.currentTime = 0; } catch (e) {}
           const playPromise = bdayAudio.play();
           if (playPromise !== undefined) {
             playPromise.then(() => {
               isMusicPlaying = true;
               updateMusicUI(true, song.title);
             }).catch(err => {
-              console.warn('MP3 autoplay failed or blocked, starting synthesized fallback:', err);
-              startHappyBirthdaySynth();
+              console.warn('MP3 autoplay failed or blocked:', err);
+              updateMusicUI(false);
             });
             return;
           }
@@ -1902,7 +2089,6 @@
           console.warn('Audio playback error:', e);
         }
       }
-      startHappyBirthdaySynth();
     }
 
     // Stop Birthday Song immediately when card/modal is closed
@@ -1913,15 +2099,19 @@
           bdayAudio.currentTime = 0;
         } catch (e) {}
       }
-      stopHappyBirthdaySynth();
       isMusicPlaying = false;
       updateMusicUI(false);
     }
 
     if (bdayAudio) {
       bdayAudio.addEventListener('ended', () => {
-        isMusicPlaying = false;
-        updateMusicUI(false);
+        if (isVideoRecordingActive) {
+          bdayAudio.currentTime = 0;
+          bdayAudio.play().catch(() => {});
+        } else {
+          isMusicPlaying = false;
+          updateMusicUI(false);
+        }
       });
       bdayAudio.addEventListener('pause', () => {
         if (!isMusicPlaying) updateMusicUI(false);
@@ -1932,6 +2122,10 @@
       const btn = document.getElementById('btnToggleMusic');
       const icon = document.getElementById('musicIcon');
       const label = document.getElementById('musicLabel');
+      const modalSongName = document.getElementById('modalSongName');
+      if (modalSongName && songTitle) {
+        modalSongName.textContent = 'গান: ' + songTitle;
+      }
       if (btn && icon && label) {
         if (playing) {
           btn.classList.add('bg-[#ffde00]');
@@ -1955,43 +2149,14 @@
       }
     });
 
-    // Gentle Bell/Electric-Piano Melodic Tone Synthesis (Fallback & sound effects)
-    function playMelodicNote(freq, duration, delay = 0) {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-      setTimeout(() => {
-        try {
-          const now = ctx.currentTime;
-          const osc1 = ctx.createOscillator();
-          const osc2 = ctx.createOscillator();
-          const gain = ctx.createGain();
-          const filter = ctx.createBiquadFilter();
-
-          osc1.type = 'triangle';
-          osc1.frequency.setValueAtTime(freq, now);
-
-          osc2.type = 'sine';
-          osc2.frequency.setValueAtTime(freq * 2, now);
-
-          filter.type = 'lowpass';
-          filter.frequency.setValueAtTime(1800, now);
-
-          gain.gain.setValueAtTime(0.0001, now);
-          gain.gain.linearRampToValueAtTime(0.18, now + 0.02);
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-
-          osc1.connect(filter);
-          osc2.connect(filter);
-          filter.connect(gain);
-          gain.connect(ctx.destination);
-
-          osc1.start(now);
-          osc2.start(now);
-          osc1.stop(now + duration);
-          osc2.stop(now + duration);
-        } catch (e) {}
-      }, delay);
+    const btnSwitchModalSong = document.getElementById('btnSwitchModalSong');
+    if (btnSwitchModalSong) {
+      btnSwitchModalSong.addEventListener('click', () => {
+        playBirthdaySong();
+      });
     }
+
+
 
     // Candle blow whoosh sound
     function playCandleBlowPuff() {
@@ -2045,38 +2210,7 @@
     }
 
     // Synthesizer Backup
-    const happyBirthdayScore = [
-      { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 293.66, d: 550 }, { f: 261.63, d: 550 },
-      { f: 349.23, d: 550 }, { f: 329.63, d: 900 },
-      { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 293.66, d: 550 }, { f: 261.63, d: 550 },
-      { f: 392.00, d: 550 }, { f: 349.23, d: 900 },
-      { f: 261.63, d: 350 }, { f: 261.63, d: 250 }, { f: 523.25, d: 550 }, { f: 440.00, d: 550 },
-      { f: 349.23, d: 550 }, { f: 329.63, d: 550 }, { f: 293.66, d: 800 },
-      { f: 466.16, d: 350 }, { f: 466.16, d: 250 }, { f: 440.00, d: 550 }, { f: 349.23, d: 550 },
-      { f: 392.00, d: 550 }, { f: 349.23, d: 1000 }
-    ];
-
-    function startHappyBirthdaySynth() {
-      getAudioContext();
-      if (isMusicPlaying) return;
-      isMusicPlaying = true;
-      updateMusicUI(true);
-
-      let step = 0;
-      function playStep() {
-        if (!isMusicPlaying) return;
-        const note = happyBirthdayScore[step];
-        playMelodicNote(note.f, note.d / 1000, 0);
-        step = (step + 1) % happyBirthdayScore.length;
-        synthTimeoutId = setTimeout(playStep, note.d + 50);
-      }
-      playStep();
-    }
-
-    function stopHappyBirthdaySynth() {
-      if (synthTimeoutId) clearTimeout(synthTimeoutId);
-    }
-
+    
     /* =========================================================
        3. DUAL CANNON CONFETTI BLASTER WITH BOTTOM ACCUMULATION
        ========================================================= */
@@ -2475,7 +2609,7 @@
     function openStudentCelebration(student) {
       currentStudent = student;
 
-      // 1. Play local MP3 "nastelbom-happy-birthday-495860.mp3"
+      // 1. Play local MP3 birthday song
       playBirthdaySong();
 
       // 2. Blast Dual Bottom Cannons!
@@ -2512,8 +2646,11 @@
       document.getElementById('modalStudentAge').textContent = ageText;
 
       // WhatsApp Share Link
-      const waText = encodeURIComponent(`🎉 শুভ জন্মদিন ${student.name}! 🎂\nClass XII (সেকশন ${student.section}, রোল ${student.roll})\n${wishMsg}\nশুভকামনায়: Class XII Friends 🎈`);
-      document.getElementById('btnModalWhatsapp').href = `https://wa.me/?text=${waText}`;
+      const btnModalWhatsapp = document.getElementById('btnModalWhatsapp');
+      if (btnModalWhatsapp) {
+        const waText = encodeURIComponent(`🎉 শুভ জন্মদিন ${student.name}! 🎂\nClass XII (সেকশন ${student.section}, রোল ${student.roll})\n${wishMsg}\nশুভকামনায়: Class XII Friends 🎈`);
+        btnModalWhatsapp.href = `https://wa.me/?text=${waText}`;
+      }
 
       // Reset & Light candle
       lightCandle();
@@ -2726,21 +2863,27 @@
     }
 
     // Midnight 12:00 AM (00:00) Notification Scheduler
+    let midnightScheduleTimeoutId = null;
+    let midnightScheduleIntervalId = null;
+
     function scheduleMidnightNotification() {
       if (Notification.permission !== 'granted') return;
+      if (midnightScheduleTimeoutId) clearTimeout(midnightScheduleTimeoutId);
+      if (midnightScheduleIntervalId) clearInterval(midnightScheduleIntervalId);
+
       const now = new Date();
       // Target midnight 12:00:00 AM of next day
       const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 2);
       const msUntilMidnight = midnight.getTime() - now.getTime();
 
-      setTimeout(() => {
+      midnightScheduleTimeoutId = setTimeout(() => {
         // Fire midnight notification
         sendTodayBirthdayNotification();
         // Update page UI automatically
         render();
         initNextBirthdayCountdown();
         // Repeat every 24 hours at midnight
-        setInterval(() => {
+        midnightScheduleIntervalId = setInterval(() => {
           sendTodayBirthdayNotification();
           render();
           initNextBirthdayCountdown();
@@ -2820,7 +2963,7 @@
     /* =========================================================
        8. FILTERING & RENDERING ENGINE
        ========================================================= */
-        window.switchTab = function(tabName) {
+    window.switchTab = function(tabName) {
       const btn = document.querySelector(`.tab-btn[data-tab="${tabName}"]`);
       if (btn) {
         btn.click();
