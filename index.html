@@ -243,8 +243,8 @@
   <!-- Dual Cannon Confetti Canvas -->
   <canvas id="confettiCanvas"></canvas>
 
-  <!-- Local Happy Birthday MP3 Audio Player (5 User Birthday Songs - No Instrumental Tunes) -->
-  <audio id="birthdayAudio" src="aj-mere-munne.mp3" preload="auto"></audio>
+  <!-- Local Happy Birthday MP3 Audio Player (5 User Birthday Songs - Continuous Auto-Loop) -->
+  <audio id="birthdayAudio" src="aj-mere-munne.mp3" preload="auto" loop></audio>
   <audio id="audioTrack2" src="shuvo-jonmodin.mp3" preload="auto" class="hidden"></audio>
   <audio id="audioTrack3" src="new-wish-nhgfbfhc.mp3" preload="auto" class="hidden"></audio>
   <audio id="audioTrack4" src="new-wish-jdfgsdhf.mp3" preload="auto" class="hidden"></audio>
@@ -927,12 +927,28 @@
        1080P BIRTHDAY VIDEO RECORDING PROGRESS MODAL
        ========================================================= -->
   <div id="videoRecordingModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md">
-    <div class="relative w-full max-w-sm bg-[#eef69e] border-3 sm:border-4 border-black rounded-3xl p-5 sm:p-6 shadow-[8px_8px_0px_#000] text-center flex flex-col items-center">
+    <div id="recordingModalBox" class="relative w-full max-w-sm bg-[#eef69e] border-3 sm:border-4 border-black rounded-3xl p-5 sm:p-6 shadow-[8px_8px_0px_#000] text-center flex flex-col items-center transition-all duration-200">
       
+      <!-- Windows-style Window Controls (Top-Right: Minimize, Maximize, Close) -->
+      <div class="absolute top-3.5 right-3.5 flex items-center gap-1.5 z-20">
+        <!-- Minimize Button -->
+        <button id="btnMinimizeRecording" type="button" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-200 border-2 border-black flex items-center justify-center text-xs font-black shadow-[1.5px_1.5px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="মিনিমাইজ করুন (নিচে রাখুন)">
+          <span class="leading-none text-sm -mt-1 font-bold">−</span>
+        </button>
+        <!-- Maximize / Restore Button -->
+        <button id="btnMaximizeRecording" type="button" class="w-7 h-7 rounded-lg bg-white hover:bg-[#ffde00] border-2 border-black flex items-center justify-center text-xs font-black shadow-[1.5px_1.5px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="বড় / স্বাভাবিক করুন">
+          <span id="maximizeIcon" class="leading-none text-xs font-mono font-bold">▢</span>
+        </button>
+        <!-- Close Button -->
+        <button id="btnCloseRecordingX" type="button" class="w-7 h-7 rounded-lg bg-red-500 hover:bg-red-600 border-2 border-black flex items-center justify-center text-xs font-black text-white shadow-[1.5px_1.5px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="বাতিল ও বন্ধ করুন">
+          <span class="leading-none text-xs font-bold">✕</span>
+        </button>
+      </div>
+
       <!-- Top Badge -->
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500 text-white border-2 border-black font-bengali text-xs font-black shadow-[2px_2px_0px_#000]">
-        <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
-        <span>১০৮০p ফুল HD রেকর্ডিং চলছে...</span>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500 text-white border-2 border-black font-bengali text-xs font-black shadow-[2px_2px_0px_#000] max-w-[calc(100%-115px)]">
+        <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping flex-shrink-0"></span>
+        <span class="truncate">১০৮০p ফুল HD রেকর্ডিং...</span>
       </div>
 
       <!-- Live Countdown -->
@@ -948,7 +964,7 @@
       </div>
 
       <!-- Live Mini Preview Canvas Container -->
-      <div class="w-40 aspect-[9/16] rounded-2xl border-2 border-black overflow-hidden bg-black shadow-[3px_3px_0px_#000] relative">
+      <div id="recorderPreviewContainer" class="w-40 aspect-[9/16] rounded-2xl border-2 border-black overflow-hidden bg-black shadow-[3px_3px_0px_#000] relative transition-all duration-200">
         <canvas id="recorderPreviewCanvas" width="270" height="480" class="w-full h-full object-cover"></canvas>
         <div class="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded-full bg-black/80 text-[8px] font-mono font-bold text-white">
           1080 × 1920
@@ -958,6 +974,42 @@
       <!-- Cancel Button -->
       <button id="btnCancelRecording" class="mt-4 px-4 py-1.5 rounded-full bg-white hover:bg-slate-100 border-2 border-black text-xs font-bengali font-bold text-black shadow-[2px_2px_0px_#000] transition-colors">
         ✕ বাতিল করুন
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MINIMIZED FLOATING RECORDING DOCK (WITH NOTIFICATION BADGE)
+       ========================================================= -->
+  <div id="recordingMinimizedDock" class="fixed bottom-5 right-5 z-50 hidden flex items-center gap-3 p-2.5 sm:p-3 bg-[#eef69e] border-3 border-black rounded-2xl shadow-[5px_5px_0px_#000] cursor-pointer hover:bg-[#ffde00] transition-all select-none group">
+    <!-- Icon with Red Circle Notification Badge -->
+    <div class="relative flex-shrink-0">
+      <span class="text-2xl">📹</span>
+      <!-- Red Circle Notification Badge with '1' -->
+      <span id="minimizedNotifBadge" class="hidden absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-600 text-white border-2 border-black text-[10px] font-black flex items-center justify-center shadow-[1px_1px_0px_#000] animate-bounce">
+        1
+      </span>
+    </div>
+
+    <!-- Live Status Text -->
+    <div class="text-left min-w-[130px] sm:min-w-[160px]">
+      <div id="minimizedTitleText" class="text-xs sm:text-sm font-bengali font-black text-black leading-tight">
+        ভিডিও তৈরি হচ্ছে...
+      </div>
+      <div id="minimizedSubText" class="text-[11px] font-bengali font-bold text-black/80 mt-0.5">
+        বাকি: ২০s
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex items-center gap-1.5 flex-shrink-0">
+      <!-- Restore / Maximize Button -->
+      <button id="btnRestoreRecording" type="button" class="w-7 h-7 rounded-lg bg-white hover:bg-black hover:text-white border-2 border-black flex items-center justify-center text-xs font-black shadow-[1.5px_1.5px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="বড় করুন (ম্যাক্সিমাইজ)">
+        <span>🗖</span>
+      </button>
+      <!-- Cancel / Close Button -->
+      <button id="btnCancelMinimized" type="button" class="w-7 h-7 rounded-lg bg-red-400 hover:bg-red-500 border-2 border-black flex items-center justify-center text-xs font-black text-white shadow-[1.5px_1.5px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="বাতিল করুন">
+        <span>✕</span>
       </button>
     </div>
   </div>
@@ -1107,7 +1159,24 @@
     let activeMediaRecorder = null;
     let activeMediaStream = null;
 
+    let isRecordingMinimized = false;
+    let isRecordingMaximized = false;
+    let isRecordingReadyInDock = false;
+
     const videoRecordingModal = document.getElementById('videoRecordingModal');
+    const recordingModalBox = document.getElementById('recordingModalBox');
+    const recorderPreviewContainer = document.getElementById('recorderPreviewContainer');
+    const recordingMinimizedDock = document.getElementById('recordingMinimizedDock');
+    const minimizedNotifBadge = document.getElementById('minimizedNotifBadge');
+    const minimizedTitleText = document.getElementById('minimizedTitleText');
+    const minimizedSubText = document.getElementById('minimizedSubText');
+    const btnMinimizeRecording = document.getElementById('btnMinimizeRecording');
+    const btnMaximizeRecording = document.getElementById('btnMaximizeRecording');
+    const btnCloseRecordingX = document.getElementById('btnCloseRecordingX');
+    const btnRestoreRecording = document.getElementById('btnRestoreRecording');
+    const btnCancelMinimized = document.getElementById('btnCancelMinimized');
+    const maximizeIcon = document.getElementById('maximizeIcon');
+
     const videoPreviewModal = document.getElementById('videoPreviewModal');
     const recordingCountdownText = document.getElementById('recordingCountdownText');
     const recordingProgressBar = document.getElementById('recordingProgressBar');
@@ -1121,6 +1190,14 @@
 
       isVideoRecordingActive = true;
       videoRecordingAbortFlag = false;
+
+      // Reset minimize/maximize states
+      isRecordingMinimized = false;
+      isRecordingReadyInDock = false;
+      if (recordingMinimizedDock) recordingMinimizedDock.classList.add('hidden');
+      if (minimizedNotifBadge) minimizedNotifBadge.classList.add('hidden');
+      if (minimizedTitleText) minimizedTitleText.textContent = 'ভিডিও তৈরি হচ্ছে...';
+      if (minimizedSubText) minimizedSubText.textContent = 'কাউন্টডাউন: ২০s';
 
       // Show recording progress modal
       videoRecordingModal.classList.remove('hidden');
@@ -1382,6 +1459,9 @@
         const remainingSec = Math.max(0, Math.ceil((recordingDurationMs - elapsed) / 1000));
         const remainingBn = String(remainingSec).replace(/\d/g, d => bengaliDigits[d]);
         recordingCountdownText.textContent = `${remainingBn}s`;
+        if (minimizedSubText && !isRecordingReadyInDock) {
+          minimizedSubText.textContent = `বাকি: ${remainingBn}s (${progressPercent}%)`;
+        }
       }, 33);
 
       function drawCelebrationFrame(t) {
@@ -1850,7 +1930,6 @@
 
         if (bdayAudio) {
           bdayAudio.pause();
-          bdayAudio.loop = false;
         }
 
         // Revoke temporary balloon SVG blobs
@@ -1884,10 +1963,6 @@
         }
         currentRecordedVideoUrl = URL.createObjectURL(blob);
 
-        // Hide recording modal and show preview modal
-        videoRecordingModal.classList.add('hidden');
-        videoPreviewModal.classList.remove('hidden');
-
         if (videoPreviewStudentName) {
           videoPreviewStudentName.textContent = `${student.name}-এর ২০ সে. বার্থডে ভিডিও (${songToRecord.title})`;
         }
@@ -1897,14 +1972,115 @@
           birthdayRecordedVideo.currentTime = 0;
           birthdayRecordedVideo.play().catch(() => {});
         }
+
+        // If currently minimized in dock:
+        if (isRecordingMinimized) {
+          // Keep recording modal hidden, activate notification badge on corner dock
+          if (minimizedNotifBadge) minimizedNotifBadge.classList.remove('hidden');
+          if (minimizedTitleText) minimizedTitleText.textContent = '🎉 ভিডিও প্রস্তুত!';
+          if (minimizedSubText) minimizedSubText.textContent = 'দেখতে বা ডাউনলোড করতে ক্লিক করুন';
+          isRecordingReadyInDock = true;
+        } else {
+          // Normal mode: hide recording modal and show preview modal directly
+          videoRecordingModal.classList.add('hidden');
+          videoPreviewModal.classList.remove('hidden');
+        }
       }
+    }
+
+    // Minimize Recording Window to Floating Corner Dock
+    function minimizeRecording() {
+      isRecordingMinimized = true;
+      videoRecordingModal.classList.add('hidden');
+      if (recordingMinimizedDock) recordingMinimizedDock.classList.remove('hidden');
+    }
+
+    // Toggle Maximize / Restore Recording Window Size
+    function toggleMaximizeRecording() {
+      isRecordingMaximized = !isRecordingMaximized;
+      if (!recordingModalBox) return;
+      if (isRecordingMaximized) {
+        recordingModalBox.classList.remove('max-w-sm');
+        recordingModalBox.classList.add('max-w-2xl', 'w-full', 'max-h-[96vh]');
+        if (recorderPreviewContainer) {
+          recorderPreviewContainer.classList.remove('w-40');
+          recorderPreviewContainer.classList.add('w-56', 'sm:w-64');
+        }
+        if (maximizeIcon) maximizeIcon.textContent = '❐';
+      } else {
+        recordingModalBox.classList.remove('max-w-2xl', 'max-h-[96vh]');
+        recordingModalBox.classList.add('max-w-sm');
+        if (recorderPreviewContainer) {
+          recorderPreviewContainer.classList.remove('w-56', 'sm:w-64');
+          recorderPreviewContainer.classList.add('w-40');
+        }
+        if (maximizeIcon) maximizeIcon.textContent = '▢';
+      }
+    }
+
+    // Restore or Open from Minimized Floating Dock
+    function restoreOrOpenFromDock() {
+      if (recordingMinimizedDock) recordingMinimizedDock.classList.add('hidden');
+      if (minimizedNotifBadge) minimizedNotifBadge.classList.add('hidden');
+      isRecordingMinimized = false;
+
+      if (isRecordingReadyInDock) {
+        // Video finished while minimized! Open preview modal directly!
+        isRecordingReadyInDock = false;
+        videoRecordingModal.classList.add('hidden');
+        videoPreviewModal.classList.remove('hidden');
+        if (birthdayRecordedVideo) {
+          birthdayRecordedVideo.currentTime = 0;
+          birthdayRecordedVideo.play().catch(() => {});
+        }
+      } else {
+        // Still recording: show recording modal
+        videoRecordingModal.classList.remove('hidden');
+      }
+    }
+
+    if (btnMinimizeRecording) {
+      btnMinimizeRecording.addEventListener('click', minimizeRecording);
+    }
+    if (btnMaximizeRecording) {
+      btnMaximizeRecording.addEventListener('click', toggleMaximizeRecording);
+    }
+    if (btnCloseRecordingX) {
+      btnCloseRecordingX.addEventListener('click', () => {
+        document.getElementById('btnCancelRecording').click();
+      });
+    }
+    if (recordingMinimizedDock) {
+      recordingMinimizedDock.addEventListener('click', (e) => {
+        if (e.target.closest('#btnCancelMinimized')) return;
+        restoreOrOpenFromDock();
+      });
+    }
+    if (btnRestoreRecording) {
+      btnRestoreRecording.addEventListener('click', (e) => {
+        e.stopPropagation();
+        restoreOrOpenFromDock();
+      });
+    }
+    if (btnCancelMinimized) {
+      btnCancelMinimized.addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.getElementById('btnCancelRecording').click();
+      });
     }
 
     // Cancel Button in recording modal
     document.getElementById('btnCancelRecording').addEventListener('click', () => {
       videoRecordingAbortFlag = true;
       isVideoRecordingActive = false;
+      isRecordingMinimized = false;
+      isRecordingReadyInDock = false;
       videoRecordingModal.classList.add('hidden');
+      if (recordingMinimizedDock) recordingMinimizedDock.classList.add('hidden');
+      if (minimizedNotifBadge) minimizedNotifBadge.classList.add('hidden');
+      if (recordingModalBox && isRecordingMaximized) {
+        toggleMaximizeRecording();
+      }
       if (activeRecAudioSourceNode) {
         try {
           activeRecAudioSourceNode.stop();
@@ -1921,7 +2097,7 @@
         } catch (e) {}
       }
       if (bdayAudio) {
-        bdayAudio.loop = false;
+        bdayAudio.loop = true;
         bdayAudio.play().catch(() => {});
       }
     });
@@ -2068,6 +2244,7 @@
       updateMusicUI(true, song.title);
 
       if (bdayAudio) {
+        bdayAudio.loop = true;
         preloadSongBuffer(song.file);
         try {
           if (!bdayAudio.src.endsWith(song.file)) {
@@ -2104,8 +2281,13 @@
     }
 
     if (bdayAudio) {
+      bdayAudio.loop = true;
       bdayAudio.addEventListener('ended', () => {
-        if (isVideoRecordingActive) {
+        // Continuous auto-loop while card modal is open or music is enabled
+        const modal = document.getElementById('wishModal');
+        const isModalOpen = modal && !modal.classList.contains('pointer-events-none') && !modal.classList.contains('opacity-0');
+        if (isModalOpen || isMusicPlaying) {
+          isMusicPlaying = true;
           bdayAudio.currentTime = 0;
           bdayAudio.play().catch(() => {});
         } else {
