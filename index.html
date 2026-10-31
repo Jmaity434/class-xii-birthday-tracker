@@ -213,6 +213,22 @@
       50% { opacity: 0.4; transform: scale(1.15); }
     }
 
+    /* Animated Up/Down Swipe Indicators for Video Player */
+    @keyframes swipeUpAnim {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50% { transform: translateY(-10px); opacity: 1; }
+    }
+    @keyframes swipeDownAnim {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50% { transform: translateY(10px); opacity: 1; }
+    }
+    .swipe-arrow-up {
+      animation: swipeUpAnim 1.1s infinite ease-in-out;
+    }
+    .swipe-arrow-down {
+      animation: swipeDownAnim 1.1s infinite ease-in-out;
+    }
+
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
@@ -563,141 +579,27 @@
             <span>স্মৃতি</span>
           </h2>
           <p class="mt-1 text-xs sm:text-sm font-bengali font-bold text-black/80">
-            ক্লাসের বন্ধুদের কিছু সোনালী মুহূর্ত ও অমূল্য স্মৃতির অ্যালবাম
+            ক্লাসের বন্ধুদের কিছু সোনালী মুহূর্ত ও অমূল্য স্মৃতির অ্যালবাম ও ভিডিও
           </p>
         </div>
-        <span class="text-xs font-display font-black px-3.5 py-1.5 rounded-full bg-[#ffde00] border-2 border-black text-black shadow-[2px_2px_0px_#000] self-start sm:self-auto">
-          ৯টি অমূল্য মুহূর্ত
-        </span>
+        
+        <!-- Filter Tabs: All (40) | Photos (14) | Videos (26) -->
+        <div class="flex items-center gap-2 flex-wrap self-start sm:self-auto">
+          <button id="memFilterAll" onclick="filterMemories('all')" class="px-3.5 py-1.5 rounded-full font-bengali text-xs font-black bg-[#ffde00] border-2 border-black text-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all">
+            সব (৪০)
+          </button>
+          <button id="memFilterImage" onclick="filterMemories('image')" class="px-3.5 py-1.5 rounded-full font-bengali text-xs font-black bg-white hover:bg-[#ffde00] border-2 border-black text-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all">
+            ছবি 📸 (১৪)
+          </button>
+          <button id="memFilterVideo" onclick="filterMemories('video')" class="px-3.5 py-1.5 rounded-full font-bengali text-xs font-black bg-white hover:bg-[#ffde00] border-2 border-black text-black shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] transition-all">
+            ভিডিও 🎥 (২৬)
+          </button>
+        </div>
       </div>
 
-      <!-- Bento-style Photo Gallery Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Photo 1 -->
-        <div onclick="openLightbox('https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894401/lk96vhpueos8s9kpscfw.webp', 'স্মৃতি ১')" class="group cursor-pointer bg-white border-2 border-black rounded-[2rem] p-3 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all flex flex-col justify-between">
-          <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-black bg-slate-100 relative">
-            <img src="https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894401/lk96vhpueos8s9kpscfw.webp" alt="স্মৃতি ১" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span class="w-10 h-10 rounded-full bg-[#ffde00] border-2 border-black flex items-center justify-center text-sm font-black shadow-[2px_2px_0px_#000]">🔍</span>
-            </div>
-          </div>
-          <div class="flex items-center justify-between pt-3 px-1">
-            <span class="font-bengali font-bold text-xs text-black">ক্লাসের স্মৃতি অ্যালবাম #১</span>
-            <span class="text-[11px] font-display font-black px-2 py-0.5 rounded-md bg-[#eef69e] border border-black">VIEW</span>
-          </div>
-        </div>
-
-        <!-- Photo 2 -->
-        <div onclick="openLightbox('https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894400/w5l4mhagmn0nxsnzoa5t.webp', 'স্মৃতি ২')" class="group cursor-pointer bg-white border-2 border-black rounded-[2rem] p-3 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all flex flex-col justify-between">
-          <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-black bg-slate-100 relative">
-            <img src="https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894400/w5l4mhagmn0nxsnzoa5t.webp" alt="স্মৃতি ২" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span class="w-10 h-10 rounded-full bg-[#ffde00] border-2 border-black flex items-center justify-center text-sm font-black shadow-[2px_2px_0px_#000]">🔍</span>
-            </div>
-          </div>
-          <div class="flex items-center justify-between pt-3 px-1">
-            <span class="font-bengali font-bold text-xs text-black">ক্লাসের স্মৃতি অ্যালবাম #২</span>
-            <span class="text-[11px] font-display font-black px-2 py-0.5 rounded-md bg-[#eef69e] border border-black">VIEW</span>
-          </div>
-        </div>
-
-        <!-- Photo 3 -->
-        <div onclick="openLightbox('https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894224/owv5u7dc5rqm25ddzpc4.jpg', 'স্মৃতি ৩')" class="group cursor-pointer bg-white border-2 border-black rounded-[2rem] p-3 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all flex flex-col justify-between">
-          <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-black bg-slate-100 relative">
-            <img src="https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894224/owv5u7dc5rqm25ddzpc4.jpg" alt="স্মৃতি ৩" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span class="w-10 h-10 rounded-full bg-[#ffde00] border-2 border-black flex items-center justify-center text-sm font-black shadow-[2px_2px_0px_#000]">🔍</span>
-            </div>
-          </div>
-          <div class="flex items-center justify-between pt-3 px-1">
-            <span class="font-bengali font-bold text-xs text-black">ক্লাসের স্মৃতি অ্যালবাম #৩</span>
-            <span class="text-[11px] font-display font-black px-2 py-0.5 rounded-md bg-[#eef69e] border border-black">VIEW</span>
-          </div>
-        </div>
-
-        <!-- Photo 4 -->
-        <div onclick="openLightbox('https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894223/jj6mhsfd7pnwatrqrtpm.jpg', 'স্মৃতি ৪')" class="group cursor-pointer bg-white border-2 border-black rounded-[2rem] p-3 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all flex flex-col justify-between">
-          <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-black bg-slate-100 relative">
-            <img src="https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894223/jj6mhsfd7pnwatrqrtpm.jpg" alt="স্মৃতি ৪" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span class="w-10 h-10 rounded-full bg-[#ffde00] border-2 border-black flex items-center justify-center text-sm font-black shadow-[2px_2px_0px_#000]">🔍</span>
-            </div>
-          </div>
-          <div class="flex items-center justify-between pt-3 px-1">
-            <span class="font-bengali font-bold text-xs text-black">ক্লাসের স্মৃতি অ্যালবাম #৪</span>
-            <span class="text-[11px] font-display font-black px-2 py-0.5 rounded-md bg-[#eef69e] border border-black">VIEW</span>
-          </div>
-        </div>
-
-        <!-- Photo 5 -->
-        <div onclick="openLightbox('https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894223/vrf8chdmcpdlbskpxz10.jpg', 'স্মৃতি ৫')" class="group cursor-pointer bg-white border-2 border-black rounded-[2rem] p-3 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all flex flex-col justify-between">
-          <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-black bg-slate-100 relative">
-            <img src="https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894223/vrf8chdmcpdlbskpxz10.jpg" alt="স্মৃতি ৫" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span class="w-10 h-10 rounded-full bg-[#ffde00] border-2 border-black flex items-center justify-center text-sm font-black shadow-[2px_2px_0px_#000]">🔍</span>
-            </div>
-          </div>
-          <div class="flex items-center justify-between pt-3 px-1">
-            <span class="font-bengali font-bold text-xs text-black">ক্লাসের স্মৃতি অ্যালবাম #৫</span>
-            <span class="text-[11px] font-display font-black px-2 py-0.5 rounded-md bg-[#eef69e] border border-black">VIEW</span>
-          </div>
-        </div>
-
-        <!-- Photo 6 -->
-        <div onclick="openLightbox('https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/guiijjobnu1ynlockmv6.jpg', 'স্মৃতি ৬')" class="group cursor-pointer bg-white border-2 border-black rounded-[2rem] p-3 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all flex flex-col justify-between">
-          <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-black bg-slate-100 relative">
-            <img src="https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/guiijjobnu1ynlockmv6.jpg" alt="স্মৃতি ৬" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span class="w-10 h-10 rounded-full bg-[#ffde00] border-2 border-black flex items-center justify-center text-sm font-black shadow-[2px_2px_0px_#000]">🔍</span>
-            </div>
-          </div>
-          <div class="flex items-center justify-between pt-3 px-1">
-            <span class="font-bengali font-bold text-xs text-black">ক্লাসের স্মৃতি অ্যালবাম #৬</span>
-            <span class="text-[11px] font-display font-black px-2 py-0.5 rounded-md bg-[#eef69e] border border-black">VIEW</span>
-          </div>
-        </div>
-
-        <!-- Photo 7 -->
-        <div onclick="openLightbox('https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/rhi3ia8jtvqsnvg4nvny.jpg', 'স্মৃতি ৭')" class="group cursor-pointer bg-white border-2 border-black rounded-[2rem] p-3 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all flex flex-col justify-between">
-          <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-black bg-slate-100 relative">
-            <img src="https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/rhi3ia8jtvqsnvg4nvny.jpg" alt="স্মৃতি ৭" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span class="w-10 h-10 rounded-full bg-[#ffde00] border-2 border-black flex items-center justify-center text-sm font-black shadow-[2px_2px_0px_#000]">🔍</span>
-            </div>
-          </div>
-          <div class="flex items-center justify-between pt-3 px-1">
-            <span class="font-bengali font-bold text-xs text-black">ক্লাসের স্মৃতি অ্যালবাম #৭</span>
-            <span class="text-[11px] font-display font-black px-2 py-0.5 rounded-md bg-[#eef69e] border border-black">VIEW</span>
-          </div>
-        </div>
-
-        <!-- Photo 8 -->
-        <div onclick="openLightbox('https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/pesatmrj2jmnniwxxo95.jpg', 'স্মৃতি ৮')" class="group cursor-pointer bg-white border-2 border-black rounded-[2rem] p-3 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all flex flex-col justify-between">
-          <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-black bg-slate-100 relative">
-            <img src="https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/pesatmrj2jmnniwxxo95.jpg" alt="স্মৃতি ৮" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span class="w-10 h-10 rounded-full bg-[#ffde00] border-2 border-black flex items-center justify-center text-sm font-black shadow-[2px_2px_0px_#000]">🔍</span>
-            </div>
-          </div>
-          <div class="flex items-center justify-between pt-3 px-1">
-            <span class="font-bengali font-bold text-xs text-black">ক্লাসের স্মৃতি অ্যালবাম #৮</span>
-            <span class="text-[11px] font-display font-black px-2 py-0.5 rounded-md bg-[#eef69e] border border-black">VIEW</span>
-          </div>
-        </div>
-
-        <!-- Photo 9 -->
-        <div onclick="openLightbox('https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/z7kcjyq6fxrxhxn4fohi.jpg', 'স্মৃতি ৯')" class="group cursor-pointer bg-white border-2 border-black rounded-[2rem] p-3 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all flex flex-col justify-between">
-          <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-black bg-slate-100 relative">
-            <img src="https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/z7kcjyq6fxrxhxn4fohi.jpg" alt="স্মৃতি ৯" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span class="w-10 h-10 rounded-full bg-[#ffde00] border-2 border-black flex items-center justify-center text-sm font-black shadow-[2px_2px_0px_#000]">🔍</span>
-            </div>
-          </div>
-          <div class="flex items-center justify-between pt-3 px-1">
-            <span class="font-bengali font-bold text-xs text-black">ক্লাসের স্মৃতি অ্যালবাম #৯</span>
-            <span class="text-[11px] font-display font-black px-2 py-0.5 rounded-md bg-[#eef69e] border border-black">VIEW</span>
-          </div>
-        </div>
+      <!-- Bento-style Photo & Video Gallery Grid -->
+      <div id="memoriesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Rendered dynamically by filterMemories() -->
       </div>
     </section>
 
@@ -1063,6 +965,80 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- Lightbox Modal for Memories Photo & Video Full-View -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-2.5 sm:p-4 bg-black/85 backdrop-blur-sm" onclick="if(event.target === this) closeLightbox()">
+    <div class="relative max-w-4xl w-full max-h-[94vh] bg-white border-2 border-black rounded-2xl sm:rounded-[2rem] p-3 sm:p-4 shadow-[6px_6px_0px_#000] sm:shadow-[8px_8px_0px_#000] flex flex-col items-center overflow-hidden">
+      <div class="w-full flex items-center justify-between pb-2.5 border-b-2 border-black mb-2.5 flex-shrink-0">
+        <div class="flex items-center gap-2 min-w-0">
+          <span id="lightboxTypeIcon" class="text-lg sm:text-xl flex-shrink-0">📸</span>
+          <span id="lightboxCaption" class="font-bengali font-bold text-black text-xs sm:text-base truncate">স্মৃতি</span>
+          
+          <!-- Audio Badge (Only for photos) -->
+          <span id="lightboxAudioBadge" class="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-full bg-[#ffde00] border border-black text-[10px] sm:text-[11px] font-bold text-black shadow-[1px_1px_0px_#000] flex-shrink-0">
+            <span>🎵</span> <span class="hidden xs:inline">Woh Din Bhi</span>
+          </span>
+
+          <!-- Video Audio Badge (Only for videos) -->
+          <span id="lightboxVideoBadge" class="hidden inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-full bg-[#55efc4] border border-black text-[10px] sm:text-[11px] font-bold text-black shadow-[1px_1px_0px_#000] flex-shrink-0">
+            <span>🔊</span> <span class="hidden xs:inline">আসল সাউন্ড</span>
+          </span>
+
+          <!-- Video Counter Badge (Only for videos, e.g. ১ / ২৬) -->
+          <span id="lightboxVideoCounterBadge" class="hidden inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-full bg-[#ff7675] text-white border border-black text-[10px] sm:text-[11px] font-bold shadow-[1px_1px_0px_#000] flex-shrink-0">
+            ১ / ২৬
+          </span>
+        </div>
+        <button onclick="closeLightbox()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#ffde00] hover:bg-[#ffe633] border-2 border-black text-black font-bold flex items-center justify-center shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] flex-shrink-0" title="বন্ধ করুন">✕</button>
+      </div>
+
+      <!-- Media Container with Swipe Gestures & Hint Overlay -->
+      <div id="lightboxMediaContainer" class="relative w-full max-h-[70vh] sm:max-h-[75vh] flex items-center justify-center overflow-hidden rounded-xl sm:rounded-2xl border-2 border-black bg-black select-none">
+        <img id="lightboxImg" src="" alt="স্মৃতি পূর্ণাঙ্গ ছবি" class="max-w-full max-h-[70vh] sm:max-h-[75vh] object-contain rounded-lg" />
+        <video id="lightboxVideo" src="" controls playsinline class="hidden max-w-full max-h-[70vh] sm:max-h-[75vh] object-contain rounded-lg w-full h-full"></video>
+
+        <!-- Animated Up/Down Swipe Visual Hint Overlay -->
+        <div id="videoSwipeHint" class="hidden pointer-events-none absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-[2px] transition-all duration-300 opacity-0">
+          <div class="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-black/90 border-2 border-[#ffde00] shadow-[0_8px_30px_rgba(0,0,0,0.85)] text-white text-center max-w-[270px] sm:max-w-xs select-none">
+            
+            <!-- Animated Up Arrow -->
+            <div class="swipe-arrow-up flex flex-col items-center mb-1.5 text-[#55efc4]">
+              <svg class="w-8 h-8 sm:w-10 sm:h-10 fill-current drop-shadow" viewBox="0 0 24 24">
+                <path d="M12 4l-7 7h4v9h6v-9h4z"/>
+              </svg>
+              <span class="text-[11px] sm:text-xs font-bengali font-bold tracking-wide mt-1">সোয়াইপ আপ ⇡ পরের ভিডিও</span>
+            </div>
+
+            <!-- Central Pill Badge -->
+            <div class="flex items-center gap-2 my-2 w-full justify-center">
+              <div class="h-[1px] bg-white/30 flex-1"></div>
+              <span class="text-xs sm:text-sm font-bengali font-black px-2.5 py-0.5 rounded-full bg-[#ffde00] text-black shadow-[1px_1px_0px_#000]">ভিডিও সোয়াইপ</span>
+              <div class="h-[1px] bg-white/30 flex-1"></div>
+            </div>
+
+            <!-- Animated Down Arrow -->
+            <div class="swipe-arrow-down flex flex-col items-center mt-1.5 text-[#ff7675]">
+              <span class="text-[11px] sm:text-xs font-bengali font-bold tracking-wide mb-1">সোয়াইপ ডাউন ⇣ আগের ভিডিও</span>
+              <svg class="w-8 h-8 sm:w-10 sm:h-10 fill-current drop-shadow" viewBox="0 0 24 24">
+                <path d="M12 20l7-7h-4V4h-6v9H5z"/>
+              </svg>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Floating On-Screen Video Switch Buttons (▲ Prev / ▼ Next) -->
+        <div id="videoNavButtons" class="hidden absolute right-2.5 sm:right-3.5 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-2.5 pointer-events-auto">
+          <button onclick="event.stopPropagation(); swipeVideo('prev')" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ffde00] hover:bg-[#ffe633] text-black border-2 border-black font-black flex items-center justify-center shadow-[2px_2px_0px_#000] active:translate-y-0.5 transition-transform" title="আগের ভিডিও (Swipe Down)">
+            ▲
+          </button>
+          <button onclick="event.stopPropagation(); swipeVideo('next')" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#55efc4] hover:bg-[#00cec9] text-black border-2 border-black font-black flex items-center justify-center shadow-[2px_2px_0px_#000] active:translate-y-0.5 transition-transform" title="পরের ভিডিও (Swipe Up)">
+            ▼
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -3479,8 +3455,136 @@
       'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/guiijjobnu1ynlockmv6.jpg',
       'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/rhi3ia8jtvqsnvg4nvny.jpg',
       'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/pesatmrj2jmnniwxxo95.jpg',
-      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/z7kcjyq6fxrxhxn4fohi.jpg'
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/z7kcjyq6fxrxhxn4fohi.jpg',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1793410481/bfsq0cf3fzcypd37lkws.jpg',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1793409667/vppidzu8jqzzsldmqiln.jpg',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1793409667/skj0yng4gli3x3av1gfz.jpg',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1793409665/eknwsuz3yd5ajbhiudxj.jpg',
+      'https://res.cloudinary.com/dewfxpu5x/image/upload/v1793409662/xiqs3r32x1rwfoto7c4w.jpg'
     ];
+
+    /* Complete Memories Media Collection (14 Photos + 26 Videos) */
+    const MEMORIES_ITEMS = [
+      // 14 Photos
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894401/lk96vhpueos8s9kpscfw.webp', title: 'ক্লাসের স্মৃতি অ্যালবাম #১' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894400/w5l4mhagmn0nxsnzoa5t.webp', title: 'ক্লাসের স্মৃতি অ্যালবাম #২' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894224/owv5u7dc5rqm25ddzpc4.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #৩' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894223/jj6mhsfd7pnwatrqrtpm.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #৪' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894223/vrf8chdmcpdlbskpxz10.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #৫' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/guiijjobnu1ynlockmv6.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #৬' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/rhi3ia8jtvqsnvg4nvny.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #৭' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/pesatmrj2jmnniwxxo95.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #৮' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1792894222/z7kcjyq6fxrxhxn4fohi.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #৯' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1793410481/bfsq0cf3fzcypd37lkws.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #১০' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1793409667/vppidzu8jqzzsldmqiln.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #১১' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1793409667/skj0yng4gli3x3av1gfz.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #১২' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1793409665/eknwsuz3yd5ajbhiudxj.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #১৩' },
+      { type: 'image', url: 'https://res.cloudinary.com/dewfxpu5x/image/upload/v1793409662/xiqs3r32x1rwfoto7c4w.jpg', title: 'ক্লাসের স্মৃতি অ্যালবাম #১৪' },
+
+      // 26 Videos
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793410595/t8pydpl6s4srtb6njmd8.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793410595/t8pydpl6s4srtb6njmd8.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #১' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793410535/avpcz3x8uq0kmzzhspyt.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793410535/avpcz3x8uq0kmzzhspyt.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #২' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409775/z6xju3iixypw0ydwt44m.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409775/z6xju3iixypw0ydwt44m.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #৩' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409749/sfq64rg20pxqxc3dldif.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409749/sfq64rg20pxqxc3dldif.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #৪' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409732/ouq05dxibwtkumtmgvul.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409732/ouq05dxibwtkumtmgvul.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #৫' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409727/htujrnmveve0l8kdehf0.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409727/htujrnmveve0l8kdehf0.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #৬' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409725/olrikyiq5dw8yalehmwo.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409725/olrikyiq5dw8yalehmwo.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #৭' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409712/awyp6eofqj8tkekfrsl2.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409712/awyp6eofqj8tkekfrsl2.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #৮' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409708/nytmoewezu1hlnq9dliz.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409708/nytmoewezu1hlnq9dliz.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #৯' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409704/m6j3qdr8odw86jn8xt6s.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409704/m6j3qdr8odw86jn8xt6s.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #১০' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409703/uitcltyzf5cenin88bed.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409703/uitcltyzf5cenin88bed.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #১১' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409695/pox5jo5bjwyphrvljxoa.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409695/pox5jo5bjwyphrvljxoa.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #১২' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409690/wnnvpgrvww1fnphirwe0.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409690/wnnvpgrvww1fnphirwe0.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #১৩' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409689/gc4o77g7dr0xbrxio14b.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409689/gc4o77g7dr0xbrxio14b.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #১৪' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409685/rngi0ufnzym4z1xxcpof.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409685/rngi0ufnzym4z1xxcpof.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #১৫' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409683/rda7mklcoq2nvc9jqnpy.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409683/rda7mklcoq2nvc9jqnpy.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #১৬' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409680/nfc6jdojzlubfmlcwgq9.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409680/nfc6jdojzlubfmlcwgq9.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #১৭' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409676/bcnef2vyuhgbfzsgbo3c.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409676/bcnef2vyuhgbfzsgbo3c.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #১৮' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409675/lxq4ufmlqmnorgsdkjka.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409675/lxq4ufmlqmnorgsdkjka.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #১৯' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409672/ofu4pdai00qreinpmnuo.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409672/ofu4pdai00qreinpmnuo.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #২০' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409672/lixjnfu3mpyo5xans4p0.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409672/lixjnfu3mpyo5xans4p0.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #২১' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409671/ib2y0iiof3kk6gckqyah.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409671/ib2y0iiof3kk6gckqyah.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #২২' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409666/j8sekmwmkhlejs1adxbg.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409666/j8sekmwmkhlejs1adxbg.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #২৩' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409666/h8yzuzlh4tgfkxsvhrvl.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409666/h8yzuzlh4tgfkxsvhrvl.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #২৪' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409665/gvl8oqaecx9kq7vn43b2.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409665/gvl8oqaecx9kq7vn43b2.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #২৫' },
+      { type: 'video', url: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409664/ckgrr1m9mr4zdfoh6lbh.mp4', poster: 'https://res.cloudinary.com/dewfxpu5x/video/upload/v1793409664/ckgrr1m9mr4zdfoh6lbh.jpg', title: 'ক্লাসের স্মৃতি ভিডিও #২৬' }
+    ];
+
+    let currentMemoriesFilter = 'all';
+
+    function filterMemories(filterType) {
+      currentMemoriesFilter = filterType;
+      const container = document.getElementById('memoriesGrid');
+      if (!container) return;
+
+      const btnAll = document.getElementById('memFilterAll');
+      const btnImg = document.getElementById('memFilterImage');
+      const btnVid = document.getElementById('memFilterVideo');
+
+      [btnAll, btnImg, btnVid].forEach(b => {
+        if (b) {
+          b.classList.remove('bg-[#ffde00]');
+          b.classList.add('bg-white');
+        }
+      });
+
+      if (filterType === 'all' && btnAll) {
+        btnAll.classList.add('bg-[#ffde00]');
+        btnAll.classList.remove('bg-white');
+      } else if (filterType === 'image' && btnImg) {
+        btnImg.classList.add('bg-[#ffde00]');
+        btnImg.classList.remove('bg-white');
+      } else if (filterType === 'video' && btnVid) {
+        btnVid.classList.add('bg-[#ffde00]');
+        btnVid.classList.remove('bg-white');
+      }
+
+      const items = MEMORIES_ITEMS.filter(item => filterType === 'all' || item.type === filterType);
+
+      container.innerHTML = items.map(item => {
+        if (item.type === 'video') {
+          return `
+            <div onclick="openLightbox('${item.url}', '${item.title}', 'video')" class="group cursor-pointer bg-white border-2 border-black rounded-[2rem] p-3 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all flex flex-col justify-between">
+              <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-black bg-slate-900 relative">
+                <img src="${item.poster}" alt="${item.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div class="absolute inset-0 bg-black/25 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                  <div class="w-12 h-12 rounded-full bg-[#ffde00] group-hover:bg-[#ffe633] border-2 border-black flex items-center justify-center text-lg font-black shadow-[3px_3px_0px_#000] group-hover:scale-110 transition-transform pl-0.5 text-black">
+                    ▶
+                  </div>
+                </div>
+                <div class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-black/85 text-white text-[10px] font-bold border border-white/20 flex items-center gap-1 shadow-sm">
+                  <span>🎥</span> <span>ভিডিও</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-3 px-1">
+                <span class="font-bengali font-bold text-xs text-black truncate max-w-[180px]">${item.title}</span>
+                <span class="text-[11px] font-display font-black px-2.5 py-0.5 rounded-md bg-[#ffde00] border border-black flex items-center gap-1 text-black">
+                  PLAY ▶
+                </span>
+              </div>
+            </div>
+          `;
+        } else {
+          return `
+            <div onclick="openLightbox('${item.url}', '${item.title}', 'image')" class="group cursor-pointer bg-white border-2 border-black rounded-[2rem] p-3 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all flex flex-col justify-between">
+              <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-black bg-slate-100 relative">
+                <img src="${item.url}" alt="${item.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span class="w-10 h-10 rounded-full bg-[#ffde00] border-2 border-black flex items-center justify-center text-sm font-black shadow-[2px_2px_0px_#000]">🔍</span>
+                </div>
+                <div class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-black/85 text-white text-[10px] font-bold border border-white/20 flex items-center gap-1 shadow-sm">
+                  <span>📸</span> <span>ছবি</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-3 px-1">
+                <span class="font-bengali font-bold text-xs text-black truncate max-w-[180px]">${item.title}</span>
+                <span class="text-[11px] font-display font-black px-2 py-0.5 rounded-md bg-[#eef69e] border border-black text-black">VIEW</span>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+    }
 
     let currentCarouselIndex = 0;
     let carouselTimer = null;
@@ -3502,7 +3606,7 @@
 
       box.addEventListener('click', () => {
         const activeUrl = MEMORIES_PHOTOS[currentCarouselIndex];
-        openLightbox(activeUrl, `স্মৃতি অ্যালবাম #${currentCarouselIndex + 1}`);
+        openLightbox(activeUrl, `স্মৃতি অ্যালবাম #${currentCarouselIndex + 1}`, 'image');
       });
 
       function showSlide(index) {
@@ -3545,6 +3649,7 @@
     }
 
     initHeroCarousel();
+    filterMemories('all');
     updateNotifUI();
     if (STUDENTS.length > 0) {
       render();
@@ -3556,9 +3661,16 @@
     }
   
     /* =========================================================
-       LIGHTBOX & MEMORIES AUDIO HANDLERS ("woh-din-bhi.mp3")
+       LIGHTBOX, MEMORIES AUDIO & VIDEO SWIPE REELS HANDLERS
        ========================================================= */
     const memoriesAudio = document.getElementById('memoriesAudio');
+    let currentLightboxType = null;
+    let currentVideoIndex = 0;
+    let swipeHintTimeout = null;
+    let touchStartY = 0;
+    let touchStartX = 0;
+    let isSwipeActive = false;
+    let wheelDebounceTimer = null;
 
     function playMemoriesSong() {
       if (memoriesAudio) {
@@ -3581,54 +3693,266 @@
       }
     }
 
-    function openLightbox(url, caption) {
+    function showSwipeHint() {
+      const hint = document.getElementById('videoSwipeHint');
+      if (!hint) return;
+      if (swipeHintTimeout) clearTimeout(swipeHintTimeout);
+
+      hint.classList.remove('hidden');
+      // Force reflow for CSS transition
+      void hint.offsetWidth;
+      hint.classList.remove('opacity-0');
+      hint.classList.add('opacity-100');
+
+      swipeHintTimeout = setTimeout(() => {
+        hint.classList.remove('opacity-100');
+        hint.classList.add('opacity-0');
+        setTimeout(() => {
+          hint.classList.add('hidden');
+        }, 500);
+      }, 2600);
+    }
+
+    function hideSwipeHintImmediately() {
+      const hint = document.getElementById('videoSwipeHint');
+      if (!hint) return;
+      if (swipeHintTimeout) clearTimeout(swipeHintTimeout);
+      hint.classList.remove('opacity-100');
+      hint.classList.add('opacity-0');
+      setTimeout(() => hint.classList.add('hidden'), 200);
+    }
+
+    function swipeVideo(direction) {
+      const onlyVideos = MEMORIES_ITEMS.filter(m => m.type === 'video');
+      if (!onlyVideos.length) return;
+
+      if (direction === 'next') {
+        currentVideoIndex = (currentVideoIndex + 1) % onlyVideos.length;
+      } else {
+        currentVideoIndex = (currentVideoIndex - 1 + onlyVideos.length) % onlyVideos.length;
+      }
+
+      playVideoAtIndex(currentVideoIndex, false);
+    }
+
+    function playVideoAtIndex(idx, showHint = true) {
+      const onlyVideos = MEMORIES_ITEMS.filter(m => m.type === 'video');
+      if (idx < 0 || idx >= onlyVideos.length) return;
+      currentVideoIndex = idx;
+      const item = onlyVideos[idx];
+
       const modal = document.getElementById('lightboxModal');
       const img = document.getElementById('lightboxImg');
+      const video = document.getElementById('lightboxVideo');
       const cap = document.getElementById('lightboxCaption');
-      if (modal && img) {
-        img.src = url;
+      const typeIcon = document.getElementById('lightboxTypeIcon');
+      const audioBadge = document.getElementById('lightboxAudioBadge');
+      const videoBadge = document.getElementById('lightboxVideoBadge');
+      const videoNavButtons = document.getElementById('videoNavButtons');
+      const videoCounterBadge = document.getElementById('lightboxVideoCounterBadge');
+
+      currentLightboxType = 'video';
+      // Stop background song so video original voice/audio plays cleanly
+      stopMemoriesSong();
+
+      if (img) {
+        img.classList.add('hidden');
+        img.src = '';
+      }
+      if (audioBadge) audioBadge.classList.add('hidden');
+      if (videoBadge) videoBadge.classList.remove('hidden');
+      if (typeIcon) typeIcon.textContent = '🎥';
+      if (videoNavButtons) videoNavButtons.classList.remove('hidden');
+
+      const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+      const curBn = String(idx + 1).replace(/\d/g, d => bengaliDigits[d]);
+      const totBn = String(onlyVideos.length).replace(/\d/g, d => bengaliDigits[d]);
+
+      if (cap) cap.textContent = `${item.title}`;
+      if (videoCounterBadge) {
+        videoCounterBadge.textContent = `${curBn} / ${totBn}`;
+        videoCounterBadge.classList.remove('hidden');
+      }
+
+      if (video) {
+        video.classList.remove('hidden');
+        video.src = item.url;
+        video.currentTime = 0;
+        video.muted = false; // Video original voice plays!
+        video.volume = 1.0;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(err => {
+            console.warn('Video autoplay with sound blocked, user interaction required:', err);
+          });
+        }
+      }
+
+      if (showHint) {
+        showSwipeHint();
+      }
+
+      initLightboxSwipe();
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openLightbox(url, caption, type = 'image') {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      const video = document.getElementById('lightboxVideo');
+      const cap = document.getElementById('lightboxCaption');
+      const typeIcon = document.getElementById('lightboxTypeIcon');
+      const audioBadge = document.getElementById('lightboxAudioBadge');
+      const videoBadge = document.getElementById('lightboxVideoBadge');
+      const videoNavButtons = document.getElementById('videoNavButtons');
+      const videoCounterBadge = document.getElementById('lightboxVideoCounterBadge');
+      if (!modal) return;
+
+      if (type === 'video') {
+        const onlyVideos = MEMORIES_ITEMS.filter(m => m.type === 'video');
+        const foundIdx = onlyVideos.findIndex(v => v.url === url);
+        playVideoAtIndex(foundIdx !== -1 ? foundIdx : 0, true);
+      } else {
+        // Image Mode
+        currentLightboxType = 'image';
+        hideSwipeHintImmediately();
+
+        if (video) {
+          video.pause();
+          video.src = '';
+          video.classList.add('hidden');
+        }
+        if (videoBadge) videoBadge.classList.add('hidden');
+        if (videoNavButtons) videoNavButtons.classList.add('hidden');
+        if (videoCounterBadge) videoCounterBadge.classList.add('hidden');
+        if (audioBadge) audioBadge.classList.remove('hidden');
+        if (typeIcon) typeIcon.textContent = '📸';
         if (cap) cap.textContent = caption || 'স্মৃতি অ্যালবাম';
+
+        if (img) {
+          img.classList.remove('hidden');
+          img.src = url;
+        }
+
+        // Play memories song ("woh-din-bhi.mp3") ONLY for photos!
+        playMemoriesSong();
+
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
-
-        // Play "woh-din-bhi.mp3" when opening photo
-        playMemoriesSong();
       }
     }
 
     function closeLightbox() {
       const modal = document.getElementById('lightboxModal');
       const img = document.getElementById('lightboxImg');
+      const video = document.getElementById('lightboxVideo');
+      const videoNavButtons = document.getElementById('videoNavButtons');
+      const videoCounterBadge = document.getElementById('lightboxVideoCounterBadge');
+      hideSwipeHintImmediately();
+
       if (modal) {
         modal.classList.add('hidden');
         if (img) img.src = '';
+        if (video) {
+          video.pause();
+          video.src = '';
+          video.classList.add('hidden');
+        }
+        if (videoNavButtons) videoNavButtons.classList.add('hidden');
+        if (videoCounterBadge) videoCounterBadge.classList.add('hidden');
         document.body.style.overflow = '';
+        currentLightboxType = null;
 
-        // Stop "woh-din-bhi.mp3" immediately when closing photo
+        // Stop memories audio immediately
         stopMemoriesSong();
       }
     }
 
+    // Attach Swipe Touch, Wheel and Video Completion handlers
+    function initLightboxSwipe() {
+      const container = document.getElementById('lightboxMediaContainer');
+      if (container && !container.dataset.swipeInitialized) {
+        container.dataset.swipeInitialized = 'true';
+
+        // Touch Gesture Support (Mobile Swipe Up / Swipe Down)
+        container.addEventListener('touchstart', (e) => {
+          if (currentLightboxType !== 'video') return;
+          touchStartY = e.touches[0].clientY;
+          touchStartX = e.touches[0].clientX;
+          isSwipeActive = true;
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+          if (!isSwipeActive || currentLightboxType !== 'video') return;
+          isSwipeActive = false;
+          const touchEndY = e.changedTouches[0].clientY;
+          const touchEndX = e.changedTouches[0].clientX;
+          const diffY = touchStartY - touchEndY;
+          const diffX = touchStartX - touchEndX;
+
+          // Ensure vertical swipe has dominant displacement
+          if (Math.abs(diffY) > 35 && Math.abs(diffY) > Math.abs(diffX)) {
+            hideSwipeHintImmediately();
+            if (diffY > 0) {
+              // Swiped UP -> Next Video
+              swipeVideo('next');
+            } else {
+              // Swiped DOWN -> Previous Video
+              swipeVideo('prev');
+            }
+          }
+        }, { passive: true });
+
+        // Mouse Wheel Support (Desktop Scroll Up / Down)
+        container.addEventListener('wheel', (e) => {
+          if (currentLightboxType !== 'video') return;
+          e.preventDefault();
+          if (wheelDebounceTimer) return;
+          wheelDebounceTimer = setTimeout(() => { wheelDebounceTimer = null; }, 350);
+
+          hideSwipeHintImmediately();
+          if (e.deltaY > 15) {
+            swipeVideo('next');
+          } else if (e.deltaY < -15) {
+            swipeVideo('prev');
+          }
+        }, { passive: false });
+      }
+
+      // When current video finishes, automatically advance to next video!
+      const lightboxVideoEl = document.getElementById('lightboxVideo');
+      if (lightboxVideoEl && !lightboxVideoEl.dataset.endedListenerAttached) {
+        lightboxVideoEl.dataset.endedListenerAttached = 'true';
+        lightboxVideoEl.addEventListener('ended', () => {
+          if (currentLightboxType === 'video') {
+            swipeVideo('next');
+          }
+        });
+      }
+    }
+
+    // Keyboard Arrow Up / Down navigation for video swipe
+    window.addEventListener('keydown', (e) => {
+      if (currentLightboxType === 'video') {
+        if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+          e.preventDefault();
+          hideSwipeHintImmediately();
+          swipeVideo('prev');
+        } else if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+          e.preventDefault();
+          hideSwipeHintImmediately();
+          swipeVideo('next');
+        }
+      }
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLightboxSwipe);
+    } else {
+      initLightboxSwipe();
+    }
+
   </script>
-
-  <!-- Lightbox Modal for Memories Photo Full-View -->
-  <div id="lightboxModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-2.5 sm:p-4 bg-black/80 backdrop-blur-sm" onclick="if(event.target === this) closeLightbox()">
-    <div class="relative max-w-4xl w-full max-h-[94vh] bg-white border-2 border-black rounded-2xl sm:rounded-[2rem] p-3 sm:p-4 shadow-[6px_6px_0px_#000] sm:shadow-[8px_8px_0px_#000] flex flex-col items-center overflow-hidden">
-      <div class="w-full flex items-center justify-between pb-2.5 border-b-2 border-black mb-2.5 flex-shrink-0">
-        <div class="flex items-center gap-2 min-w-0">
-          <span class="text-lg sm:text-xl flex-shrink-0">📸</span>
-          <span id="lightboxCaption" class="font-bengali font-bold text-black text-xs sm:text-base truncate">স্মৃতি</span>
-          <span class="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-full bg-[#ffde00] border border-black text-[10px] sm:text-[11px] font-bold text-black shadow-[1px_1px_0px_#000] flex-shrink-0">
-            <span>🎵</span> <span class="hidden xs:inline">Woh Din Bhi</span>
-          </span>
-        </div>
-        <button onclick="closeLightbox()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#ffde00] hover:bg-[#ffe633] border-2 border-black text-black font-bold flex items-center justify-center shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] flex-shrink-0">✕</button>
-      </div>
-      <div class="w-full max-h-[70vh] sm:max-h-[75vh] flex items-center justify-center overflow-hidden rounded-xl sm:rounded-2xl border-2 border-black bg-black">
-        <img id="lightboxImg" src="" alt="স্মৃতি পূর্ণাঙ্গ ছবি" class="max-w-full max-h-[70vh] sm:max-h-[75vh] object-contain rounded-lg" />
-      </div>
-    </div>
-  </div>
-
 </body>
 </html>
